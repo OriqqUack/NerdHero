@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
-    public Vector2 MoveDirection;
+    public Vector3 MoveDirection;
     
-    public void OnMove(InputValue value) => MoveDirection = value.Get<Vector2>();
+    public void OnMove(InputValue value) => MoveDirection = value.Get<Vector3>();
 }

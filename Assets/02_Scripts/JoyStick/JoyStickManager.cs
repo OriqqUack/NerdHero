@@ -1,31 +1,53 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class JoyStickManager : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
-    public RectTransform background;
-    public RectTransform handle;
-    private Vector2 inputVector = Vector2.zero;
-    private bool isReleased = true; // 손을 뗐는지 여부
+    [SerializeField] private RectTransform background;
+    [SerializeField] private RectTransform handle;
+    [SerializeField] private RectTransform touchePanel;
+    
+    private Vector2 _inputVector = Vector2.zero;
+    private bool _isReleased = true;
+    private Canvas _canvas; // UI 캔버스 참조
 
-    public Vector2 GetInput() => inputVector;
-    public bool IsReleased() => isReleased; // 조이스틱이 해제되었는지 확인
+    public Vector2 GetInput() => _inputVector;
+    public bool IsReleased() => _isReleased;
+
+    private void Awake()
+    {
+        _canvas = GetComponent<Canvas>();
+        SetTouchPanelSize();
+        background.gameObject.SetActive(false);
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
-        isReleased = false;
+        _isReleased = false;
         Vector2 pos = eventData.position - (Vector2)background.position;
         float radius = background.sizeDelta.x / 2;
-        inputVector = (pos.magnitude > radius) ? pos.normalized : pos / radius;
-        handle.anchoredPosition = inputVector * radius;
+        _inputVector = (pos.magnitude > radius) ? pos.normalized : pos / radius;
+        handle.anchoredPosition = _inputVector * radius;
     }
 
-    public void OnPointerDown(PointerEventData eventData) => OnDrag(eventData);
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        background.gameObject.SetActive(true); // 조이스틱 활성화
+        background.position = eventData.position; // 터치한 위치에 조이스틱 배치
+        OnDrag(eventData);
+    }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isReleased = true;
-        inputVector = Vector2.zero;
+        _isReleased = true;
+        _inputVector = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+        background.gameObject.SetActive(false); // 손을 떼면 조이스틱 숨김
+    }
+
+    private void SetTouchPanelSize()
+    {
+        touchePanel.sizeDelta = new Vector2(Screen.width/2, Screen.height);
     }
 }
