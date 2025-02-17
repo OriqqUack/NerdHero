@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Entity entity;
+    /*private Entity entity;
 
     private void Start()
     {
@@ -47,9 +47,9 @@ public class PlayerController : MonoBehaviour
 
     private void ReserveSkill(SkillSystem skillSystem, Skill skill, TargetSearcher targetSearcher, TargetSelectionResult result)
     {
-        // °Ë»ö °á°ú°¡ OutOfRange°¡ ¾Æ´Ï°Å³ª SkillÀÌ ÇöÀç SearchingTargetState°¡ ¾Æ´Ï¶ó¸é returnÀ¸·Î ºüÁ®³ª°¨
-        // Target Select´Â SkillÀÇ ¼³Á¤¿¡ µû¶ó¼­ ¿©·¯ °÷¿¡¼­ ÀÏ¾î³¯ ¼ö ÀÖ´Âµ¥,
-        // SkillÀÌ SearchingTargetStateÀÏ ¶§¸¸ ¿¹¾àÀ» ½ÃµµÇÔ
+        // ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ OutOfRangeï¿½ï¿½ ï¿½Æ´Ï°Å³ï¿½ Skillï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ SearchingTargetStateï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ returnï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // Target Selectï¿½ï¿½ Skillï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾î³¯ ï¿½ï¿½ ï¿½Ö´Âµï¿½,
+        // Skillï¿½ï¿½ SearchingTargetStateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ï¿½ï¿½
         if (result.resultMessage != SearchResultMessage.OutOfRange ||
             !skill.IsInState<SearchingTargetState>())
             return;
@@ -60,5 +60,5 @@ public class PlayerController : MonoBehaviour
             entity.Movement.TraceTarget = result.selectedTarget.transform;
         else
             entity.Movement.Destination = result.selectedPosition;
-    }
+    }*/
 }

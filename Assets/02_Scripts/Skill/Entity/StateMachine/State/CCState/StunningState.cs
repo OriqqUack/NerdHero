@@ -6,6 +6,6 @@ public class StunningState : EntityCCState
 {
     private static readonly int kAnimationHash = Animator.StringToHash("isStunning");
 
-    public override string Description => "±âÀý";
+    public override string Description => "ê¸°ì ˆ";
     protected override int AnimationHash => kAnimationHash;
 }

@@ -13,7 +13,7 @@ public abstract class EntityCCState : State<Entity>
         Entity.Movement?.Stop();
         Entity.SkillSystem.CancelAll();
 
-        var playerController = Entity.GetComponent<PlayerController>();
+        var playerController = Entity.GetComponent<PlayerMovement>();
         if (playerController)
             playerController.enabled = false;
     }
@@ -22,7 +22,7 @@ public abstract class EntityCCState : State<Entity>
     {
         Entity.Animator?.SetBool(AnimationHash, false);
 
-        var playerController = Entity.GetComponent<PlayerController>();
+        var playerController = Entity.GetComponent<PlayerMovement>();
         if (playerController)
             playerController.enabled = true;
     }

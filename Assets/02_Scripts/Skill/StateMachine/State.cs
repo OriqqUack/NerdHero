@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-// EntityTypeÀº State¸¦ ¼ÒÀ¯ÇÏ´Â EntityÀÇ Type
-// StateMachineÀÇ EntityType°ú ÀÏÄ¡ÇØ¾ßÇÔ
+// EntityTypeï¿½ï¿½ Stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Entityï¿½ï¿½ Type
+// StateMachineï¿½ï¿½ EntityTypeï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ø¾ï¿½ï¿½ï¿½
 public abstract class State<EntityType>
 {
     public StateMachine<EntityType> Owner { get; private set; }
     public EntityType Entity { get; private set; }
-    // State°¡ StateMachine¿¡ µî·ÏµÈ Layer ¹øÈ£
+    // Stateï¿½ï¿½ StateMachineï¿½ï¿½ ï¿½ï¿½Ïµï¿½ Layer ï¿½ï¿½È£
     public int Layer { get; private set; }
 
-    // StatMachine¿¡¼­ »ç¿ëÇÒ SetupÇÔ¼ö
+    // StatMachineï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Setupï¿½Ô¼ï¿½
     public void Setup(StateMachine<EntityType> owner, EntityType entity, int layer)
     {
         Owner = owner;
@@ -22,17 +22,17 @@ public abstract class State<EntityType>
         Setup();
     }
 
-    // Awake ¿ªÈ°À» ÇØÁÙ Setup ÇÔ¼ö
+    // Awake ï¿½ï¿½È°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Setup ï¿½Ô¼ï¿½
     protected virtual void Setup() { }
 
-    // State°¡ ½ÃÀÛµÉ ¶§ ½ÇÇàµÉ ÇÔ¼ö
+    // Stateï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public virtual void Enter() { }
-    // StateÀÌ°¡ ½ÇÇàÁßÀÏ ¶§ ¸Å ÇÁ·¹ÀÓ¸¶´Ù ½ÇÇàµÇ´Â ÇÔ¼ö
+    // Stateï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
     public virtual void Update() { }
-    // State°¡ ³¡³¯ ¶§ ½ÇÇàµÉ ÇÔ¼ö
+    // Stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public virtual void Exit() { }
-    // StateMachineÀ» ÅëÇØ ¿ÜºÎ¿¡¼­ Message°¡ ³Ñ¾î¿ÔÀ» ¶§ Ã³¸®ÇÏ´Â ÇÔ¼ö
-    // Message¶ó´Â°Ç State¿¡°Ô Æ¯Á¤ ÀÛ¾÷À» ÇÏ¶ó°í ¸í·ÉÇÏ±â À§ÇØ °³¹ßÀÚ°¡ Á¤ÇÑ ½ÅÈ£
+    // StateMachineï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ï¿½ï¿½ Messageï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+    // Messageï¿½ï¿½Â°ï¿½ Stateï¿½ï¿½ï¿½ï¿½ Æ¯ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
     public virtual bool OnReceiveMessage(int message, object data) => false;
 
 }

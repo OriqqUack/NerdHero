@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 [System.Serializable]
 public class RollingAction : SkillPrecedingAction
 {
@@ -19,4 +20,4 @@ public class RollingAction : SkillPrecedingAction
     }
 
     public override object Clone() => new RollingAction() { distance = distance };
-}
+}*/

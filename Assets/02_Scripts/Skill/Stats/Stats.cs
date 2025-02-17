@@ -104,6 +104,13 @@ public class Stats : MonoBehaviour
         return stats.FirstOrDefault(x => x.ID == stat.ID);
     }
 
+    public Stat GetStat(string statName)
+    {
+        Stat stat = stats.FirstOrDefault(x => x.CodeName == statName);
+        Debug.Assert(stat != null, $"Stats::GetStat - stat�� null�� �� �� �����ϴ�.");
+        return stat;
+    }
+
     public bool TryGetStat(Stat stat, out Stat outStat)
     {
         Debug.Assert(stat != null, $"Stats::TryGetStat - stat�� null�� �� �� �����ϴ�.");

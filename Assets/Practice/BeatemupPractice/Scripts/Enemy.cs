@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyMovement : Movement
 {
     [SerializeField] private float maxSpeed;
     [SerializeField] private float minHeight, maxHeight;

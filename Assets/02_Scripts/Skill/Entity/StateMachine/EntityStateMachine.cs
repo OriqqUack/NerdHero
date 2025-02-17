@@ -7,31 +7,31 @@ public class EntityStateMachine : MonoStateMachine<Entity>
         AddState<EntityDefaultState>();
         AddState<DeadState>();
         AddState<RollingState>();
-        // SkillÀÌ Casting ÁßÀÏ ¶§ EntityÀÇ »óÅÂ
+        // Skillï¿½ï¿½ Casting ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<CastingSkillState>();
-        // SkillÀÌ Charging ÁßÀÏ ¶§ EntityÀÇ »óÅÂ
+        // Skillï¿½ï¿½ Charging ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<ChargingSkillState>();
-        // SkillÀÌ Preceding Action ÁßÀÏ ¶§ EntityÀÇ »óÅÂ
+        // Skillï¿½ï¿½ Preceding Action ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<InSkillPrecedingActionState>();
-        // SkillÀÌ ¹ßµ¿ ÁßÀÏ ¶§ EntityÀÇ »óÅÂ
+        // Skillï¿½ï¿½ ï¿½ßµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<InSkillActionState>();
-        // Entity°¡ Stun CC±â¸¦ ¸Â¾ÒÀ» ¶§ÀÇ »óÅÂ
+        // Entityï¿½ï¿½ Stun CCï¿½â¸¦ ï¿½Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<StunningState>();
-        // Entity°¡ Sleep CC±â¸¦ ¸Â¾ÒÀ» ¶§ÀÇ »óÅÂ
+        // Entityï¿½ï¿½ Sleep CCï¿½â¸¦ ï¿½Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         AddState<SleepingState>();
     }
 
     protected override void MakeTransitions()
     {
         // Default State
-        MakeTransition<EntityDefaultState, RollingState>(state => Owner.Movement?.IsRolling ?? false);
+        //MakeTransition<EntityDefaultState, RollingState>(state => Owner.Movement?.IsRolling ?? false);
         MakeTransition<EntityDefaultState, CastingSkillState>(EntityStateCommand.ToCastingSkillState);
         MakeTransition<EntityDefaultState, ChargingSkillState>(EntityStateCommand.ToChargingSkillState);
         MakeTransition<EntityDefaultState, InSkillPrecedingActionState>(EntityStateCommand.ToInSkillPrecedingActionState);
         MakeTransition<EntityDefaultState, InSkillActionState>(EntityStateCommand.ToInSkillActionState);
 
         // Rolling State
-        MakeTransition<RollingState, EntityDefaultState>(state => !Owner.Movement.IsRolling);
+        //MakeTransition<RollingState, EntityDefaultState>(state => !Owner.Movement.IsRolling);
 
         // Skill State
             // Casting State

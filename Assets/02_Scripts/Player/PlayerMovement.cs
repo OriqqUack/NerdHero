@@ -18,24 +18,12 @@ public enum CharacterState
     Attack
 }
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Movement
 {
-    public JoyStickManager joystick;
-
-    [Header("Components")]
-    [SerializeField] private CharacterController controller;
-
-    [Header("Moving")]
-    [SerializeField] private float walkSpeed = 1.5f;
-    [SerializeField] private float runSpeed = 7f;
-    [SerializeField] private float gravityScale = 9.81f;
-    [SerializeField] private float minHeight, maxHeight;
+    [SerializeField] private JoyStickManager joystick;
     
     [Header("Jumping")]
     [SerializeField] private float jumpSpeed = 10f;
-
-    [Header("Animation")]
-    [SerializeField] private SkeletonAnimationHandleExample animationHandle;
 
     private GameObject _baseAttackCollider;
     private Vector3 _moveInput;
@@ -57,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
     {
         JoystickUpdate();
         MovingCheck();
-    }
     
+    }
     private void FixedUpdate()
     {
         Move();
@@ -72,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        if (controller.isGrounded) // 땅에 있을 때만 점프 가능
+        if (Controller.isGrounded) // 땅에 있을 때만 점프 가능
         {
             _velocity.y = jumpSpeed; // 점프 속도 설정
             _currentState = CharacterState.Jump;
@@ -105,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovingCheck()
     {
-        bool isGrounded = controller.isGrounded;
+        bool isGrounded = Controller.isGrounded;
 
         if (isGrounded && !_isAttacking)
         {
@@ -154,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDirection = _moveInput * (speed * Time.deltaTime);
 
         // 중력 적용
-        if (!controller.isGrounded)
+        if (!Controller.isGrounded)
         {
             _isJumping = true;
             _velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
@@ -167,11 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
         // 최종 이동 처리 (중력 + 조이스틱 이동)
         Vector3 finalMove = new Vector3(moveDirection.x, _velocity.y * Time.deltaTime, moveDirection.z);
-        controller.Move(finalMove);
-        
-        Vector3 position = transform.position;
-        position.z = Mathf.Clamp(position.z, minHeight, maxHeight);
-        transform.position = position;
+        Controller.Move(finalMove);
     }
 
     private void HandleStateChanged() 

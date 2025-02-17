@@ -51,7 +51,7 @@ public class EntityMovement : MonoBehaviour
     public event SetDestinationHandler onSetDestination;
     #endregion
 
-    #region 7-2
+    #region Methods
     public void Setup(Entity owner)
     {
         Owner = owner;

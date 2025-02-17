@@ -21,7 +21,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private EntityControlType controlType;
 
     private Dictionary<string, Transform> socketsByName = new();
-
+    private Rigidbody _rigidbody;
     public EntityControlType ControlType => controlType;
     public IReadOnlyList<Category> Categories => categories;
     public bool IsPlayer => controlType == EntityControlType.Player;
@@ -29,10 +29,11 @@ public class Entity : MonoBehaviour
     public Animator Animator { get; private set; }
     public Stats Stats { get; private set; }
     public bool IsDead => Stats.HPStat != null && Mathf.Approximately(Stats.HPStat.DefaultValue, 0f);
-    public EntityMovement Movement { get; private set; }
+    public Movement Movement { get; private set; }
     public MonoStateMachine<Entity> StateMachine { get; private set; }
     public SkillSystem SkillSystem { get; private set; }
     public Entity Target { get; set; }
+    public Rigidbody Rigidbody => _rigidbody;
 
     #region EventHandlers
     public event TakeDamageHandler onTakeDamage;
@@ -46,7 +47,7 @@ public class Entity : MonoBehaviour
         Stats = GetComponent<Stats>();
         Stats.Setup(this);
 
-        Movement = GetComponent<EntityMovement>();
+        Movement = GetComponent<Movement>();
         Movement?.Setup(this);
 
         StateMachine = GetComponent<MonoStateMachine<Entity>>();
@@ -54,6 +55,8 @@ public class Entity : MonoBehaviour
 
         SkillSystem = GetComponent<SkillSystem>();
         SkillSystem?.Setup(this);
+        
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start()

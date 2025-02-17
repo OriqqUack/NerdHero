@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EntitySkillState : State<Entity>
 {
-    // ÇöÀç Entity°¡ ½ÇÇàÁßÀÎ Skill
+    // ï¿½ï¿½ï¿½ï¿½ Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Skill
     public Skill RunningSkill { get; private set; }
-    // Entity°¡ ½ÇÇàÇØ¾ßÇÒ AnimationÀÇ Hash
+    // Entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ Animationï¿½ï¿½ Hash
     protected int AnimatorParameterHash { get; private set; }
 
     public override void Enter()
@@ -41,15 +41,15 @@ public class EntitySkillState : State<Entity>
         AnimatorParameterHash = tupleData.Item2.Hash;
     
         Debug.Assert(RunningSkill != null,
-            $"CastingSkillState({message})::OnReceiveMessage - Àß¸øµÈ data°¡ Àü´ÞµÇ¾ú½À´Ï´Ù.");
+            $"CastingSkillState({message})::OnReceiveMessage - ï¿½ß¸ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ÞµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 
-        // SkillÀÌ ÀÚ½ÅÀÌ Àû¿ëµÉ ±âÁØÁ¡À» Ã£Àº »óÅÂ¶ó¸é(=TargetSearcher.SelectTarget), ±× ¹æÇâÀ» ¹Ù¶óº½
-        if (RunningSkill.IsTargetSelectSuccessful)
+        // Skillï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½(=TargetSearcher.SelectTarget), ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½
+        /*if (RunningSkill.IsTargetSelectSuccessful)
         {
             var selectionResult = RunningSkill.TargetSelectionResult;
             if (selectionResult.selectedTarget != Entity.gameObject)
                 Entity.Movement.LookAtImmediate(selectionResult.selectedPosition);
-        }
+        }*/
 
         Entity.Animator?.SetBool(AnimatorParameterHash, true);
 
