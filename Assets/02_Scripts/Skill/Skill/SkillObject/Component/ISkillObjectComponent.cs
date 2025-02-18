@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ISkillObjectComponent
 {
     public void OnSetupSkillObject(SkillObject skillObject);
+    public void OnSetupSkillObject(SkillColliderObject skillObject);
 }

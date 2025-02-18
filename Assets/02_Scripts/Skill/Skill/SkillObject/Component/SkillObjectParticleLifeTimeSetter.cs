@@ -23,4 +23,8 @@ public class SkillObjectParticleLifeTimeSetter : MonoBehaviour, ISkillObjectComp
             particleSystem.Play(false);
         }
     }
+
+    public void OnSetupSkillObject(SkillColliderObject skillObject)
+    {
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Linq;
+using Spine.Unity.Examples;
 
 public enum EntityControlType
 {
@@ -22,11 +23,13 @@ public class Entity : MonoBehaviour
 
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
+    private Collider _collider;
     public EntityControlType ControlType => controlType;
     public IReadOnlyList<Category> Categories => categories;
     public bool IsPlayer => controlType == EntityControlType.Player;
 
     public Animator Animator { get; private set; }
+    public SkeletonAnimationHandleExample SkeletonAnimator { get; private set; }
     public Stats Stats { get; private set; }
     public bool IsDead => Stats.HPStat != null && Mathf.Approximately(Stats.HPStat.DefaultValue, 0f);
     public Movement Movement { get; private set; }
@@ -34,6 +37,7 @@ public class Entity : MonoBehaviour
     public SkillSystem SkillSystem { get; private set; }
     public Entity Target { get; set; }
     public Rigidbody Rigidbody => _rigidbody;
+    
 
     #region EventHandlers
     public event TakeDamageHandler onTakeDamage;
@@ -43,7 +47,7 @@ public class Entity : MonoBehaviour
     private void Awake()
     {
         Animator = GetComponent<Animator>();
-
+        SkeletonAnimator = GetComponent<SkeletonAnimationHandleExample>();
         Stats = GetComponent<Stats>();
         Stats.Setup(this);
 
@@ -57,6 +61,7 @@ public class Entity : MonoBehaviour
         SkillSystem?.Setup(this);
         
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
     }
 
     private void Start()
@@ -83,14 +88,16 @@ public class Entity : MonoBehaviour
 
     private void OnDead()
     {
-        #region 7-3
         if (Movement)
             Movement.enabled = false;
-        #endregion
 
+        _rigidbody.isKinematic = true;
+        _collider.enabled = false;
+        
         SkillSystem.CancelAll(true);
-
+        
         onDead?.Invoke(this);
+        SkeletonAnimator.PlayOnlyOneShot("dead", 0);
     }
     #endregion
 

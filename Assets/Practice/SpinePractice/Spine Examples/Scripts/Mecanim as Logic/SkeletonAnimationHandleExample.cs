@@ -139,6 +139,24 @@ namespace Spine.Unity.Examples {
 			state.AddAnimation(0, this.TargetAnimation, true, 0f);
 		}
 
+		public void PlayOneShot(string stateShortName, int layerIndex)
+		{
+			Spine.Animation oneShot = GetAnimationForState(stateShortName);
+			PlayOneShot(oneShot, layerIndex);
+		}
+
+		public void PlayOnlyOneShot(Spine.Animation oneShot, int layerIndex)
+		{
+			AnimationState state = skeletonAnimation.AnimationState;
+			state.SetAnimation(0, oneShot, false); // 한 번만 실행하고 멈춤
+		}
+
+		public void PlayOnlyOneShot(string stateShortName, int layerIndex)
+		{
+			Spine.Animation oneShot = GetAnimationForState(stateShortName);
+			PlayOnlyOneShot(oneShot, layerIndex);
+		}
+
 		Spine.Animation TryGetTransition (Spine.Animation from, Spine.Animation to) {
 			foreach (AnimationTransition transition in transitions) {
 				if (transition.from.Animation == from && transition.to.Animation == to) {

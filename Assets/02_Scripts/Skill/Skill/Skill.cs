@@ -12,9 +12,9 @@ public class Skill : IdentifiedObject
     public delegate void StateChangedHandler(Skill skill, State<Skill> newState, State<Skill> prevState, int layer);
     public delegate void AppliedHander(Skill skill, int currentApplyCount);
     public delegate void UsedHandler(Skill skill);
-    // SkillÀÌ »ç¿ë(Use)µÈ Á÷ÈÄ ½ÇÇàµÇ´Â Event
+    // Skillì´ ì‚¬ìš©(Use)ëœ ì§í›„ ì‹¤í–‰ë˜ëŠ” Event
     public delegate void ActivatedHandler(Skill skill);
-    // SkillÀÌ Á¾·áµÈ Á÷ÈÄ ½ÇÇàµÇ´Â Event
+    // Skillì´ ì¢…ë£Œëœ ì§í›„ ì‹¤í–‰ë˜ëŠ” Event
     public delegate void DeactivatedHandler(Skill skill);
     public delegate void CanceledHandler(Skill skill);
     public delegate void TargetSelectionCompletedHandler(Skill skill, TargetSearcher targetSearcher, TargetSelectionResult result);
@@ -43,7 +43,7 @@ public class Skill : IdentifiedObject
     [SerializeReference, SubclassSelector]
     private Cost[] acquisitionCosts;
 
-    // SkillÀ» »ç¿ëÇÏ±â À§ÇÑ Á¶°Çµé
+    // Skillì„ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ì¡°ê±´ë“¤
     [SerializeReference, SubclassSelector]
     private SkillCondition[] useConditions;
 
@@ -95,7 +95,7 @@ public class Skill : IdentifiedObject
         set
         {
             Debug.Assert(value >= 1 && value <= MaxLevel, 
-                $"Skill.Rank = {value} - value´Â 1°ú MaxLevel({MaxLevel}) »çÀÌ °ªÀÌ¿©¾ßÇÕ´Ï´Ù.");
+                $"Skill.Rank = {value} - valueëŠ” 1ê³¼ MaxLevel({MaxLevel}) ì‚¬ì´ ê°’ì´ì—¬ì•¼í•©ë‹ˆë‹¤.");
 
 
             if (level == value)
@@ -104,7 +104,7 @@ public class Skill : IdentifiedObject
             int prevLevel = level;
             level = value;
 
-            // »õ·Î¿î Level°ú °¡Àå °¡±î¿î Level Data¸¦ Ã£¾Æ¿È
+            // ìƒˆë¡œìš´ Levelê³¼ ê°€ì¥ ê°€ê¹Œìš´ Level Dataë¥¼ ì°¾ì•„ì˜´
             var newData = skillDatas.Last(x => x.level <= level);
             if (newData.level != currentData.level)
                 ChangeData(newData);
@@ -114,7 +114,7 @@ public class Skill : IdentifiedObject
     }
     public int DataBonusLevel => Mathf.Max(level - currentData.level, 0);
     public bool IsMaxLevel => level == maxLevel;
-    // SkillÀÌ ÃÖ´ë LevelÀÌ ¾Æ´Ï°í, Level Up Á¶°ÇÀ» ¸¸Á·ÇÏ°í, Level UpÀ» À§ÇÑ Costs°¡ ÃæºĞÇÏ´Ù¸é True
+    // Skillì´ ìµœëŒ€ Levelì´ ì•„ë‹ˆê³ , Level Up ì¡°ê±´ì„ ë§Œì¡±í•˜ê³ , Level Upì„ ìœ„í•œ Costsê°€ ì¶©ë¶„í•˜ë‹¤ë©´ True
     public bool IsCanLevelUp => !IsMaxLevel && LevelUpConditions.All(x => x.IsPass(Owner)) &&
         LevelUpCosts.All(x => x.HasEnoughCost(Owner));
 
@@ -160,7 +160,7 @@ public class Skill : IdentifiedObject
     public bool IsSearchingTarget => TargetSearcher.IsSearching;
     public TargetSelectionResult TargetSelectionResult => TargetSearcher.SelectionResult;
     public TargetSearchResult TargetSearchResult => TargetSearcher.SearchResult;
-    // SkillÀÌ ÇÊ¿ä·Î ÇÏ´Â ±âÁØÁ¡ Type°ú TargetSearcher°¡ °Ë»öÇÑ ±âÁØÁ¡ÀÇ TypeÀÌ ÀÏÄ¡ÇÏ´Â°¡?
+    // Skillì´ í•„ìš”ë¡œ í•˜ëŠ” ê¸°ì¤€ì  Typeê³¼ TargetSearcherê°€ ê²€ìƒ‰í•œ ê¸°ì¤€ì ì˜ Typeì´ ì¼ì¹˜í•˜ëŠ”ê°€?
     public bool HasValidTargetSelectionResult
     {
         get
@@ -173,7 +173,7 @@ public class Skill : IdentifiedObject
             };
         }
     }
-    // SkillÀÌ ±âÁØÁ¡ °Ë»öÁßÀÌ ¾Æ´Ï°í, °Ë»öÇÑ ±âÁØÁ¡ÀÌ SkillÀÌ ÇÊ¿ä·Î ÇÏ´Â TypeÀÌ¶ó¸é True 
+    // Skillì´ ê¸°ì¤€ì  ê²€ìƒ‰ì¤‘ì´ ì•„ë‹ˆê³ , ê²€ìƒ‰í•œ ê¸°ì¤€ì ì´ Skillì´ í•„ìš”ë¡œ í•˜ëŠ” Typeì´ë¼ë©´ True 
     public bool IsTargetSelectSuccessful => !IsSearchingTarget && HasValidTargetSelectionResult;
 
     public IReadOnlyList<Cost> Costs => currentData.costs;
@@ -214,9 +214,9 @@ public class Skill : IdentifiedObject
             onCurrentApplyCountChanged?.Invoke(this, currentApplyCount, prevApplyCount);
         }
     }
-    // currentDataÀÇ applyCycleÀÌ 0ÀÌ°í applyCount°¡ 1º¸´Ù Å©¸é(¿©·¯¹ø Àû¿ë °¡´ÉÇÏ¸é)
-    // SkillÀÇ durationÀ» (ApplyCount - 1)·Î ³ª´²¼­ ApplyCycleÀ» °è»êÇÏ¿© return ÇÔ.
-    // ¾Æ´Ï¶ó¸é ¼³Á¤µÈ currentDataÀÇ applyCycleÀ» ±×´ë·Î return ÇÔ.
+    // currentDataì˜ applyCycleì´ 0ì´ê³  applyCountê°€ 1ë³´ë‹¤ í¬ë©´(ì—¬ëŸ¬ë²ˆ ì ìš© ê°€ëŠ¥í•˜ë©´)
+    // Skillì˜ durationì„ (ApplyCount - 1)ë¡œ ë‚˜ëˆ ì„œ ApplyCycleì„ ê³„ì‚°í•˜ì—¬ return í•¨.
+    // ì•„ë‹ˆë¼ë©´ ì„¤ì •ëœ currentDataì˜ applyCycleì„ ê·¸ëŒ€ë¡œ return í•¨.
     public float ApplyCycle => Mathf.Approximately(currentData.applyCycle, 0f) && ApplyCount > 1 ?
         Duration / (ApplyCount - 1) : currentData.applyCycle;
     public float CurrentApplyCycle { get; set; }
@@ -251,10 +251,10 @@ public class Skill : IdentifiedObject
                 effect.Scale = currentChargePower;
         }
     }
-    // ÃæÀüÀÇ Áö¼Ó ½Ã°£
+    // ì¶©ì „ì˜ ì§€ì† ì‹œê°„
     public float ChargeDuration => currentData.chargeDuration;
-    // IsUseCharge°¡ false¸é 1·Î °íÁ¤,
-    // true¶ó¸é Lerp¸¦ ÅëÇØ¼­ StartChargePowerºÎÅÍ 1±îÁö currentChargeDurationÀ¸·Î º¸°£ÇÔ
+    // IsUseChargeê°€ falseë©´ 1ë¡œ ê³ ì •,
+    // trueë¼ë©´ Lerpë¥¼ í†µí•´ì„œ StartChargePowerë¶€í„° 1ê¹Œì§€ currentChargeDurationìœ¼ë¡œ ë³´ê°„í•¨
     public float CurrentChargeDuration
     {
         get => currentChargeDuration;
@@ -266,18 +266,18 @@ public class Skill : IdentifiedObject
         }
     }
     public float NeedChargeTimeToUse => currentData.needChargeTimeToUse;
-    // »ç¿ëÀ» À§ÇÑ ÇÊ¿äÇÑ ChargeTime¿¡ µµ´ŞÇß´Â°¡?
+    // ì‚¬ìš©ì„ ìœ„í•œ í•„ìš”í•œ ChargeTimeì— ë„ë‹¬í–ˆëŠ”ê°€?
     public bool IsMinChargeCompleted => currentChargeDuration >= NeedChargeTimeToUse;
-    // ÃÖ´ë ÃæÀü¿¡ µµ´ŞÇß´Â°¡?
+    // ìµœëŒ€ ì¶©ì „ì— ë„ë‹¬í–ˆëŠ”ê°€?
     public bool IsMaxChargeCompleted => currentChargeDuration >= ChargeTime;
-    // ÃæÀüÀÇ Áö¼Ó ½Ã°£ÀÌ ³¡³µ´Â°¡?
+    // ì¶©ì „ì˜ ì§€ì† ì‹œê°„ì´ ëë‚¬ëŠ”ê°€?
     public bool IsChargeDurationEnded => Mathf.Approximately(ChargeDuration, CurrentChargeDuration);
 
     public bool IsPassive => type == SkillType.Passive;
     public bool IsToggleType => useType == SkillUseType.Toggle;
     public bool IsActivated { get; private set; }
     public bool IsReady => StateMachine.IsInState<ReadyState>();
-    // ¹ßµ¿ È½¼ö°¡ ³²¾Ò°í, ApplyCycle¸¸Å­ ½Ã°£ÀÌ Áö³µÀ¸¸é true¸¦ return
+    // ë°œë™ íšŸìˆ˜ê°€ ë‚¨ì•˜ê³ , ApplyCycleë§Œí¼ ì‹œê°„ì´ ì§€ë‚¬ìœ¼ë©´ trueë¥¼ return
     public bool IsApplicable => (CurrentApplyCount < ApplyCount || IsInfinitelyApplicable) &&
     (CurrentApplyCycle >= ApplyCycle);
     public bool IsUseable
@@ -286,10 +286,10 @@ public class Skill : IdentifiedObject
         {
             if (IsReady)
                 return HasEnoughCost && useConditions.All(x => x.IsPass(this));
-            // SkillExecutionTypeÀÌ InputÀÏ ¶§, »ç¿ëÀÚÀÇ ÀÔ·ÂÀ» ¹ŞÀ» ¼ö ÀÖ´Â »óÅÂ¶ó¸é true
+            // SkillExecutionTypeì´ Inputì¼ ë•Œ, ì‚¬ìš©ìì˜ ì…ë ¥ì„ ë°›ì„ ìˆ˜ ìˆëŠ” ìƒíƒœë¼ë©´ true
             else if (StateMachine.IsInState<InActionState>())
                 return ExecutionType == SkillExecutionType.Input && IsApplicable && useConditions.All(x => x.IsPass(this));
-            // SkillÀÌ Charge ÁßÀÏ ¶§ ÃÖ¼Ò »ç¿ë ÃæÀü·®À» ´Ş¼ºÇÏ¸é true
+            // Skillì´ Charge ì¤‘ì¼ ë•Œ ìµœì†Œ ì‚¬ìš© ì¶©ì „ëŸ‰ì„ ë‹¬ì„±í•˜ë©´ true
             else if (StateMachine.IsInState<ChargingState>())
                 return IsMinChargeCompleted;
             else
@@ -302,7 +302,7 @@ public class Skill : IdentifiedObject
 
     private bool IsDurationEnded => !IsTimeless && Mathf.Approximately(Duration, CurrentDuration);
     private bool IsApplyCompleted => !IsInfinitelyApplicable && CurrentApplyCount == ApplyCount;
-    // SkillÀÇ ¹ßµ¿ÀÌ Á¾·áµÇ¾ú´Â°¡?
+    // Skillì˜ ë°œë™ì´ ì¢…ë£Œë˜ì—ˆëŠ”ê°€?
     public bool IsFinished => currentData.runningFinishOption == SkillRunningFinishOption.FinishWhenDurationEnded ?
         IsDurationEnded : IsApplyCompleted;
 
@@ -356,9 +356,9 @@ public class Skill : IdentifiedObject
 
     public void Setup(Entity owner, int level)
     {
-        Debug.Assert(owner != null, $"Skill::Setup - Owner´Â NullÀÌ µÉ ¼ö ¾ø½À´Ï´Ù.");
-        Debug.Assert(level >= 1 && level <= maxLevel, $"Skill::Setup - {level}ÀÌ 1º¸´Ù ÀÛ°Å³ª {maxLevel}º¸´Ù Å®´Ï´Ù.");
-        Debug.Assert(Owner == null, $"Skill::Setup - ÀÌ¹Ì SetupÇÏ¿´½À´Ï´Ù.");
+        Debug.Assert(owner != null, $"Skill::Setup - OwnerëŠ” Nullì´ ë  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+        Debug.Assert(level >= 1 && level <= maxLevel, $"Skill::Setup - {level}ì´ 1ë³´ë‹¤ ì‘ê±°ë‚˜ {maxLevel}ë³´ë‹¤ í½ë‹ˆë‹¤.");
+        Debug.Assert(Owner == null, $"Skill::Setup - ì´ë¯¸ Setupí•˜ì˜€ìŠµë‹ˆë‹¤.");
 
         Owner = owner;
         Level = level;
@@ -418,8 +418,8 @@ public class Skill : IdentifiedObject
         currentData = newData;
 
         Effects = currentData.effectSelectors.Select(x => x.CreateEffect(this)).ToArray();
-        // SkillÀÇ ÇöÀç LevelÀÌ dataÀÇ Levelº¸´Ù Å©¸é, µÑÀÇ Level Â÷¸¦ EffectÀÇ Bonus Level ÁÜ.
-        // ¸¸¾à SkillÀÌ 2 LevelÀÌ°í, data°¡ 1 levelÀÌ¶ó¸é, effectµéÀº 2-1ÇØ¼­ 1ÀÇ Bonus LevelÀ» ¹Ş°Ô µÊ.
+        // Skillì˜ í˜„ì¬ Levelì´ dataì˜ Levelë³´ë‹¤ í¬ë©´, ë‘˜ì˜ Level ì°¨ë¥¼ Effectì˜ Bonus Level ì¤Œ.
+        // ë§Œì•½ Skillì´ 2 Levelì´ê³ , dataê°€ 1 levelì´ë¼ë©´, effectë“¤ì€ 2-1í•´ì„œ 1ì˜ Bonus Levelì„ ë°›ê²Œ ë¨.
         if (level > currentData.level)
             UpdateCurrentEffectLevels();
 
@@ -428,7 +428,7 @@ public class Skill : IdentifiedObject
 
     public void LevelUp()
     {
-        Debug.Assert(IsCanLevelUp, "Skill::LevelUP - Level Up Á¶°ÇÀ» ÃæÁ·ÇÏÁö ¸øÇß½À´Ï´Ù.");
+        Debug.Assert(IsCanLevelUp, "Skill::LevelUP - Level Up ì¡°ê±´ì„ ì¶©ì¡±í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 
         foreach (var cost in LevelUpCosts)
             cost.UseCost(Owner);
@@ -466,8 +466,8 @@ public class Skill : IdentifiedObject
             if (isShowIndicator)
                 HideIndicator();
 
-            // SkillÀÌ ÇÊ¿ä·Î ÇÏ´Â TypeÀÇ ±âÁØÁ¡ °Ë»ö¿¡ ¼º°øÇß°í,
-            // SearchTimingÀÌ ±âÁØÁ¡ °Ë»ö Á÷ÈÄ¶ó¸é(TargetSelectionCompleted) Target °Ë»ö ½ÇÇà
+            // Skillì´ í•„ìš”ë¡œ í•˜ëŠ” Typeì˜ ê¸°ì¤€ì  ê²€ìƒ‰ì— ì„±ê³µí–ˆê³ ,
+            // SearchTimingì´ ê¸°ì¤€ì  ê²€ìƒ‰ ì§í›„ë¼ë©´(TargetSelectionCompleted) Target ê²€ìƒ‰ ì‹¤í–‰
             if (IsTargetSelectSuccessful && targetSearchTimingOption == TargetSearchTimingOption.TargetSelectionCompleted)
                 SearchTargets();
 
@@ -512,7 +512,7 @@ public class Skill : IdentifiedObject
 
     public bool Use()
     {
-        Debug.Assert(IsUseable, "Skill::Use - »ç¿ë Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇß½À´Ï´Ù.");
+        Debug.Assert(IsUseable, "Skill::Use - ì‚¬ìš© ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 
         bool isUsed = StateMachine.ExecuteCommand(SkillExecuteCommand.Use) || StateMachine.SendMessage(SkillStateMessage.Use);
         if (isUsed)
@@ -523,7 +523,7 @@ public class Skill : IdentifiedObject
 
     public bool UseImmediately(Vector3 position)
     {
-        Debug.Assert(IsUseable, "Skill::UseImmediately - »ç¿ë Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇß½À´Ï´Ù.");
+        Debug.Assert(IsUseable, "Skill::UseImmediately - ì‚¬ìš© ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
 
         SelectTargetImmediate(position);
 
@@ -536,7 +536,7 @@ public class Skill : IdentifiedObject
 
     public bool Cancel(bool isForce = false)
     {
-        Debug.Assert(!IsPassive, "Skill::Cancel - Passive SkillÀº Cancel ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+        Debug.Assert(!IsPassive, "Skill::Cancel - Passive Skillì€ Cancel í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 
         var isCanceled = isForce ? StateMachine.ExecuteCommand(SkillExecuteCommand.CancelImmediately) :
             StateMachine.ExecuteCommand(SkillExecuteCommand.Cancel);
@@ -549,7 +549,7 @@ public class Skill : IdentifiedObject
 
     public void UseCost()
     {
-        Debug.Assert(HasEnoughCost, "Skill::UseCost - »ç¿ëÇÒ Cost°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+        Debug.Assert(HasEnoughCost, "Skill::UseCost - ì‚¬ìš©í•  Costê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 
         foreach (var cost in Costs)
             cost.UseCost(Owner);
@@ -557,7 +557,7 @@ public class Skill : IdentifiedObject
 
     public void UseDeltaCost()
     {
-        Debug.Assert(HasEnoughCost, "Skill::UseDeltaCost - »ç¿ëÇÒ Cost°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+        Debug.Assert(HasEnoughCost, "Skill::UseDeltaCost - ì‚¬ìš©í•  Costê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 
         foreach (var cost in Costs)
             cost.UseDeltaCost(Owner);
@@ -565,7 +565,7 @@ public class Skill : IdentifiedObject
 
     public void Activate()
     {
-        Debug.Assert(!IsActivated, "Skill::Activate - ÀÌ¹Ì È°¼ºÈ­µÇ¾î ÀÖ½À´Ï´Ù.");
+        Debug.Assert(!IsActivated, "Skill::Activate - ì´ë¯¸ í™œì„±í™”ë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
 
         UseCost();
 
@@ -575,7 +575,7 @@ public class Skill : IdentifiedObject
 
     public void Deactivate()
     {
-        Debug.Assert(IsActivated, "Skill::Activate - SkillÀÌ È°¼ºÈ­µÇ¾îÀÖÁö ¾Ê½À´Ï´Ù.");
+        Debug.Assert(IsActivated, "Skill::Activate - Skillì´ í™œì„±í™”ë˜ì–´ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
 
         IsActivated = false;
         onDeactivated?.Invoke(this); 
@@ -633,7 +633,7 @@ public class Skill : IdentifiedObject
     public void Apply(bool isConsumeApplyCount = true)
     {
         Debug.Assert(IsInfinitelyApplicable || !isConsumeApplyCount || (CurrentApplyCount < ApplyCount),
-            $"Skill({CodeName})ÀÇ ÃÖ´ë Àû¿ë È½¼ö({ApplyCount})¸¦ ÃÊ°úÇØ¼­ Àû¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.");
+            $"Skill({CodeName})ì˜ ìµœëŒ€ ì ìš© íšŸìˆ˜({ApplyCount})ë¥¼ ì´ˆê³¼í•´ì„œ ì ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 
         if (targetSearchTimingOption == TargetSearchTimingOption.Apply)
             SearchTargets();
@@ -642,7 +642,7 @@ public class Skill : IdentifiedObject
 
         Action.Apply(this);
 
-        // AutoÀÏ ¶§´Â Duration°úÀÇ ¿ÀÂ÷ °ªÀ» ³²±â±â À§ÇØ ApplyCycle·Î ³ª´« ³ª¸ÓÁö·Î °ªÀ» ¼³Á¤ÇÔ
+        // Autoì¼ ë•ŒëŠ” Durationê³¼ì˜ ì˜¤ì°¨ ê°’ì„ ë‚¨ê¸°ê¸° ìœ„í•´ ApplyCycleë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë¡œ ê°’ì„ ì„¤ì •í•¨
         // Ex. Duration = 1.001, CurrentApplyCycle = 1.001
         //     => Duration = 1.001, CurrentApplyCycle = 0.001
         if (executionType == SkillExecutionType.Auto)

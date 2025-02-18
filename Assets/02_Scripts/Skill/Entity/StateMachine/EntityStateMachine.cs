@@ -17,6 +17,7 @@ public class EntityStateMachine : MonoStateMachine<Entity>
         AddState<InSkillActionState>();
         // Entity�� Stun CC�⸦ �¾��� ���� ����
         AddState<StunningState>();
+        AddState<KnockBackState>();
         // Entity�� Sleep CC�⸦ �¾��� ���� ����
         AddState<SleepingState>();
     }
@@ -54,7 +55,7 @@ public class EntityStateMachine : MonoStateMachine<Entity>
         // CC State
             // Stuning State
         MakeAnyTransition<StunningState>(EntityStateCommand.ToStunningState);
-
+        MakeAnyTransition<KnockBackState>(EntityStateCommand.ToKnockBackState);
             // Sleeping State
         MakeAnyTransition<SleepingState>(EntityStateCommand.ToSleepingState);
 

@@ -15,20 +15,20 @@ public class Movement : MonoBehaviour
     
     [Space(10)]
     [Header("Components")]
-    public CharacterController Controller;
+    public Rigidbody rigidBody;
 
+    
     protected float walkSpeed => Mathf.Clamp(moveSpeed.MaxValue - walkSpeedOffset, 1f, moveSpeed.MaxValue);
     protected float runSpeed => moveSpeed.Value;
     protected Entity entity;
-    protected Transform traceTarget;
+    public Transform TraceTarget;
+    public bool isCC;
     
     public virtual void Setup(Entity entity)
     {
         this.entity = entity;
     }
 
-    public virtual void Stop()
-    {
-        Controller.Move(Vector3.zero);
-    }
+    public virtual void Stop() => isCC = true;
+    public virtual void ReStart() => isCC = false;
 }

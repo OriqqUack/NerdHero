@@ -7,21 +7,21 @@ using UnityEngine;
 [System.Serializable]
 public abstract class EffectAction : ICloneable
 {
-    // Effect°¡ ½ÃÀÛµÉ ¶§ È£ÃâµÇ´Â ½ÃÀÛ ÇÔ¼ö
+    // Effectê°€ ì‹œì‘ë  ë•Œ í˜¸ì¶œë˜ëŠ” ì‹œì‘ í•¨ìˆ˜
     public virtual void Start(Effect effect, Entity user, Entity target, int level, float scale) { }
-    // ½ÇÁ¦ EffectÀÇ È¿°ú¸¦ ±¸ÇöÇÏ´Â ÇÔ¼ö
+    // ì‹¤ì œ Effectì˜ íš¨ê³¼ë¥¼ êµ¬í˜„í•˜ëŠ” í•¨ìˆ˜
     public abstract bool Apply(Effect effect, Entity user, Entity target, int level, int stack, float scale);
-    // Effect°¡ Á¾·áµÉ ¶§ È£ÃâµÇ´Â Á¾·á ÇÔ¼ö
+    // Effectê°€ ì¢…ë£Œë  ë•Œ í˜¸ì¶œë˜ëŠ” ì¢…ë£Œ í•¨ìˆ˜
     public virtual void Release(Effect effect, Entity user, Entity target, int level, float scale) { }
 
-    // EffectÀÇ StackÀÌ ¹Ù²î¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
-    // Stack¸¶´Ù Bonus °ªÀ» ÁÖ´Â ActionÀÏ °æ¿ì, ÀÌ ÇÔ¼ö¸¦ ÅëÇØ¼­ Bonus °ªÀ» »õ·Î °»½ÅÇÒ ¼ö ÀÖÀ½
+    // Effectì˜ Stackì´ ë°”ë€Œì—ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    // Stackë§ˆë‹¤ Bonus ê°’ì„ ì£¼ëŠ” Actionì¼ ê²½ìš°, ì´ í•¨ìˆ˜ë¥¼ í†µí•´ì„œ Bonus ê°’ì„ ìƒˆë¡œ ê°±ì‹ í•  ìˆ˜ ìˆìŒ
     public virtual void OnEffectStackChanged(Effect effect, Entity user, Entity target, int level, int stack, float scale) { }
 
-    // Key·Î Text Mark, Value·Î Text Mark¸¦ ´ëÃ¼ÇÒ Text¸¦ °¡Áø Dctionary¸¦ ¸¸µå´Â ÇÔ¼ö
+    // Keyë¡œ Text Mark, Valueë¡œ Text Markë¥¼ ëŒ€ì²´í•  Textë¥¼ ê°€ì§„ Dctionaryë¥¼ ë§Œë“œëŠ” í•¨ìˆ˜
     protected virtual IReadOnlyDictionary<string, string> GetStringsByKeyword(Effect effect) => null;
 
-    // EffectÀÇ ¼³¸íÀÎ Description Text¸¦ GetStringsByKeyword ÇÔ¼ö¸¦ ÅëÇØ ¸¸µç Dictionary·Î Replace ÀÛ¾÷À» ÇÏ´Â ÇÔ¼ö
+    // Effectì˜ ì„¤ëª…ì¸ Description Textë¥¼ GetStringsByKeyword í•¨ìˆ˜ë¥¼ í†µí•´ ë§Œë“  Dictionaryë¡œ Replace ì‘ì—…ì„ í•˜ëŠ” í•¨ìˆ˜
     public string BuildDescription(Effect effect, string description, int stackActionIndex, int stack, int effectIndex)
     {
         var stringsByKeyword = GetStringsByKeyword(effect);
@@ -29,9 +29,9 @@ public abstract class EffectAction : ICloneable
             return description;
 
         if (stack == 0)
-            // ex. description = "Àû¿¡°Ô $[EffectAction.defaultDamage.0] ÇÇÇØ¸¦ Áİ´Ï´Ù."
+            // ex. description = "ì ì—ê²Œ $[EffectAction.defaultDamage.0] í”¼í•´ë¥¼ ì¤ë‹ˆë‹¤."
             // defaultDamage = 300, effectIndex = 0, stringsByKeyword = new() { { "defaultDamage", defaultDamage.ToString() } };
-            // description.Replace("$[EffectAction.defaultDamage.0]", "300") => "Àû¿¡°Ô 300 ÇÇÇØ¸¦ Áİ´Ï´Ù."
+            // description.Replace("$[EffectAction.defaultDamage.0]", "300") => "ì ì—ê²Œ 300 í”¼í•´ë¥¼ ì¤ë‹ˆë‹¤."
             description = TextReplacer.Replace(description, "effectAction", stringsByKeyword, effectIndex.ToString());
         else
             // Mark = $[EffectAction.Keyword.StackActionIndex.Stack.EffectIndex]

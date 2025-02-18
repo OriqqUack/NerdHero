@@ -15,7 +15,9 @@ public enum CharacterState
     Rise,
     Jump,
     Fall,
-    Attack
+    Attack,
+    Move,
+    Dead
 }
 
 public class PlayerMovement : Movement
@@ -25,30 +27,44 @@ public class PlayerMovement : Movement
     [Header("Jumping")]
     [SerializeField] private float jumpSpeed = 10f;
 
+    [Header("KeyBoard Or JoyStick")] 
+    [SerializeField] private bool isKeyBoard;
+
     private GameObject _baseAttackCollider;
     private Vector3 _moveInput;
     private Vector3 _velocity;
-    private Entity _entity;
+    private Transform _groundCheck;
 
     private CharacterState _previousState, _currentState;
     private bool _wasGrounded;
     private bool _isAttacking = false;
     private bool _isJumping = false;
+    private bool _isGrounded;
 
-    private void Start()
+
+    public override void Setup(Entity entity)
     {
-        _entity = GetComponent<Entity>();
+        base.Setup(entity);
+        
         _baseAttackCollider = transform.Find("BaseAttackCollider").gameObject;
+        _groundCheck = transform.Find("GroundCheck");
+        entity.onDead += OnDead;
     }
 
     private void Update()
     {
-        JoystickUpdate();
+        //TEST CODE
+        if(isKeyBoard)
+            KeyBoardUpdate();
+        else
+            JoystickUpdate();
+        
+        _isGrounded = Physics.Linecast(transform.position, _groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         MovingCheck();
-    
     }
     private void FixedUpdate()
     {
+        if (isCC) return;
         Move();
     }
 
@@ -60,9 +76,9 @@ public class PlayerMovement : Movement
 
     public void Jump()
     {
-        if (Controller.isGrounded) // 땅에 있을 때만 점프 가능
+        if (_isGrounded) // 땅에 있을 때만 점프 가능
         {
-            _velocity.y = jumpSpeed; // 점프 속도 설정
+            rigidBody.AddForce(_moveInput * jumpSpeed, ForceMode.Impulse); // 점프 속도 설정
             _currentState = CharacterState.Jump;
         }
     }
@@ -91,11 +107,16 @@ public class PlayerMovement : Movement
         }
     }
 
+    private void KeyBoardUpdate()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        _moveInput = new Vector3(horizontal, 0, vertical);
+    }
+
     private void MovingCheck()
     {
-        bool isGrounded = Controller.isGrounded;
-
-        if (isGrounded && !_isAttacking)
+        if (_isGrounded && !_isAttacking)
         {
             float x = Mathf.Abs(_moveInput.x);
             float z = Mathf.Abs(_moveInput.z);
@@ -109,7 +130,7 @@ public class PlayerMovement : Movement
                 _currentState = CharacterState.Idle;
             }
         }
-        else if (!isGrounded)
+        else if (!_isGrounded)
         {
             _currentState = _velocity.y > 0 ? CharacterState.Jump : CharacterState.Fall;
         }
@@ -142,7 +163,7 @@ public class PlayerMovement : Movement
         Vector3 moveDirection = _moveInput * (speed * Time.deltaTime);
 
         // 중력 적용
-        if (!Controller.isGrounded)
+        if (_isGrounded)
         {
             _isJumping = true;
             _velocity.y += Physics.gravity.y * gravityScale * Time.deltaTime;
@@ -154,8 +175,8 @@ public class PlayerMovement : Movement
         }
 
         // 최종 이동 처리 (중력 + 조이스틱 이동)
-        Vector3 finalMove = new Vector3(moveDirection.x, _velocity.y * Time.deltaTime, moveDirection.z);
-        Controller.Move(finalMove);
+        Vector3 finalMove = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z);
+        rigidBody.MovePosition(finalMove);
     }
 
     private void HandleStateChanged() 
@@ -180,8 +201,17 @@ public class PlayerMovement : Movement
             case CharacterState.Attack:
                 stateName = "attack";
                 break;
+            case CharacterState.Dead:
+                stateName = "dead";
+                break;
         }
 
         animationHandle.PlayAnimationForState(stateName, 0);
+    }
+
+    private void OnDead(Entity entity)
+    {
+        Stop();
+        Destroy(gameObject, 5.0f);
     }
 }

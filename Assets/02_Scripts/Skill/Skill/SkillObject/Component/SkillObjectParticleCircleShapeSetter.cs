@@ -17,4 +17,8 @@ public class SkillObjectParticleCircleShapeSetter : MonoBehaviour, ISkillObjectC
             shape.radius = range;
         }
     }
+
+    public void OnSetupSkillObject(SkillColliderObject skillObject)
+    {
+    }
 }

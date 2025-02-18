@@ -6,7 +6,8 @@ public enum EntityStateCommand
     ToInSkillPrecedingActionState,
     ToInSkillActionState,
     ToStunningState,
-    ToSleepingState
+    ToSleepingState,
+    ToKnockBackState
 }
 
 public enum EntityStateMessage { UsingSkill }

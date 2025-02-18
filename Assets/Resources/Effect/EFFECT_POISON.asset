@@ -44,10 +44,21 @@ MonoBehaviour:
       scaleStat: {fileID: 0}
     applyCount: 0
     applyCycle: 1
-    customActions: []
+    customActions:
+    - rid: 755847583759860041
   references:
     version: 2
     RefIds:
+    - rid: 755847583759860041
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 1
+        methodType: 0
+        prefab: {fileID: 0}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 1, y: 1, z: 1}
+        isAttachToTarget: 0
+        isDestroyOnRelease: 0
     - rid: 3978618633073197056
       type: {class: DealDamageAction, ns: , asm: Assembly-CSharp}
       data:
