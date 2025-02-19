@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[CreateAssetMenu(fileName = "Wave Data", menuName = "Wave/WaveData", order = int.MaxValue)]
+public class SOWaveData : ScriptableObject
+{
+    public List<WaveData> waves = new List<WaveData>();
+}
+
 [System.Serializable]
 public class WaveData
 {
     public int Wave;
-    public List<string> EnemyName = new List<string>();
-    public List<int> EnemyCount = new List<int>();
+    public List<GameObject> EnemyPrefab ;
+    public List<int> EnemyCount;
 }
 
 public class WaveManager : MonoSingleton<WaveManager>
@@ -34,13 +40,14 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     private void Init()
     {
+        int j = 0;
         foreach (WaveData wave in waves)
         {
             int waveCount = wave.Wave - 1;
             Dictionary<Entity, int> tempDic = new();
-            for (int i = 0; i < wave.EnemyName.Count; i++)
+            for (int i = 0; i < wave.EnemyPrefab.Count; i++)
             {
-                Entity entity = Resources.Load<Entity>("Prefabs/Enemies/" + wave.EnemyName[i]);
+                Entity entity = wave.EnemyPrefab[i].GetComponent<Entity>();
                 int count = wave.EnemyCount[i];
                 tempDic.Add(entity, count);
             }

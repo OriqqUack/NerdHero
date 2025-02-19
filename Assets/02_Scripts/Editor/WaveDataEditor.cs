@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-[CustomEditor(typeof(WaveManager))]
+[CustomEditor(typeof(SOWaveData))]
 public class WaveDataEditor : Editor
 {
     private SerializedProperty waveListProperty;
@@ -17,7 +17,6 @@ public class WaveDataEditor : Editor
         serializedObject.Update();
 
         WaveEditing();
-        OtherProperties();
 
         serializedObject.ApplyModifiedProperties();
     }
@@ -31,7 +30,7 @@ public class WaveDataEditor : Editor
             waveListProperty.arraySize++;
             SerializedProperty newWave = waveListProperty.GetArrayElementAtIndex(waveListProperty.arraySize - 1);
 
-            SerializedProperty enemyNames = newWave.FindPropertyRelative("EnemyName");
+            SerializedProperty enemyNames = newWave.FindPropertyRelative("EnemyPrefab");
             SerializedProperty enemyCounts = newWave.FindPropertyRelative("EnemyCount");
 
             enemyNames.arraySize++;
@@ -42,7 +41,7 @@ public class WaveDataEditor : Editor
         {
             SerializedProperty wave = waveListProperty.GetArrayElementAtIndex(i);
             SerializedProperty waveNumber = wave.FindPropertyRelative("Wave");
-            SerializedProperty enemyNames = wave.FindPropertyRelative("EnemyName");
+            SerializedProperty enemyNames = wave.FindPropertyRelative("EnemyPrefab");
             SerializedProperty enemyCounts = wave.FindPropertyRelative("EnemyCount");
 
             EditorGUILayout.BeginVertical("box");
@@ -83,13 +82,5 @@ public class WaveDataEditor : Editor
 
             EditorGUILayout.EndVertical();
         }
-    }
-
-    private void OtherProperties()
-    {
-        EditorGUILayout.Space(20f);
-        
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("timeBetweenWaves"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("spawnPoints"));
     }
 }
