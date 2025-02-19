@@ -51,7 +51,8 @@ MonoBehaviour:
         rid: 755847567372714109
       searchAction:
         rid: 755847567372714110
-    costs: []
+    costs:
+    - rid: 755847614095687818
     isUseCast: 0
     castTime:
       defaultValue: 0
@@ -103,6 +104,13 @@ MonoBehaviour:
         indicatorViewAction:
           rid: -2
         isUseScale: 0
+    - rid: 755847614095687818
+      type: {class: StatCost, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
+        value:
+          defaultValue: 20
+          scaleStat: {fileID: 0}
     - rid: 6784395034484539485
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:

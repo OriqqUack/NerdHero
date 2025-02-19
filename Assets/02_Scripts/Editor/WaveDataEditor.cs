@@ -6,10 +6,11 @@ using System.Collections.Generic;
 public class WaveDataEditor : Editor
 {
     private SerializedProperty waveListProperty;
+    private Vector2 scrollPosition;
 
     private void OnEnable()
     {
-        waveListProperty = serializedObject.FindProperty("waves"); // WaveManager 안의 List<WaveData> 연결
+        waveListProperty = serializedObject.FindProperty("Waves"); // 필드명이 정확한지 확인
     }
 
     public override void OnInspectorGUI()
@@ -30,12 +31,19 @@ public class WaveDataEditor : Editor
             waveListProperty.arraySize++;
             SerializedProperty newWave = waveListProperty.GetArrayElementAtIndex(waveListProperty.arraySize - 1);
 
-            SerializedProperty enemyNames = newWave.FindPropertyRelative("EnemyPrefab");
-            SerializedProperty enemyCounts = newWave.FindPropertyRelative("EnemyCount");
+            // newWave가 존재하는지 확인 후 초기화
+            if (newWave != null)
+            {
+                SerializedProperty enemyNames = newWave.FindPropertyRelative("EnemyPrefab");
+                SerializedProperty enemyCounts = newWave.FindPropertyRelative("EnemyCount");
 
-            enemyNames.arraySize++;
-            enemyCounts.arraySize++;
+                if (enemyNames != null) enemyNames.arraySize = 0;
+                if (enemyCounts != null) enemyCounts.arraySize = 0;
+            }
         }
+
+        // 스크롤뷰 시작
+        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));
 
         for (int i = 0; i < waveListProperty.arraySize; i++)
         {
@@ -43,6 +51,11 @@ public class WaveDataEditor : Editor
             SerializedProperty waveNumber = wave.FindPropertyRelative("Wave");
             SerializedProperty enemyNames = wave.FindPropertyRelative("EnemyPrefab");
             SerializedProperty enemyCounts = wave.FindPropertyRelative("EnemyCount");
+
+            if (wave == null || waveNumber == null || enemyNames == null || enemyCounts == null)
+            {
+                continue; // null 값이 있으면 스킵
+            }
 
             EditorGUILayout.BeginVertical("box");
 
@@ -82,5 +95,8 @@ public class WaveDataEditor : Editor
 
             EditorGUILayout.EndVertical();
         }
+
+        // 스크롤뷰 종료
+        EditorGUILayout.EndScrollView();
     }
 }

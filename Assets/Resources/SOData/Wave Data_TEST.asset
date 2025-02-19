@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Wave Data
+  m_Name: Wave Data_TEST
   m_EditorClassIdentifier: Assembly-CSharp::SOWaveData
-  waves:
+  Waves:
   - Wave: 1
     EnemyPrefab:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    EnemyCount: 00000000000000000000000000000000
+    - {fileID: 4538513948987710413, guid: 7c399bbe7f2893b42a3ee9dc01ba2b15, type: 3}
+    EnemyCount: 02000000
+  - Wave: 2
+    EnemyPrefab:
+    - {fileID: 4538513948987710413, guid: 7c399bbe7f2893b42a3ee9dc01ba2b15, type: 3}
+    EnemyCount: 03000000
