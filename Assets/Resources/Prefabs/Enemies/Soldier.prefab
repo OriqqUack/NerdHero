@@ -5775,6 +5775,7 @@ MonoBehaviour:
   TraceTarget: {fileID: 0}
   isCC: 0
   jumpSpeed: 10
+  dropItem: {fileID: 8279848934425254194, guid: 40a4122cad4b02f4895a7f4ba8c57cb7, type: 3}
 --- !u!54 &6678798965523393974
 Rigidbody:
   m_ObjectHideFlags: 0

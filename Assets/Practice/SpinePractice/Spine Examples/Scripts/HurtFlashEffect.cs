@@ -41,7 +41,7 @@ public class HurtFlashEffect : MonoBehaviour {
 	public float interval = 1f / 60f;
 	public string fillPhaseProperty = "_FillPhase";
 	public string fillColorProperty = "_FillColor";
-
+	private Spine.AnimationState animationState;
 	MaterialPropertyBlock mpb;
 	MeshRenderer meshRenderer;
 
@@ -70,7 +70,7 @@ public class HurtFlashEffect : MonoBehaviour {
 			meshRenderer.SetPropertyBlock(mpb);
 			yield return wait;
 		}
-
+		
 		yield return null;
 	}
 

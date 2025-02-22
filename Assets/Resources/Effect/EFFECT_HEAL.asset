@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 2
+  id: 3
   codeName: HEAL
   displayName: 
   description: 
@@ -58,8 +58,7 @@ MonoBehaviour:
       data:
         targetType: 1
         methodType: 0
-        prefab: {fileID: 6954533026814447886, guid: f0b5bca7438f0be4fbfb0513c45e3b3e,
-          type: 3}
+        prefab: {fileID: 6954533026814447886, guid: f0b5bca7438f0be4fbfb0513c45e3b3e, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1

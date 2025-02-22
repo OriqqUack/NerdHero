@@ -6,6 +6,8 @@ public class EnemyMovement : Movement
     [Header("Jumping")]
     [SerializeField] private float jumpSpeed = 10f;
 
+    [SerializeField] private GameObject dropItem;
+    
     private float _attackSpeed;
     private GameObject _baseAttackCollider;
     private Vector3 _moveInput;
@@ -174,6 +176,7 @@ public class EnemyMovement : Movement
     private void OnDead(Entity entity)
     {
         Stop();
+        Instantiate(dropItem, transform.position, Quaternion.identity);
         Destroy(gameObject, 5.0f);
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   categories:
   - {fileID: 11400000, guid: b7bbf098ffbebd141a7243405590cad7, type: 2}
   icon: {fileID: 21300000, guid: c4a1eff5848eb1947bf1d20c1462e018, type: 3}
-  id: 6
+  id: 17
   codeName: SLEEP
   displayName: "\uC218\uBA74"
   description: 
@@ -45,6 +45,5 @@ MonoBehaviour:
     - rid: 3978618587005583369
       type: {class: SleepAction, ns: , asm: Assembly-CSharp}
       data:
-        removeTargetCategory: {fileID: 11400000, guid: b7bbf098ffbebd141a7243405590cad7,
-          type: 2}
+        removeTargetCategory: {fileID: 11400000, guid: b7bbf098ffbebd141a7243405590cad7, type: 2}
         dotCategory: {fileID: 11400000, guid: be822bde6202f0a44b1a24cdbf012d24, type: 2}
