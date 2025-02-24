@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -43,7 +44,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.GetComponent<Entity>() == owner)
             return;
-
+        if (!other.GetComponent<Entity>())
+            return;
+        
         var impact = Instantiate(impactPrefab);
         impact.transform.forward = -transform.forward;
         impact.transform.position = transform.position;

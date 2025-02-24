@@ -290,8 +290,8 @@ GameObject:
   - component: {fileID: 7789590194871500306}
   - component: {fileID: 7725308431685558422}
   - component: {fileID: 4476959268802044901}
-  m_Layer: 0
-  m_Name: vfx_LootDrop02_lvl3
+  m_Layer: 12
+  m_Name: EnergyLoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

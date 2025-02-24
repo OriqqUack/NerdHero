@@ -174,8 +174,8 @@ GameObject:
   - component: {fileID: 8279848934425254192}
   - component: {fileID: 4530774376182249720}
   - component: {fileID: 491454818390507185}
-  m_Layer: 0
-  m_Name: vfx_LootDrop02_lvl2
+  m_Layer: 13
+  m_Name: ExpLoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

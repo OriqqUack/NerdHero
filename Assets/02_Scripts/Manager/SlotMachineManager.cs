@@ -126,7 +126,7 @@ public class SlotMachineManager : MonoSingleton<SlotMachineManager>
     public void ClickBtn ( int index )
     {
         _playerEntity.SkillSystem.Apply(_effectList[index]);
-        this.gameObject.SetActive ( false );
+        parentPanel.gameObject.SetActive ( false );
         Time.timeScale = 1f;
     }
 
