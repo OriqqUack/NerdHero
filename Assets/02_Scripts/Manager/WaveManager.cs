@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 
-[CreateAssetMenu(fileName = "Wave Data_", menuName = "Wave/WaveData", order = int.MaxValue)]
-public class SOWaveData : ScriptableObject
-{
-    public List<WaveData> Waves = new List<WaveData>();
-}
-
 [System.Serializable]
 public class WaveData
 {

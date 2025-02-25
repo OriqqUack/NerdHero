@@ -9,15 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 527370b2fb5e2a84eba48e0e00a9d485, type: 3}
   m_Name: Wave Data_
   m_EditorClassIdentifier: Assembly-CSharp::SOWaveData
   Waves:
   - Wave: 1
     EnemyPrefab:
     - {fileID: 4538513948987710413, guid: 7c399bbe7f2893b42a3ee9dc01ba2b15, type: 3}
-    EnemyCount: 02000000
-  - Wave: 2
-    EnemyPrefab:
-    - {fileID: 4538513948987710413, guid: 7c399bbe7f2893b42a3ee9dc01ba2b15, type: 3}
-    EnemyCount: 03000000
+    EnemyCount: 01000000
