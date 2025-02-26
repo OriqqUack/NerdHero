@@ -17,7 +17,8 @@ public enum CharacterState
     Fall,
     Attack,
     Move,
-    Dead
+    Dead,
+    Hit
 }
 
 public class PlayerMovement : Movement
@@ -40,7 +41,8 @@ public class PlayerMovement : Movement
     private bool _isAttacking = false;
     private bool _isJumping = false;
     private bool _isGrounded;
-
+    private string _eyeCurrentState = "eye blink";
+    private string _eyePreviousState;
 
     public override void Setup(Entity entity)
     {
@@ -49,6 +51,7 @@ public class PlayerMovement : Movement
         _baseAttackCollider = transform.Find("BaseAttackCollider").gameObject;
         _groundCheck = transform.Find("GroundCheck");
         entity.onDead += OnDead;
+        entity.onTakeDamage += OnHitDamage;
     }
 
     private void Update()
@@ -130,22 +133,24 @@ public class PlayerMovement : Movement
                 _currentState = CharacterState.Idle;
             }
         }
-        else if (!_isGrounded)
-        {
-            _currentState = _velocity.y > 0 ? CharacterState.Jump : CharacterState.Fall;
-        }
 
         if (_previousState != _currentState)
         {
             HandleStateChanged();
         }
 
+        if (_eyePreviousState != _eyeCurrentState)
+        {
+            EyeStateChanged();
+        }
+        
         _previousState = _currentState;
+        _eyePreviousState = _eyeCurrentState;
 
         if (_moveInput.x != 0)
         {
             var scale = transform.localScale;
-            scale.x = _moveInput.x > 0 ? 1 : -1;
+            scale.x = _moveInput.x > 0 ? -1 : 1;
             transform.localScale = scale;
         }
     }
@@ -192,23 +197,29 @@ public class PlayerMovement : Movement
             case CharacterState.Run:
                 stateName = "run";
                 break;
-            case CharacterState.Jump:
-                stateName = "jump";
-                break;
-            case CharacterState.Fall:
-                stateName = "fall";
-                break;
-            case CharacterState.Attack:
-                stateName = "attack";
-                break;
-            case CharacterState.Dead:
-                stateName = "dead";
-                break;
         }
 
         animationHandle.PlayAnimationForState(stateName, 0);
     }
 
+    private void EyeStateChanged()
+    {
+        animationHandle.PlayAnimationForState(_eyeCurrentState, 1);
+
+        switch (_currentState)
+        {
+            case CharacterState.Hit:
+                _eyeCurrentState = "eye sad";
+                animationHandle.PlayOneShot(_eyeCurrentState, 1);
+                break;
+        }
+    }
+
+    private void OnHitDamage(Entity owner, Entity insigator, object causer, float damage)
+    {
+        _eyeCurrentState = "eye sad";
+    }
+    
     private void OnDead(Entity entity)
     {
         Stop();

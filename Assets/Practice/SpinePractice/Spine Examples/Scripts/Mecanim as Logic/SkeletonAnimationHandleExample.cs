@@ -130,13 +130,13 @@ namespace Spine.Unity.Examples {
 		/// <summary>Play a non-looping animation once then continue playing the state animation.</summary>
 		public void PlayOneShot (Spine.Animation oneShot, int layerIndex) {
 			AnimationState state = skeletonAnimation.AnimationState;
-			state.SetAnimation(0, oneShot, false);
+			state.SetAnimation(layerIndex, oneShot, false);
 
 			Animation transition = TryGetTransition(oneShot, TargetAnimation);
 			if (transition != null)
-				state.AddAnimation(0, transition, false, 0f);
+				state.AddAnimation(layerIndex, transition, false, 0f);
 
-			state.AddAnimation(0, this.TargetAnimation, true, 0f);
+			state.AddAnimation(layerIndex, this.TargetAnimation, true, 0f);
 		}
 
 		public void PlayOneShot(string stateShortName, int layerIndex)
@@ -148,7 +148,7 @@ namespace Spine.Unity.Examples {
 		public void PlayOnlyOneShot(Spine.Animation oneShot, int layerIndex)
 		{
 			AnimationState state = skeletonAnimation.AnimationState;
-			state.SetAnimation(0, oneShot, false); // 한 번만 실행하고 멈춤
+			state.SetAnimation(layerIndex, oneShot, false); // 한 번만 실행하고 멈춤
 		}
 
 		public void PlayOnlyOneShot(string stateShortName, int layerIndex)
