@@ -63,6 +63,5 @@ public class UI_UserInfo : MonoBehaviour
     private void LevelChangeEvent(Stat stat, float currentValue, float prevValue)
     {
         levelText.text = $"{levelStat.Value}";
-        SlotMachineManager.Instance.MachineStart();
     }
 }

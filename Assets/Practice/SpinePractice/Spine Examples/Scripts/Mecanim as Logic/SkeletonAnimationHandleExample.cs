@@ -27,6 +27,7 @@
  * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,7 +42,9 @@ namespace Spine.Unity.Examples {
 		public SkeletonAnimation skeletonAnimation;
 		public List<StateNameToAnimationReference> statesAndAnimations = new List<StateNameToAnimationReference>();
 		public List<AnimationTransition> transitions = new List<AnimationTransition>(); // Alternately, an AnimationPair-Animation Dictionary (commented out) can be used for more efficient lookups.
-
+		private Spine.Animation previousAnimation; // 이전 애니메이션 저장
+		private Coroutine _currentCo;
+		
 		[System.Serializable]
 		public class StateNameToAnimationReference {
 			public string stateName;
@@ -128,7 +131,7 @@ namespace Spine.Unity.Examples {
 		}
 
 		/// <summary>Play a non-looping animation once then continue playing the state animation.</summary>
-		public void PlayOneShot (Spine.Animation oneShot, int layerIndex) {
+		/*public void PlayOneShot (Spine.Animation oneShot, int layerIndex) {
 			AnimationState state = skeletonAnimation.AnimationState;
 			state.SetAnimation(layerIndex, oneShot, false);
 
@@ -137,12 +140,42 @@ namespace Spine.Unity.Examples {
 				state.AddAnimation(layerIndex, transition, false, 0f);
 
 			state.AddAnimation(layerIndex, this.TargetAnimation, true, 0f);
+		}*/
+		
+		public void PlayOneShot(Spine.Animation oneShot, int layerIndex, float duration)
+		{
+			if (oneShot == null) return;
+
+			AnimationState state = skeletonAnimation.AnimationState;
+
+			// 현재 애니메이션 저장
+			previousAnimation = GetCurrentAnimation(layerIndex);
+
+			// 원샷 애니메이션 실행
+			state.SetAnimation(layerIndex, oneShot, true);
+
+			if(_currentCo != null)
+				StopCoroutine(_currentCo);
+			
+			// 일정 시간 후 원래 애니메이션으로 복귀
+			_currentCo = StartCoroutine(ReturnToPreviousAnimation(layerIndex, duration));
 		}
 
-		public void PlayOneShot(string stateShortName, int layerIndex)
+		public void PlayOneShot(string stateShortName, int layerIndex, float duration)
 		{
 			Spine.Animation oneShot = GetAnimationForState(stateShortName);
-			PlayOneShot(oneShot, layerIndex);
+			PlayOneShot(oneShot, layerIndex, duration);
+		}
+
+// 일정 시간이 지난 후 이전 애니메이션으로 복귀하는 코루틴
+		private IEnumerator ReturnToPreviousAnimation(int layerIndex, float duration)
+		{
+			yield return new WaitForSeconds(duration);
+
+			if (previousAnimation != null)
+			{
+				skeletonAnimation.AnimationState.SetAnimation(layerIndex, previousAnimation, true);
+			}
 		}
 
 		public void PlayOnlyOneShot(Spine.Animation oneShot, int layerIndex)

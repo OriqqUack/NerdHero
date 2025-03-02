@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
@@ -14,6 +15,11 @@ public class WaveData
 
 public class WaveManager : MonoSingleton<WaveManager>
 {
+    public delegate void OnWaveEndEvent();
+    public delegate void OnWaveChangeEvent(int wave);
+    public OnWaveChangeEvent OnWaveChange;
+    public OnWaveEndEvent OnWaveEnd;
+    
     [Header("Wave Settings")]
     [SerializeField] private SOWaveData wave;
     [SerializeField] private float timeBetweenWaves = 5f; // 웨이브 간 대기 시간
@@ -21,14 +27,18 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     [Space(10)] [Header("Spawn Settings")] 
     [SerializeField] private VisualEffect spawnVFXPrefab;
-    private float _spawnDelay;
     
-    private List<Entity> _activeEnemies = new List<Entity>(); // 현재 살아있는 적 리스트
     private bool _isSpawning = false;
     private int _currentWave = 0; // 현재 웨이브
+    private float _spawnDelay;
     private Dictionary<int, Dictionary<Entity, int>> wavesEnemies = new(); // 현재 Wave의 Entity Count
+    private List<Entity> _activeEnemies = new List<Entity>(); // 현재 살아있는 적 리스트
     
     public List<Entity> ActiveEnemies { get { return _activeEnemies; } }
+    public Dictionary<Item, float> GainedItemsList = new Dictionary<Item, float>();
+    public float GainedExp;
+    public float CurrentTime;
+    
     public int CurrentWave { get { return _currentWave; } }
     
     void Start()
@@ -62,18 +72,24 @@ public class WaveManager : MonoSingleton<WaveManager>
     {
         while (wavesEnemies.Count > _currentWave)
         {
+            CurrentTime += Time.deltaTime;
             if (ActiveEnemies.Count == 0 && !_isSpawning)
             {
                 yield return new WaitForSeconds(timeBetweenWaves);
                 _isSpawning = true;
-                StartNewWave(++_currentWave);
+                _currentWave++;
+                StartNewWave(_currentWave);
             }
             yield return null;
         }
+
+        EndWave();
     }
     
     private void StartNewWave(int currentWave)
     {
+        OnWaveChange?.Invoke(currentWave);
+        
         var dic = wavesEnemies[currentWave];
         
         foreach (KeyValuePair<Entity, int> kvp in dic)
@@ -84,8 +100,6 @@ public class WaveManager : MonoSingleton<WaveManager>
                 StartCoroutine(SpawnDelay(kvp, spawnIndex));
             }
         }
-        
-        _currentWave = currentWave;
     }
 
     private IEnumerator SpawnDelay(KeyValuePair<Entity, int> kvp, int spawnIndex)
@@ -116,5 +130,12 @@ public class WaveManager : MonoSingleton<WaveManager>
     private void RemoveEnemy(Entity entity)
     {
         ActiveEnemies.Remove(entity);
+    }
+
+    public void EndWave()
+    {
+        _currentWave = 0;
+        OnWaveEnd?.Invoke();
+        Time.timeScale = 0f;
     }
 }

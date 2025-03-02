@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour
     [Space(10)]
     [Header("Components")]
     public Rigidbody rigidBody;
-
     
     protected float walkSpeed => Mathf.Clamp(moveSpeed.MaxValue - walkSpeedOffset, 1f, moveSpeed.MaxValue);
     protected float runSpeed => moveSpeed.Value;
@@ -27,6 +26,7 @@ public class Movement : MonoBehaviour
     public virtual void Setup(Entity entity)
     {
         this.entity = entity;
+        moveSpeed = entity.Stats.GetStat(moveSpeed);
     }
 
     public virtual void Stop() => isCC = true;

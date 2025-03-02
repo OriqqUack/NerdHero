@@ -2,35 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 using System.Linq;
 
 public class FloatingTextView : MonoSingleton<FloatingTextView>
 {
-    private class FloatingTextData
+    private class FloatingElementData
     {
         public TextMeshProUGUI TextMesh { get; private set; }
+        public Image Icon { get; private set; }
         public float CurrentDuration { get; set; }
 
-        public FloatingTextData(TextMeshProUGUI textMesh)
-            => TextMesh = textMesh;
+        public FloatingElementData(TextMeshProUGUI textMesh, Image icon)
+        {
+            TextMesh = textMesh;
+            Icon = icon;
+        }
     }
 
-    private class FloatingTextGroup
+    private class FloatingElementGroup
     {
-        public List<FloatingTextData> textDatas = new();
-
+        public List<FloatingElementData> elementDatas = new();
         public Transform TraceTarget { get; private set; }
         public RectTransform GroupTransform { get; private set; }
-        public IReadOnlyList<FloatingTextData> TextDatas => textDatas;
+        public IReadOnlyList<FloatingElementData> ElementDatas => elementDatas;
 
-        public FloatingTextGroup(Transform traceTarget, RectTransform groupTransform)
+        public FloatingElementGroup(Transform traceTarget, RectTransform groupTransform)
             => (TraceTarget, GroupTransform) = (traceTarget, groupTransform);
 
-        public void AddData(FloatingTextData textData)
-            => textDatas.Add(textData);
+        public void AddData(FloatingElementData elementData)
+            => elementDatas.Add(elementData);
 
-        public void RemoveData(FloatingTextData textData)
-            => textDatas.Remove(textData);
+        public void RemoveData(FloatingElementData elementData)
+            => elementDatas.Remove(elementData);
     }
 
     [SerializeField]
@@ -38,60 +42,73 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
 
     [Space]
     [SerializeField]
-    private GameObject textGroupPrefab;
+    private GameObject elementGroupPrefab;
     [SerializeField]
     private GameObject floatingTextPrefab;
+    [SerializeField]
+    private GameObject floatingImagePrefab;
 
     [Space]
     [SerializeField]
     private float floatingDuration;
 
-    private readonly Dictionary<Transform, FloatingTextGroup> textGroupsByTarget = new();
+    private readonly Dictionary<Transform, FloatingElementGroup> elementGroupsByTarget = new();
     private readonly Queue<Transform> removeTargetQueue = new();
-    private readonly Queue<FloatingTextData> removeTextDataQueue = new();
+    private readonly Queue<FloatingElementData> removeElementDataQueue = new();
 
     private void LateUpdate()
     {
-        foreach ((var traceTarget, var textGroup) in textGroupsByTarget)
+        foreach ((var traceTarget, var elementGroup) in elementGroupsByTarget)
         {
-            UpdatePosition(textGroup);
+            UpdatePosition(elementGroup);
 
-            foreach (var textData in textGroup.TextDatas)
+            foreach (var elementData in elementGroup.ElementDatas)
             {
-                textData.CurrentDuration += Time.deltaTime;
+                elementData.CurrentDuration += Time.deltaTime;
+                float alpha = Mathf.Lerp(1f, 0f, elementData.CurrentDuration / floatingDuration);
 
-                var color = textData.TextMesh.color;
-                color.a = Mathf.Lerp(1f, 0f, textData.CurrentDuration / floatingDuration);
-                textData.TextMesh.color = color;
+                if (elementData.TextMesh != null)
+                {
+                    var textColor = elementData.TextMesh.color;
+                    textColor.a = alpha;
+                    elementData.TextMesh.color = textColor;
+                }
 
-                if (textData.CurrentDuration >= floatingDuration)
-                    removeTextDataQueue.Enqueue(textData);
+                if (elementData.Icon != null)
+                {
+                    var iconColor = elementData.Icon.color;
+                    iconColor.a = alpha;
+                    elementData.Icon.color = iconColor;
+                }
+
+                if (elementData.CurrentDuration >= floatingDuration)
+                    removeElementDataQueue.Enqueue(elementData);
             }
 
-            while (removeTextDataQueue.Count > 0)
+            while (removeElementDataQueue.Count > 0)
             {
-                var targetTextData  = removeTextDataQueue.Dequeue();
-
-                Destroy(targetTextData.TextMesh.gameObject);
-
-                textGroup.RemoveData(targetTextData);
+                var targetElementData = removeElementDataQueue.Dequeue();
+                if (targetElementData.TextMesh != null)
+                    Destroy(targetElementData.TextMesh.gameObject);
+                if (targetElementData.Icon != null)
+                    Destroy(targetElementData.Icon.gameObject);
+                
+                elementGroup.RemoveData(targetElementData);
             }
 
-            if (textGroup.textDatas.Count == 0)
+            if (elementGroup.elementDatas.Count == 0)
                 removeTargetQueue.Enqueue(traceTarget);
         }
 
         while (removeTargetQueue.Count > 0)
         {
             var removeTarget = removeTargetQueue.Dequeue();
-
-            Destroy(textGroupsByTarget[removeTarget].GroupTransform.gameObject);
-
-            textGroupsByTarget.Remove(removeTarget);
+            Destroy(elementGroupsByTarget[removeTarget].GroupTransform.gameObject);
+            elementGroupsByTarget.Remove(removeTarget);
         }
     }
 
-    private void UpdatePosition(FloatingTextGroup group)
+    private void UpdatePosition(FloatingElementGroup group)
     {
         Vector2 viewportPosition = Camera.main.WorldToViewportPoint(group.TraceTarget.position);
         Vector2 uiPosition = (viewportPosition * canvasTransform.sizeDelta) - (canvasTransform.sizeDelta * 0.5f);
@@ -99,32 +116,41 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
         group.GroupTransform.anchoredPosition = uiPosition;
     }
 
-    public void Show(Transform traceTarget, string text, Color color)
+    public void Show(Transform traceTarget, string text = null, Color? textColor = null, Sprite iconSprite = null)
     {
-        var textGroup = CreateCachedGroup(traceTarget);
+        var elementGroup = CreateCachedGroup(traceTarget);
 
-        var textMesh = Instantiate(floatingTextPrefab, textGroup.GroupTransform).GetComponent<TextMeshProUGUI>();
-        textMesh.text = text;
-        textMesh.color = color;
-
-        var newTextData = new FloatingTextData(textMesh);
-        textGroup.AddData(newTextData);
-    }
-
-    public void Show(Transform traceTarget, string text)
-        => Show(traceTarget, text, Color.white);
-
-    private FloatingTextGroup CreateCachedGroup(Transform traceTarget)
-    {
-        if (!textGroupsByTarget.ContainsKey(traceTarget))
+        TextMeshProUGUI textMesh = null;
+        if (!string.IsNullOrEmpty(text))
         {
-            var group = Instantiate(textGroupPrefab, transform);
-            var newTextGroup = new FloatingTextGroup(traceTarget, group.GetComponent<RectTransform>());
-            textGroupsByTarget[traceTarget] = newTextGroup;
-
-            UpdatePosition(newTextGroup);
+            textMesh = Instantiate(floatingTextPrefab, elementGroup.GroupTransform).GetComponent<TextMeshProUGUI>();
+            textMesh.text = text;
+            textMesh.color = textColor ?? Color.white;
         }
 
-        return textGroupsByTarget[traceTarget];
+        Image icon = null;
+        if (iconSprite != null)
+        {
+            icon = Instantiate(floatingImagePrefab, elementGroup.GroupTransform).GetComponent<Image>();
+            icon.sprite = iconSprite;
+            icon.color = textColor ?? Color.white;
+        }
+
+        var newElementData = new FloatingElementData(textMesh, icon);
+        elementGroup.AddData(newElementData);
+    }
+
+    private FloatingElementGroup CreateCachedGroup(Transform traceTarget)
+    {
+        if (!elementGroupsByTarget.ContainsKey(traceTarget))
+        {
+            var group = Instantiate(elementGroupPrefab, transform);
+            var newElementGroup = new FloatingElementGroup(traceTarget, group.GetComponent<RectTransform>());
+            elementGroupsByTarget[traceTarget] = newElementGroup;
+
+            UpdatePosition(newElementGroup);
+        }
+
+        return elementGroupsByTarget[traceTarget];
     }
 }

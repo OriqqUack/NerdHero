@@ -24,6 +24,8 @@ public class EnemyMovement : Movement
     private float _walkTimer;
     private float _nextAttack;
     
+    public bool HasArrived { get; set; }
+    
     public override void Setup(Entity entity)
     {
         base.Setup(entity);

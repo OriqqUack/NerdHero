@@ -36,10 +36,11 @@ public class SlotMachineManager : MonoSingleton<SlotMachineManager>
     void Start ( )
     {
         _playerEntity = GameObject.FindGameObjectWithTag ( "Player" ).GetComponent<Entity>();
+        _playerEntity.Stats.GetStat("LEVEL").onValueChanged += MachineStart;
         parentPanel.SetActive(false);
     }
 
-    public void MachineStart()
+    public void MachineStart(Stat stat, float currentValue, float prevValue)
     {
         parentPanel.SetActive(true);
         Time.timeScale = 0f;

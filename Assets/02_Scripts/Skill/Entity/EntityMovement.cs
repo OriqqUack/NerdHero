@@ -3,35 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EntityMovement : MonoBehaviour
+public class EntityMovement : Movement
 {
     #region Property
     #region Events
     public delegate void SetDestinationHandler(EntityMovement movement, Vector3 destination);
+    public delegate void FindTargetHandler(EntityMovement movement);
     #endregion
 
-    [SerializeField] private Stat moveSpeedStat;
-    [SerializeField] private float rollTime = 0.5f;
-
+    
     private NavMeshAgent agent;
     private Transform traceTarget;
-    private Stat entityMoveSpeedStat;
-
+    private bool isFindTarget;
+    
+    public bool HasArrived =>
+        !agent.pathPending && 
+        agent.remainingDistance <= agent.stoppingDistance && 
+        agent.velocity.sqrMagnitude < 0.01f;
+    
     public Entity Owner { get; private set; }
-    public float MoveSpeed => agent.speed;
     public bool IsRolling { get; private set; }
+
+    public bool IsFind
+    {
+        get => isFindTarget;
+        set
+        { 
+            if(isFindTarget != value)
+                OnFindTarget?.Invoke(this);
+            isFindTarget = value;
+        }
+    }
 
     public Transform TraceTarget
     {
         get => traceTarget;
         set
         {
-            if (traceTarget == value)
-                return;
+            /*if (traceTarget == value)
+                return;*/
 
             Stop();
 
             traceTarget = value;
+            onSetDestination?.Invoke(this, traceTarget.transform.position);
+
             if (traceTarget)
                 StartCoroutine("TraceUpdate");
         }
@@ -42,49 +58,42 @@ public class EntityMovement : MonoBehaviour
         get => agent.destination;
         set
         {
-            // traceTarget�� �����ϴ� ���� ����
             TraceTarget = null;
             SetDestination(value);
         }
     }
 
     public event SetDestinationHandler onSetDestination;
+    public event FindTargetHandler OnFindTarget;
     #endregion
 
     #region Methods
-    public void Setup(Entity owner)
+    public override void Setup(Entity owner)
     {
+        base.Setup(owner);
         Owner = owner;
 
         agent = Owner.GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
 
-        var animator = Owner.Animator;
-        if (animator)
-            animator.SetFloat("rollSpeed", 1 / rollTime);
+        agent.speed = runSpeed;
+        moveSpeed.onValueChanged += OnMoveSpeedChanged;
 
-        entityMoveSpeedStat = moveSpeedStat ? Owner.Stats.GetStat(moveSpeedStat) : null;
-        if (entityMoveSpeedStat)
-        {
-            agent.speed = entityMoveSpeedStat.Value;
-            entityMoveSpeedStat.onValueChanged += OnMoveSpeedChanged;
-        }
     }
 
     private void OnDisable() => Stop();
 
     private void OnDestroy()
     {
-        if (entityMoveSpeedStat)
-            entityMoveSpeedStat.onValueChanged -= OnMoveSpeedChanged;
+        if (moveSpeed)
+            moveSpeed.onValueChanged -= OnMoveSpeedChanged;
     }
 
     private void SetDestination(Vector3 destination)
     {
         agent.destination = destination;
-        LookAt(destination);
-
-        onSetDestination?.Invoke(this, destination);
+        LookCheck();
+        //LookAt(destination);
     }
 
     public void Stop()
@@ -97,10 +106,27 @@ public class EntityMovement : MonoBehaviour
 
         agent.velocity = Vector3.zero;
     }
+
+    public void ForceStop()
+    {
+        StopCoroutine("TraceUpdate");
+
+        if (agent.isOnNavMesh)
+            agent.ResetPath();
+
+        agent.velocity = Vector3.zero;
+    }
     #endregion
 
     #region LookMethod
-    public void LookAt(Vector3 position)
+
+    public void LookCheck()
+    {
+        var rotation = transform.rotation;
+        rotation.y = Mathf.Abs(transform.rotation.y) * (agent.destination.x >= transform.position.x ? 1 : -1);
+        transform.rotation = rotation;
+    }
+    /*public void LookAt(Vector3 position)
     {
         StopCoroutine("LookAtUpdate");
         StartCoroutine("LookAtUpdate", position);
@@ -129,55 +155,7 @@ public class EntityMovement : MonoBehaviour
 
             yield return null;
         }
-    }
-    #endregion
-
-    #region Rolling Method
-    public void Roll(float distance, Vector3 direction)
-    {
-        Stop();
-
-        if (direction != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(direction);
-
-        IsRolling = true;
-        StopCoroutine("RollUpdate");
-        StartCoroutine("RollUpdate", distance);
-    }
-
-    public void Roll(float distance)
-        => Roll(distance, transform.forward);
-
-    private IEnumerator RollUpdate(float rollDistance)
-    {
-        // ������� ���� �ð�
-        float currentRollTime = 0f;
-        // ���� Frame�� �̵��� �Ÿ�
-        float prevRollDistance = 0f;
-
-        while (true)
-        {
-            currentRollTime += Time.deltaTime;
-
-            float timePoint = currentRollTime / rollTime;
-            // Easing InOutSine https://easings.net/ko#easeInOutSine
-            // -(Math.cos(Math.PI * x) - 1) / 2;
-            float inOutSine = -(Mathf.Cos(Mathf.PI * timePoint) - 1f) / 2f;
-            float currentRollDistance = Mathf.Lerp(0f, rollDistance, inOutSine);
-            // �̹� Frame�� ���������� �Ÿ��� ����
-            float deltaValue = currentRollDistance - prevRollDistance;
-
-            transform.position += (transform.forward * deltaValue);
-            prevRollDistance = currentRollDistance;
-
-            if (currentRollTime >= rollTime)
-                break;
-            else
-                yield return null;
-        }
-
-        IsRolling = false;
-    }
+    }*/
     #endregion
 
     #region Tracing Method

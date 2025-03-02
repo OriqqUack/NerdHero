@@ -52,7 +52,14 @@ public class Entity : MonoBehaviour
         Stats.Setup(this);
 
         Movement = GetComponent<Movement>();
-        Movement?.Setup(this);
+        
+        if(controlType == EntityControlType.Player)
+            Movement?.Setup(this);
+        else
+        {
+            EntityMovement entityMovement = Movement as EntityMovement;
+            entityMovement.Setup(this);
+        }
 
         StateMachine = GetComponent<MonoStateMachine<Entity>>();
         StateMachine?.Setup(this);

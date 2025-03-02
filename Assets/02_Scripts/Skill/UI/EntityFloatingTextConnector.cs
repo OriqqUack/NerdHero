@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EntityFloatingTextConnector : MonoBehaviour
 {
-    [SerializeField]
-    private Transform textSpawnPoint;
-
+    [SerializeField] private Transform textSpawnPoint;
+    [SerializeField] private Sprite alertSprite;
     private Entity entity;    
 
     private void Start()
@@ -15,6 +15,12 @@ public class EntityFloatingTextConnector : MonoBehaviour
         entity.onTakeDamage += OnTakeDamage;
         entity.StateMachine.onStateChanged += OnStateChanged;
         entity.Stats.HPStat.onValueChanged += OnHPValueChanged;
+
+        if (entity.ControlType != EntityControlType.Player)
+        {
+            EntityMovement entityMovement =  entity.Movement as EntityMovement;
+            entityMovement.OnFindTarget += OnInsight;
+        }
     }
 
     private void OnTakeDamage(Entity entity, Entity instigator, object causer, float damage)
@@ -36,5 +42,11 @@ public class EntityFloatingTextConnector : MonoBehaviour
         var value = currentValue - prevValue;
         if (value > 0)
             FloatingTextView.Instance.Show(textSpawnPoint, $"+{Mathf.RoundToInt(value)}", Color.green);
+    }
+
+    private void OnInsight(EntityMovement entityMovement)
+    {
+        FloatingTextView.Instance.Show(textSpawnPoint, null, Color.red, alertSprite);
+
     }
 }

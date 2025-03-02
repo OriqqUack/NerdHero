@@ -11,6 +11,7 @@ Library: H:\NerdHero\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generate
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=H:\NerdHero\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.33f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=H:\NerdHero\Library\Burst
 --output=H:\NerdHero\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
@@ -28,6 +29,7 @@ Library: H:\NerdHero\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generate
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=H:\NerdHero\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.33f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=H:\NerdHero\Library\Burst
 --output=H:\NerdHero\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated

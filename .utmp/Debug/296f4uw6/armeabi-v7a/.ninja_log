@@ -1,0 +1,12 @@
+# ninja log v5
+117	355	7625245205209866	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	138fe3d4551f5c7d
+357	587	7625245207596078	H:/NerdHero/Library/PramData/AndroidApplicationController/Cache/com.NerdHero.NerdHero/gradle-project/unityLibrary/build/intermediates/cxx/Debug/296f4uw6/obj/armeabi-v7a/libswappywrapper.so	fa8615f21e2aa16e
+1	884	7625245210554525	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c6277ad4699201b1
+55	902	7625245210712625	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	578bd48dbb1da8e2
+33	903	7625245210722597	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	dff4077914acf56f
+101	937	7625245211099344	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	cf39b2d6483a37d0
+11	959	7625245211327203	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	cd9352da29dc34a7
+87	962	7625245211357256	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	e5827c58e775d90b
+70	1031	7625245212076919	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	640508b496f666be
+21	1075	7625245212498882	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	87b431934dbdcd61
+1075	1192	7625245213727471	H:/NerdHero/Library/PramData/AndroidApplicationController/Cache/com.NerdHero.NerdHero/gradle-project/unityLibrary/build/intermediates/cxx/Debug/296f4uw6/obj/armeabi-v7a/libgame.so	eac2f14a74e7db03

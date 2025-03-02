@@ -13,8 +13,6 @@ namespace Test
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.D))
-                GetComponent<EntityMovement>().Roll(rollDistance);
         }
     }
 }
