@@ -1,17 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 
 [System.Serializable]
+public class WaveEntry
+{
+    public GameObject EnemyPrefab;
+    public int EnemyCount;
+}
+
+[System.Serializable]
 public class WaveData
 {
     public int Wave;
-    public List<GameObject> EnemyPrefab;
-    public List<int> EnemyCount;
+    public List<WaveEntry> Enemies = new List<WaveEntry>();
 }
+
 
 public class WaveManager : MonoSingleton<WaveManager>
 {
@@ -21,110 +30,102 @@ public class WaveManager : MonoSingleton<WaveManager>
     public OnWaveEndEvent OnWaveEnd;
     
     [Header("Wave Settings")]
-    [SerializeField] private SOWaveData wave;
-    [SerializeField] private float timeBetweenWaves = 5f; // 웨이브 간 대기 시간
-    [SerializeField] private Transform[] spawnPoints; // 적 소환 위치
+    [SerializeField] private SOWaveData waveData;
+    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] private Transform[] spawnPoints;
 
     [Space(10)] [Header("Spawn Settings")] 
-    [SerializeField] private VisualEffect spawnVFXPrefab;
+    [SerializeField] private VisualEffect monsterSpawnVFXPrefab;
+    [SerializeField] private Transform playerSpawnPoint;
+    [SerializeField] private GameObject playerPrefab;
     
     private bool _isSpawning = false;
-    private int _currentWave = 0; // 현재 웨이브
+    private int _currentWaveIndex = 0;
+    private int _currentEntryIndex = 0;
     private float _spawnDelay;
-    private Dictionary<int, Dictionary<Entity, int>> wavesEnemies = new(); // 현재 Wave의 Entity Count
-    private List<Entity> _activeEnemies = new List<Entity>(); // 현재 살아있는 적 리스트
+    private List<Entity> _activeEnemies = new();
     
-    public List<Entity> ActiveEnemies { get { return _activeEnemies; } }
-    public Dictionary<Item, float> GainedItemsList = new Dictionary<Item, float>();
-    public float GainedExp;
-    public float CurrentTime;
+    public List<Entity> ActiveEnemies => _activeEnemies;
+    public float CurrentTime { get; private set; }
+    public Transform PlayerTransform { get; private set; }
+    public int CurrentWave => _currentWaveIndex + 1;
+    public Dictionary<Item, float> GainedItemsList { get; private set; } = new Dictionary<Item, float>();
     
-    public int CurrentWave { get { return _currentWave; } }
-    
-    void Start()
+    private void Awake()
     {
-        Init();
-        StartCoroutine(StartWaveRoutine());
+        PlayerSpawn();
     }
 
-    private void Init()
+    void Start()
     {
-        //Wave Setting
-        int j = 0;
-        foreach (WaveData wave in wave.Waves)
-        {
-            int waveCount = wave.Wave;
-            Dictionary<Entity, int> tempDic = new();
-            for (int i = 0; i < wave.EnemyPrefab.Count; i++)
-            {
-                Entity entity = wave.EnemyPrefab[i].GetComponent<Entity>();
-                int count = wave.EnemyCount[i];
-                tempDic.Add(entity, count);
-            }
-            wavesEnemies.Add(waveCount, tempDic);
-        }
-        
-        //Spawn Setting
-        _spawnDelay = spawnVFXPrefab.GetFloat("Delay");
+        _spawnDelay = monsterSpawnVFXPrefab.GetFloat("Delay");
+        StartCoroutine(StartWaveRoutine());
     }
     
     private IEnumerator StartWaveRoutine()
     {
-        while (wavesEnemies.Count > _currentWave)
+        while (_currentWaveIndex < waveData.Waves.Count)
         {
             CurrentTime += Time.deltaTime;
             if (ActiveEnemies.Count == 0 && !_isSpawning)
             {
                 yield return new WaitForSeconds(timeBetweenWaves);
                 _isSpawning = true;
-                _currentWave++;
-                StartNewWave(_currentWave);
+                StartCoroutine(StartNewWave());
             }
             yield return null;
         }
-
         EndWave();
     }
     
-    private void StartNewWave(int currentWave)
+    private IEnumerator StartNewWave()
     {
-        OnWaveChange?.Invoke(currentWave);
-        
-        var dic = wavesEnemies[currentWave];
-        
-        foreach (KeyValuePair<Entity, int> kvp in dic)
+        OnWaveChange?.Invoke(CurrentWave);
+        WaveData currentWave = waveData.Waves[_currentWaveIndex];
+        _currentEntryIndex = 0;
+
+        while (_currentEntryIndex < currentWave.Enemies.Count)
         {
-            for (int j = 0; j < kvp.Value; j++) // 적 개수만큼 생성
-            {
-                int spawnIndex = j % spawnPoints.Length; // 스폰 위치 순환
-                StartCoroutine(SpawnDelay(kvp, spawnIndex));
-            }
+            WaveEntry entry = currentWave.Enemies[_currentEntryIndex];
+            yield return StartCoroutine(SpawnEnemies(entry));
+            _currentEntryIndex++;
+        }
+        
+        _currentWaveIndex++;
+        _isSpawning = false;
+    }
+
+    private IEnumerator SpawnEnemies(WaveEntry entry)
+    {
+        for (int i = 0; i < entry.EnemyCount; i++)
+        {
+            int spawnIndex = i % spawnPoints.Length;
+            yield return SpawnDelay(entry.EnemyPrefab, spawnIndex);
         }
     }
 
-    private IEnumerator SpawnDelay(KeyValuePair<Entity, int> kvp, int spawnIndex)
+    private IEnumerator SpawnDelay(GameObject enemyPrefab, int spawnIndex)
     {
-        var spawnEffect = Instantiate(spawnVFXPrefab, spawnPoints[spawnIndex].position, Quaternion.identity);
+        var spawnEffect = Instantiate(monsterSpawnVFXPrefab, spawnPoints[spawnIndex].position, Quaternion.identity);
         yield return new WaitForSeconds(_spawnDelay);
         
-        Entity enemyInstance = Instantiate(kvp.Key, spawnPoints[spawnIndex].position, Quaternion.identity);
+        Entity enemyInstance = Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, Quaternion.identity).GetComponent<Entity>();
         ActiveEnemies.Add(enemyInstance);
         enemyInstance.onDead += RemoveEnemy;
-
+        
         yield return new WaitForSeconds(1f);
         spawnEffect.Stop();
 
-        while (true)
+        while (spawnEffect.aliveParticleCount > 0)
         {
-            if (spawnEffect.aliveParticleCount == 0)
-            {
-                Destroy(spawnEffect.gameObject);
-                break;
-            }
             yield return null;
         }
-        
-        _isSpawning = false;
+        Destroy(spawnEffect.gameObject);
+    }
+
+    private void PlayerSpawn()
+    { 
+        PlayerTransform = Instantiate(playerPrefab, playerSpawnPoint).transform;
     }
 
     private void RemoveEnemy(Entity entity)
@@ -134,8 +135,9 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     public void EndWave()
     {
-        _currentWave = 0;
+        _currentWaveIndex = 0;
         OnWaveEnd?.Invoke();
         Time.timeScale = 0f;
     }
 }
+

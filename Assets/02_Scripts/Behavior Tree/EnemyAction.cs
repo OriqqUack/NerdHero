@@ -11,6 +11,7 @@ public class EnemyAction : Action
     protected Rigidbody rigidbody;
     protected Collider collider;
     protected NavMeshAgent agent;
+    protected Transform targetTransform;
     
     public override void OnAwake()
     {
@@ -20,5 +21,6 @@ public class EnemyAction : Action
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
+        targetTransform = WaveManager.Instance.PlayerTransform;
     }
 }

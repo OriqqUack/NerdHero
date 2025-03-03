@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 527370b2fb5e2a84eba48e0e00a9d485, type: 3}
-  m_Name: Wave Data_
-  m_EditorClassIdentifier: Assembly-CSharp::SOWaveData
+  m_Name: Wave Data_ 1
+  m_EditorClassIdentifier: 
   Waves:
   - Wave: 1
     Enemies:
@@ -19,11 +19,3 @@ MonoBehaviour:
       EnemyCount: 0
     - EnemyPrefab: {fileID: 0}
       EnemyCount: 0
-  - Wave: 2
-    Enemies:
-    - EnemyPrefab: {fileID: 0}
-      EnemyCount: 0
-    - EnemyPrefab: {fileID: 0}
-      EnemyCount: 0
-  - Wave: 3
-    Enemies: []

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class TracingAction : EnemyAction
 {
-    public SharedTransform target;
     public float TracingTime;
     [SerializeField] private Stat attackRangeStat;
 
@@ -13,7 +12,7 @@ public class TracingAction : EnemyAction
     
     public override void OnStart()
     {
-        entityMovement.TraceTarget = target.Value;
+        entityMovement.TraceTarget = targetTransform;
         if(TracingTime == 0)
             TracingTime = Mathf.Infinity;
         
@@ -30,7 +29,7 @@ public class TracingAction : EnemyAction
             return TaskStatus.Failure;
         }
 
-        if (entityMovement.HasArrived || Vector3.Distance(target.Value.position, transform.position) <= attackRangeStat.Value)
+        if (entityMovement.HasArrived || Vector3.Distance(targetTransform.position, transform.position) <= attackRangeStat.Value)
         {
             entityMovement.ForceStop();
             return TaskStatus.Success;

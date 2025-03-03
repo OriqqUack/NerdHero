@@ -11,20 +11,17 @@ public class CameraFollow : MonoBehaviour {
 	public Vector2 maxXAndY; // The maximum x and y coordinates the camera can have.
 	public Vector2 minXAndY; // The minimum x and y coordinates the camera can have.
 
-	private Transform m_Player; // Reference to the player's transform.
+	private Transform playerTransform; // Reference to the player's transform.
 
-
-	private void Awake()
+	private void Start()
 	{
-		// Setting up the reference.
-		m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+		playerTransform = WaveManager.Instance.PlayerTransform;
 	}
-
 
 	private bool CheckXMargin()
 	{
 		// Returns true if the distance between the camera and the player in the x axis is greater than the x margin.
-		return Mathf.Abs(transform.position.x - m_Player.position.x) > xMargin;
+		return Mathf.Abs(transform.position.x - playerTransform.position.x) > xMargin;
 	}
 
 
@@ -51,7 +48,7 @@ public class CameraFollow : MonoBehaviour {
 		if (CheckXMargin())
 		{
 			// ... the target x coordinate should be a Lerp between the camera's current x position and the player's current x position.
-			targetX = Mathf.Lerp(transform.position.x, m_Player.position.x, xSmooth * Time.deltaTime);
+			targetX = Mathf.Lerp(transform.position.x, playerTransform.position.x, xSmooth * Time.deltaTime);
 		}
 
 		// If the player has moved beyond the y margin...

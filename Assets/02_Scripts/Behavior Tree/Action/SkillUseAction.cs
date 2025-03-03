@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SkillUseAction : EnemyAction
 {
-    public SharedTransform target;
     public int skillIndex = 0;
     private SkillSystem skillSystem;
     private Skill skill;

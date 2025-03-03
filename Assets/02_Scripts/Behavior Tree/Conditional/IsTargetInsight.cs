@@ -8,14 +8,12 @@ public class IsTargetInsight : EnemyCondition
     public float fieldOfViewAngle = 45f;
     [UnityEngine.Tooltip("The maximum distance within which the target can be seen")]
     public float viewDistance = 10f;
-
-    public SharedTransform target;
-
+    
     public override TaskStatus OnUpdate()
     {
-        if (target != null && IsTargetInSight())
+        if (playerTransform != null && IsTargetInSight())
         {
-            entity.Target = target.Value.GetComponent<Entity>();
+            entity.Target = playerTransform.GetComponent<Entity>();
             entityMovement.IsFind = true;
             return TaskStatus.Success;
         }
@@ -28,7 +26,7 @@ public class IsTargetInsight : EnemyCondition
     /// </summary>
     private bool IsTargetInSight()
     {
-        Vector3 directionToTarget = target.Value.position - this.transform.position;
+        Vector3 directionToTarget = playerTransform.position - this.transform.position;
 
         // Check if the target is within the view distance
         if (directionToTarget.magnitude > viewDistance)

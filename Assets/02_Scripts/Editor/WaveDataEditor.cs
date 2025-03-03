@@ -10,7 +10,7 @@ public class WaveDataEditor : Editor
 
     private void OnEnable()
     {
-        waveListProperty = serializedObject.FindProperty("Waves"); // 필드명이 정확한지 확인
+        waveListProperty = serializedObject.FindProperty("Waves");
     }
 
     public override void OnInspectorGUI()
@@ -30,16 +30,8 @@ public class WaveDataEditor : Editor
         {
             waveListProperty.arraySize++;
             SerializedProperty newWave = waveListProperty.GetArrayElementAtIndex(waveListProperty.arraySize - 1);
-
-            // newWave가 존재하는지 확인 후 초기화
-            if (newWave != null)
-            {
-                SerializedProperty enemyNames = newWave.FindPropertyRelative("EnemyPrefab");
-                SerializedProperty enemyCounts = newWave.FindPropertyRelative("EnemyCount");
-
-                if (enemyNames != null) enemyNames.arraySize = 0;
-                if (enemyCounts != null) enemyCounts.arraySize = 0;
-            }
+            newWave.FindPropertyRelative("Wave").intValue = waveListProperty.arraySize;
+            newWave.FindPropertyRelative("Enemies").arraySize = 0;
         }
 
         // 스크롤뷰 시작
@@ -49,10 +41,9 @@ public class WaveDataEditor : Editor
         {
             SerializedProperty wave = waveListProperty.GetArrayElementAtIndex(i);
             SerializedProperty waveNumber = wave.FindPropertyRelative("Wave");
-            SerializedProperty enemyNames = wave.FindPropertyRelative("EnemyPrefab");
-            SerializedProperty enemyCounts = wave.FindPropertyRelative("EnemyCount");
+            SerializedProperty enemiesList = wave.FindPropertyRelative("Enemies");
 
-            if (wave == null || waveNumber == null || enemyNames == null || enemyCounts == null)
+            if (wave == null || waveNumber == null || enemiesList == null)
             {
                 continue; // null 값이 있으면 스킵
             }
@@ -63,28 +54,30 @@ public class WaveDataEditor : Editor
             waveNumber.intValue = i + 1;
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Enemy Name", GUILayout.Width(150));
-            EditorGUILayout.LabelField("Enemy Count", GUILayout.Width(70));
+            EditorGUILayout.LabelField("Enemy", GUILayout.Width(150));
+            EditorGUILayout.LabelField("Count", GUILayout.Width(70));
             EditorGUILayout.EndHorizontal();
 
-            for (int j = 0; j < enemyNames.arraySize; j++)
+            for (int j = 0; j < enemiesList.arraySize; j++)
             {
+                SerializedProperty enemyEntry = enemiesList.GetArrayElementAtIndex(j);
+                SerializedProperty enemyPrefab = enemyEntry.FindPropertyRelative("EnemyPrefab");
+                SerializedProperty enemyCount = enemyEntry.FindPropertyRelative("EnemyCount");
+
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(enemyNames.GetArrayElementAtIndex(j), GUIContent.none, GUILayout.Width(150));
-                EditorGUILayout.PropertyField(enemyCounts.GetArrayElementAtIndex(j), GUIContent.none, GUILayout.Width(70));
+                EditorGUILayout.PropertyField(enemyPrefab, GUIContent.none, GUILayout.Width(150));
+                EditorGUILayout.PropertyField(enemyCount, GUIContent.none, GUILayout.Width(70));
 
                 if (GUILayout.Button("❌", GUILayout.Width(30)))
                 {
-                    enemyNames.DeleteArrayElementAtIndex(j);
-                    enemyCounts.DeleteArrayElementAtIndex(j);
+                    enemiesList.DeleteArrayElementAtIndex(j);
                 }
                 EditorGUILayout.EndHorizontal();
             }
 
             if (GUILayout.Button("➕ Add Enemy"))
             {
-                enemyNames.arraySize++;
-                enemyCounts.arraySize++;
+                enemiesList.arraySize++;
             }
 
             if (GUILayout.Button("🗑 Remove Wave", GUILayout.Height(20)))
