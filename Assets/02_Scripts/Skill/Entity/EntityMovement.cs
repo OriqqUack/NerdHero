@@ -11,7 +11,7 @@ public class EntityMovement : Movement
     public delegate void FindTargetHandler(EntityMovement movement);
     #endregion
 
-    
+    [SerializeField] private float zAttackOffset;
     private NavMeshAgent agent;
     private Transform traceTarget;
     private bool isFindTarget;
@@ -23,6 +23,7 @@ public class EntityMovement : Movement
     
     public Entity Owner { get; private set; }
     public bool IsRolling { get; private set; }
+    public float ZAttackOffset => zAttackOffset;
 
     public bool IsFind
     {
@@ -43,7 +44,7 @@ public class EntityMovement : Movement
             /*if (traceTarget == value)
                 return;*/
 
-            Stop();
+            ForceStop();
 
             traceTarget = value;
             onSetDestination?.Invoke(this, traceTarget.transform.position);
@@ -58,7 +59,6 @@ public class EntityMovement : Movement
         get => agent.destination;
         set
         {
-            TraceTarget = null;
             SetDestination(value);
         }
     }
@@ -123,7 +123,10 @@ public class EntityMovement : Movement
     public void LookCheck()
     {
         var rotation = transform.rotation;
-        rotation.y = Mathf.Abs(transform.rotation.y) * (agent.destination.x >= transform.position.x ? 1 : -1);
+        if(traceTarget)
+            rotation.y = Mathf.Abs(transform.rotation.y) * (traceTarget.transform.position.x >= transform.position.x ? 1 : -1);
+        else
+            rotation.y = Mathf.Abs(transform.rotation.y) * (agent.destination.x >= transform.position.x ? 1 : -1);
         transform.rotation = rotation;
     }
     /*public void LookAt(Vector3 position)
@@ -161,11 +164,21 @@ public class EntityMovement : Movement
     #region Tracing Method
     private IEnumerator TraceUpdate()
     {
+        float attakRange = Owner.Stats.GetStat("ATTACK_RANGE").Value;
         while (true)
         {
-            if (Vector3.SqrMagnitude(TraceTarget.position - transform.position) > 1.0f)
+            var pos = TraceTarget.position;
+            float randomZ = Random.Range(-ZAttackOffset, ZAttackOffset);
+            if(traceTarget.position.x < transform.position.x)
+                pos.x += attakRange;
+            else
+                pos.x -= attakRange;
+            
+            pos.z += randomZ;
+            
+            if (Vector3.SqrMagnitude(pos - transform.position) > 1.0f)
             {
-                SetDestination(TraceTarget.position);
+                SetDestination(pos);
                 yield return null;
             }
             else

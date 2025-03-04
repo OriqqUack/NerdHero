@@ -20,13 +20,14 @@ public class Movement : MonoBehaviour
     protected float walkSpeed => Mathf.Clamp(moveSpeed.MaxValue - walkSpeedOffset, 1f, moveSpeed.MaxValue);
     protected float runSpeed => moveSpeed.Value;
     protected Entity entity;
-    public Transform TraceTarget;
+    protected Transform traceTarget;
     public bool isCC;
     
     public virtual void Setup(Entity entity)
     {
         this.entity = entity;
         moveSpeed = entity.Stats.GetStat(moveSpeed);
+        traceTarget = WaveManager.Instance.PlayerTransform;
     }
 
     public virtual void Stop() => isCC = true;

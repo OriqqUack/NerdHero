@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,28 +7,28 @@ using TMPro;
 
 public class EntityHUD : MonoSingleton<EntityHUD>
 {
-    [SerializeField]
-    private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI nameText; //
 
-    [Header("Stat View")]
-    [SerializeField]
-    private Image hpFillImage;
-    [SerializeField]
-    private TextMeshProUGUI hpValueText;
-    [SerializeField]
-    private Image skillCostFillImage;
-    [SerializeField]
-    private TextMeshProUGUI skillCostValueText;
+    [Header("Stat View")] [SerializeField] private Slider hpFillImage;
+    [SerializeField] private Slider hpFollowImage;
+    [SerializeField] private TextMeshProUGUI hpValueText; //
+    [SerializeField] private Slider skillCostFillImage; //
+    [SerializeField] private TextMeshProUGUI skillCostValueText; //
+    [SerializeField] private GameObject panel;
 
+    [Header("Effecf List View")] 
+    [SerializeField] private SkillEffectListView effectListView; //
+    
     [Header("Effecf List View")]
-    [SerializeField]
-    private SkillEffectListView effectListView;
+    [SerializeField] private Image sameAxisImage; //
 
+    [SerializeField] private float axisOffset = 0.3f;
+    
     private Entity target;
 
     private void Awake()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 
     private void OnDestroy() => ReleaseEvents();
@@ -35,22 +36,34 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     public void Show(Entity target)
     {
         ReleaseEvents();
+        sameAxisImage.gameObject.SetActive(false);
 
         this.target = target;
         target.onDead += OnEntityDead;
 
-        nameText.text = target.name;
+        if (nameText)
+            nameText.text = target.name;
 
         var stats = target.Stats;
         stats.HPStat.onValueChanged += OnHPStatChanged;
-        stats.SkillCostStat.onValueChanged += OnSkillCostStatChanged;
-        
-        UpdateStatView(stats.HPStat, hpFillImage, hpValueText);
-        UpdateStatView(stats.SkillCostStat, skillCostFillImage, skillCostValueText);
 
-        effectListView.Target = target.SkillSystem;
+        if (skillCostFillImage)
+        {
+            stats.SkillCostStat.onValueChanged += OnSkillCostStatChanged;
+            UpdateStatView(stats.SkillCostStat, skillCostFillImage, hpFollowImage, skillCostValueText);
+        }
 
-        gameObject.SetActive(true);
+        UpdateStatView(stats.HPStat, hpFillImage, hpFollowImage, hpValueText);
+
+        if (effectListView)
+            effectListView.Target = target.SkillSystem;
+
+        panel.SetActive(true);
+    }
+
+    public void AxisImageControl(bool value)
+    {
+        sameAxisImage.gameObject.SetActive(value);
     }
 
     public void Hide()
@@ -58,18 +71,48 @@ public class EntityHUD : MonoSingleton<EntityHUD>
         ReleaseEvents();
 
         target = null;
-        effectListView.Target = null;
+        if (effectListView)
+            effectListView.Target = null;
 
-        gameObject.SetActive(false);
+        panel.SetActive(false);
     }
 
-    private void UpdateStatView(Stat stat, Image statFillAmount, TextMeshProUGUI statText)
+    private void UpdateStatView(Stat stat, Slider statFillAmount, Slider hpFollowFillAmount, TextMeshProUGUI statText)
     {
-        statFillAmount.fillAmount = stat.Value / stat.MaxValue;
-        statText.text = $"{Mathf.RoundToInt(stat.Value)} / {stat.MaxValue}";
+        statFillAmount.value = stat.Value / stat.MaxValue;
+        hpFollowFillAmount.value = stat.Value / stat.MaxValue;
+        //statText.text = $"{Mathf.RoundToInt(stat.Value)} / {stat.MaxValue}";
+    }
+    
+    private void UpdateStatViewLerp(Stat stat, Slider statFillAmount, Slider hpFollowFillAmount, TextMeshProUGUI statText)
+    {
+        StartCoroutine(HpFollow(stat, statFillAmount, hpFollowFillAmount));
+        //statText.text = $"{Mathf.RoundToInt(stat.Value)} / {stat.MaxValue}";
     }
 
-    private void ReleaseEvents()
+    private IEnumerator HpFollow(Stat stat, Slider statFillAmount, Slider hpFollowFillAmount)
+    {
+        float value = stat.Value / stat.MaxValue;
+        float speed = 5f; 
+
+        while (Mathf.Abs(statFillAmount.value - value) > 0.01f)
+        {
+            statFillAmount.value = Mathf.Lerp(statFillAmount.value, value, Time.deltaTime * speed);
+            yield return null;
+        }
+        statFillAmount.value = value;
+
+        yield return new WaitForSeconds(0.2f);
+
+        while (Mathf.Abs(hpFollowFillAmount.value - value) > 0.01f)
+        {
+            hpFollowFillAmount.value = Mathf.Lerp(hpFollowFillAmount.value, value, Time.deltaTime * speed);
+            yield return null;
+        }
+        hpFollowFillAmount.value = value; 
+    }
+
+private void ReleaseEvents()
     {
         if (!target)
             return;
@@ -80,10 +123,10 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     }
 
     private void OnHPStatChanged(Stat stat, float currentValue, float prevValue)
-        => UpdateStatView(stat, hpFillImage, hpValueText);
+        => UpdateStatViewLerp(stat, hpFillImage, hpFollowImage, hpValueText);
 
     private void OnSkillCostStatChanged(Stat stat, float currentValue, float prevValue)
-        => UpdateStatView(stat, skillCostFillImage, skillCostValueText);
+        => UpdateStatView(stat, skillCostFillImage, hpFollowImage, skillCostValueText);
 
     private void OnEntityDead(Entity entity) => Hide();
 }

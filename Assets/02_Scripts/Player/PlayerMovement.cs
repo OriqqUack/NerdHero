@@ -141,9 +141,9 @@ public class PlayerMovement : Movement
 
         if (_moveInput.x != 0)
         {
-            var scale = transform.localScale;
-            scale.x = _moveInput.x > 0 ? 1 : -1;
-            transform.localScale = scale;
+            var rotation = transform.rotation;
+            rotation.y = Mathf.Abs(transform.rotation.y) * (_moveInput.x > 0 ? 1 : -1);
+            transform.rotation = rotation;
         }
     }
 

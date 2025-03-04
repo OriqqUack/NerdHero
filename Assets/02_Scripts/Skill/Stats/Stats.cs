@@ -139,6 +139,12 @@ public class Stats : MonoBehaviour
     public void IncreaseDefaultValue(Stat stat, float value)
         => GetStat(stat).DefaultValue += value;
 
+    public void InCreaseDeafaultVaue(string statName, float value)
+    {
+        Stat stat = stats.FirstOrDefault(x => x.CodeName == statName);
+        Debug.Assert(stat != null, $"Stats::GetStat - stat�� null�� �� �� �����ϴ�.");
+        IncreaseDefaultValue(stat, value);
+    }
     public void SetBonusValue(Stat stat, object key, float value)
         => GetStat(stat).SetBonusValue(key, value);
     public void SetBonusValue(Stat stat, object key, object subKey, float value)

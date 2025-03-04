@@ -76,6 +76,8 @@ public class Entity : MonoBehaviour
         Transform go = transform.Find("BaseAttackCollider");
         if(go)
             go.GetComponent<Attack>().Setup(this, null); // test
+        
+        GetComponent<EntityHUD>()?.Show(this);
     }
 
     #region DamageHandle

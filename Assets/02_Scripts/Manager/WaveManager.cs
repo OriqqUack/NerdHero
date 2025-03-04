@@ -1,17 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.VFX;
 
 [System.Serializable]
 public class WaveEntry
 {
-    public GameObject EnemyPrefab;
-    public int EnemyCount;
+    public List<GameObject> EnemyPrefab = new List<GameObject>();
+    public List<int> EnemyCount = new List<int>();
 }
 
 [System.Serializable]
@@ -20,7 +17,6 @@ public class WaveData
     public int Wave;
     public List<WaveEntry> Enemies = new List<WaveEntry>();
 }
-
 
 public class WaveManager : MonoSingleton<WaveManager>
 {
@@ -40,6 +36,7 @@ public class WaveManager : MonoSingleton<WaveManager>
     [SerializeField] private GameObject playerPrefab;
     
     private bool _isSpawning = false;
+    private bool _isSubWaveEnd = true;
     private int _currentWaveIndex = 0;
     private int _currentEntryIndex = 0;
     private float _spawnDelay;
@@ -67,10 +64,10 @@ public class WaveManager : MonoSingleton<WaveManager>
         while (_currentWaveIndex < waveData.Waves.Count)
         {
             CurrentTime += Time.deltaTime;
-            if (ActiveEnemies.Count == 0 && !_isSpawning)
+            if (ActiveEnemies.Count == 0 && _isSubWaveEnd)
             {
                 yield return new WaitForSeconds(timeBetweenWaves);
-                _isSpawning = true;
+                _isSubWaveEnd = false;
                 StartCoroutine(StartNewWave());
             }
             yield return null;
@@ -86,21 +83,33 @@ public class WaveManager : MonoSingleton<WaveManager>
 
         while (_currentEntryIndex < currentWave.Enemies.Count)
         {
+            yield return new WaitForSeconds(1f);
             WaveEntry entry = currentWave.Enemies[_currentEntryIndex];
-            yield return StartCoroutine(SpawnEnemies(entry));
+            SpawnEnemies(entry);
+            
+            // 다음 SubWave로 이동하기 전에 적이 전부 죽을 때까지 대기
+            while (ActiveEnemies.Count > 0 || _isSpawning)
+            {
+                yield return null;
+            }
+            
             _currentEntryIndex++;
         }
         
+        _isSubWaveEnd = true;
         _currentWaveIndex++;
-        _isSpawning = false;
     }
 
-    private IEnumerator SpawnEnemies(WaveEntry entry)
+    private void SpawnEnemies(WaveEntry entry)
     {
-        for (int i = 0; i < entry.EnemyCount; i++)
+        _isSpawning = true;
+        for (int i = 0; i < entry.EnemyPrefab.Count; i++)
         {
-            int spawnIndex = i % spawnPoints.Length;
-            yield return SpawnDelay(entry.EnemyPrefab, spawnIndex);
+            for (int j = 0; j < entry.EnemyCount[i]; j++)
+            {
+                int spawnIndex = j % spawnPoints.Length;
+                StartCoroutine(SpawnDelay(entry.EnemyPrefab[i], spawnIndex));
+            }
         }
     }
 
@@ -121,6 +130,8 @@ public class WaveManager : MonoSingleton<WaveManager>
             yield return null;
         }
         Destroy(spawnEffect.gameObject);
+        
+        _isSpawning = false;
     }
 
     private void PlayerSpawn()
@@ -140,4 +151,3 @@ public class WaveManager : MonoSingleton<WaveManager>
         Time.timeScale = 0f;
     }
 }
-

@@ -19,7 +19,7 @@ public class SkillUseAction : EnemyAction
 
     public override void OnStart()
     {
-        entityMovement.Stop();
+        entityMovement.ForceStop();
         if (skill.IsInState<ReadyState>())
         {
             canUseSkill = skill.Use();

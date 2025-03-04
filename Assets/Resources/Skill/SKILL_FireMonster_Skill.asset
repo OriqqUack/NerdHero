@@ -81,7 +81,8 @@ MonoBehaviour:
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
-    customActionsOnAction: []
+    customActionsOnAction:
+    - rid: 5468516832772096128
   references:
     version: 2
     RefIds:
@@ -131,3 +132,6 @@ MonoBehaviour:
         indicatorViewAction:
           rid: -2
         isUseScale: 0
+    - rid: 5468516832772096128
+      type: {class: DestroySelfAction, ns: , asm: Assembly-CSharp}
+      data: 

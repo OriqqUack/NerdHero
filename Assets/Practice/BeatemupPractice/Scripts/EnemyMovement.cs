@@ -33,7 +33,6 @@ public class EnemyMovement : Movement
         _baseAttackCollider = transform.Find("BaseAttackCollider").gameObject;
         _groundCheck = transform.Find("GroundCheck");
         _attackSpeed = entity.Stats.GetStat("ATTACK_SPEED").Value;
-        TraceTarget = GameObject.FindGameObjectWithTag("Player").transform;
         entity.onDead += OnDead;
     }
 
@@ -53,7 +52,7 @@ public class EnemyMovement : Movement
 
     public void AttackCheck()
     {
-        Vector3 targetDistance = TraceTarget.position - transform.position;
+        Vector3 targetDistance = traceTarget.position - transform.position;
         if (Mathf.Abs(targetDistance.x) < 1.5f && Mathf.Abs(targetDistance.z) < 1.5f && Time.time > _nextAttack)
         {
             _currentState = CharacterState.Attack;
@@ -84,7 +83,7 @@ public class EnemyMovement : Movement
     
     private void MoveEnemyUpdate()
     {
-        Vector3 targetDistance = TraceTarget.position - transform.position;
+        Vector3 targetDistance = traceTarget.position - transform.position;
         float hForce = targetDistance.x != 0 ? Mathf.Sign(targetDistance.x) : 0;
 
         if (_walkTimer >= Random.Range(1f, 2f))

@@ -1,9 +1,7 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class TracingAction : EnemyAction
+public class TracingTimerAction : EnemyAction
 {
     public float TracingTime;
     [SerializeField] private Stat attackRangeStat;
@@ -19,28 +17,18 @@ public class TracingAction : EnemyAction
         attackRangeStat = entity.Stats.GetStat(attackRangeStat);
         animator.PlayAnimationForState("run", 0);
     }
-    
     public override TaskStatus OnUpdate()
     {
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime >= TracingTime)
         {
-            return TaskStatus.Failure;
-        }
-
-        if (Vector3.SqrMagnitude(targetTransform.position - transform.position) < attackRangeStat.Value)
-        {
-            float targetZ = targetTransform.position.z;
-            var entityPos = transform.position;
-            entityPos.z = targetZ;
-            entityMovement.Destination = entityPos;
+            return TaskStatus.Success;
         }
         
         if (entityMovement.HasArrived)
         {
-            entityMovement.ForceStop();
-            return TaskStatus.Success;
+            entityMovement.TraceTarget = targetTransform;
         }
         
         return TaskStatus.Running;
@@ -50,4 +38,5 @@ public class TracingAction : EnemyAction
     {
         elapsedTime = 0;
     }
+    
 }

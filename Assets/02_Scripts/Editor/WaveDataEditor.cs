@@ -3,93 +3,155 @@ using UnityEditor;
 using System.Collections.Generic;
 
 [CustomEditor(typeof(SOWaveData))]
-public class WaveDataEditor : Editor
+public class SOWaveDataEditor : Editor
 {
-    private SerializedProperty waveListProperty;
-    private Vector2 scrollPosition;
+    private SerializedProperty wavesProperty;
+    private GUIStyle headerStyle;
+    private GUIStyle subHeaderStyle;
+    private GUIStyle boxStyle;
+    private List<bool> waveFoldouts = new List<bool>();
+    private List<List<bool>> subWaveFoldouts = new List<List<bool>>();
+    private bool stylesInitialized = false;
 
     private void OnEnable()
     {
-        waveListProperty = serializedObject.FindProperty("Waves");
+        wavesProperty = serializedObject.FindProperty("Waves");
+        EnsureFoldoutListSize();
+    }
+
+    private void InitializeStyles()
+    {
+        if (!stylesInitialized)
+        {
+            headerStyle = new GUIStyle(EditorStyles.boldLabel)
+            {
+                fontSize = 14,
+                normal = { textColor = Color.cyan }
+            };
+
+            subHeaderStyle = new GUIStyle(EditorStyles.boldLabel)
+            {
+                fontSize = 12,
+                normal = { textColor = Color.green }
+            };
+
+            boxStyle = new GUIStyle(GUI.skin.box)
+            {
+                padding = new RectOffset(10, 10, 5, 5)
+            };
+
+            stylesInitialized = true;
+        }
+    }
+
+    private void EnsureFoldoutListSize()
+    {
+        while (waveFoldouts.Count < wavesProperty.arraySize)
+        {
+            waveFoldouts.Add(false);
+            subWaveFoldouts.Add(new List<bool>());
+        }
     }
 
     public override void OnInspectorGUI()
     {
+        InitializeStyles();
         serializedObject.Update();
 
-        WaveEditing();
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("🌊 Wave Editor", headerStyle);
+        EditorGUILayout.Space();
 
-        serializedObject.ApplyModifiedProperties();
-    }
-
-    private void WaveEditing()
-    {
-        EditorGUILayout.LabelField("Wave Data", EditorStyles.boldLabel);
-
-        if (GUILayout.Button("➕ Add New Wave", GUILayout.Height(25)))
+        if (GUILayout.Button("+ Add Wave", GUILayout.Height(30)))
         {
-            waveListProperty.arraySize++;
-            SerializedProperty newWave = waveListProperty.GetArrayElementAtIndex(waveListProperty.arraySize - 1);
-            newWave.FindPropertyRelative("Wave").intValue = waveListProperty.arraySize;
-            newWave.FindPropertyRelative("Enemies").arraySize = 0;
+            wavesProperty.arraySize++;
+            waveFoldouts.Add(false);
+            subWaveFoldouts.Add(new List<bool>());
         }
 
-        // 스크롤뷰 시작
-        scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(400));
+        EnsureFoldoutListSize();
 
-        for (int i = 0; i < waveListProperty.arraySize; i++)
+        for (int i = 0; i < wavesProperty.arraySize; i++)
         {
-            SerializedProperty wave = waveListProperty.GetArrayElementAtIndex(i);
-            SerializedProperty waveNumber = wave.FindPropertyRelative("Wave");
-            SerializedProperty enemiesList = wave.FindPropertyRelative("Enemies");
+            SerializedProperty waveProperty = wavesProperty.GetArrayElementAtIndex(i);
+            SerializedProperty enemiesProperty = waveProperty.FindPropertyRelative("Enemies");
 
-            if (wave == null || waveNumber == null || enemiesList == null)
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginVertical(boxStyle);
+
+            waveFoldouts[i] = EditorGUILayout.Foldout(waveFoldouts[i], $"🌊 Wave {i + 1}", true, headerStyle);
+            
+            if (waveFoldouts[i])
             {
-                continue; // null 값이 있으면 스킵
-            }
+                EditorGUI.indentLevel++;
 
-            EditorGUILayout.BeginVertical("box");
-
-            EditorGUILayout.LabelField($"🌊 Wave {i + 1}", EditorStyles.boldLabel);
-            waveNumber.intValue = i + 1;
-
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Enemy", GUILayout.Width(150));
-            EditorGUILayout.LabelField("Count", GUILayout.Width(70));
-            EditorGUILayout.EndHorizontal();
-
-            for (int j = 0; j < enemiesList.arraySize; j++)
-            {
-                SerializedProperty enemyEntry = enemiesList.GetArrayElementAtIndex(j);
-                SerializedProperty enemyPrefab = enemyEntry.FindPropertyRelative("EnemyPrefab");
-                SerializedProperty enemyCount = enemyEntry.FindPropertyRelative("EnemyCount");
-
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.PropertyField(enemyPrefab, GUIContent.none, GUILayout.Width(150));
-                EditorGUILayout.PropertyField(enemyCount, GUIContent.none, GUILayout.Width(70));
-
-                if (GUILayout.Button("❌", GUILayout.Width(30)))
+                if (GUILayout.Button("+ Add Sub Wave", GUILayout.Height(25)))
                 {
-                    enemiesList.DeleteArrayElementAtIndex(j);
+                    enemiesProperty.arraySize++;
+                    subWaveFoldouts[i].Add(false);
                 }
-                EditorGUILayout.EndHorizontal();
-            }
 
-            if (GUILayout.Button("➕ Add Enemy"))
-            {
-                enemiesList.arraySize++;
-            }
+                while (subWaveFoldouts[i].Count < enemiesProperty.arraySize)
+                {
+                    subWaveFoldouts[i].Add(false);
+                }
 
-            if (GUILayout.Button("🗑 Remove Wave", GUILayout.Height(20)))
-            {
-                waveListProperty.DeleteArrayElementAtIndex(i);
-                break;
-            }
+                for (int j = 0; j < enemiesProperty.arraySize; j++)
+                {
+                    SerializedProperty enemyProperty = enemiesProperty.GetArrayElementAtIndex(j);
+                    SerializedProperty enemyPrefabProperty = enemyProperty.FindPropertyRelative("EnemyPrefab");
+                    SerializedProperty enemyCountProperty = enemyProperty.FindPropertyRelative("EnemyCount");
 
+                    EditorGUILayout.Space();
+                    EditorGUILayout.BeginVertical(boxStyle);
+                    subWaveFoldouts[i][j] = EditorGUILayout.Foldout(subWaveFoldouts[i][j], $"🌀 SubWave {j + 1}", true, subHeaderStyle);
+
+                    if (subWaveFoldouts[i][j])
+                    {
+                        for (int k = 0; k < enemyPrefabProperty.arraySize; k++)
+                        {
+                            EditorGUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(enemyPrefabProperty.GetArrayElementAtIndex(k), GUIContent.none, GUILayout.Width(150));
+                            EditorGUILayout.PropertyField(enemyCountProperty.GetArrayElementAtIndex(k), GUIContent.none, GUILayout.Width(50));
+
+                            if (GUILayout.Button("❌", GUILayout.Width(30)))
+                            {
+                                enemyPrefabProperty.DeleteArrayElementAtIndex(k);
+                                enemyCountProperty.DeleteArrayElementAtIndex(k);
+                                break;
+                            }
+                            EditorGUILayout.EndHorizontal();
+                        }
+
+                        if (GUILayout.Button("+ Add Enemy", GUILayout.Height(22)))
+                        {
+                            enemyPrefabProperty.arraySize++;
+                            enemyCountProperty.arraySize++;
+                        }
+
+                        if (GUILayout.Button("🗑 Remove SubWave", GUILayout.Height(20)))
+                        {
+                            enemiesProperty.DeleteArrayElementAtIndex(j);
+                            subWaveFoldouts[i].RemoveAt(j);
+                            break;
+                        }
+                    }
+                    EditorGUILayout.EndVertical();
+                }
+
+                if (GUILayout.Button("🗑 Remove Wave", GUILayout.Height(25)))
+                {
+                    wavesProperty.DeleteArrayElementAtIndex(i);
+                    waveFoldouts.RemoveAt(i);
+                    subWaveFoldouts.RemoveAt(i);
+                    break;
+                }
+
+                EditorGUI.indentLevel--;
+            }
             EditorGUILayout.EndVertical();
         }
 
-        // 스크롤뷰 종료
-        EditorGUILayout.EndScrollView();
+        serializedObject.ApplyModifiedProperties();
     }
 }
