@@ -28,7 +28,8 @@ public class Indicator : MonoBehaviour
     private float radius;
     private float angle = 360f;
     private float fillAmount;
-
+    private bool isUseFillAmount;
+    
     public float Radius
     {
         get => radius;
@@ -72,7 +73,10 @@ public class Indicator : MonoBehaviour
         set
         {
             fillAmount = Mathf.Clamp01(value);
-            fillImage.transform.localScale = Vector3.one * fillAmount;
+            if(isUseFillAmount)
+                fillImage.fillAmount = fillAmount; //인디케이터 FillAmount 사용
+            else
+                fillImage.transform.localScale = Vector3.one * fillAmount; //원형으로 차오르게
         }
     }
 
@@ -87,13 +91,14 @@ public class Indicator : MonoBehaviour
         }
     }
 
-    public void Setup(float angle, float radius, float fillAmount = 0f, Transform traceTarget = null)
+    public void Setup(float angle, float radius, bool isUseFillAmount, float fillAmount = 0f,Transform traceTarget = null)
     {
         Angle = angle;
         Radius = radius;
         TraceTarget = traceTarget;
         FillAmount = fillAmount;
-
+        this.isUseFillAmount = isUseFillAmount;
+        
         if (traceTarget == null)
             TraceCursor();
     }

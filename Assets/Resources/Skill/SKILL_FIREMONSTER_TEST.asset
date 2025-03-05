@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8281368e25cab1942b02876440983195, type: 3}
-  m_Name: SKILL_FireMonster_Skill
+  m_Name: SKILL_FIREMONSTER_TEST
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 21300000, guid: f50d5117f889a46ca8065d0265e01dc1, type: 3}
-  id: 12
-  codeName: FireMonster_Skill
-  displayName: "\uC790\uD3ED"
-  description: "\uC790\uD3ED\uC744 \uD569\uB2C8\uB2E4."
+  icon: {fileID: 0}
+  id: 13
+  codeName: FIREMONSTER_TEST
+  displayName: 
+  description: 
   type: 0
   useType: 0
   executionType: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     precedingAction:
       rid: -2
     action:
-      rid: 755847788419874939
+      rid: 6372897054790254592
     runningFinishOption: 0
     duration: 0
     applyCount: 1
@@ -48,18 +48,18 @@ MonoBehaviour:
       scaleStat: {fileID: 0}
     targetSearcher:
       selectionAction:
-        rid: 755847788419874942
+        rid: 6372897054790254593
       searchAction:
-        rid: 755847788419874943
+        rid: 6372897054790254689
     costs: []
     isUseCast: 0
     castTime:
       defaultValue: 0
       scaleStat: {fileID: 0}
-    isUseCharge: 0
+    isUseCharge: 1
     chargeFinishActionOption: 0
-    chargeDuration: 0
-    chargeTime: 0
+    chargeDuration: 5
+    chargeTime: 3
     needChargeTimeToUse: 0
     startChargePower: 0
     effectSelectors:
@@ -82,56 +82,53 @@ MonoBehaviour:
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
     customActionsOnAction:
-    - rid: 5468516832772096128
+    - rid: 6372897054790254595
+    - rid: 6372897054790254691
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 755847788419874939
-      type: {class: SpawnSkillObjectAction, ns: , asm: Assembly-CSharp}
-      data:
-        skillObjectPrefab: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
-        targetSearcherForSkillObject:
-          selectionAction:
-            rid: 755847788419874940
-          searchAction:
-            rid: 755847788419874941
-        duration: 1
-        applyCount: 1
-        objectScale: {x: 3, y: 3, z: 3}
-    - rid: 755847788419874940
+    - rid: 6372897054790254592
+      type: {class: InstantApplyAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 6372897054790254593
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:
         isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0
-    - rid: 755847788419874941
+    - rid: 6372897054790254595
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 0
+        methodType: 0
+        prefab: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 3, y: 3, z: 3}
+        isAttachToTarget: 1
+        isDestroyOnRelease: 0
+    - rid: 6372897054790254689
       type: {class: SearchArea, ns: , asm: Assembly-CSharp}
       data:
         isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
-          rid: -2
+          rid: 6372897054790254690
         isUseScale: 0
         range: 3
         angle: 360
         isIncludeSelf: 0
         isSearchSameCategory: 0
-    - rid: 755847788419874942
-      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
+    - rid: 6372897054790254690
+      type: {class: CircleIndicatorViewAction, ns: , asm: Assembly-CSharp}
       data:
-        isShowIndicatorPlayerOnly: 0
-        indicatorViewAction:
-          rid: -2
-        isUseScale: 0
-    - rid: 755847788419874943
-      type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
-      data:
-        isShowIndicatorPlayerOnly: 0
-        indicatorViewAction:
-          rid: -2
-        isUseScale: 0
-    - rid: 5468516832772096128
+        indicatorPrefab: {fileID: 7545020625849464054, guid: 88ac463087731ca4198b3020e39675d7, type: 3}
+        indicatorRadiusOverride: 3
+        indicatorAngleOverride: 360
+        isUseIndicatorFillAmount: 1
+        isAttachIndicatorToRequester: 1
+        isUseFillAmount: 1
+    - rid: 6372897054790254691
       type: {class: DestroySelfAction, ns: , asm: Assembly-CSharp}
       data: 

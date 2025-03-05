@@ -10,6 +10,7 @@ public class CircleIndicatorViewAction : IndicatorViewAction
     [SerializeField] private float indicatorAngleOverride;
     [SerializeField] private bool isUseIndicatorFillAmount;
     [SerializeField] private bool isAttachIndicatorToRequester;
+    [SerializeField] private bool isUseFillAmount;
 
     private Indicator spawnedRangeIndicator;
 
@@ -26,7 +27,7 @@ public class CircleIndicatorViewAction : IndicatorViewAction
         angle = Mathf.Approximately(indicatorAngleOverride, 0f) ? angle : indicatorAngleOverride;
 
         spawnedRangeIndicator = GameObject.Instantiate(indicatorPrefab).GetComponent<Indicator>();
-        spawnedRangeIndicator.Setup(angle, radius, fillAmount, attachTarget);
+        spawnedRangeIndicator.Setup(angle, radius, isUseFillAmount, fillAmount, attachTarget);
     }
 
     public override void HideIndicator()
