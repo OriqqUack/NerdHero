@@ -8,46 +8,46 @@ public struct SkillData
 {
     public int level;
 
-    // Skill Level UpÀ» À§ÇÑ Á¶°Ç
+    // Skill Level Upì„ ìœ„í•œ ì¡°ê±´
     [UnderlineTitle("Level Up")]
     [SerializeReference, SubclassSelector]
     public EntityCondition[] levelUpConditions;
-    // Skill Level UpÀ» À§ÇÑ ºñ¿ë
+    // Skill Level Upì„ ìœ„í•œ ë¹„ìš©
     [SerializeReference, SubclassSelector]
     public Cost[] levelUpCosts;
 
-    // SkillÀÌ ½ÇÁ¦ »ç¿ëµÇ±â Àü ¸ÕÀú ½ÇÇàÇÒ Action, ¾Æ¹« È¿°ú ¾øÀÌ ¾î¶² µ¿ÀÛÀ» ¼öÇàÇÏ±â À§ÇØ Á¸Àç
-    // ex. »ó´ë¹æ¿¡°Ô ´Ş·Á°¨, ±¸¸£±â¸¦ ÇÔ, Jump¸¦ ÇÔ µî
+    // Skillì´ ì‹¤ì œ ì‚¬ìš©ë˜ê¸° ì „ ë¨¼ì € ì‹¤í–‰í•  Action, ì•„ë¬´ íš¨ê³¼ ì—†ì´ ì–´ë–¤ ë™ì‘ì„ ìˆ˜í–‰í•˜ê¸° ìœ„í•´ ì¡´ì¬
+    // ex. ìƒëŒ€ë°©ì—ê²Œ ë‹¬ë ¤ê°, êµ¬ë¥´ê¸°ë¥¼ í•¨, Jumpë¥¼ í•¨ ë“±
     [UnderlineTitle("Preceding Action")]
     [SerializeReference, SubclassSelector]
     public SkillPrecedingAction precedingAction;
 
-    // SkillÀÇ »ç¿ë ¹æ½ÄÀ» ´ã´çÇÏ´Â Module
-    // ex. Åõ»çÃ¼ ¹ß»ç, Target¿¡°Ô Áï½Ã Àû¿ë, Skill Object Spawn µî
+    // Skillì˜ ì‚¬ìš© ë°©ì‹ì„ ë‹´ë‹¹í•˜ëŠ” Module
+    // ex. íˆ¬ì‚¬ì²´ ë°œì‚¬, Targetì—ê²Œ ì¦‰ì‹œ ì ìš©, Skill Object Spawn ë“±
     [UnderlineTitle("Action")]
     [SerializeReference, SubclassSelector]
     public SkillAction action;
 
     [UnderlineTitle("Setting")]
     public SkillRunningFinishOption runningFinishOption;
-    // runningFinishOptionÀÌ FinishWhenDurationEndedÀÌ°í durationÀÌ 0ÀÌ¸é ¹«ÇÑ Áö¼Ó
+    // runningFinishOptionì´ FinishWhenDurationEndedì´ê³  durationì´ 0ì´ë©´ ë¬´í•œ ì§€ì†
     [Min(0)]
     public float duration;
-    // applyCount°¡ 0ÀÌ¸é ¹«ÇÑ Àû¿ë
+    // applyCountê°€ 0ì´ë©´ ë¬´í•œ ì ìš©
     [Min(0)]
     public int applyCount;
-    // Ã¹ ÇÑ¹øÀº È¿°ú°¡ ¹Ù·Î Àû¿ëµÉ °ÍÀÌ±â ¶§¹®¿¡, ÇÑ¹ø Àû¿ëµÈ ÈÄºÎÅÍ ApplyCycle¿¡ µû¶ó Àû¿ëµÊ
-    // ¿¹¸¦ µé¾î¼­, ApplyCycleÀÌ 1ÃÊ¶ó¸é, ¹Ù·Î ÇÑ¹ø Àû¿ëµÈ ÈÄ 1ÃÊ¸¶´Ù Àû¿ëµÇ°Ô µÊ. 
+    // ì²« í•œë²ˆì€ íš¨ê³¼ê°€ ë°”ë¡œ ì ìš©ë  ê²ƒì´ê¸° ë•Œë¬¸ì—, í•œë²ˆ ì ìš©ëœ í›„ë¶€í„° ApplyCycleì— ë”°ë¼ ì ìš©ë¨
+    // ì˜ˆë¥¼ ë“¤ì–´ì„œ, ApplyCycleì´ 1ì´ˆë¼ë©´, ë°”ë¡œ í•œë²ˆ ì ìš©ëœ í›„ 1ì´ˆë§ˆë‹¤ ì ìš©ë˜ê²Œ ë¨. 
     [Min(0f)]
     public float applyCycle;
 
     public StatScaleFloat cooldown;
 
-    // SkillÀÇ Àû¿ë ´ë»óÀ» Ã£±â À§ÇÑ Class
+    // Skillì˜ ì ìš© ëŒ€ìƒì„ ì°¾ê¸° ìœ„í•œ Class
     [UnderlineTitle("Target Searcher")]
     public TargetSearcher targetSearcher;
 
-    // Skill »ç¿ëÀ» À§ÇÑ ºñ¿ë
+    // Skill ì‚¬ìš©ì„ ìœ„í•œ ë¹„ìš©
     [UnderlineTitle("Cost")]
     [SerializeReference, SubclassSelector]
     public Cost[] costs;
@@ -59,16 +59,16 @@ public struct SkillData
     [UnderlineTitle("Charge")]
     public bool isUseCharge;
     public SkillChargeFinishActionOption chargeFinishActionOption;
-    // ChargeÀÇ Áö¼Ó ½Ã°£
+    // Chargeì˜ ì§€ì† ì‹œê°„
     [Min(0f)]
     public float chargeDuration;
-    // Full Charge±îÁö °É¸®´Â ½Ã°£
+    // Full Chargeê¹Œì§€ ê±¸ë¦¬ëŠ” ì‹œê°„
     [Min(0f)]
     public float chargeTime;
-    // SkillÀ» »ç¿ëÇÏ±â À§ÇØ ÇÊ¿äÇÑ ÃÖ¼Ò ÃæÀü ½Ã°£
+    // Skillì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ í•„ìš”í•œ ìµœì†Œ ì¶©ì „ ì‹œê°„
     [Min(0f)]
     public float needChargeTimeToUse;
-    // ChargeÀÇ ½ÃÀÛ Power
+    // Chargeì˜ ì‹œì‘ Power
     [Range(0f, 1f)]
     public float startChargePower;
     

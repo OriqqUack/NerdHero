@@ -190,6 +190,19 @@ namespace Spine.Unity.Examples {
 			PlayOnlyOneShot(oneShot, layerIndex);
 		}
 
+		public bool HasAnimation(string animationName)
+		{
+			if (skeletonAnimation == null || skeletonAnimation.skeleton == null)
+			{
+				Debug.LogWarning("SkeletonAnimation이 설정되지 않았습니다.");
+				return false;
+			}
+
+			// 애니메이션 데이터에서 해당 애니메이션을 찾음
+			Animation animation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
+			return animation != null;
+		}
+		
 		Spine.Animation TryGetTransition (Spine.Animation from, Spine.Animation to) {
 			foreach (AnimationTransition transition in transitions) {
 				if (transition.from.Animation == from && transition.to.Animation == to) {

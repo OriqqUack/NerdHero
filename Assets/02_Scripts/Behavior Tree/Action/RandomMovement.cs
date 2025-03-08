@@ -25,7 +25,8 @@ public class RandomMovement : EnemyAction
         {
             return TaskStatus.Success; 
         }
-
+        
+        entityMovement.LookCheck();
         return TaskStatus.Running; 
     }
 

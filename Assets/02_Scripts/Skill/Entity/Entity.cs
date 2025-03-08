@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using System.Linq;
 using Spine.Unity.Examples;
+using UnityEngine.AI;
 
 public enum EntityControlType
 {
@@ -24,6 +25,8 @@ public class Entity : MonoBehaviour
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
     private Collider _collider;
+    public bool CanTakeDamage = true;
+    
     public EntityControlType ControlType => controlType;
     public IReadOnlyList<Category> Categories => categories;
     public bool IsPlayer => controlType == EntityControlType.Player;
@@ -38,6 +41,7 @@ public class Entity : MonoBehaviour
     public Entity Target { get; set; }
     public Rigidbody Rigidbody => _rigidbody;
     
+    private Coroutine _coroutine;
 
     #region EventHandlers
     public event TakeDamageHandler onTakeDamage;
@@ -83,12 +87,15 @@ public class Entity : MonoBehaviour
     #region DamageHandle
     public void TakeDamage(Entity instigator, object causer, float damage)
     {
-        if (IsDead)
+        if (IsDead || !CanTakeDamage)
             return;
 
         float prevValue = Stats.HPStat.DefaultValue;
         Stats.HPStat.DefaultValue -= damage;
 
+        if (SkeletonAnimator.HasAnimation("damaged")) 
+            SkeletonAnimator.PlayOnlyOneShot("damaged", 0);
+            
         onTakeDamage?.Invoke(this, instigator, causer, damage);
 
         if (Mathf.Approximately(Stats.HPStat.DefaultValue, 0f))
@@ -140,6 +147,7 @@ public class Entity : MonoBehaviour
     }
 
     public bool HasCategory(Category category) => categories.Any(x => x.ID == category.ID);
+
     #endregion
 
     #region StateCheck

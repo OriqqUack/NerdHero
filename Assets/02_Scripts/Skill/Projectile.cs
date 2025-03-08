@@ -11,17 +11,16 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject impactPrefab;
     [SerializeField] private bool isBouncing;
 
-    private Entity owner;
-    private Rigidbody rigidBody;
-    private float speed;
-    private Skill skill;
+    protected Entity owner;
+    protected Rigidbody rigidBody;
+    protected float speed;
+    protected Skill skill;
 
-    public void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
+    public virtual void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
     {
         this.owner = owner;
         this.speed = speed;
         transform.forward = direction;
-        // ���� Skill�� Level ������ �����ϱ� ���� Clone�� ����
         this.skill = skill.Clone() as Skill;
     }
 
@@ -35,25 +34,27 @@ public class Projectile : MonoBehaviour
         Destroy(skill);
     }
 
-    private void FixedUpdate()
-    {
-        rigidBody.linearVelocity = transform.forward * speed;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Entity>() == owner)
-            return;
-        if (!other.GetComponent<Entity>())
-            return;
-        
-        var impact = Instantiate(impactPrefab);
-        impact.transform.forward = -transform.forward;
-        impact.transform.position = transform.position;
+        if (!skill) return;
 
-        var entity = other.GetComponent<Entity>();
-        if (entity)
-            entity.SkillSystem.Apply(skill);
+        if (!other.CompareTag("Ground"))
+        {
+            Entity entity = other.gameObject.GetComponent<Entity>();
+            if (!entity) return;
+            if (entity == owner) return;
+            if (entity.ControlType == owner.ControlType) return;
+            
+            if (entity)
+                entity.SkillSystem.Apply(skill);
+        }
+
+        if (impactPrefab)
+        {
+            var impact = Instantiate(impactPrefab);
+            impact.transform.forward = -transform.forward;
+            impact.transform.position = transform.position;
+        }
 
         if(!isBouncing)
             Destroy(gameObject);

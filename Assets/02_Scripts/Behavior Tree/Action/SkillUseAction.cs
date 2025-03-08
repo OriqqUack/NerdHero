@@ -2,14 +2,26 @@ using System;
 using System.Linq;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using Spine;
+using Spine.Unity;
 using UnityEngine;
+using Event = Spine.Event;
 
 public class SkillUseAction : EnemyAction
 {
+    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
+    public string eventName;
+
+    public string animationName;
     public int skillIndex = 0;
+    
     private SkillSystem skillSystem;
     private Skill skill;
     private bool canUseSkill;
+    private bool isUse;
+    Spine.EventData eventData;
+    
+    public bool logDebugMessage = false;
     public override void OnAwake()
     {
         base.OnAwake();
@@ -20,9 +32,40 @@ public class SkillUseAction : EnemyAction
     public override void OnStart()
     {
         entityMovement.ForceStop();
+        if (eventName == null)
+        {
+            Play();
+            if(animationName != null)
+                entity.SkeletonAnimator.PlayOnlyOneShot(animationName, 0);
+        }
+        else
+        {
+            eventData = entity.SkeletonAnimator.skeletonAnimation.Skeleton.Data.FindEvent(eventName);
+            entity.SkeletonAnimator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
+            entity.SkeletonAnimator.skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
+            entity.SkeletonAnimator.PlayOnlyOneShot(animationName, 0);
+        }
+    }
+    
+    private void HandleAnimationStateEvent (TrackEntry trackEntry, Event e) 
+    {
+        if (logDebugMessage) Debug.Log("Event fired! " + e.Data.Name);
+        //bool eventMatch = string.Equals(e.Data.Name, eventName, System.StringComparison.Ordinal); // Testing recommendation: String compare.
+        bool eventMatch = (eventData == e.Data); // Performance recommendation: Match cached reference instead of string.
+        string animationOriginalName = entity.SkeletonAnimator.GetAnimationForState(animationName).Name;
+        bool animationMatch = trackEntry.Animation.Name == animationOriginalName;
+        if (eventMatch && animationMatch) 
+        {
+            Play();
+        }
+    }
+    
+    public void Play () 
+    {
         if (skill.IsInState<ReadyState>())
         {
             canUseSkill = skill.Use();
+            isUse = true;
         }
     }
 
@@ -30,7 +73,16 @@ public class SkillUseAction : EnemyAction
     {
         if (canUseSkill)
             return TaskStatus.Success;
-        else
+        
+        if(isUse && !canUseSkill)
             return TaskStatus.Failure;
+        
+        return TaskStatus.Running;
+    }
+
+    public override void OnEnd()
+    {
+        canUseSkill = false;
+        isUse = false;
     }
 }

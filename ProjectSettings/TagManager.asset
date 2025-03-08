@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FxTemporaire
   - Bullet
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Looting
   - Projectile
   - AxisCheck
-  - 
+  - GroundCheck
   - 
   - 
   - 

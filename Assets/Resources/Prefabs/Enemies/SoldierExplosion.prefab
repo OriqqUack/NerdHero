@@ -5668,6 +5668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  CanTakeDamage: 1
 --- !u!114 &2760555671693953752
 MonoBehaviour:
   m_ObjectHideFlags: 0

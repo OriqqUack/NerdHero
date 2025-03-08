@@ -30,6 +30,9 @@ public class PlayerMovement : Movement
     [Header("KeyBoard Or JoyStick")] 
     [SerializeField] private bool isKeyBoard;
 
+    [Header("TakeDamage Setting")] 
+    [SerializeField] private float canTakeDamageTime = 1.0f;
+
     private GameObject _baseAttackCollider;
     private Vector3 _moveInput;
     private Vector3 _velocity;
@@ -197,7 +200,20 @@ public class PlayerMovement : Movement
     
     private void OnHitDamage(Entity owner, Entity insigator, object causer, float damage)
     {
+        var isTackle = causer is bool ? (bool)causer : false;
+        if(isTackle)
+            StartCoroutine(TakeDamageCo());
+
         animationHandle.PlayOneShot("eye sad", 1, 2f);
+    }
+
+    private IEnumerator TakeDamageCo()
+    {
+        entity.CanTakeDamage = false;
+        
+        yield return new WaitForSecondsRealtime(canTakeDamageTime);
+        
+        entity.CanTakeDamage = true;
     }
     
     private void OnDead(Entity entity)

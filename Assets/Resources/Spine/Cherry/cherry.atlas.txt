@@ -1,0 +1,7 @@
+cherry.png
+size:681,903
+filter:Linear,Linear
+pma:true
+cherry
+bounds:2,2,677,899
+offsets:1,1,679,901

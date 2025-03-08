@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 8079234749191343907}
   - component: {fileID: 6164434854458494812}
   - component: {fileID: 7220960610810407192}
-  - component: {fileID: 7389757214780236138}
+  - component: {fileID: 6819120596912158523}
   m_Layer: 0
   m_Name: ArrowTest
   m_TagString: Untagged
@@ -170,7 +170,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.56561106, y: 1, z: 1.7808073}
   m_Center: {x: 0.0058766305, y: 0, z: 2.7510333e-17}
---- !u!114 &7389757214780236138
+--- !u!114 &6819120596912158523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,7 +179,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3774133306232834283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fdac865977bb524aa72b4b8c6b4f79d, type: 3}
+  m_Script: {fileID: 11500000, guid: eeb47684b08077744aa47dab10e2bd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 1141330259687333427, guid: 6718dc24203da53468af9ada8fef7d6d, type: 3}
+  isBouncing: 0

@@ -9,7 +9,7 @@ public class WaitAnimationAction : EnemyAction
     public SharedFloat randomWaitMin = 1;
     public SharedFloat randomWaitMax = 1;
     public string waitAnimation = "idle";
-    
+
     // The time to wait
     private float waitDuration;
     // The time that the task started to wait.
@@ -27,7 +27,11 @@ public class WaitAnimationAction : EnemyAction
             waitDuration = waitTime.Value;
         }
         
-        entityMovement.Stop();
+        if(entityMovement.TraceTarget)
+            entityMovement.ForceStop();
+        else
+            entityMovement.Stop();
+        
         animator.PlayAnimationForState(waitAnimation, 0);
     }
 
@@ -38,6 +42,7 @@ public class WaitAnimationAction : EnemyAction
             return TaskStatus.Success;
         }
         // Otherwise we are still waiting.
+        entityMovement.LookCheck();
         return TaskStatus.Running;
     }
 

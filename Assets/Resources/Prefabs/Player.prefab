@@ -540,6 +540,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   jumpSpeed: 30
   isKeyBoard: 1
+  canTakeDamageTime: 3
 --- !u!114 &2825511820645981016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -683,6 +684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 0
+  CanTakeDamage: 1
 --- !u!114 &1561119053779488424
 MonoBehaviour:
   m_ObjectHideFlags: 0
