@@ -10,7 +10,6 @@ public class EntityMovement : Movement
     public delegate void SetDestinationHandler(EntityMovement movement, Vector3 destination);
     public delegate void FindTargetHandler(EntityMovement movement);
     #endregion
-
     [SerializeField] private float zAttackOffset;
     private NavMeshAgent agent;
     private Transform traceTarget;
