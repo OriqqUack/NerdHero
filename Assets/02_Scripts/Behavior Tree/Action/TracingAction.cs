@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class TracingAction : EnemyAction
 {
     public float TracingTime;
-    [SerializeField] private Stat attackRangeStat;
 
     private float elapsedTime;
     
@@ -16,7 +15,6 @@ public class TracingAction : EnemyAction
         if(TracingTime == 0)
             TracingTime = Mathf.Infinity;
         
-        attackRangeStat = entity.Stats.GetStat(attackRangeStat);
         animator.PlayAnimationForState("run", 0);
     }
     
@@ -27,14 +25,6 @@ public class TracingAction : EnemyAction
         if (elapsedTime >= TracingTime)
         {
             return TaskStatus.Failure;
-        }
-
-        if (Vector3.SqrMagnitude(targetTransform.position - transform.position) < attackRangeStat.Value)
-        {
-            float targetZ = targetTransform.position.z;
-            var entityPos = transform.position;
-            entityPos.z = targetZ;
-            entityMovement.Destination = entityPos;
         }
         
         if (entityMovement.HasArrived)

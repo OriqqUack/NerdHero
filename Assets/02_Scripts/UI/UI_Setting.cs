@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UI_Setting : UI_Popup
 {
+    [SerializeField] private GameObject settingPanel;
     [Header("User Info")] 
     [SerializeField] private TextMeshProUGUI userID;
     
@@ -25,7 +26,7 @@ public class UI_Setting : UI_Popup
     private void Start()
     {
         AudioInit();
-        gameObject.SetActive(false);
+        settingPanel.SetActive(false);
     }
 
     #region Audio Setting Function
@@ -72,6 +73,6 @@ public class UI_Setting : UI_Popup
     public override void Close()
     {
         SoundManager.Instance.Play(closeSound);
-        gameObject.SetActive(false);
+        settingPanel.SetActive(false);
     }
 }

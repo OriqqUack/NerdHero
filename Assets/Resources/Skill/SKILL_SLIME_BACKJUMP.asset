@@ -103,7 +103,7 @@ MonoBehaviour:
     - rid: 5468516881812947085
       type: {class: JumpAction, ns: , asm: Assembly-CSharp}
       data:
-        angle: 20
+        angle: 30
         jumpSpeed: 7
         isBackJump: 1
     - rid: 5468516881812947112

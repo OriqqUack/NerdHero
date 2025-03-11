@@ -25,10 +25,17 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     [SerializeField] private float axisOffset = 0.3f;
     
     private Entity target;
-
+    private Quaternion initialRotation;
     private void Awake()
     {
         panel.SetActive(false);
+    }
+    
+    void Update()
+    {
+        var rotation = transform.localRotation;
+        rotation.y *= -1;
+        panel.transform.localRotation = rotation; // 부모가 회전해도 초기 회전 유지
     }
 
     private void OnDestroy() => ReleaseEvents();

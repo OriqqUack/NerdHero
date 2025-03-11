@@ -6449,7 +6449,7 @@ MonoBehaviour:
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: 66a8e19f72c37b44bbbcd53e1aa72e6c, type: 2}
     isUseOverride: 1
-    overrideDefaultValue: 3
+    overrideDefaultValue: 5
   - stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
     isUseOverride: 1
     overrideDefaultValue: 0.1
@@ -6561,11 +6561,11 @@ MonoBehaviour:
         Under Condition","Instant":true},{"Type":"DeadAction","NodeData":{"Offset":"(-18.41278,162.698364)"},"ID":5,"Name":"Dead
         Action","Instant":true,"GameObjectdropItem":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-203.818237,174.150543)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"IsTargetInsight","NodeData":{"Offset":"(-107.526566,137.399933)"},"ID":7,"Name":"Is
         Target Insight","Instant":true,"SinglefieldOfViewAngle":45,"SingleviewDistance":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(88.2995,135.582031)"},"ID":8,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.960335,116.030945)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-592.989441,130.636475)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"OnAirCondition","NodeData":{"Offset":"(-329.91272,136.021118)"},"ID":11,"Name":"On
-        Air Condition","Instant":true},{"Type":"ColliderDetectCondition","NodeData":{"Offset":"(-129.91272,146.021118)"},"ID":12,"Name":"Collider
-        Detect Condition","Instant":true},{"Type":"SkillUseAction","NodeData":{"Offset":"(30.08728,148.841629)"},"ID":13,"Name":"Skill
+        Air Condition","Instant":true},{"Type":"InAirColliderDetectCondition","NodeData":{"Offset":"(-145.832092,154.166626)"},"ID":12,"Name":"In
+        Air Collider Detect Condition","Instant":true},{"Type":"SkillUseAction","NodeData":{"Offset":"(30.08728,148.841629)"},"ID":13,"Name":"Skill
         Use Action","Instant":true,"StringanimationName":"comeback","Int32skillIndex":1,"BooleanlogDebugMessage":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-83.33332,140.952637)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CanUseSkill","NodeData":{"Offset":"(-350.520935,136.351913)"},"ID":15,"Name":"Can
         Use Skill","Instant":true,"Int32skillIndex":0},{"Type":"TracingAction","NodeData":{"Offset":"(-203.069016,141.3086)"},"ID":16,"Name":"Tracing
-        Action","Instant":true,"SingleTracingTime":0,"StatattackRangeStat":1},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":17,"Name":"Skill
+        Action","Instant":true,"SingleTracingTime":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":17,"Name":"Skill
         Use Action","Instant":true,"StringeventName":"move start","StringanimationName":"attack","Int32skillIndex":0,"BooleanlogDebugMessage":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":18,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":19,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(120,137.619141)"},"ID":20,"Name":"Wait
         Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(249.982574,136.24852)"},"ID":21,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-112.960663,169.813843)"},"ID":22,"Name":"Random
@@ -6578,7 +6578,6 @@ MonoBehaviour:
         dataPosition: 
         unityObjects:
         - {fileID: 8279848934425254194, guid: 40a4122cad4b02f4895a7f4ba8c57cb7, type: 3}
-        - {fileID: 11400000, guid: 66a8e19f72c37b44bbbcd53e1aa72e6c, type: 2}
         byteData: 
         byteDataArray: 
       Version: 1.7.12
@@ -6595,12 +6594,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 10
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -6673,6 +6672,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onStartName: move start
   onEndName: move finish
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -1.803053
+      outSlope: -1.803053
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49444437
+      value: 0.10849059
+      inSlope: -0.019814014
+      outSlope: -0.019814014
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.763425
+      outSlope: 1.763425
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &2982370938111004506
 MonoBehaviour:
   m_ObjectHideFlags: 0

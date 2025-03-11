@@ -6,6 +6,7 @@ public class StraightMoveAction : EnemyAction
 {
     public float moveDistance = 10f;
     public float runSpeedOffset = 3f;
+    private bool isColliding = false;
 
     private Collider collider;
     public override void OnStart()
@@ -13,9 +14,13 @@ public class StraightMoveAction : EnemyAction
         entityMovement.ForceStop();
         entityMovement.Destination = transform.position + transform.forward * moveDistance;
 
-        collider.isTrigger = true;
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         agent.speed += runSpeedOffset;
+    }
+    
+    public override void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+            isColliding = true;
     }
 
     public override TaskStatus OnUpdate()
@@ -24,14 +29,19 @@ public class StraightMoveAction : EnemyAction
         {
             return TaskStatus.Success; 
         }
+
+        if (isColliding)
+        {
+            entityMovement.ForceStop();
+            return TaskStatus.Success; 
+        }
         
         return TaskStatus.Running; 
     }
 
     public override void OnEnd()
     {
-        collider.isTrigger = false;
-        agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
         agent.speed -= runSpeedOffset;
+        isColliding = false;
     }
 }

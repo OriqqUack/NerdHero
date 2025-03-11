@@ -163,27 +163,40 @@ public class EntityMovement : Movement
     #region Tracing Method
     private IEnumerator TraceUpdate()
     {
-        float attakRange = Owner.Stats.GetStat("ATTACK_RANGE").Value;
+        float attackRange = Owner.Stats.GetStat("ATTACK_RANGE").Value;
+        float stopDistance = 1f; // 멈추는 거리
         while (true)
         {
             var pos = TraceTarget.position;
             float randomZ = Random.Range(-ZAttackOffset, ZAttackOffset);
-            if(traceTarget.position.x < transform.position.x)
-                pos.x += attakRange;
-            else
-                pos.x -= attakRange;
-            
             pos.z += randomZ;
-            
-            if (Vector3.SqrMagnitude(pos - transform.position) > 1.0f)
+
+            // 대상이 공격 범위 밖에 있는 경우, attackRange 만큼 조정
+            if (Vector3.SqrMagnitude(TraceTarget.position - transform.position) > attackRange * attackRange)
             {
-                SetDestination(pos);
-                yield return null;
+                if (TraceTarget.position.x < transform.position.x)
+                    pos.x = TraceTarget.position.x + attackRange;
+                else
+                    pos.x = TraceTarget.position.x - attackRange;
             }
             else
+            {
+                pos.x = transform.position.x;
+            }
+
+            SetDestination(pos); // 최종 위치 설정
+
+            // 목표 지점에 도달하면 탈출
+            while (Vector3.SqrMagnitude(transform.position - pos) > stopDistance * stopDistance)
+            {
+                SetDestination(transform.position); // 최종 위치 설정
+                yield return null; // 도착할 때까지 대기
                 break;
+            }
+            yield return null;
         }
     }
+
 
     private void OnMoveSpeedChanged(Stat stat, float currentValue, float prevValue)
         => agent.speed = currentValue;

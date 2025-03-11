@@ -50,7 +50,7 @@ public class UI_GameEnd : UI_Popup
         foreach (var kvp in WaveManager.Instance.GainedItemsList)
         {
             var item = Instantiate(itemSlot, itemSlotParent);
-            item.transform.Find("Icon").GetComponent<Image>().sprite = kvp.Key.Icon;
+            //item.transform.Find("Icon").GetComponent<Image>().sprite = kvp.Key.Icon;
             item.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = kvp.Value.ToString();
         }
     }

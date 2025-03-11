@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Stat : IdentifiedObject
 {
-    #region 6-2
+    #region Event
     #region Event
     public delegate void ValueChangedHandler(Stat stat, float currentValue, float prevValue);
     #endregion
     #endregion
 
-    #region 6-1
+    #region Property
     // % type인가? (ex, 1 => 100%, 0 => 0%)
     [SerializeField]
     private bool isPercentType;
@@ -61,13 +61,13 @@ public class Stat : IdentifiedObject
     public bool IsMin => Mathf.Approximately(Value, minValue);
     #endregion
 
-    #region 6-3
+    #region EventHandler
     public event ValueChangedHandler onValueChanged;
     public event ValueChangedHandler onValueMax;
     public event ValueChangedHandler onValueMin;
     #endregion
 
-    #region 6-4
+    #region Methods
     private void TryInvokeValueChangedEvent(float currentValue, float prevValue)
     {
         if (!Mathf.Approximately(currentValue, prevValue))
