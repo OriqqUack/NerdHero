@@ -55,7 +55,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         if (type == Sound.Bgm) // BGM 배경음악 재생
         {
-            
             if (BgmSource.isPlaying)
                 BgmSource.Stop();
 

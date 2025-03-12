@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -8,12 +9,20 @@ public class Inventory : MonoBehaviour
     public List<ItemSO> items = new List<ItemSO>(); // ScriptableObject 아이템
     public Transform inventoryPanel;
     public GameObject inventorySlotPrefab;
+    [SerializeField] private Button sortButton;
+    [SerializeField] private Button equipButton;
+
     private string savePath;
 
+    private ItemSO currentItem;
+    
     private void Awake()
     {
         instance = this;
         UpdateInventoryUI();
+        
+        sortButton.onClick.AddListener(() => SortItem());
+        equipButton.onClick.AddListener(() => EquipItem(currentItem));
     }
 
     public void AddItem(ItemSO item)
@@ -51,7 +60,7 @@ public class Inventory : MonoBehaviour
 
     public void SaveInventory()
     {
-        SaveData data = new SaveData();
+        /*SaveData data = new SaveData();
         
         foreach (ItemSO item in items)
         {
@@ -59,7 +68,7 @@ public class Inventory : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, json);
+        File.WriteAllText(savePath, json);*/
     }
 
     public void LoadInventory()
@@ -83,5 +92,15 @@ public class Inventory : MonoBehaviour
             Equipment.instance.LoadEquipment(data);
         }
         UpdateInventoryUI();
+    }
+
+    public void OnClickItem(ItemSO item)
+    {
+        currentItem = item;
+    }
+
+    private void SortItem()
+    {
+        
     }
 }

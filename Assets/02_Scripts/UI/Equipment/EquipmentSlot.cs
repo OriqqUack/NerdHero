@@ -5,13 +5,11 @@ public class EquipmentSlot : MonoBehaviour
 {
     public ItemType slotType; // 무기, 헬멧, 갑옷, 신발 타입
     public Image icon; // 슬롯에 표시될 아이콘
-    public Button removeButton; // 장비 해제 버튼
 
     private ItemSO equippedItem;
 
     private void Start()
     {
-        removeButton.onClick.AddListener(Unequip);
         UpdateSlot(null); // 초기화
     }
 
@@ -20,7 +18,6 @@ public class EquipmentSlot : MonoBehaviour
         equippedItem = newItem;
         icon.sprite = newItem.icon;
         icon.enabled = true;
-        removeButton.gameObject.SetActive(true);
     }
 
     public void Unequip()
@@ -39,13 +36,11 @@ public class EquipmentSlot : MonoBehaviour
         {
             icon.sprite = item.icon;
             icon.enabled = true;
-            removeButton.gameObject.SetActive(true);
         }
         else
         {
             icon.sprite = null;
             icon.enabled = false;
-            removeButton.gameObject.SetActive(false);
         }
     }
 }

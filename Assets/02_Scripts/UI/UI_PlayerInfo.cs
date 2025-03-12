@@ -12,8 +12,11 @@ public class UI_PlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.GetPlayerExpStat().onValueChanged += UpdateLevel;
+        GameManager.Instance.GetPlayerLevelStat().onValueChanged += UpdateLevel;
         GameManager.Instance.GetPlayerExpStat().onValueChanged += UpdateExp;
+        
+        UpdateLevel(GameManager.Instance.GetPlayerLevelStat(), 0 ,0);
+        UpdateExp(GameManager.Instance.GetPlayerExpStat(), 0, 0);
     }
 
     private void UpdateLevel(Stat stat, float currentLevel, float prevLevel)

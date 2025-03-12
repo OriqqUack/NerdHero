@@ -25,7 +25,7 @@ public class Entity : MonoBehaviour
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
     private Collider _collider;
-    public bool CanTakeDamage = true;
+    [HideInInspector] public bool CanTakeDamage = true;
     
     public EntityControlType ControlType => controlType;
     public IReadOnlyList<Category> Categories => categories;

@@ -46,7 +46,7 @@ public class WaveManager : MonoSingleton<WaveManager>
     public float CurrentTime { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public int CurrentWave => _currentWaveIndex + 1;
-    public Dictionary<Item, float> GainedItemsList { get; private set; } = new Dictionary<Item, float>();
+    public Dictionary<ItemSO, float> GainedItemsList { get; private set; } = new Dictionary<ItemSO, float>();
     
     private void Awake()
     {

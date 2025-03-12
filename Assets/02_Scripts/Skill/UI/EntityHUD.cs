@@ -34,8 +34,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     void Update()
     {
         var rotation = transform.localRotation;
-        rotation.y *= -1;
-        panel.transform.localRotation = rotation; // 부모가 회전해도 초기 회전 유지
+        panel.transform.localRotation = rotation; 
     }
 
     private void OnDestroy() => ReleaseEvents();

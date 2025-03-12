@@ -4,7 +4,7 @@ public class Equipment : MonoBehaviour
 {
     public static Equipment instance;
 
-    public ItemSO weapon, helmet, armor, boots;
+    [HideInInspector] public ItemSO weapon, helmet, armor, boots;
     public EquipmentSlot weaponSlot, helmetSlot, armorSlot, bootsSlot;
 
     private void Awake()
@@ -40,12 +40,6 @@ public class Equipment : MonoBehaviour
                 break;
         }
 
-        if (previousItem != null)
-        {
-            Inventory.instance.AddItem(previousItem);
-        }
-
-        Inventory.instance.RemoveItem(newItem);
         Inventory.instance.SaveInventory();
     }
 

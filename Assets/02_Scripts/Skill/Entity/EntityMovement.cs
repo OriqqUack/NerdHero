@@ -164,13 +164,10 @@ public class EntityMovement : Movement
     private IEnumerator TraceUpdate()
     {
         float attackRange = Owner.Stats.GetStat("ATTACK_RANGE").Value;
-        float stopDistance = 1f; // 멈추는 거리
+        float stopDistance = 0.3f; // 멈추는 거리
         while (true)
         {
             var pos = TraceTarget.position;
-            float randomZ = Random.Range(-ZAttackOffset, ZAttackOffset);
-            pos.z += randomZ;
-
             // 대상이 공격 범위 밖에 있는 경우, attackRange 만큼 조정
             if (Vector3.SqrMagnitude(TraceTarget.position - transform.position) > attackRange * attackRange)
             {
@@ -183,14 +180,16 @@ public class EntityMovement : Movement
             {
                 pos.x = transform.position.x;
             }
+            
+            float randomZ = Random.Range(-ZAttackOffset, ZAttackOffset);
+            pos.z += randomZ;
 
             SetDestination(pos); // 최종 위치 설정
 
             // 목표 지점에 도달하면 탈출
-            while (Vector3.SqrMagnitude(transform.position - pos) > stopDistance * stopDistance)
+            if (Vector3.SqrMagnitude(transform.position - pos) <= stopDistance * stopDistance)
             {
                 SetDestination(transform.position); // 최종 위치 설정
-                yield return null; // 도착할 때까지 대기
                 break;
             }
             yield return null;
