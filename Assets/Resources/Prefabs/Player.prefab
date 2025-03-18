@@ -454,12 +454,11 @@ GameObject:
   - component: {fileID: 2428597153046400203}
   - component: {fileID: 422771461854240463}
   - component: {fileID: 1561119053779488424}
-  - component: {fileID: 8523686373245503352}
   - component: {fileID: 5972043704819620193}
   - component: {fileID: 2283482321219326619}
   - component: {fileID: 5344927557495184894}
   - component: {fileID: 7341295262466272840}
-  - component: {fileID: 2014262925644397144}
+  - component: {fileID: 8716315341939605880}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -697,65 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfcbb18d380db894eb0b9e7058445a68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSkills:
-  - {fileID: 11400000, guid: d2f7d1ae778b932439f1a13557b2905c, type: 2}
-  - {fileID: 11400000, guid: c4bf145df06b8a94fa5b4e81dc401a7d, type: 2}
-  - {fileID: 11400000, guid: df873acb374f19a409643b90b53e6a54, type: 2}
---- !u!114 &8523686373245503352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308298092994364096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0a4e98600843cf4ca05cc36fd4e05fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpStat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
-  skillCostStat: {fileID: 11400000, guid: 8c84dbe3d16022f4baa698702b22d808, type: 2}
-  damageStat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
-  statOverrides:
-  - stat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: 8c84dbe3d16022f4baa698702b22d808, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: bea6dce7af30ef24383f842df9c53c67, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: a0063bb578b7ddf479860bc93bac59c1, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: acb2c0a87fb25f646b1015aecafb98e2, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: 9a69699820bc1e14683da0164eb050b5, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: abb270ca8a738d949b3daf63ced9beed, type: 2}
-    isUseOverride: 1
-    overrideDefaultValue: 10
-  - stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 10
-  - stat: {fileID: 11400000, guid: 87e76cea145eda941814f1d0268293b7, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 10
-  - stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 10
+  defaultSkills: []
 --- !u!114 &5972043704819620193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,7 +772,7 @@ CapsuleCollider:
   m_Height: 3.407796
   m_Direction: 1
   m_Center: {x: 0, y: 1.4454324, z: 0}
---- !u!114 &2014262925644397144
+--- !u!114 &8716315341939605880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -840,11 +781,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308298092994364096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc442adc6ca38041a79105f810ba3c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 838039a144258c943919d134545297b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textSpawnPoint: {fileID: 1921856767082549985}
-  alertSprite: {fileID: 0}
 --- !u!1 &1328708792713102966
 GameObject:
   m_ObjectHideFlags: 0

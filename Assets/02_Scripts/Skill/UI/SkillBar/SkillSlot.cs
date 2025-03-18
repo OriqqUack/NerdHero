@@ -82,6 +82,7 @@ public class SkillSlot : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHand
 
     private void SkillUse()
     {
+        if (!skill) return;
         if (skill.IsUseable)
         {
             skill.Owner.SkillSystem.CancelTargetSearching();

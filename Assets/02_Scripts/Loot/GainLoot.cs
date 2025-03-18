@@ -3,75 +3,86 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+public enum GainType { Stat, Item }
+
 public class GainLoot : MonoBehaviour
 {
-    [Header("Following Settings")]
-    [SerializeField] private float curveDuration = 2f;
-    [SerializeField] private Stat gainStat;
-    [SerializeField] private float gainAmount;
-
     [Space(10)]
     [Header("Drop Settings")]
-    [SerializeField] private float _dropRadius = 1f;
-    [SerializeField] private float _forwardForce = 1f;
-    [SerializeField] private float _upwardForce = 1f;
-    [SerializeField] private bool _isEnergy;
-    
-    private bool _isAttracted = false;
-    private Vector3 _startPosition;
+    [SerializeField] private float dropRadius = 1f;
+    [SerializeField] private float forwardForce = 1f;
+    [SerializeField] private float upwardForce = 1f;
+    [SerializeField] private bool isFloating;
+    [SerializeField] private float attractDistance = 2f; // 플레이어가 접근하면 자동 획득하는 거리
+    private bool isAttracted = false;
+    private Vector3 startPosition;
     private float t = 0f;
-    private Transform _player;
-    private Entity _playerEntity;
-    private Rigidbody _rb;
-    private void Start()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _playerEntity = _player.GetComponent<Entity>();
+    private Transform player;
+    private Entity playerEntity;
+    private Rigidbody rb;
+    private GainType gainType; // 스탯 or 아이템 획득 타입 설정
+    private ItemSO gainItem; // 획득할 아이템 데이터
 
-        if (!_isEnergy)
+    private Stat gainStat;
+    private float gainAmount;
+
+    private bool isSetup;
+    
+    public void Setup(DropTable.DropEntry entry)
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerEntity = player.GetComponent<Entity>();
+
+        gainType = entry.gainType;
+        gainStat = entry.stat;
+        gainAmount = entry.statAmount;
+        if(entry.item)
+            gainItem = entry.item;
+        
+        if (!isFloating)
             Floating();
+        
+        isSetup = true;
     }
 
     private void Floating()
     {
-        _rb = GetComponent<Rigidbody>();
-        // �ֺ� �� �ȿ��� ������ ��ġ�� ����
-        Vector2 randomCircle = Random.insideUnitCircle * _dropRadius;
+        rb = GetComponent<Rigidbody>();
+        Vector2 randomCircle = Random.insideUnitCircle * dropRadius;
         Vector3 randomPosition = new Vector3(randomCircle.x, 0, randomCircle.y);
 
-        // �������� �ڿ� �ֺ� ���� ���� ���� �̵�
         transform.position += randomPosition;
 
-        // �ϴ÷� ��¦ �������� ��
         Vector3 randomDirection = (transform.forward + transform.up).normalized;
-        _rb.AddForce(randomDirection * _forwardForce, ForceMode.Impulse);  // ������ �ణ ������ ��
-        _rb.AddForce(Vector3.up * _upwardForce, ForceMode.Impulse);        // �ϴ÷� �ߴ� ��
+        rb.AddForce(randomDirection * forwardForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * upwardForce, ForceMode.Impulse);
 
-        // ���� ȸ�� ȿ�� �߰�
-        _rb.AddTorque(new Vector3(
+        rb.AddTorque(new Vector3(
             Random.Range(-10f, 10f),
             Random.Range(-10f, 10f),
             Random.Range(-10f, 10f)), ForceMode.Impulse);
     }
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void Update()
     {
-        if (other.CompareTag("Player") && !_isAttracted)
+        if (player == null || !isSetup)
+            return;
+
+        float distance = Vector3.SqrMagnitude(transform.position - player.position);
+        if (!isAttracted && (distance <= attractDistance * attractDistance))
         {
-            _isAttracted = true;
-            _startPosition = transform.position;
-            _player = other.transform;
+            startPosition = transform.position;
             MoveToPlayer();
+            isAttracted = true;
         }
     }
 
     private void MoveToPlayer()
     {
-        Vector3 midPoint = (_startPosition + _player.position) / 2 + Vector3.up * 2f; // 중간 지점을 위로 이동
+        Vector3 midPoint = (startPosition + player.position) / 2 + Vector3.up * 2f;
 
-        // Bezier 곡선 따라 이동하는 애니메이션 적용
-        DOTween.To(() => t, x => t = x, 1f, curveDuration)
-            .OnUpdate(() => transform.position = CalculateBezierCurve(_startPosition, midPoint, _player.position, t))
+        DOTween.To(() => t, x => t = x, 1f, 2f)
+            .OnUpdate(() => transform.position = CalculateBezierCurve(startPosition, midPoint, player.position, t))
             .OnComplete(() => Gained());
     }
 
@@ -84,7 +95,15 @@ public class GainLoot : MonoBehaviour
 
     private void Gained()
     {
-        _playerEntity.Stats.IncreaseDefaultValue(gainStat, gainAmount);
+        if (gainType == GainType.Stat)
+        {
+            playerEntity.Stats.IncreaseDefaultValue(gainStat, gainAmount);
+        }
+        else if (gainType == GainType.Item && gainItem != null)
+        {
+            WaveManager.Instance.AddGainedItem(gainItem);
+        }
+
         Destroy(gameObject);
     }
 }

@@ -12,11 +12,12 @@ public class UI_GameEnd : UI_Popup
     [SerializeField] private Slider idLevelSlider;
     [SerializeField] private Transform itemSlotParent;
     [SerializeField] private GameObject itemSlot;
-
+    [SerializeField] private Button acceptButton;
     private void Start()
     {
         WaveManager.Instance.OnWaveEnd += OpenUI;
         panel.SetActive(false);
+        acceptButton.onClick.AddListener(() => OnClickGoMainGame());
     }
 
     private void OpenUI()
@@ -47,14 +48,24 @@ public class UI_GameEnd : UI_Popup
 
     private void ItemSlotSetting()
     {
-        foreach (var kvp in WaveManager.Instance.GainedItemsList)
+        foreach (var item in WaveManager.Instance.GetGainedItems())
         {
-            var item = Instantiate(itemSlot, itemSlotParent);
-            //item.transform.Find("Icon").GetComponent<Image>().sprite = kvp.Key.Icon;
-            item.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = kvp.Value.ToString();
+            var itemSlot = Instantiate(this.itemSlot, itemSlotParent).GetComponent<ItemSlot>();
+            itemSlot.SetItem(item);
         }
     }
 
+    private void OnClickGoMainGame()
+    {
+        //SoundManager.Instance.Play(clickSound);
+        SoundManager.Instance.Clear();
+        foreach (var item in WaveManager.Instance.GetGainedItems())
+        {
+            InventoryManager.Instance.AddItem(item);
+        }
+        SceneTransitionManager.LoadSceneInstantly("Scene_Main");
+    }
+    
     public override void Close()
     {
         Time.timeScale = 1;

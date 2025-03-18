@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85dff9215e71e5f4fa64e2d442de6db8, type: 3}
   m_Name: HelmetTest
   m_EditorClassIdentifier: 
-  itemName: Helmet
+  itemName: HelmetTest
+  itemCode: 100
   itemType: 1
+  itemRarity: 0
   icon: {fileID: 21300000, guid: f58b93966d80d4a7ba2571ea47ab5a76, type: 3}
+  quantityOrLevel: 1
+  statValue: 50
+  isOld: 1

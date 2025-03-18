@@ -90,6 +90,11 @@ public class Stats : MonoBehaviour
         SkillCostStat = skillCostStat ? GetStat(skillCostStat) : null;
         Damage = damageStat ? GetStat(damageStat) : null;
     }
+
+    public void SetupOwner(Entity entity)
+    {
+        Owner = entity;
+    }
     
     private void OnDestroy()
     {
@@ -127,6 +132,7 @@ public class Stats : MonoBehaviour
         Debug.Assert(stat != null, $"Stats::HasStat - stat�� null�� �� �� �����ϴ�.");
         return stats.Any(x => x.ID == stat.ID);
     }
+
     #endregion
 
     #region Public Methods

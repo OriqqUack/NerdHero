@@ -9,7 +9,8 @@ using UnityEngine.AI;
 public enum EntityControlType
 {
     Player,
-    AI
+    AI,
+    Owner
 }
 
 public class Entity : MonoBehaviour
@@ -52,19 +53,22 @@ public class Entity : MonoBehaviour
     {
         Animator = GetComponent<Animator>();
         SkeletonAnimator = GetComponent<SkeletonAnimationHandleExample>();
-        Stats = GetComponent<Stats>();
-        Stats.Setup(this);
-
         Movement = GetComponent<Movement>();
-        
+
         if(controlType == EntityControlType.Player)
-            Movement?.Setup(this);
+        {
+            Stats = GameManager.Instance.GetComponent<Stats>();
+            Stats.SetupOwner(this);
+        }
         else
         {
-            EntityMovement entityMovement = Movement as EntityMovement;
-            entityMovement.Setup(this);
-        }
+            Stats = GetComponent<Stats>();
+            Stats.Setup(this);
 
+            Movement = Movement as EntityMovement;
+        }
+        Movement?.Setup(this);
+        
         StateMachine = GetComponent<MonoStateMachine<Entity>>();
         StateMachine?.Setup(this);
 

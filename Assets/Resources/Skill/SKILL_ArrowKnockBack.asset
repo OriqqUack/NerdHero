@@ -17,7 +17,7 @@ MonoBehaviour:
   id: 9
   codeName: ArrowKnockBack
   displayName: Arrow
-  description: 
+  description: Test
   type: 0
   useType: 0
   executionType: 0

@@ -28,7 +28,7 @@ public class UI_Setting : UI_Popup
         AudioInit();
         settingPanel.SetActive(false);
     }
-
+    
     #region Audio Setting Function
 
     private void AudioInit()

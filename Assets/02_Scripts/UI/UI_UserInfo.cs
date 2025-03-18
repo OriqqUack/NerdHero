@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_UserInfo : MonoBehaviour
+public class UI_UserInfo : MonoSingleton<UI_UserInfo>
 {
     [SerializeField] private Slider hpSlider; 
     [SerializeField] private Slider energySlider; 
@@ -18,10 +18,11 @@ public class UI_UserInfo : MonoBehaviour
     private Stat hpStat;
     
     private Stats _playerStats;
+    private float _maxHp;
     
     private void Start()
     {
-        _playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Stats>();
+        _playerStats = GameManager.Instance.GetComponent<Stats>();
         energyStat = _playerStats.GetStat(energyStat);
         expStat = _playerStats.GetStat(expStat);
         hpStat = _playerStats.HPStat;
@@ -32,17 +33,19 @@ public class UI_UserInfo : MonoBehaviour
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
         
-        hpSlider.value = hpStat.Value / hpStat.MaxValue;
+        _maxHp = hpStat.Value;
+        
+        hpSlider.value = hpStat.Value / _maxHp;
         energySlider.value = energyStat.Value / energyStat.MaxValue;
         expSlider.value = expStat.Value / expStat.MaxValue;
-        hpText.text = $"{hpStat.Value} / {hpStat.MaxValue}";
+        hpText.text = $"{hpStat.Value} / {_maxHp}";
         levelText.text = levelStat.Value.ToString();
     }
 
     private void HpChangeEvent(Stat stat, float currentValue, float prevValue)
     {
-        hpText.text = $"{hpStat.Value} / {hpStat.MaxValue}";
-        hpSlider.value = currentValue/hpStat.MaxValue;
+        hpText.text = $"{hpStat.Value} / {_maxHp}";
+        hpSlider.value = currentValue/_maxHp;
     }
     
     private void EnergyChangeEvent(Stat stat, float currentValue, float prevValue)

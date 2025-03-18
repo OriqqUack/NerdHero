@@ -17,12 +17,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void Awake()
     {
-        //오브젝트화 필수
-        DontDestroyOnLoad(this);
-    }
-
-    private void Start()
-    {
         string[] soundNames = System.Enum.GetNames(typeof(Sound)); // "Bgm", "Effect"
         for (int i = 0; i < soundNames.Length - 1; i++)
         {
@@ -40,6 +34,8 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
 
         BgmSource.loop = true; // bgm 재생기는 무한 반복 재생
+        //오브젝트화 필수
+        DontDestroyOnLoad(this);
     }
 
     public void Play(string path, Sound type = Sound.Effect, float pitch = 1.0f)

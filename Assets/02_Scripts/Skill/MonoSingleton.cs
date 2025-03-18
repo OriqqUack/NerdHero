@@ -11,7 +11,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            // Find¿¡ FindObjectsInactive.Include¸¦ ÀÎÀÚ·Î ÁÖ¾î active°¡ ²¨Áø °´Ã¼¶óµµ Ã£¾Æ¿È
+            // Findï¿½ï¿½ FindObjectsInactive.Includeï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½Ö¾ï¿½ activeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ Ã£ï¿½Æ¿ï¿½
             if (instance == null && !isQuitting)
                 instance = FindFirstObjectByType<T>(FindObjectsInactive.Include) ?? new GameObject(typeof(T).Name).AddComponent<T>();
             return instance;

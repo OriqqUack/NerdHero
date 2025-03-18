@@ -89,7 +89,7 @@ public class SkillSystem : MonoBehaviour
     public Skill RegisterWithoutCost(Skill skill, int level = 0)
     {
         Debug.Assert(!ownSkills.Exists(x => x.ID == skill.ID), "SkillSystem::Register - 이미 존재하는 Skill입니다.");
-
+        
         var clone = skill.Clone() as Skill;
         if (level > 0)
             clone.Setup(Owner, level);

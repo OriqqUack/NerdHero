@@ -41,12 +41,12 @@ public class WaveManager : MonoSingleton<WaveManager>
     private int _currentEntryIndex = 0;
     private float _spawnDelay;
     private List<Entity> _activeEnemies = new();
+    private List<ItemSO> _gainedItemsList = new();
     
     public List<Entity> ActiveEnemies => _activeEnemies;
     public float CurrentTime { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public int CurrentWave => _currentWaveIndex + 1;
-    public Dictionary<ItemSO, float> GainedItemsList { get; private set; } = new Dictionary<ItemSO, float>();
     
     private void Awake()
     {
@@ -58,6 +58,29 @@ public class WaveManager : MonoSingleton<WaveManager>
         _spawnDelay = monsterSpawnVFXPrefab.GetFloat("Delay");
         StartCoroutine(StartWaveRoutine());
     }
+
+    public List<ItemSO> GetGainedItems()
+    {
+        return _gainedItemsList;
+    }
+
+    public void AddGainedItem(ItemSO item)
+    {
+        if (_gainedItemsList.Contains(item))
+        {
+            if (item.itemType == ItemType.Stuff)
+            {
+                int index = _gainedItemsList.IndexOf(item);
+                _gainedItemsList[index].quantityOrLevel += item.quantityOrLevel;
+            }
+            else
+            {
+                _gainedItemsList.Add(item);
+            }
+        }
+        _gainedItemsList.Add(item);
+    }
+    
     
     private IEnumerator StartWaveRoutine()
     {
@@ -87,9 +110,13 @@ public class WaveManager : MonoSingleton<WaveManager>
             WaveEntry entry = currentWave.Enemies[_currentEntryIndex];
             SpawnEnemies(entry);
             
+            Debug.Log($"Wave 시작 {_currentEntryIndex} ");
+            
             // 다음 SubWave로 이동하기 전에 적이 전부 죽을 때까지 대기
             while (ActiveEnemies.Count > 0 || _isSpawning)
             {
+                Debug.Log($"스폰이 되고 있는가 ? : {_isSpawning}");
+                Debug.Log("SubWave 중");
                 yield return null;
             }
             
@@ -115,15 +142,16 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     private IEnumerator SpawnDelay(GameObject enemyPrefab, int spawnIndex)
     {
-        var spawnEffect = Instantiate(monsterSpawnVFXPrefab, spawnPoints[spawnIndex].position, Quaternion.identity);
+        var spawnEffect = Instantiate(monsterSpawnVFXPrefab, spawnPoints[spawnIndex].position, new Quaternion(0f, 90f, 0f, 0f));
         yield return new WaitForSeconds(_spawnDelay);
         
-        Entity enemyInstance = Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, Quaternion.identity).GetComponent<Entity>();
+        Entity enemyInstance = Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation).GetComponentInChildren<Entity>();
         ActiveEnemies.Add(enemyInstance);
         enemyInstance.onDead += RemoveEnemy;
         
         yield return new WaitForSeconds(1f);
         spawnEffect.Stop();
+        _isSpawning = false;
 
         while (spawnEffect.aliveParticleCount > 0)
         {
@@ -131,7 +159,6 @@ public class WaveManager : MonoSingleton<WaveManager>
         }
         Destroy(spawnEffect.gameObject);
         
-        _isSpawning = false;
     }
 
     private void PlayerSpawn()
@@ -141,10 +168,11 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     private void RemoveEnemy(Entity entity)
     {
-        ActiveEnemies.Remove(entity);
+        int removedCount = ActiveEnemies.RemoveAll(e => e.IsDead);
+        Debug.Log($"{removedCount}명의 사망한 적 제거됨. 남은 적 수: {ActiveEnemies.Count}");
     }
-
-    public void EndWave()
+    
+    private void EndWave()
     {
         _currentWaveIndex = 0;
         OnWaveEnd?.Invoke();

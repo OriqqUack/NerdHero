@@ -1,16 +1,13 @@
+using System;
 using UnityEngine;
 
-public class Equipment : MonoBehaviour
+public class Equipment : MonoSingleton<Equipment>
 {
-    public static Equipment instance;
 
     [HideInInspector] public ItemSO weapon, helmet, armor, boots;
-    public EquipmentSlot weaponSlot, helmetSlot, armorSlot, bootsSlot;
-
-    private void Awake()
-    {
-        instance = this;
-    }
+    [HideInInspector] public Skill skill1, skill2;
+    public EquipmentSlot weaponSlot, helmetSlot, armorSlot, bootsSlot, skillSlot1, skillSlot2;
+    private Stat _hpStat, _damageStat, _skillDamageStat, _defenseStat;
 
     public void Equip(ItemSO newItem)
     {
@@ -22,25 +19,47 @@ public class Equipment : MonoBehaviour
                 previousItem = weapon;
                 weapon = newItem;
                 weaponSlot.EquipItem(newItem);
+                GameManager.Instance.GetPlayerDamageStat().SetBonusValue("Weapon", newItem.StatValue);
                 break;
             case ItemType.Helmet:
                 previousItem = helmet;
                 helmet = newItem;
                 helmetSlot.EquipItem(newItem);
+                GameManager.Instance.GetPlayerHealthStat().SetBonusValue("Helmet", newItem.StatValue);
                 break;
             case ItemType.Armor:
                 previousItem = armor;
                 armor = newItem;
                 armorSlot.EquipItem(newItem);
+                GameManager.Instance.GetPlayerDefenseStat().SetBonusValue("Armor", newItem.StatValue);
                 break;
             case ItemType.Boots:
                 previousItem = boots;
                 boots = newItem;
                 bootsSlot.EquipItem(newItem);
+                GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
                 break;
         }
 
-        Inventory.instance.SaveInventory();
+        InventoryManager.Instance.SaveInventory();
+    }
+
+    public void Equip(Skill newSkill, int index)
+    {
+        Skill previousSkill = null;
+
+        if (index == 0)
+        {
+            skillSlot1.EquipItem(newSkill);
+            skill1 = newSkill;
+            GameManager.Instance.PlayerSkill1 = Resources.Load<Skill>("Skill/SKILL_" + newSkill.CodeName);
+        }
+        else
+        {
+            skillSlot2.EquipItem(newSkill);
+            skill2 = newSkill;
+            GameManager.Instance.PlayerSkill2 = Resources.Load<Skill>("Skill/SKILL_" + newSkill.CodeName);
+        }
     }
 
     public void Unequip(ItemType type)
@@ -50,45 +69,75 @@ public class Equipment : MonoBehaviour
             case ItemType.Weapon:
                 if (weapon != null)
                 {
-                    Inventory.instance.AddItem(weapon);
                     weapon = null;
-                    weaponSlot.UpdateSlot(null);
+                    GameManager.Instance.GetPlayerDamageStat().RemoveBonusValue("Weapon");
                 }
                 break;
             case ItemType.Helmet:
                 if (helmet != null)
                 {
-                    Inventory.instance.AddItem(helmet);
                     helmet = null;
-                    helmetSlot.UpdateSlot(null);
+                    GameManager.Instance.GetPlayerHealthStat().RemoveBonusValue("Helmet");
                 }
                 break;
             case ItemType.Armor:
                 if (armor != null)
                 {
-                    Inventory.instance.AddItem(armor);
                     armor = null;
-                    armorSlot.UpdateSlot(null);
+                    GameManager.Instance.GetPlayerDefenseStat().RemoveBonusValue("Armor");
                 }
                 break;
             case ItemType.Boots:
                 if (boots != null)
                 {
-                    Inventory.instance.AddItem(boots);
                     boots = null;
-                    bootsSlot.UpdateSlot(null);
+                    GameManager.Instance.GetPlayerSkillDamageStat().RemoveBonusValue("Boots");
                 }
                 break;
         }
 
-        Inventory.instance.SaveInventory();
+        InventoryManager.Instance.SaveInventory();
+    }
+
+    public void UnequipSkill(int index)
+    {
+        if (index == 0)
+        {
+            skillSlot1 = null;
+            GameManager.Instance.PlayerSkill1 = null;
+        }
+        else
+        {
+            skillSlot2 = null;
+            GameManager.Instance.PlayerSkill2 = null;
+        }
     }
     
     public void LoadEquipment(SaveData data)
     {
         weapon = ItemDatabase.instance.GetItemByName(data.equippedWeapon);
+        if(weapon)
+        {
+            weapon.quantityOrLevel = data.weaponLevel;
+            Equip(weapon);
+        }
         helmet = ItemDatabase.instance.GetItemByName(data.equippedHelmet);
+        if (helmet)
+        {
+            helmet.quantityOrLevel = data.helmetLevel;
+            Equip(helmet);
+        }
         armor = ItemDatabase.instance.GetItemByName(data.equippedArmor);
+        if (armor)
+        {
+            armor.quantityOrLevel = data.armorLevel;
+            Equip(armor);
+        }
         boots = ItemDatabase.instance.GetItemByName(data.equippedBoots);
+        if (boots)
+        {
+            boots.quantityOrLevel = data.bootsLevel;
+            Equip(boots);
+        }
     }
 }

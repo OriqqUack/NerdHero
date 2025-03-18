@@ -366,6 +366,13 @@ public class Skill : IdentifiedObject
         SetupStateMachine();
     }
 
+    public void SetupOwner(Entity owner)
+    {
+        Debug.Assert(owner != null, $"Skill::Setup - Owner는 Null이 될 수 없습니다.");
+
+        Owner = owner;
+    }
+
     public void Setup(Entity owner)
         => Setup(owner, defaultLevel);
 
