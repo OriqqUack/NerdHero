@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75749fda78e2e3a40ba0ad31dc0e1880, type: 3}
+  m_Name: Quest_SeedingSeed
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 76f9131dfe6ef0e488fd03f0d9f30cfb, type: 2}
+  icon: {fileID: 0}
+  codeName: SEEDING_SEED
+  displayName: Seeding Seed
+  description: "\uC528\uC557 \uC2EC\uAE30"
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 2874ee5a27294284b9b3e1372c3df778, type: 2}
+  - tasks:
+    - {fileID: 11400000, guid: 8b34a91d4e6c372489af3ea1b7590105, type: 2}
+  rewards: []
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 0
+  acceptionConditions: []
+  cancelConditions: []

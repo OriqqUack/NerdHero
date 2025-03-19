@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56d338d395551548b9317651a18a351, type: 3}
+  m_Name: Task_SeedingSeed
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 76f9131dfe6ef0e488fd03f0d9f30cfb, type: 2}
+  codeName: SEEDING_SEED_3
+  description: "\uC528\uC557 \uC2EC\uAE30"
+  action: {fileID: 11400000, guid: 903e0d006a8bf204298255f9af09fec6, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 1c5c889de52a73940bd379a3be3216a7, type: 2}
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 3
+  canReceiveReportsDuringCompletion: 0
