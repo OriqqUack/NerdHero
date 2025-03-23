@@ -39,11 +39,13 @@ public class UI_StatsSkills : MonoBehaviour
 
     private void OnDestroy()
     {
-        
-        GameManager.Instance.GetPlayerHealthStat().onValueChanged -= UpdateHp;
-        GameManager.Instance.GetPlayerDamageStat().onValueChanged -= UpdateDamage;
-        GameManager.Instance.GetPlayerSkillDamageStat().onValueChanged -= UpdateSkillDamage;
-        GameManager.Instance.GetPlayerDefenseStat().onValueChanged -= UpdateDefense;
+        if(GameManager.Instance != null)
+        {
+            GameManager.Instance.GetPlayerHealthStat().onValueChanged -= UpdateHp;
+            GameManager.Instance.GetPlayerDamageStat().onValueChanged -= UpdateDamage;
+            GameManager.Instance.GetPlayerSkillDamageStat().onValueChanged -= UpdateSkillDamage;
+            GameManager.Instance.GetPlayerDefenseStat().onValueChanged -= UpdateDefense;
+        }
     }
 
     private void Init()

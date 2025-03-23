@@ -1,0 +1,51 @@
+using UnityEngine;
+
+//Scene에 미리 만들어둔 Holder의 정보를 담고 있다
+public class WindowHolder : MonoBehaviour
+{
+    public enum HolderType
+    {
+        Shop,
+        Profile,
+        Quest,
+        Setting,
+        MailBox,
+        RewardBox,
+        EnergyCharge
+    }
+
+    public string Name = "Window";
+    public HolderType Type;
+
+    public UiWindow OpenWindow()
+    {
+        UiWindow newWindow = null;
+        switch (Type)
+        {
+            case HolderType.Shop:
+                newWindow = WindowManager.GetWindow("Shop", this);
+                break;
+            case HolderType.Profile:
+                newWindow = WindowManager.GetWindow("Profile", this);
+                break;
+            case HolderType.Setting:
+                newWindow = WindowManager.GetWindow("Setting", this);
+                break;
+            case HolderType.MailBox:
+                newWindow = WindowManager.GetWindow("MailBox", this);
+                break;
+            case HolderType.RewardBox:
+                newWindow = WindowManager.GetWindow("RewardBox", this);
+                break;
+            case HolderType.EnergyCharge:
+                newWindow = WindowManager.GetWindow("EnergyCharge", this);
+                break;
+            case HolderType.Quest:
+                newWindow = WindowManager.GetWindow("Quest", this);
+                break;
+        }
+        if(newWindow != null) newWindow.Initialize(this, Name);
+
+        return newWindow;
+    }
+}

@@ -71,4 +71,10 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
         UpdateInventoryUI();
     }
     #endregion
+
+    [ContextMenu("Update Inventory UI")]
+    public void UpdatUI()
+    {
+        UpdateInventoryUI();
+    }
 }

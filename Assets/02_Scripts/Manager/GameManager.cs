@@ -61,8 +61,9 @@ public class GameManager : MonoSingleton<GameManager>
         set => _playerDefense.DefaultValue += value;
     }
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this);
         _playerEntity = GetComponent<Entity>();
         _playerExp = _playerEntity.Stats.GetStat("PLAYER_EXP");
@@ -72,7 +73,6 @@ public class GameManager : MonoSingleton<GameManager>
         _playerDamage = _playerEntity.Stats.GetStat("PLAYER_DAMAGE");
         _playerSkillDamage = _playerEntity.Stats.GetStat("PLAYER_SKILL_DAMAGE");
         _playerDefense = _playerEntity.Stats.GetStat("PLAYER_DEFENSE");
-
     }
     
     public Stat GetPlayerExpStat() => _playerExp;

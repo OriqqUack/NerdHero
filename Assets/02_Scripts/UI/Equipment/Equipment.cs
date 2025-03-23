@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Equipment : MonoSingleton<Equipment>
 {
-
     [HideInInspector] public ItemSO weapon, helmet, armor, boots;
     [HideInInspector] public Skill skill1, skill2;
     public EquipmentSlot weaponSlot, helmetSlot, armorSlot, bootsSlot, skillSlot1, skillSlot2;
@@ -40,8 +39,6 @@ public class Equipment : MonoSingleton<Equipment>
                 GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
                 break;
         }
-
-        InventoryManager.Instance.SaveInventory();
     }
 
     public void Equip(Skill newSkill, int index)
@@ -96,7 +93,7 @@ public class Equipment : MonoSingleton<Equipment>
                 break;
         }
 
-        InventoryManager.Instance.SaveInventory();
+        DataManager.Instance.DataSave();
     }
 
     public void UnequipSkill(int index)
@@ -111,6 +108,8 @@ public class Equipment : MonoSingleton<Equipment>
             skillSlot2 = null;
             GameManager.Instance.PlayerSkill2 = null;
         }
+        
+        DataManager.Instance.DataSave();
     }
     
     public void LoadEquipment(SaveData data)

@@ -6,10 +6,16 @@ using UnityEngine.UI;
 public class UI_MainScene : MonoBehaviour
 {
     [SerializeField] private Button startGameButton;
-    [SerializeField] private Button settingButton;
-
-    [SerializeField] private GameObject settingsPanel;
     [SerializeField] private AudioClip onClickSound;
+
+    [SerializeField] private WindowHolder shop;
+    [SerializeField] private WindowHolder profile;
+    [SerializeField] private WindowHolder quest;
+    [SerializeField] private WindowHolder setting;
+    [SerializeField] private WindowHolder mailBox;
+    [SerializeField] private WindowHolder rewardBox;
+    [SerializeField] private WindowHolder energyCharge;
+
     private void Start()
     {
         ButtonSetting();
@@ -18,7 +24,6 @@ public class UI_MainScene : MonoBehaviour
     private void ButtonSetting()
     {
         startGameButton.onClick.AddListener(() => OnClickStartGame());
-        settingButton.onClick.AddListener(() => OnClickSetting());
     }
     
     private void OnClickStartGame()
@@ -28,9 +33,12 @@ public class UI_MainScene : MonoBehaviour
         SceneTransitionManager.LoadSceneInstantly("Scene_InGame");
     }
 
-    private void OnClickSetting()
-    {
-        SoundManager.Instance.Play(onClickSound);
-        settingsPanel.SetActive(true);
-    }
+    public void OpenShop() => shop.OpenWindow();
+    public void OpenProfile() => profile.OpenWindow();
+    public void OpenQuest() => quest.OpenWindow();
+    public void OpenRewardBox() => rewardBox.OpenWindow();
+    public void OpenSetting() => setting.OpenWindow();
+    public void OpenMailBox() => mailBox.OpenWindow();
+    public void OpenEnergyCharge() => energyCharge.OpenWindow();
+    
 }

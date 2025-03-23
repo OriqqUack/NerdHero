@@ -92,14 +92,14 @@ public class UI_EquipmentDetailPopup : MonoSingleton<UI_EquipmentDetailPopup>
     {
         if (item.itemType == ItemType.Stuff) return;
         Equipment.Instance.Equip(item);
-        InventoryManager.Instance.SaveInventory();
+        DataManager.Instance.DataSave();
         ClosePopup();
     }
 
     public void EquipSkill(Skill skill, int index)
     {
         Equipment.Instance.Equip(skill, index);
-        InventoryManager.Instance.SaveInventory();
+        DataManager.Instance.DataSave();
         ClosePopup();
     }
 

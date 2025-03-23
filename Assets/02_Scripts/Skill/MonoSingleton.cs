@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T instance;
+    protected static T instance;
     private static bool isQuitting;
 
     public static T Instance
@@ -16,6 +16,12 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 instance = FindFirstObjectByType<T>(FindObjectsInactive.Include) ?? new GameObject(typeof(T).Name).AddComponent<T>();
             return instance;
         }
+    }
+
+    protected virtual void Awake()
+    {
+        if(instance != null && instance != this)
+            Destroy(gameObject);
     }
 
     protected virtual void OnApplicationQuit() => isQuitting = true;
