@@ -15,12 +15,12 @@ public class DataManager : MonoSingleton<DataManager>
         Init();
     }
 
-    private void OnDestroy()
+    private void OnApplicationQuit()
     {
         DataSave();
     }
 
-    public void Init()
+public void Init()
     {
         // 모든 ISaveable을 찾아서 리스트에 저장
         _saveables.AddRange(FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());
