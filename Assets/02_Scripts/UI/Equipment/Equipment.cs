@@ -5,40 +5,33 @@ public class Equipment : MonoSingleton<Equipment>
 {
     [HideInInspector] public ItemSO weapon, helmet, armor, boots;
     [HideInInspector] public Skill skill1, skill2;
-    public EquipmentSlot weaponSlot, helmetSlot, armorSlot, bootsSlot, skillSlot1, skillSlot2;
     private Stat _hpStat, _damageStat, _skillDamageStat, _defenseStat;
 
+    public delegate void EquipmentChangeHandler(ItemSO item);
+    public event EquipmentChangeHandler OnEquipmentChanged;
+    
     public void Equip(ItemSO newItem)
     {
-        ItemSO previousItem = null;
-
         switch (newItem.itemType)
         {
             case ItemType.Weapon:
-                previousItem = weapon;
                 weapon = newItem;
-                weaponSlot.EquipItem(newItem);
                 GameManager.Instance.GetPlayerDamageStat().SetBonusValue("Weapon", newItem.StatValue);
                 break;
             case ItemType.Helmet:
-                previousItem = helmet;
                 helmet = newItem;
-                helmetSlot.EquipItem(newItem);
-                GameManager.Instance.GetPlayerHealthStat().SetBonusValue("Helmet", newItem.StatValue);
+                GameManager.Instance.GetPlayerDamageStat().SetBonusValue("Helmet", newItem.StatValue);
                 break;
             case ItemType.Armor:
-                previousItem = armor;
                 armor = newItem;
-                armorSlot.EquipItem(newItem);
                 GameManager.Instance.GetPlayerDefenseStat().SetBonusValue("Armor", newItem.StatValue);
                 break;
             case ItemType.Boots:
-                previousItem = boots;
                 boots = newItem;
-                bootsSlot.EquipItem(newItem);
                 GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
                 break;
         }
+        OnEquipmentChanged?.Invoke(newItem);
     }
 
     public void Equip(Skill newSkill, int index)
@@ -47,13 +40,11 @@ public class Equipment : MonoSingleton<Equipment>
 
         if (index == 0)
         {
-            skillSlot1.EquipItem(newSkill);
             skill1 = newSkill;
             GameManager.Instance.PlayerSkill1 = Resources.Load<Skill>("Skill/SKILL_" + newSkill.CodeName);
         }
         else
         {
-            skillSlot2.EquipItem(newSkill);
             skill2 = newSkill;
             GameManager.Instance.PlayerSkill2 = Resources.Load<Skill>("Skill/SKILL_" + newSkill.CodeName);
         }
@@ -100,12 +91,10 @@ public class Equipment : MonoSingleton<Equipment>
     {
         if (index == 0)
         {
-            skillSlot1 = null;
             GameManager.Instance.PlayerSkill1 = null;
         }
         else
         {
-            skillSlot2 = null;
             GameManager.Instance.PlayerSkill2 = null;
         }
         

@@ -8,14 +8,16 @@ public class InSkillActionState : EntitySkillState
 
     public override void Update()
     {
-        // AnimatorParameter°¡ false¶ó¸é State¸¦ Á¾·á
+        // AnimatorParameterï¿½ï¿½ falseï¿½ï¿½ï¿½ Stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (RunningSkill.InSkillActionFinishOption == InSkillActionFinishOption.FinishWhenAnimationEnded)
-            IsStateEnded = !Entity.Animator.GetBool(AnimatorParameterHash);
+        {
+            IsStateEnded = Entity.Animator.GetCurrentAnimation(1)?.Name != AnimatorParameterName;
+        }
     }
 
     public override bool OnReceiveMessage(int message, object data)
     {
-        // ¿Ã¹Ù¸¥ Message°¡ ¾Æ´Ï¶ó¸é false¸¦ return
+        // ï¿½Ã¹Ù¸ï¿½ Messageï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ falseï¿½ï¿½ return
         if (!base.OnReceiveMessage(message, data))
             return false;
 
@@ -37,12 +39,12 @@ public class InSkillActionState : EntitySkillState
     {
         switch (skill.InSkillActionFinishOption)
         {
-            // SkillÀÌ ÇÑ¹øÀÌ¶óµµ Àû¿ëµÇ¾ú´Ù¸é State¸¦ Á¾·á
+            // Skillï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ Stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case InSkillActionFinishOption.FinishOnceApplied:
                 IsStateEnded = true;
                 break;
 
-            // SkillÀÌ ¸ðµÎ Àû¿ëµÇ¾ú´Ù¸é State¸¦ Á¾·á
+            // Skillï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ Stateï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             case InSkillActionFinishOption.FinishWhenFullyApplied:
                 IsStateEnded = skill.IsFinished;
                 break;

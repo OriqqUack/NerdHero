@@ -12,7 +12,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
     private List<Skill> skillList = new List<Skill>();
     private List<Skill> _filteredSkillList = new List<Skill>();
 
-    public List<ItemSO> GetItems() => new List<ItemSO>(items);
+    public List<ItemSO> GetItems() => items;
 
     public void SetupSkills()
     {

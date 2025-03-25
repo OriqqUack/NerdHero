@@ -57,6 +57,7 @@ public class PlayerMovement : Movement
 
     private void Update()
     {
+        Debug.Log($"Current State: {entity.StateMachine.GetCurrentState().GetType().Name}");
         //TEST CODE
         if(isKeyBoard)
             KeyBoardUpdate();
@@ -204,7 +205,7 @@ public class PlayerMovement : Movement
         if(isTackle)
             StartCoroutine(TakeDamageCo());
 
-        animationHandle.PlayOneShot("eye sad", 1, 2f);
+        animationHandle.PlayOneShot("eye sad", 1);
     }
 
     private IEnumerator TakeDamageCo()

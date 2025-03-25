@@ -10,7 +10,7 @@ public class EntityDefaultState : State<Entity>
             return false;
 
         var tupleData = ((Skill skill, AnimatorParameter animatorParameter))data;
-        Entity.Animator?.SetTrigger(tupleData.Item2.Hash);
+        Entity.Animator?.PlayAnimationForState(tupleData.Item2.name, 0);
 
         return true;
     }

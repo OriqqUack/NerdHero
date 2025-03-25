@@ -9,7 +9,8 @@ public class EntitySkillState : State<Entity>
     public Skill RunningSkill { get; private set; }
     // Entity�� �����ؾ��� Animation�� Hash
     protected int AnimatorParameterHash { get; private set; }
-
+    protected string AnimatorParameterName { get; private set; }
+    
     public override void Enter()
     {
         Entity.Movement?.Stop();
@@ -21,10 +22,9 @@ public class EntitySkillState : State<Entity>
 
     public override void Exit()
     {
-        Entity.Animator?.SetBool(AnimatorParameterHash, false);
-
         RunningSkill = null;
-
+        Entity.Movement?.ReStart();
+        
         var playerController = Entity.GetComponent<PlayerController>();
         if (playerController)
             playerController.enabled = true;
@@ -39,7 +39,8 @@ public class EntitySkillState : State<Entity>
         
         RunningSkill = tupleData.Item1;
         AnimatorParameterHash = tupleData.Item2.Hash;
-    
+        AnimatorParameterName = tupleData.Item2.name;
+        
         Debug.Assert(RunningSkill != null,
             $"CastingSkillState({message})::OnReceiveMessage - �߸��� data�� ���޵Ǿ����ϴ�.");
 
@@ -51,7 +52,7 @@ public class EntitySkillState : State<Entity>
                 Entity.Movement.LookAtImmediate(selectionResult.selectedPosition);
         }*/
 
-        Entity.Animator?.SetBool(AnimatorParameterHash, true);
+        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 1);
 
         return true;
     }

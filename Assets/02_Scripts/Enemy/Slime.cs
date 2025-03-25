@@ -31,7 +31,7 @@ public class Slime : MonoBehaviour
     private void Start()
     {
         moveSpeedStat = entity.Stats.GetStat("MOVE_SPEED");
-        animationState = entity.SkeletonAnimator.skeletonAnimation.AnimationState;
+        animationState = entity.Animator.skeletonAnimation.AnimationState;
         animationState.Event += HandleAnimationStateEvent;
     }
 

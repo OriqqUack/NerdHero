@@ -110,13 +110,10 @@ public class WaveManager : MonoSingleton<WaveManager>
             WaveEntry entry = currentWave.Enemies[_currentEntryIndex];
             SpawnEnemies(entry);
             
-            Debug.Log($"Wave 시작 {_currentEntryIndex} ");
             
             // 다음 SubWave로 이동하기 전에 적이 전부 죽을 때까지 대기
             while (ActiveEnemies.Count > 0 || _isSpawning)
             {
-                Debug.Log($"스폰이 되고 있는가 ? : {_isSpawning}");
-                Debug.Log("SubWave 중");
                 yield return null;
             }
             

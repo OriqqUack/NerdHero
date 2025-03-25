@@ -11,20 +11,30 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     [SerializeField] private GameObject inventorySlotPrefab;
     [SerializeField] private GameObject inventorySkillSlotPrefab;
     [SerializeField] private TextMeshProUGUI inventoryAmount;
-    [SerializeField] private Transform focusImage;
+    [SerializeField] private Sprite focusImage;
+    [SerializeField] private Sprite defaultImage;
+    [SerializeField] private TMP_Dropdown dropdown;
 
     [Space(10)] [Header("Buttons")]
-    [SerializeField] private Button sortButton;
+    //[SerializeField] private Button sortButton;
     [SerializeField] private Button weaponFilterBtn;
     [SerializeField] private Button armorFilterBtn;
     [SerializeField] private Button allFilterBtn;
 
     private bool isWeaponFilter = false;
     private bool isArmorFilter = false;
-
+    private Image weaponImage;
+    private Image armorImage;
+    private Image allImage;
     private void Start()
     {
-        sortButton.onClick.AddListener(() => SortItem());
+        //sortButton.onClick.AddListener(() => SortItem());
+        dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
+
+        weaponImage = weaponFilterBtn.GetComponent<Image>();
+        armorImage = armorFilterBtn.GetComponent<Image>();
+        allImage = allFilterBtn.GetComponent<Image>();
+        
         weaponFilterBtn.onClick.AddListener(() => ApplyFilter(true, false));
         armorFilterBtn.onClick.AddListener(() => ApplyFilter(false, true));
         allFilterBtn.onClick.AddListener(() => ApplyFilter(false, false));
@@ -45,9 +55,26 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
         List<Skill> filteredSkills = InventoryManager.Instance.GetSkills();
 
         if (isWeaponFilter)
+        {
             filteredItems = filteredItems.FindAll(item => item.itemType == ItemType.Weapon);
+            weaponImage.sprite = focusImage;
+            armorImage.sprite = defaultImage;
+            allImage.sprite = defaultImage;
+        }
         else if (isArmorFilter)
-            filteredItems = filteredItems.FindAll(item => item.itemType == ItemType.Helmet || item.itemType == ItemType.Armor || item.itemType == ItemType.Boots);
+        {
+            filteredItems = filteredItems.FindAll(item =>
+                item.itemType == ItemType.Helmet || item.itemType == ItemType.Armor || item.itemType == ItemType.Boots);
+            weaponImage.sprite = defaultImage;
+            armorImage.sprite = focusImage;
+            allImage.sprite = defaultImage;
+        }
+        else
+        {
+            weaponImage.sprite = defaultImage;
+            armorImage.sprite = defaultImage;
+            allImage.sprite = focusImage;
+        }
 
         foreach (ItemSO item in filteredItems)
         {
@@ -65,9 +92,27 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     }
     
     #region ButtonEvent
-    private void SortItem()
+    void OnDropdownValueChanged(int index)
     {
-        InventoryManager.Instance.GetItems().Sort((a, b) => a.itemCode.CompareTo(b.itemCode));
+        string selectedText = dropdown.options[index].text;
+
+        switch (selectedText)
+        {
+            case "레벨":
+                SortItem(true);
+                break;
+            case "등급":
+                SortItem(false);
+                break;
+        }
+    }
+    
+    private void SortItem(bool sortByLevel)
+    {
+        if(sortByLevel)
+            InventoryManager.Instance.GetItems().Sort((a, b) => a.quantityOrLevel.CompareTo(b.quantityOrLevel));
+        else
+            InventoryManager.Instance.GetItems().Sort((a, b) => a.itemRarity.CompareTo(b.itemRarity));
         UpdateInventoryUI();
     }
     #endregion

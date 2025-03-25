@@ -15,7 +15,8 @@ public class UI_MainScene : MonoBehaviour
     [SerializeField] private WindowHolder mailBox;
     [SerializeField] private WindowHolder rewardBox;
     [SerializeField] private WindowHolder energyCharge;
-
+    [SerializeField] private WindowHolder equipment;
+    
     private void Start()
     {
         ButtonSetting();
@@ -40,5 +41,5 @@ public class UI_MainScene : MonoBehaviour
     public void OpenSetting() => setting.OpenWindow();
     public void OpenMailBox() => mailBox.OpenWindow();
     public void OpenEnergyCharge() => energyCharge.OpenWindow();
-    
+    public void OpenEquipment() => equipment.OpenWindow();
 }

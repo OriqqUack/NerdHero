@@ -11,7 +11,8 @@ public class WindowHolder : MonoBehaviour
         Setting,
         MailBox,
         RewardBox,
-        EnergyCharge
+        EnergyCharge,
+        Equipment,
     }
 
     public string Name = "Window";
@@ -42,6 +43,9 @@ public class WindowHolder : MonoBehaviour
                 break;
             case HolderType.Quest:
                 newWindow = WindowManager.GetWindow("Quest", this);
+                break;
+            case HolderType.Equipment:
+                newWindow = WindowManager.GetWindow("Equipment", this);
                 break;
         }
         if(newWindow != null) newWindow.Initialize(this, Name);

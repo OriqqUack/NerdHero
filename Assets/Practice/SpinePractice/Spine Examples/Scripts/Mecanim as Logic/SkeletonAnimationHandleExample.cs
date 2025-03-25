@@ -43,7 +43,7 @@ namespace Spine.Unity.Examples {
 		public List<StateNameToAnimationReference> statesAndAnimations = new List<StateNameToAnimationReference>();
 		public List<AnimationTransition> transitions = new List<AnimationTransition>(); // Alternately, an AnimationPair-Animation Dictionary (commented out) can be used for more efficient lookups.
 		private Spine.Animation previousAnimation; // 이전 애니메이션 저장
-		private Coroutine _currentCo;
+		private Dictionary<int, int> originalAnimations = new Dictionary<int, int>();
 		
 		[System.Serializable]
 		public class StateNameToAnimationReference {
@@ -96,7 +96,10 @@ namespace Spine.Unity.Examples {
 			Animation foundAnimation = GetAnimationForState(shortNameHash);
 			if (foundAnimation == null)
 				return;
-
+			
+			if(!originalAnimations.TryAdd(layerIndex, shortNameHash))
+				originalAnimations[layerIndex] = shortNameHash;
+			
 			PlayNewAnimation(foundAnimation, layerIndex);
 		}
 
@@ -142,29 +145,27 @@ namespace Spine.Unity.Examples {
 			state.AddAnimation(layerIndex, this.TargetAnimation, true, 0f);
 		}*/
 		
-		public void PlayOneShot(Spine.Animation oneShot, int layerIndex, float duration)
+		private TrackEntry currentOneShotEntry;
+		public void PlayOneShot(Spine.Animation oneShot, int layerIndex)
 		{
 			if (oneShot == null) return;
 
 			AnimationState state = skeletonAnimation.AnimationState;
+			TrackEntry entry = state.SetAnimation(layerIndex, oneShot, false);
+			currentOneShotEntry = entry;
+			entry.Complete += delegate
+			{
+				if (currentOneShotEntry != entry) return;
 
-			// 현재 애니메이션 저장
-			previousAnimation = GetCurrentAnimation(layerIndex);
+				PlayAnimationForState(originalAnimations[layerIndex], layerIndex);
+			};
 
-			// 원샷 애니메이션 실행
-			state.SetAnimation(layerIndex, oneShot, true);
-
-			if(_currentCo != null)
-				StopCoroutine(_currentCo);
-			
-			// 일정 시간 후 원래 애니메이션으로 복귀
-			_currentCo = StartCoroutine(ReturnToPreviousAnimation(layerIndex, duration));
 		}
 
-		public void PlayOneShot(string stateShortName, int layerIndex, float duration)
+		public void PlayOneShot(string stateShortName, int layerIndex)
 		{
 			Spine.Animation oneShot = GetAnimationForState(stateShortName);
-			PlayOneShot(oneShot, layerIndex, duration);
+			PlayOneShot(oneShot, layerIndex);
 		}
 
 // 일정 시간이 지난 후 이전 애니메이션으로 복귀하는 코루틴
@@ -176,18 +177,6 @@ namespace Spine.Unity.Examples {
 			{
 				skeletonAnimation.AnimationState.SetAnimation(layerIndex, previousAnimation, true);
 			}
-		}
-
-		public void PlayOnlyOneShot(Spine.Animation oneShot, int layerIndex)
-		{
-			AnimationState state = skeletonAnimation.AnimationState;
-			state.SetAnimation(layerIndex, oneShot, false); // 한 번만 실행하고 멈춤
-		}
-
-		public void PlayOnlyOneShot(string stateShortName, int layerIndex)
-		{
-			Spine.Animation oneShot = GetAnimationForState(stateShortName);
-			PlayOnlyOneShot(oneShot, layerIndex);
 		}
 
 		public bool HasAnimation(string animationName)
@@ -216,7 +205,7 @@ namespace Spine.Unity.Examples {
 			//return foundTransition;
 		}
 
-		Spine.Animation GetCurrentAnimation (int layerIndex) {
+		public Spine.Animation GetCurrentAnimation (int layerIndex) {
 			TrackEntry currentTrackEntry = skeletonAnimation.AnimationState.GetCurrent(layerIndex);
 			return (currentTrackEntry != null) ? currentTrackEntry.Animation : null;
 		}

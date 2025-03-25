@@ -36,14 +36,14 @@ public class SkillUseAction : EnemyAction
         {
             Play();
             if(animationName != null)
-                entity.SkeletonAnimator.PlayOnlyOneShot(animationName, 0);
+                entity.Animator.PlayOneShot(animationName, 0);
         }
         else
         {
-            eventData = entity.SkeletonAnimator.skeletonAnimation.Skeleton.Data.FindEvent(eventName);
-            entity.SkeletonAnimator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
-            entity.SkeletonAnimator.skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
-            entity.SkeletonAnimator.PlayOnlyOneShot(animationName, 0);
+            eventData = entity.Animator.skeletonAnimation.Skeleton.Data.FindEvent(eventName);
+            entity.Animator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
+            entity.Animator.skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
+            entity.Animator.PlayOneShot(animationName, 0);
         }
     }
     
@@ -52,7 +52,7 @@ public class SkillUseAction : EnemyAction
         if (logDebugMessage) Debug.Log("Event fired! " + e.Data.Name);
         //bool eventMatch = string.Equals(e.Data.Name, eventName, System.StringComparison.Ordinal); // Testing recommendation: String compare.
         bool eventMatch = (eventData == e.Data); // Performance recommendation: Match cached reference instead of string.
-        string animationOriginalName = entity.SkeletonAnimator.GetAnimationForState(animationName).Name;
+        string animationOriginalName = entity.Animator.GetAnimationForState(animationName).Name;
         bool animationMatch = trackEntry.Animation.Name == animationOriginalName;
         if (eventMatch && animationMatch) 
         {
