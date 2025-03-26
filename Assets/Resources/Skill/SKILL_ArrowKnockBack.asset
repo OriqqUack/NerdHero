@@ -79,7 +79,7 @@ MonoBehaviour:
       name: 
     actionAnimatorParameter:
       type: 0
-      name: eye blink
+      name: eye sad
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
