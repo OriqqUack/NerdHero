@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Out
+    m_ConditionEvent: Off
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6960952130207286623}
@@ -59,7 +59,7 @@ AnimatorController:
   m_Name: Animator_UI_Shop
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Out
+  - m_Name: Off
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

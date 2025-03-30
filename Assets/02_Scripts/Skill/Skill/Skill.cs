@@ -25,6 +25,8 @@ public class Skill : IdentifiedObject
     private SkillType type;
     [SerializeField]
     private SkillUseType useType;
+    [SerializeField]
+    private MovingSkillType movingType;
 
     [SerializeField]
     private SkillExecutionType executionType;
@@ -74,7 +76,8 @@ public class Skill : IdentifiedObject
 
     public SkillType Type => type;
     public SkillUseType UseType => useType;
-
+    public MovingSkillType MovingType => movingType;
+    
     public SkillExecutionType ExecutionType => executionType;
     public SkillApplyType ApplyType => applyType;
 

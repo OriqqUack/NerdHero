@@ -4,6 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    public int energyCount;
+    public string energyLastCharge;
+    
     public List<string> inventoryItems = new List<string>(); // 인벤토리 아이템 (이름 저장)
     public List<int> quantityOrLevel = new List<int>();
     public List<string> skills = new List<string>();
@@ -18,4 +21,9 @@ public class SaveData
     public int bootsLevel;
     public string equippedSkill1;
     public string equippedSkill2;
+
+    public SaveData()
+    {
+        energyCount = 30;
+    }
 }

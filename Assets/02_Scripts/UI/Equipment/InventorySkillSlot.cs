@@ -21,6 +21,6 @@ public class InventorySkillSlot : MonoBehaviour
         itemLevelText.text = $"Lv. " + skill.Level.ToString();
         
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => UI_EquipmentDetailPopup.Instance.SetupSkill(skill));
+        //_button.onClick.AddListener(() => UI_EquipmentDetailPopup.Instance.SetupSkill(skill));
     }
 }

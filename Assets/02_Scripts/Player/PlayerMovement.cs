@@ -52,7 +52,8 @@ public class PlayerMovement : Movement
         _groundCheck = transform.Find("GroundCheck");
         entity.onDead += OnDead;
         entity.onTakeDamage += OnHitDamage;
-        animationHandle.PlayAnimationForState("eye blink", 1);
+        animationHandle.PlayAnimationForState("track2Base", 1);
+        animationHandle.PlayAnimationForState("eye blink", 2);
     }
 
     private void Update()

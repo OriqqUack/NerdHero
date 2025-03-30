@@ -14,11 +14,7 @@ namespace Test
 
         public override bool Run(Skill skill)
         {
-            Debug.Log($"Preceding Action Count: {++count}");
-            if (count == 100)
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override object Clone() => new TestSkillPreceidingAction();

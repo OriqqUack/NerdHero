@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_MainScene : MonoBehaviour
+public class UI_MainScene : MonoSingleton<UI_MainScene>
 {
     [SerializeField] private Button startGameButton;
     [SerializeField] private AudioClip onClickSound;
@@ -16,10 +17,14 @@ public class UI_MainScene : MonoBehaviour
     [SerializeField] private WindowHolder rewardBox;
     [SerializeField] private WindowHolder energyCharge;
     [SerializeField] private WindowHolder equipment;
+    [SerializeField] private WindowHolder equipmentDetailPopup;
+    
     
     private void Start()
     {
         ButtonSetting();
+        
+        
     }
 
     private void ButtonSetting()
@@ -31,8 +36,13 @@ public class UI_MainScene : MonoBehaviour
     {
         SoundManager.Instance.Play(onClickSound);
         SoundManager.Instance.Clear();
-        SceneTransitionManager.LoadSceneInstantly("Scene_InGame");
+        if (EnergyManager.Instance.UseEnergy(5))
+        {
+            SceneTransitioner.Instance.StartTransitioning(SceneType.InGameScene, 1, 0);
+        }
     }
+
+    
 
     public void OpenShop() => shop.OpenWindow();
     public void OpenProfile() => profile.OpenWindow();
@@ -42,4 +52,9 @@ public class UI_MainScene : MonoBehaviour
     public void OpenMailBox() => mailBox.OpenWindow();
     public void OpenEnergyCharge() => energyCharge.OpenWindow();
     public void OpenEquipment() => equipment.OpenWindow();
+    public void OpenEquipmentDetailPopup(ItemSO item)
+    {
+        UI_EquipmentDetailPopup window = equipmentDetailPopup.OpenWindow() as UI_EquipmentDetailPopup;
+        if (window != null) window.SetupItem(item);
+    }
 }

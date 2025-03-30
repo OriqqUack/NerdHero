@@ -341,7 +341,7 @@ public class SkillSystem : MonoBehaviour
 
     // Animation에서 호출된 Animation Event 함수
     // 실행 중인 Skill을 발동(Apply)시킴
-    private void ApplyCurrentRunningSkill()
+    public void ApplyCurrentRunningSkill()
     {
         if (Owner.StateMachine.GetCurrentState() is InSkillActionState ownerState)
         {

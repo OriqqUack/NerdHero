@@ -40,14 +40,14 @@ public class ItemSlot : MonoBehaviour
         }
         
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => DisappearAlertDot());
+        _button.onClick.AddListener(() => OpenDetailPopup());
     }
 
-    private void DisappearAlertDot()
+    private void OpenDetailPopup()
     {
         _currentItem.isOld = true;
         alertDot.SetActive(false);
-        UI_EquipmentDetailPopup.Instance.SetupItem(_currentItem);
+        UI_MainScene.Instance.OpenEquipmentDetailPopup(_currentItem);
     }
     
     public void ClearSlot()

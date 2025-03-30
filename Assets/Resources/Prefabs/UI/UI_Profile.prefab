@@ -172,6 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4300955284022247967}
   - component: {fileID: 3683437047454498447}
+  - component: {fileID: 1475854624222251924}
   m_Layer: 5
   m_Name: UI_Profile
   m_TagString: Untagged
@@ -218,6 +219,29 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
+  animator: {fileID: 1475854624222251924}
+--- !u!95 &1475854624222251924
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471665843604829213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &530215338218082670
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +732,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3683437047454498447}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2421,7 +2445,6 @@ GameObject:
   - component: {fileID: 4727778984703238150}
   - component: {fileID: 8904474342935777670}
   - component: {fileID: 609576736306785495}
-  - component: {fileID: 7449849453096855499}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -2504,28 +2527,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.3019608}
   m_EffectDistance: {x: 0, y: -11}
   m_UseGraphicAlpha: 1
---- !u!95 &7449849453096855499
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6065845319400781845}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6477696975397802772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,7 +3205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 829, y: -84.70441}
+  m_AnchoredPosition: {x: 829, y: -163.67813}
   m_SizeDelta: {x: 1138, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2606831618128628200

@@ -23,6 +23,9 @@ public class InSkillActionState : EntitySkillState
 
         if (RunningSkill.InSkillActionFinishOption != InSkillActionFinishOption.FinishWhenAnimationEnded)
             RunningSkill.onApplied += OnSkillApplied;
+        
+        var tupleData = ((Skill, AnimatorParameter))data;
+        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 2);
 
         return true;
     }

@@ -20,8 +20,9 @@ MonoBehaviour:
   description: Test
   type: 0
   useType: 0
+  movingType: 1
   executionType: 0
-  applyType: 0
+  applyType: 1
   needSelectionResultType: 0
   targetSelectionTimingOption: 0
   targetSearchTimingOption: 0
@@ -36,7 +37,7 @@ MonoBehaviour:
     levelUpConditions: []
     levelUpCosts: []
     precedingAction:
-      rid: -2
+      rid: 5468517351322026159
     action:
       rid: 6784395007719112875
     runningFinishOption: 0
@@ -65,8 +66,6 @@ MonoBehaviour:
     effectSelectors:
     - level: 1
       effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
-    - level: 1
-      effect: {fileID: 11400000, guid: ad5ad69f518c0db4483f54264c2e3ca8, type: 2}
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
@@ -76,7 +75,7 @@ MonoBehaviour:
       name: 
     precedingActionAnimatorParameter:
       type: 0
-      name: 
+      name: movingAttack
     actionAnimatorParameter:
       type: 0
       name: eye sad
@@ -89,6 +88,9 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 5468517351322026159
+      type: {class: TestSkillPreceidingAction, ns: Test, asm: Assembly-CSharp}
+      data: 
     - rid: 6784395007719112875
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:

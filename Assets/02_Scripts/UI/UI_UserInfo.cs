@@ -10,6 +10,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     [SerializeField] private Slider expSlider;
 
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI energyText;
     [SerializeField] private TextMeshProUGUI levelText;
 
     [SerializeField] private Stat energyStat;
@@ -19,6 +20,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     
     private Stats _playerStats;
     private float _maxHp;
+    private float _maxEnergy;
     
     private void Start()
     {
@@ -34,11 +36,13 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         levelStat.onValueChanged += LevelChangeEvent;
         
         _maxHp = hpStat.Value;
+        _maxEnergy = energyStat.Value;
         
         hpSlider.value = hpStat.Value / _maxHp;
         energySlider.value = energyStat.Value / energyStat.MaxValue;
         expSlider.value = expStat.Value / expStat.MaxValue;
         hpText.text = $"{hpStat.Value} / {_maxHp}";
+        energyText.text = $"{energyStat.Value} / {_maxEnergy}";
         levelText.text = levelStat.Value.ToString();
     }
 
@@ -51,6 +55,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     private void EnergyChangeEvent(Stat stat, float currentValue, float prevValue)
     {
         energySlider.value = currentValue/energyStat.MaxValue;
+        energyText.text = $"{energyStat.Value} / {energyStat.MaxValue}";
     }
     
     private void ExpChangeEvent(Stat stat, float currentValue, float prevValue)

@@ -13,6 +13,7 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
     [HideInInspector] public bool ChildWindow = false;
     [SerializeField] protected AudioClip clickSound;
     [SerializeField] protected AudioClip closeSound;
+    [SerializeField] protected Animator animator;
     
     public delegate void OnWindowClose(WindowHolder holder);
     
@@ -21,7 +22,7 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
 
     protected virtual void Start()
     {
-        transform.Find("Dimed")?.GetComponent<Button>().onClick.AddListener(() => Close());
+        transform.Find("Dimed")?.GetComponent<Button>().onClick.AddListener(() => CloseUI());
     }
 
     public void RegisterCloseCallback(OnWindowClose callback, WindowHolder holder)
@@ -57,6 +58,11 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    public virtual void CloseUI()
+    {
+        animator.SetTrigger("Off");
+    }
+    
     public virtual void Close()
     {
         if(_closeCallback != null) _closeCallback(_windowHolder);

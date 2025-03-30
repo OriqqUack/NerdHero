@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Linq;
+using Spine;
+using Spine.Unity;
 using Spine.Unity.Examples;
 using UnityEngine.AI;
 
@@ -22,7 +24,10 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private Category[] categories;
     [SerializeField] private EntityControlType controlType;
-
+    
+    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
+    public string onEndName;
+    
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -75,6 +80,8 @@ public class Entity : MonoBehaviour
         
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
+        
+        transform.Find("BaseAttackCheck")?.GetComponent<BaseAttackCheck>()?.Setup(this);
     }
 
     private void Start()
@@ -115,7 +122,8 @@ public class Entity : MonoBehaviour
         SkillSystem.CancelAll(true);
         
         onDead?.Invoke(this);
-        Animator.PlayOneShot("dead", 0);
+        Animator.PlayOneShot("dead", 0, () => Destroy(gameObject, 3.0f));
+        Animator.ClearAnimations();
     }
     #endregion
 

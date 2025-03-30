@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoSingleton<GameManager>
+public class GameManager : MonoSingleton<GameManager>, ISaveable
 {
     private Entity _playerEntity;
     private Stat _playerExp, _playerLevel, _playerGold, _playerHealth, _playerDamage, _playerSkillDamage, _playerDefense;
@@ -61,6 +61,7 @@ public class GameManager : MonoSingleton<GameManager>
         set => _playerDefense.DefaultValue += value;
     }
     
+
     protected override void Awake()
     {
         base.Awake();
@@ -83,4 +84,12 @@ public class GameManager : MonoSingleton<GameManager>
     public Stat GetPlayerSkillDamageStat() => _playerSkillDamage;
     public Stat GetPlayerDefenseStat() => _playerDefense;
     public Entity GetPlayerEntity() => _playerEntity;
+    
+    public void Save(SaveData data)
+    {
+    }
+
+    public void Load(SaveData data)
+    {
+    }
 }

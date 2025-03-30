@@ -9,7 +9,8 @@ public class SkillEditor : IdentifiedObjectEditor
 {
     private SerializedProperty typeProperty;
     private SerializedProperty useTypeProperty;
-
+    private SerializedProperty movingTypeProperty;
+    
     private SerializedProperty executionTypeProperty;
     private SerializedProperty applyTypeProperty;
     private SerializedProperty needSelectionResultTypeProperty;
@@ -26,14 +27,14 @@ public class SkillEditor : IdentifiedObjectEditor
     private SerializedProperty defaultLevelProperty;
     private SerializedProperty skillDatasProperty;
 
-    // Toolbar ButtonµéÀÇ ÀÌ¸§
+    // Toolbar Buttonï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
     private readonly string[] customActionsToolbarList = new[] { "Cast", "Charge", "Preceding", "Action" };
-    // Skill Data¸¶´Ù ¼±ÅÃÇÑ Toolbar ButtonÀÇ Index °ª
+    // Skill Dataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Toolbar Buttonï¿½ï¿½ Index ï¿½ï¿½
     private Dictionary<int, int> customActionToolbarIndexesByLevel = new();
 
     private bool IsPassive => typeProperty.enumValueIndex == (int)SkillType.Passive;
     private bool IsToggleType => useTypeProperty.enumValueIndex == (int)SkillUseType.Toggle;
-    // Toggle, Passive TypeÀÏ ¶§´Â »ç¿ëÇÏÁö ¾Ê´Â º¯¼öµéÀ» º¸¿©ÁÖÁö ¾ÊÀ» °ÍÀÓ
+    // Toggle, Passive Typeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private bool IsDrawPropertyAll => !IsToggleType && !IsPassive;
 
     protected override void OnEnable()
@@ -42,6 +43,7 @@ public class SkillEditor : IdentifiedObjectEditor
 
         typeProperty = serializedObject.FindProperty("type");
         useTypeProperty = serializedObject.FindProperty("useType");
+        movingTypeProperty = serializedObject.FindProperty("movingType");
         
         executionTypeProperty = serializedObject.FindProperty("executionType");
         applyTypeProperty = serializedObject.FindProperty("applyType");
@@ -89,9 +91,10 @@ public class SkillEditor : IdentifiedObjectEditor
         if (!IsPassive)
             CustomEditorUtility.DrawEnumToolbar(useTypeProperty);
         else
-            // instant·Î °íÁ¤
+            // instantï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             useTypeProperty.enumValueIndex = 0;
-
+        CustomEditorUtility.DrawEnumToolbar(movingTypeProperty);
+        
         if (IsDrawPropertyAll)
         {
             EditorGUILayout.Space();
@@ -103,9 +106,9 @@ public class SkillEditor : IdentifiedObjectEditor
         }
         else
         {
-            // auto·Î °íÁ¤
+            // autoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             executionTypeProperty.enumValueIndex = 0;
-            // instant·Î °íÁ¤
+            // instantï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             applyTypeProperty.enumValueIndex = 0;
         }
 
@@ -137,12 +140,12 @@ public class SkillEditor : IdentifiedObjectEditor
 
     private void DrawSkillDatas()
     {
-        // SkillÀÇ Data°¡ ¾Æ¹«°Íµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é 1°³¸¦ ÀÚµ¿ÀûÀ¸·Î ¸¸µé¾îÁÜ
+        // Skillï¿½ï¿½ Dataï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (skillDatasProperty.arraySize == 0)
         {
-            // ¹è¿­ ±æÀÌ¸¦ ´Ã·Á¼­ »õ·Î¿î Element¸¦ »ý¼º
+            // ï¿½è¿­ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Elementï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             skillDatasProperty.arraySize++;
-            // Ãß°¡ÇÑ DataÀÇ LevelÀ» 1·Î ¼³Á¤
+            // ï¿½ß°ï¿½ï¿½ï¿½ Dataï¿½ï¿½ Levelï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             skillDatasProperty.GetArrayElementAtIndex(0).FindPropertyRelative("level").intValue = 1;
         }
 
@@ -151,20 +154,20 @@ public class SkillEditor : IdentifiedObjectEditor
 
         EditorGUILayout.PropertyField(isAllowLevelExceedDatasProperty);
 
-        // Level »óÇÑ Á¦ÇÑÀÌ ¾ø´Ù¸é MaxLevelÀ» ±×´ë·Î ±×·ÁÁÖ°í,
-        // »óÇÑ Á¦ÇÑÀÌ ÀÖ´Ù¸é MaxLevelÀ» »óÇÑÀ¸·Î °íÁ¤ ½ÃÅ°´Â ÀÛ¾÷À» ÇÔ
+        // Level ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ MaxLevelï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö°ï¿½,
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ MaxLevelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (isAllowLevelExceedDatasProperty.boolValue)
             EditorGUILayout.PropertyField(maxLevelProperty);
         else
         {
-            // Property¸¦ ¼öÁ¤ÇÏÁö ¸øÇÏ°Ô GUI EnableÀÇ false·Î ¹Ù²Þ
+            // Propertyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ GUI Enableï¿½ï¿½ falseï¿½ï¿½ ï¿½Ù²ï¿½
             GUI.enabled = false;
             var lastIndex = skillDatasProperty.arraySize - 1;
-            // ¸¶Áö¸· SkillData(= °¡Àå ³ôÀº LevelÀÇ Data)¸¦ °¡Á®¿È
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SkillData(= ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Levelï¿½ï¿½ Data)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             var lastSkillData = skillDatasProperty.GetArrayElementAtIndex(lastIndex);
-            // maxLevelÀ» ¸¶Áö¸· DataÀÇ Level·Î °íÁ¤
+            // maxLevelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             maxLevelProperty.intValue = lastSkillData.FindPropertyRelative("level").intValue;
-            // maxLevel Property¸¦ ±×·ÁÁÜ
+            // maxLevel Propertyï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
             EditorGUILayout.PropertyField(maxLevelProperty);
             GUI.enabled = true;
         }
@@ -183,13 +186,13 @@ public class SkillEditor : IdentifiedObjectEditor
 
             EditorGUILayout.BeginVertical("HelpBox");
             {
-                // DataÀÇ Level°ú Data »èÁ¦¸¦ À§ÇÑ X ButtonÀ» ±×·ÁÁÖ´Â Foldout TitleÀ» ±×·ÁÁÜ
-                // ´Ü, Ã¹¹øÂ° Data(= index 0) Áö¿ì¸é ¾ÈµÇ±â ¶§¹®¿¡ X ButtonÀ» ±×·ÁÁÖÁö ¾ÊÀ½
-                // X ButtonÀ» ´­·¯¼­ Data°¡ Áö¿öÁö¸é true¸¦ returnÇÔ
+                // Dataï¿½ï¿½ Levelï¿½ï¿½ Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ Foldout Titleï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
+                // ï¿½ï¿½, Ã¹ï¿½ï¿½Â° Data(= index 0) ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ X Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // X Buttonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ returnï¿½ï¿½
                 if (DrawRemovableLevelFoldout(skillDatasProperty, property, i, i != 0))
                 {
-                    // Data°¡ »èÁ¦µÇ¾úÀ¸¸ç ´õ ÀÌ»ó GUI¸¦ ±×¸®Áö ¾Ê°í ¹Ù·Î ºüÁ®³ª°¨
-                    // ´ÙÀ½ Frame¿¡ Ã³À½ºÎÅÍ ´Ù½Ã ±×¸®±â À§ÇÔ
+                    // Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ GUIï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½ Frameï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     EditorGUILayout.EndVertical();
                     break;
                 }
@@ -198,7 +201,7 @@ public class SkillEditor : IdentifiedObjectEditor
 
                 if (property.isExpanded)
                 {
-                    // SkillData Property ³»ºÎ·Î µé¾î°¨ -> Property == level field;
+                    // SkillData Property ï¿½ï¿½ï¿½Î·ï¿½ ï¿½ï¿½î°¨ -> Property == level field;
                     property.NextVisible(true);
 
                     DrawAutoSortLevelProperty(skillDatasProperty, property, i, i != 0);
@@ -211,8 +214,8 @@ public class SkillEditor : IdentifiedObjectEditor
                     }
 
                     // PrecedingAction
-                    // Toggle TypeÀÏ ¶§´Â PrecedingActionÀ» »ç¿ëÇÏÁö ¾ÊÀ» °ÍÀÌ¹Ç·Î,
-                    // Instant TypeÀÏ ¶§¸¸ PrecedingAction º¯¼ö¸¦ º¸¿©ÁÜ
+                    // Toggle Typeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PrecedingActionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹Ç·ï¿½,
+                    // Instant Typeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ PrecedingAction ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     property.NextVisible(false);
                     if (useTypeProperty.enumValueIndex == (int)SkillUseType.Instant)
                         EditorGUILayout.PropertyField(property);
@@ -220,7 +223,7 @@ public class SkillEditor : IdentifiedObjectEditor
                     // Action And Setting
                     for (int j = 0; j < 8; j++)
                     {
-                        // ´ÙÀ½ º¯¼öÀÇ Property·Î ÀÌµ¿ÇÏ¸é¼­ ±×·ÁÁÜ
+                        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Propertyï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï¸é¼­ ï¿½×·ï¿½ï¿½ï¿½
                         property.NextVisible(false);
                         EditorGUILayout.PropertyField(property);
                     }
@@ -248,23 +251,23 @@ public class SkillEditor : IdentifiedObjectEditor
                             EditorGUILayout.PropertyField(property);
                     }
 
-                    // ÃÖ´ë chargeTime °ªÀ» chargeDuration °ªÀ¸·Î Á¦ÇÑ
+                    // ï¿½Ö´ï¿½ chargeTime ï¿½ï¿½ï¿½ï¿½ chargeDuration ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     chargeTimeProperty.floatValue = Mathf.Min(chargeTimeProperty.floatValue, chargeDurationProperty.floatValue);
 
-                    // ÃÖ´ë needChargeTime °ªÀ» chargeTime °ªÀ¸·Î Á¦ÇÑ
+                    // ï¿½Ö´ï¿½ needChargeTime ï¿½ï¿½ï¿½ï¿½ chargeTime ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     needChargeTimeToUseProperty.floatValue = Mathf.Min(chargeTimeProperty.floatValue, needChargeTimeToUseProperty.floatValue);
 
                     // Effect
                     property.NextVisible(false);
                     EditorGUILayout.PropertyField(property);
 
-                    // EffectSelectorÀÇ level º¯¼ö¸¦ effectÀÇ ÃÖ´ë level Á¦ÇÑÇÔ
+                    // EffectSelectorï¿½ï¿½ level ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ effectï¿½ï¿½ ï¿½Ö´ï¿½ level ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     for (int j = 0; j < property.arraySize; j++)
                     {
                         var effectSelectorProperty = property.GetArrayElementAtIndex(j);
-                        // SelectorÀÇ level Property¸¦ °¡Á®¿È
+                        // Selectorï¿½ï¿½ level Propertyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         var levelProperty = effectSelectorProperty.FindPropertyRelative("level");
-                        // Selector°¡ °¡Áø effect¸¦ °¡Á®¿È
+                        // Selectorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         var effect = effectSelectorProperty.FindPropertyRelative("effect").objectReferenceValue as Effect;
                         var maxLevel = effect != null ? effect.MaxLevel : 0;
                         var minLevel = maxLevel == 0 ? 0 : 1;
@@ -284,9 +287,9 @@ public class SkillEditor : IdentifiedObjectEditor
                     CustomEditorUtility.DrawUnderline();
 
                     // Custom Action - Toolbar
-                    // ÇÑ¹ø¿¡ ¸ðµç Array º¯¼ö¸¦ ´Ù ±×¸®¸é º¸±â ¹øÀâÇÏ´Ï Toolbar¸¦ ÅëÇØ º¸¿©ÁÙ Array¸¦ ¼±ÅÃÇÒ ¼ö ÀÖ°ÔÇÔ.
+                    // ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Array ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Toolbarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Arrayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ï¿½ï¿½.
                     var customActionToolbarIndex = customActionToolbarIndexesByLevel.ContainsKey(i) ? customActionToolbarIndexesByLevel[i] : 0;
-                    // Toolbar´Â ÀÚµ¿ µé¿©¾²±â(EditorGUI.indentLevel)ÀÌ ¸ÔÈ÷Áö ¾Ê¾Æ¼­ Á÷Á¢ µé¿©¾²±â¸¦ ÇØÁÜ
+                    // Toolbarï¿½ï¿½ ï¿½Úµï¿½ ï¿½é¿©ï¿½ï¿½ï¿½ï¿½(EditorGUI.indentLevel)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½é¿©ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½
                     GUILayout.BeginHorizontal();
                     {
                         GUILayout.Space(12);

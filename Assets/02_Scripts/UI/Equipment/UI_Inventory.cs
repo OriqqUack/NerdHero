@@ -13,6 +13,7 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     [SerializeField] private TextMeshProUGUI inventoryAmount;
     [SerializeField] private Sprite focusImage;
     [SerializeField] private Sprite defaultImage;
+    [SerializeField] private Transform sortArrowSprite;
     [SerializeField] private TMP_Dropdown dropdown;
 
     [Space(10)] [Header("Buttons")]
@@ -26,6 +27,9 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     private Image weaponImage;
     private Image armorImage;
     private Image allImage;
+
+    private int currentDropdownIndex;
+    private bool isAcending;
     private void Start()
     {
         //sortButton.onClick.AddListener(() => SortItem());
@@ -95,24 +99,47 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     void OnDropdownValueChanged(int index)
     {
         string selectedText = dropdown.options[index].text;
-
+        currentDropdownIndex = index;
         switch (selectedText)
         {
             case "레벨":
-                SortItem(true);
+                SortItem(true, isAcending);
                 break;
             case "등급":
-                SortItem(false);
+                SortItem(false, isAcending);
                 break;
         }
     }
-    
-    private void SortItem(bool sortByLevel)
+
+    public void SortItem()
     {
-        if(sortByLevel)
-            InventoryManager.Instance.GetItems().Sort((a, b) => a.quantityOrLevel.CompareTo(b.quantityOrLevel));
+        isAcending = !isAcending;
+        
+        if(isAcending) sortArrowSprite.rotation = Quaternion.Euler(0, 0, 180);
+        else sortArrowSprite.rotation = Quaternion.Euler(0, 0, 0);
+        
+        OnDropdownValueChanged(currentDropdownIndex);
+    }
+    
+    private void SortItem(bool sortByLevel, bool ascending)
+    {
+        var items = InventoryManager.Instance.GetItems();
+
+        if (sortByLevel)
+        {
+            if (ascending)
+                items.Sort((a, b) => a.quantityOrLevel.CompareTo(b.quantityOrLevel));
+            else
+                items.Sort((a, b) => b.quantityOrLevel.CompareTo(a.quantityOrLevel));
+        }
         else
-            InventoryManager.Instance.GetItems().Sort((a, b) => a.itemRarity.CompareTo(b.itemRarity));
+        {
+            if (ascending)
+                items.Sort((a, b) => a.itemRarity.CompareTo(b.itemRarity));
+            else
+                items.Sort((a, b) => b.itemRarity.CompareTo(a.itemRarity));
+        }
+
         UpdateInventoryUI();
     }
     #endregion

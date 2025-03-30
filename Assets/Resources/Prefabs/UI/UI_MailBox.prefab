@@ -3043,7 +3043,6 @@ GameObject:
   - component: {fileID: 4902958992509963527}
   - component: {fileID: 4804146318002347403}
   - component: {fileID: 9180231727999820736}
-  - component: {fileID: 6078739366553895275}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -3126,28 +3125,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.3019608}
   m_EffectDistance: {x: 0, y: -11}
   m_UseGraphicAlpha: 1
---- !u!95 &6078739366553895275
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6213297852891801981}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6359440548427225434
 GameObject:
   m_ObjectHideFlags: 0
@@ -4469,6 +4446,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4131888223067213812}
   - component: {fileID: -8496534439596820177}
+  - component: {fileID: 2416652325695896619}
   m_Layer: 5
   m_Name: UI_MailBox
   m_TagString: Untagged
@@ -4515,6 +4493,29 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
+  animator: {fileID: 2416652325695896619}
+--- !u!95 &2416652325695896619
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354786423185924429}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7363151827485458782
 GameObject:
   m_ObjectHideFlags: 0
@@ -5377,7 +5378,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -8496534439596820177}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1540,6 +1540,7 @@ GameObject:
   - component: {fileID: 4554102011001292773}
   - component: {fileID: 6732636022011052287}
   - component: {fileID: 4215240416021113406}
+  - component: {fileID: 8546964679490500490}
   m_Layer: 5
   m_Name: UI_Quest
   m_TagString: Untagged
@@ -1600,6 +1601,7 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
+  animator: {fileID: 8546964679490500490}
   rewardButtons: []
   buttons:
   - {fileID: 8942364001267033277}
@@ -1609,6 +1611,28 @@ MonoBehaviour:
   - {fileID: 181442586141217587}
   - {fileID: 6052489098392244096}
   - {fileID: 3336187004180845670}
+--- !u!95 &8546964679490500490
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873796582732287533}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &894068535441566930
 GameObject:
   m_ObjectHideFlags: 0
@@ -6478,7 +6502,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4215240416021113406}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6693,9 +6717,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6377145810074637795}
-  - component: {fileID: 3178789335330941737}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6724,28 +6747,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -4.7199707}
   m_SizeDelta: {x: 1406.91, y: -374.68005}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &3178789335330941737
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3828652395644445908}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3868788200188183637
 GameObject:
   m_ObjectHideFlags: 0

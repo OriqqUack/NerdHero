@@ -312,7 +312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3192593074844828556}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2774600502739160528}
   - component: {fileID: -3192593074844828556}
+  - component: {fileID: 8832226198365307069}
   m_Layer: 5
   m_Name: UI_EnergyCharge
   m_TagString: Untagged
@@ -442,6 +443,29 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
+  animator: {fileID: 8832226198365307069}
+--- !u!95 &8832226198365307069
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656246936909381866}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1663604108215093299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1759,7 +1783,6 @@ GameObject:
   - component: {fileID: 2357065359145048060}
   - component: {fileID: 441964048537309589}
   - component: {fileID: 7738997435415202893}
-  - component: {fileID: 2442280449902046741}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -1841,25 +1864,3 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.3019608}
   m_EffectDistance: {x: 0, y: -11}
   m_UseGraphicAlpha: 1
---- !u!95 &2442280449902046741
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8306205067772067950}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

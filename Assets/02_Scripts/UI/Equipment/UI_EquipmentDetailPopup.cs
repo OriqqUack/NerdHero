@@ -3,11 +3,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_EquipmentDetailPopup : MonoSingleton<UI_EquipmentDetailPopup>
+public class UI_EquipmentDetailPopup : UiWindow
 {
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image icon; // 아이템 아이콘
-    [SerializeField] private Transform panel;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI itemLevelText;
     [SerializeField] private Transform contents;
@@ -21,15 +20,8 @@ public class UI_EquipmentDetailPopup : MonoSingleton<UI_EquipmentDetailPopup>
     private Skill _currentSkill;
     private ItemRarity _itemRarity;
 
-    private void Start()
-    {
-        closeButton.onClick.AddListener(ClosePopup);
-        dimed.onClick.AddListener(ClosePopup);
-    }
-
     public void SetupItem(ItemSO item)
     {
-        panel.gameObject.SetActive(true);
         foreach (Transform child in contents) Destroy(child.gameObject);
         foreach (Transform child in buttonContents) Destroy(child.gameObject);
         
@@ -63,7 +55,6 @@ public class UI_EquipmentDetailPopup : MonoSingleton<UI_EquipmentDetailPopup>
 
     public void SetupSkill(Skill skill)
     {
-        panel.gameObject.SetActive(true);
         foreach (Transform child in contents) Destroy(child.gameObject);
         foreach (Transform child in buttonContents) Destroy(child.gameObject);
 
@@ -93,18 +84,11 @@ public class UI_EquipmentDetailPopup : MonoSingleton<UI_EquipmentDetailPopup>
         if (item.itemType == ItemType.Stuff) return;
         Equipment.Instance.Equip(item);
         DataManager.Instance.DataSave();
-        ClosePopup();
     }
 
     public void EquipSkill(Skill skill, int index)
     {
         Equipment.Instance.Equip(skill, index);
         DataManager.Instance.DataSave();
-        ClosePopup();
-    }
-
-    public void ClosePopup()
-    {
-        panel.gameObject.SetActive(false);
     }
 }

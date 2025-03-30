@@ -14,7 +14,7 @@ public class Slime : MonoBehaviour
     private Entity entity;
     private NavMeshAgent navMeshAgent;
     private EntityMovement entityMovement;
-
+    
     public AnimationCurve speedCurve; // Inspector에서 조정 가능
 
     private float animationProgress = 0f; // 현재 애니메이션 진행률

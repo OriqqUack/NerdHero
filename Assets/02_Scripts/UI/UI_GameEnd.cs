@@ -63,12 +63,12 @@ public class UI_GameEnd : UI_Popup
         {
             InventoryManager.Instance.AddItem(item);
         }
+        Time.timeScale = 1;
         SceneTransitionManager.LoadSceneInstantly("Scene_Main");
     }
     
     public override void Close()
     {
-        Time.timeScale = 1;
         panel.SetActive(false);
     }
 }

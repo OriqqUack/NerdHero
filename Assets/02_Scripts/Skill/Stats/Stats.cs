@@ -23,7 +23,7 @@ public class Stats : MonoBehaviour
     #endregion
 
     #region GUI
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (!Owner.IsPlayer)
             return;
@@ -77,7 +77,7 @@ public class Stats : MonoBehaviour
             textRect.y += 22f;
             plusButtonRect.y = minusButtonRect.y = textRect.y;
         }
-    }
+    }*/
     #endregion
 
     #region Stat Methods

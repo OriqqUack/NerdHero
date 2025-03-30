@@ -591,6 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4433783185462833216}
   - component: {fileID: -3298807025486397102}
+  - component: {fileID: 5164099607860241503}
   m_Layer: 5
   m_Name: UI_Setting
   m_TagString: Untagged
@@ -637,11 +638,34 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
+  animator: {fileID: 5164099607860241503}
   userID: {fileID: 1373198625972213095}
   musicSlider: {fileID: 6075055712852044846}
   effectsSlider: {fileID: 2367096794621193702}
   bgmVolume: 0.5
   effectsVolume: 0.5
+--- !u!95 &5164099607860241503
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729170538319374695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1734075912884883701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1457,6 @@ GameObject:
   - component: {fileID: 6975612906405053032}
   - component: {fileID: 4432539791574873774}
   - component: {fileID: 2526857963113529829}
-  - component: {fileID: 8051907172306644245}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -1515,28 +1538,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.3019608}
   m_EffectDistance: {x: 0, y: -11}
   m_UseGraphicAlpha: 1
---- !u!95 &8051907172306644245
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4279952949876366758}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 80bc38ffb9ba6884fad82bb0588fe3ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4349699471162465820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,7 +1773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3298807025486397102}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

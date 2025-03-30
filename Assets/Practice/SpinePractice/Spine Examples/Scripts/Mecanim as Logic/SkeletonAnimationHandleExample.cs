@@ -27,8 +27,10 @@
  * SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 namespace Spine.Unity.Examples {
@@ -44,6 +46,7 @@ namespace Spine.Unity.Examples {
 		public List<AnimationTransition> transitions = new List<AnimationTransition>(); // Alternately, an AnimationPair-Animation Dictionary (commented out) can be used for more efficient lookups.
 		private Spine.Animation previousAnimation; // 이전 애니메이션 저장
 		private Dictionary<int, int> originalAnimations = new Dictionary<int, int>();
+		private Dictionary<int, TrackEntry> currentEntries = new Dictionary<int, TrackEntry>();
 		
 		[System.Serializable]
 		public class StateNameToAnimationReference {
@@ -145,38 +148,35 @@ namespace Spine.Unity.Examples {
 			state.AddAnimation(layerIndex, this.TargetAnimation, true, 0f);
 		}*/
 		
-		private TrackEntry currentOneShotEntry;
-		public void PlayOneShot(Spine.Animation oneShot, int layerIndex)
+		public TrackEntry PlayOneShot(Spine.Animation oneShot, int layerIndex, Action callback = null)
 		{
-			if (oneShot == null) return;
+			if (oneShot == null) return null;
 
 			AnimationState state = skeletonAnimation.AnimationState;
 			TrackEntry entry = state.SetAnimation(layerIndex, oneShot, false);
-			currentOneShotEntry = entry;
+			
+			if(!currentEntries.TryAdd(layerIndex, entry))
+				currentEntries[layerIndex] = entry;
+			
 			entry.Complete += delegate
 			{
-				if (currentOneShotEntry != entry) return;
+				if (currentEntries[layerIndex] != entry) return;
 
-				PlayAnimationForState(originalAnimations[layerIndex], layerIndex);
+				Debug.Log($"LayIndex : {layerIndex} END");
+				callback?.Invoke();
+				if (originalAnimations.TryGetValue(layerIndex, out int index))
+				{
+					PlayAnimationForState(index, layerIndex);
+				}
 			};
-
+			
+			return entry;
 		}
 
-		public void PlayOneShot(string stateShortName, int layerIndex)
+		public TrackEntry PlayOneShot(string stateShortName, int layerIndex, Action callback = null)
 		{
 			Spine.Animation oneShot = GetAnimationForState(stateShortName);
-			PlayOneShot(oneShot, layerIndex);
-		}
-
-// 일정 시간이 지난 후 이전 애니메이션으로 복귀하는 코루틴
-		private IEnumerator ReturnToPreviousAnimation(int layerIndex, float duration)
-		{
-			yield return new WaitForSeconds(duration);
-
-			if (previousAnimation != null)
-			{
-				skeletonAnimation.AnimationState.SetAnimation(layerIndex, previousAnimation, true);
-			}
+			return PlayOneShot(oneShot, layerIndex, callback);
 		}
 
 		public bool HasAnimation(string animationName)
@@ -210,6 +210,11 @@ namespace Spine.Unity.Examples {
 			return (currentTrackEntry != null) ? currentTrackEntry.Animation : null;
 		}
 
+		public void ClearAnimations()
+		{
+			originalAnimations.Clear();
+		}
+		
 		int StringToHash (string s) {
 			return Animator.StringToHash(s);
 		}
