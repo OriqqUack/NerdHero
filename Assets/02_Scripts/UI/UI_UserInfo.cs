@@ -12,7 +12,8 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI energyText;
     [SerializeField] private TextMeshProUGUI levelText;
-
+    [SerializeField] private TextMeshProUGUI waveText;
+    
     [SerializeField] private Stat energyStat;
     [SerializeField] private Stat expStat;
     [SerializeField] private Stat levelStat;
@@ -34,6 +35,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         energyStat.onValueChanged += EnergyChangeEvent;
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
+        WaveManager.Instance.OnWaveChange += WaveChangeEvent;
         
         _maxHp = hpStat.Value;
         _maxEnergy = energyStat.Value;
@@ -44,6 +46,11 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         hpText.text = $"{hpStat.Value} / {_maxHp}";
         energyText.text = $"{energyStat.Value} / {_maxEnergy}";
         levelText.text = levelStat.Value.ToString();
+    }
+
+    private void WaveChangeEvent(int waveIndex)
+    {
+        waveText.text = $"WAVE : {waveIndex}";
     }
 
     private void HpChangeEvent(Stat stat, float currentValue, float prevValue)

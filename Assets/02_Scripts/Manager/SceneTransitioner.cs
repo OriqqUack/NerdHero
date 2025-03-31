@@ -70,7 +70,7 @@ public class SceneTransitioner : MonoSingleton<SceneTransitioner>
         switch (sceneType)
         {
             case SceneType.MainScene:
-                SceneTransitionManager.LoadSceneInstantly("Scene_InGame");
+                SceneTransitionManager.LoadSceneInstantly("Scene_Main");
                 break;
             case SceneType.InGameScene:
                 SceneTransitionManager.LoadSceneInstantly("Scene_InGame");

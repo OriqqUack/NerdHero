@@ -5,6 +5,9 @@ using System.Data;
 
 public class EnergyManager : MonoSingleton<EnergyManager>, ISaveable
 {
+    public delegate void EnergyChangeDelegate(int energy);
+    public event EnergyChangeDelegate OnEnergyChange;
+    
     public int maxEnergy = 30;
     public int chargeIntervalMinutes = 10;
 
@@ -43,6 +46,7 @@ public class EnergyManager : MonoSingleton<EnergyManager>, ISaveable
                 {
                     CurrentEnergy++;
                     lastChargeTime = lastChargeTime.AddMinutes(chargeIntervalMinutes);
+                    OnEnergyChange?.Invoke(CurrentEnergy);
                     //DataManager.Instance.DataSave();
                 }
             }
@@ -64,6 +68,7 @@ public class EnergyManager : MonoSingleton<EnergyManager>, ISaveable
                 lastChargeTime = DateTime.UtcNow.AddHours(9);
             
             CurrentEnergy -= amount;
+            OnEnergyChange?.Invoke(CurrentEnergy);
             //DataManager.Instance.DataSave();
             return true;
         }

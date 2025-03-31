@@ -64,7 +64,7 @@ public class UI_GameEnd : UI_Popup
             InventoryManager.Instance.AddItem(item);
         }
         Time.timeScale = 1;
-        SceneTransitionManager.LoadSceneInstantly("Scene_Main");
+        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene, 1, 0);
     }
     
     public override void Close()
