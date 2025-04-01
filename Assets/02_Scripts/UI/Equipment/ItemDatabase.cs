@@ -1,15 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDatabase : MonoBehaviour
+public class ItemDatabase : MonoSingleton<ItemDatabase>
 {
-    public static ItemDatabase instance;
     public List<ItemSO> allItems; // 모든 아이템 리스트
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     public ItemSO GetItemByName(string name)
     {

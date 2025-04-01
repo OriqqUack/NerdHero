@@ -9,10 +9,16 @@ public class DataManager : MonoSingleton<DataManager>
 
     private List<ISaveable> _saveables = new List<ISaveable>();
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         DontDestroyOnLoad(this);
         Init();
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void OnApplicationQuit()
@@ -20,7 +26,7 @@ public class DataManager : MonoSingleton<DataManager>
         DataSave();
     }
 
-public void Init()
+    public void Init()
     {
         // 모든 ISaveable을 찾아서 리스트에 저장
         _saveables.AddRange(FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());

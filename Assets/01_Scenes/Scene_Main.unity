@@ -2359,8 +2359,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 44.526, y: -1}
-  m_SizeDelta: {x: -89.053, y: 62.59}
+  m_AnchoredPosition: {x: 41.7498, y: -1}
+  m_SizeDelta: {x: -94.6055, y: 62.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1161357825
 GameObject:
@@ -2938,6 +2938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a852775515feced4e97b8f6751fe41a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energySlider: {fileID: 1194349641}
   energyCount: {fileID: 1194349640}
   energyChargeLeftTimeText: {fileID: 461758665}
 --- !u!114 &1194349640 stripped
@@ -2998,7 +2999,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.518
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

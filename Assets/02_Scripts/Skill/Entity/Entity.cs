@@ -25,9 +25,6 @@ public class Entity : MonoBehaviour
     [SerializeField] private Category[] categories;
     [SerializeField] private EntityControlType controlType;
     
-    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    public string onEndName;
-    
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
     private Collider _collider;

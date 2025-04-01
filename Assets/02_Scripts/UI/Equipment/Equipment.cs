@@ -103,25 +103,25 @@ public class Equipment : MonoSingleton<Equipment>
     
     public void LoadEquipment(SaveData data)
     {
-        weapon = ItemDatabase.instance.GetItemByName(data.equippedWeapon);
+        weapon = ItemDatabase.Instance.GetItemByName(data.equippedWeapon);
         if(weapon)
         {
             weapon.quantityOrLevel = data.weaponLevel;
             Equip(weapon);
         }
-        helmet = ItemDatabase.instance.GetItemByName(data.equippedHelmet);
+        helmet = ItemDatabase.Instance.GetItemByName(data.equippedHelmet);
         if (helmet)
         {
             helmet.quantityOrLevel = data.helmetLevel;
             Equip(helmet);
         }
-        armor = ItemDatabase.instance.GetItemByName(data.equippedArmor);
+        armor = ItemDatabase.Instance.GetItemByName(data.equippedArmor);
         if (armor)
         {
             armor.quantityOrLevel = data.armorLevel;
             Equip(armor);
         }
-        boots = ItemDatabase.instance.GetItemByName(data.equippedBoots);
+        boots = ItemDatabase.Instance.GetItemByName(data.equippedBoots);
         if (boots)
         {
             boots.quantityOrLevel = data.bootsLevel;

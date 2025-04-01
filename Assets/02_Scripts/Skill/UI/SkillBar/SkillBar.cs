@@ -20,7 +20,8 @@ public class SkillBar : MonoBehaviour
 
         var ownSkills = skillSystem.OwnSkills;
 
-        for (int i = 0; i < slotCount; i++)
+        //기본 공격 제외
+        for (int i = 1; i <= slotCount; i++)
         {
             var slot = Instantiate(slotPrefab, transform).GetComponent<SkillSlot>();
             slot.Setup();

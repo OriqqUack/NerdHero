@@ -16,6 +16,7 @@ public class UI_Energy : MonoBehaviour
         energyManager = EnergyManager.Instance;
         energyManager.OnEnergyChange += EnergySliderValueChanged;
         UIUpdateEnergy();
+        energySlider.value = energyManager.CurrentEnergy / 30f;
     }
 
     private void Update()

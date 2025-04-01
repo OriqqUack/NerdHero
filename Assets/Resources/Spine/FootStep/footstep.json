@@ -1,0 +1,80 @@
+{
+"skeleton": {
+	"hash": "lsmkyd8Btew",
+	"spine": "4.2.40",
+	"x": -95.91,
+	"y": -95.2,
+	"width": 191.83,
+	"height": 190.4,
+	"fps": 24,
+	"images": "",
+	"audio": "./audio"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root" }
+],
+"slots": [
+	{ "name": "footstep effect", "bone": "bone", "attachment": "footstep effect" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"footstep effect": {
+				"footstep effect": { "rotation": -25.34, "width": 145, "height": 142 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"bones": {
+			"bone": {
+				"rotate": [
+					{
+						"curve": [ 0.22, 0, 0.447, -19.39 ]
+					},
+					{ "time": 0.6667, "value": -19.39 }
+				],
+				"translate": [
+					{
+						"curve": [ 0.058, -12.85, 0.109, -28.39, 0.058, 19.18, 0.109, 50.94 ]
+					},
+					{
+						"time": 0.1667,
+						"x": -38.55,
+						"y": 57.53,
+						"curve": [ 0.328, -66.98, 0.505, -76.35, 0.328, 75.99, 0.505, 66.76 ]
+					},
+					{ "time": 0.6667, "x": -101.56, "y": 72.91 }
+				],
+				"scale": [
+					{
+						"x": 0,
+						"y": 0,
+						"curve": [ 0.058, 0, 0.109, 0.65, 0.058, 0, 0.109, 0.65 ]
+					},
+					{
+						"time": 0.1667,
+						"x": 0.9,
+						"y": 0.9,
+						"curve": [ 0.19, 1, 0.269, 1, 0.19, 1, 0.269, 1 ]
+					},
+					{
+						"time": 0.2917,
+						"curve": [ 0.33, 1, 0.378, 1.011, 0.33, 1, 0.378, 1.011 ]
+					},
+					{
+						"time": 0.4167,
+						"x": 0.9,
+						"y": 0.9,
+						"curve": [ 0.503, 0.65, 0.58, 0, 0.503, 0.65, 0.58, 0 ]
+					},
+					{ "time": 0.6667, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}

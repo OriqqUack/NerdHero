@@ -127,7 +127,7 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         int index = 0;
         foreach (string itemName in data.inventoryItems)
         {
-            ItemSO item = ItemDatabase.instance.GetItemByName(itemName);
+            ItemSO item = ItemDatabase.Instance.GetItemByName(itemName);
             if (item != null)
             {
                 item.quantityOrLevel = data.quantityOrLevel[index];

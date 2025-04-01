@@ -15,12 +15,13 @@ public class Projectile : MonoBehaviour
     protected Rigidbody rigidBody;
     protected float speed;
     protected Skill skill;
-
+    protected Vector3 direction;
     public virtual void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
     {
         this.owner = owner;
         this.speed = speed;
-        transform.forward = direction;
+        transform.right = direction;
+        this.direction = direction;
         this.skill = skill.Clone() as Skill;
     }
 
