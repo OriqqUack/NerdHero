@@ -11,6 +11,8 @@ public class InSkillActionState : EntitySkillState
         // AnimatorParameter�� false��� State�� ����
         if (RunningSkill.InSkillActionFinishOption == InSkillActionFinishOption.FinishWhenAnimationEnded)
         {
+            string anim = Entity.Animator.GetCurrentAnimation(1)?.Name;
+
             IsStateEnded = Entity.Animator.GetCurrentAnimation(1)?.Name != AnimatorParameterName;
         }
     }
@@ -25,7 +27,7 @@ public class InSkillActionState : EntitySkillState
             RunningSkill.onApplied += OnSkillApplied;
         
         var tupleData = ((Skill, AnimatorParameter))data;
-        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 2);
+        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 1);
 
         return true;
     }

@@ -154,7 +154,7 @@ public class PlayerMovement : Movement
 
     private void Move()
     {
-        if (_isAttacking) return;
+        if (_isAttacking || isCC) return;
         
         if (_moveInput.magnitude > 1) 
         {

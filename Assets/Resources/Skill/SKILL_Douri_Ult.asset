@@ -66,7 +66,7 @@ MonoBehaviour:
     effectSelectors:
     - level: 1
       effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
-    inSkillActionFinishOption: 0
+    inSkillActionFinishOption: 2
     castAnimatorParamter:
       type: 0
       name: 
@@ -75,14 +75,15 @@ MonoBehaviour:
       name: 
     precedingActionAnimatorParameter:
       type: 0
-      name: ult
+      name: 
     actionAnimatorParameter:
       type: 0
-      name: eye sad
+      name: ult
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
-    customActionsOnAction: []
+    customActionsOnAction:
+    - rid: 9209176293260656945
   references:
     version: 2
     RefIds:
@@ -111,3 +112,8 @@ MonoBehaviour:
         indicatorViewAction:
           rid: -2
         isUseScale: 0
+    - rid: 9209176293260656945
+      type: {class: PlayAnimationAction, ns: , asm: Assembly-CSharp}
+      data:
+        AnimationName: eye sad
+        Index: 2
