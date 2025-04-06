@@ -4363,7 +4363,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 3088, y: 1440}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -6054,7 +6054,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 3088, y: 1440}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
@@ -6233,7 +6233,6 @@ MonoBehaviour:
   - {fileID: 222877542}
   - {fileID: 1827265847}
   - {fileID: 1957258855}
-  monsterSpawnVFXPrefab: {fileID: 7188680665933468798, guid: 681a1148322c0e04bb0f50ad6896bf22, type: 3}
   playerSpawnPoint: {fileID: 725434652}
   playerPrefab: {fileID: 1308298092994364096, guid: 850822a2ef7c0fc429aae2753a67651f, type: 3}
   confettiSpawnVFXPrefab: {fileID: 5700784828077083704, guid: ed962e35f7fa6f34f8d27aa6d19ea293, type: 3}

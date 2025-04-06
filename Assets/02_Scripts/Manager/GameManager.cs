@@ -60,11 +60,12 @@ public class GameManager : MonoSingleton<GameManager>, ISaveable
         get => (int)_playerDefense.Value;
         set => _playerDefense.DefaultValue += value;
     }
-    
+
 
     protected override void Awake()
     {
         base.Awake();
+        Application.targetFrameRate = 60;
         DontDestroyOnLoad(this);
         _playerEntity = GetComponent<Entity>();
         _playerExp = _playerEntity.Stats.GetStat("PLAYER_EXP");
