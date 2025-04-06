@@ -77,7 +77,6 @@ public class EntityMovement : Movement
 
         agent.speed = runSpeed;
         moveSpeed.onValueChanged += OnMoveSpeedChanged;
-
     }
 
     private void OnDisable() => Stop();

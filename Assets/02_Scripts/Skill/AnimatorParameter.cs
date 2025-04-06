@@ -8,12 +8,22 @@ public enum AnimatorParameterType
     Trigger
 }
 
+public enum LayerIndex
+{
+    Zero,
+    One,
+    Two,
+    Three
+}
+
 [System.Serializable]
 public struct AnimatorParameter
 {
     public AnimatorParameterType type;
+    public LayerIndex index;
+    public Stat stat;
     public string name;
-
+    
     private int hash;
 
     public bool IsValid => !string.IsNullOrEmpty(name);

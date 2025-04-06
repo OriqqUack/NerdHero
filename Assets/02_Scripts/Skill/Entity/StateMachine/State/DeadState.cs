@@ -14,20 +14,10 @@ public class DeadState : State<Entity>
 
     public override void Enter()
     {
-        if (playerController)
-            playerController.enabled = false;
-
-        if (movement)
-            movement.enabled = false;
     }
 
     public override void Exit()
     {
-        if (playerController)
-            playerController.enabled = true;
-
-        if (movement)
-            movement.enabled = true;
     }
 
 }

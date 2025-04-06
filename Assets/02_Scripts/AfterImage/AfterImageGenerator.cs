@@ -27,7 +27,7 @@ public class AfterimageGenerator : MonoBehaviour
 
     void CreateAfterimage()
     {
-        GameObject ai = Instantiate(afterimagePrefab, transform.position, transform.rotation);
+        GameObject ai = Managers.Resource.Instantiate(afterimagePrefab, transform.position, transform.rotation);
         SpriteRenderer aiSr = ai.GetComponent<SpriteRenderer>();
         aiSr.sprite = spriteRenderer.sprite;
         aiSr.flipX = spriteRenderer.flipX;

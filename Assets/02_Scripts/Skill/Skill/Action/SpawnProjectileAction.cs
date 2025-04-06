@@ -15,7 +15,7 @@ public class SpawnProjectileAction : SkillAction
     public override void Apply(Skill skill)
     {
         var socket = skill.Owner.GetTransformSocket(spawnPointSocketName);
-        var projectile = GameObject.Instantiate(projectilePrefab);
+        var projectile = Managers.Resource.Instantiate(projectilePrefab);
         projectile.transform.position = socket.position;
         projectile.GetComponent<Projectile>().Setup(skill.Owner, speed, socket.forward, skill);
     }

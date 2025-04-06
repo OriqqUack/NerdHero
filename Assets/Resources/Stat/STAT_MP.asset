@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 1
+  id: 7
   codeName: MP
   displayName: "\uB9C8\uB098"
   description: 

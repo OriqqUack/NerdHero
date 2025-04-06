@@ -13,7 +13,11 @@ public class WindowHolder : MonoBehaviour
         RewardBox,
         EnergyCharge,
         Equipment,
-        EquipmentDetail
+        EquipmentDetail,
+        Pause,
+        ExitAlert,
+        Revive,
+        GameEnd
     }
 
     public string Name = "Window";
@@ -50,6 +54,18 @@ public class WindowHolder : MonoBehaviour
                 break;
             case HolderType.EquipmentDetail:
                 newWindow = WindowManager.GetWindow("EquipmentDetail", this);
+                break;
+            case HolderType.Pause:
+                newWindow = WindowManager.GetWindow("Pause", this);
+                break;
+            case HolderType.ExitAlert:
+                newWindow = WindowManager.GetWindow("ExitAlert", this);
+                break;
+            case HolderType.Revive:
+                newWindow = WindowManager.GetWindow("Revive", this);
+                break;
+            case HolderType.GameEnd:
+                newWindow = WindowManager.GetWindow("GameEnd", this);
                 break;
         }
         if(newWindow != null) newWindow.Initialize(this, Name);

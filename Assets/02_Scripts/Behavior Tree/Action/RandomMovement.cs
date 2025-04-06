@@ -8,6 +8,7 @@ public class RandomMovement : EnemyAction
     public SharedFloat moveRadius = 10f;
     public float rotationSpeed = 10;
     public float walkSpeedOffset = 3;
+    private bool isWalking = false;
     
     private Vector3 destination;
     
@@ -17,6 +18,7 @@ public class RandomMovement : EnemyAction
         
         animator.PlayAnimationForState("walk", 0);
         agent.speed -= walkSpeedOffset;
+        isWalking = true;
     }
 
     public override TaskStatus OnUpdate()
@@ -32,7 +34,8 @@ public class RandomMovement : EnemyAction
 
     public override void OnEnd()
     {
-        agent.speed += walkSpeedOffset;
+        if(isWalking)
+            agent.speed += walkSpeedOffset;
     }
 
     private void SetRandomDestination()

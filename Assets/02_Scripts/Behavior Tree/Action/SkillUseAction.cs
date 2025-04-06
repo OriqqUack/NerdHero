@@ -82,6 +82,7 @@ public class SkillUseAction : EnemyAction
 
     public override void OnEnd()
     {
+        entity.Animator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
         canUseSkill = false;
         isUse = false;
     }

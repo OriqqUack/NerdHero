@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Spine;
 using Spine.Unity.Examples;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,8 +23,6 @@ public enum CharacterState
 
 public class PlayerMovement : Movement
 {
-    [SerializeField] private JoyStickManager joystick;
-    
     [Header("Jumping")]
     [SerializeField] private float jumpSpeed = 10f;
 
@@ -37,23 +36,25 @@ public class PlayerMovement : Movement
     private Vector3 _moveInput;
     private Vector3 _velocity;
     private Transform _groundCheck;
+    private JoyStickManager joystick;
 
     private CharacterState _previousState, _currentState;
     private bool _wasGrounded;
-    private bool _isAttacking = false;
     private bool _isJumping = false;
     private bool _isGrounded;
 
     public override void Setup(Entity entity)
     {
         base.Setup(entity);
-        
+
         _baseAttackCollider = transform.Find("BaseAttackCollider").gameObject;
         _groundCheck = transform.Find("GroundCheck");
         entity.onDead += OnDead;
         entity.onTakeDamage += OnHitDamage;
         animationHandle.PlayAnimationForState("track2Base", 1);
         animationHandle.PlayAnimationForState("eye blink", 2);
+
+        joystick = GameObject.Find("Canvas_Joystick").GetComponent<JoyStickManager>();
     }
 
     private void Update()
@@ -74,12 +75,6 @@ public class PlayerMovement : Movement
         Move();
     }
 
-    public void Attack()
-    {
-        if (_isAttacking || _isJumping) return;
-        StartCoroutine(AttackCo());
-    }
-
     public void Jump()
     {
         if (_isGrounded) // 땅에 있을 때만 점프 가능
@@ -88,18 +83,6 @@ public class PlayerMovement : Movement
             _currentState = CharacterState.Jump;
         }
     }
-
-    private IEnumerator AttackCo()
-    {
-        _isAttacking = true;
-        _currentState = CharacterState.Attack;
-        _baseAttackCollider.SetActive(true);
-        yield return new WaitForSeconds(animationHandle.GetAnimationForState("attack").Duration);
-        
-        _baseAttackCollider.SetActive(false);
-        _isAttacking = false;
-    }
-
     private void JoystickUpdate()
     {
         Vector2 joystickInput = joystick.GetInput();
@@ -122,7 +105,16 @@ public class PlayerMovement : Movement
 
     private void MovingCheck()
     {
-        if (_isGrounded && !_isAttacking)
+        if (isCC) return;
+        
+        if (_moveInput.x != 0)
+        {
+            var rotation = transform.rotation;
+            rotation.y = Mathf.Abs(transform.rotation.y) * (_moveInput.x > 0 ? 1 : -1);
+            transform.rotation = rotation;
+        }
+        
+        if (_isGrounded)
         {
             float x = Mathf.Abs(_moveInput.x);
             float z = Mathf.Abs(_moveInput.z);
@@ -135,26 +127,19 @@ public class PlayerMovement : Movement
             {
                 _currentState = CharacterState.Idle;
             }
-        }
-
-        if (_previousState != _currentState)
-        {
-            HandleStateChanged();
+            
+            if (_previousState != _currentState)
+            {
+                HandleStateChanged();
+            }
         }
         
         _previousState = _currentState;
-
-        if (_moveInput.x != 0)
-        {
-            var rotation = transform.rotation;
-            rotation.y = Mathf.Abs(transform.rotation.y) * (_moveInput.x > 0 ? 1 : -1);
-            transform.rotation = rotation;
-        }
     }
 
     private void Move()
     {
-        if (_isAttacking || isCC) return;
+        if (isCC) return;
         
         if (_moveInput.magnitude > 1) 
         {
@@ -202,11 +187,9 @@ public class PlayerMovement : Movement
     
     private void OnHitDamage(Entity owner, Entity insigator, object causer, float damage)
     {
-        var isTackle = causer is bool ? (bool)causer : false;
-        if(isTackle)
-            StartCoroutine(TakeDamageCo());
+        StartCoroutine(TakeDamageCo());
 
-        animationHandle.PlayOneShot("eye sad", 1);
+        animationHandle.PlayOneShot("damaged", 2, 3.0f);
     }
 
     private IEnumerator TakeDamageCo()
@@ -221,6 +204,26 @@ public class PlayerMovement : Movement
     private void OnDead(Entity entity)
     {
         Stop();
-        Destroy(gameObject, 5.0f);
+        entity.BaseAttack.GetComponent<Collider>().enabled = false;
+        entity.Animator.PlayAnimationForState("dead emotion", 2);
+        entity.Animator.PlayOneShot("dead", 0, 0, () => UI_InGameScene.Instance.OpenRevive());
+
     }
+
+    public void ReviveEvent()
+    {
+        entity.Stats.HPStat.DefaultValue = entity.Stats.HPStat.MaxValue;
+        entity.Animator.SetOriginalAnimation("eye blink", 2);
+        entity.Animator.PlayOneShot("revive", 0, 0, () =>
+        {
+            this.enabled = true;
+            entity.Rigidbody.isKinematic = false;
+            GetComponent<Collider>().enabled = true;
+            entity.BaseAttack.GetComponent<Collider>().enabled = true;
+            ReStart();
+        });
+        
+        entity.Animator.PlayOneShot("clear emotion", 2, 2.6f);
+    }
+
 }

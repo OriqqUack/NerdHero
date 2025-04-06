@@ -5,15 +5,16 @@ using UnityEngine;
 public class InSkillActionState : EntitySkillState
 {
     public bool IsStateEnded { get; private set; }
+    private int layerIndex;
 
     public override void Update()
     {
         // AnimatorParameter�� false��� State�� ����
         if (RunningSkill.InSkillActionFinishOption == InSkillActionFinishOption.FinishWhenAnimationEnded)
         {
-            string anim = Entity.Animator.GetCurrentAnimation(1)?.Name;
-
-            IsStateEnded = Entity.Animator.GetCurrentAnimation(1)?.Name != AnimatorParameterName;
+            /*string anim = Entity.Animator.GetCurrentAnimation(1)?.Name;
+            Debug.Log($"Current Animation Name : " + anim);*/
+            IsStateEnded = Entity.Animator.GetCurrentAnimation(layerIndex)?.Name != AnimatorParameterName;
         }
     }
 
@@ -24,17 +25,34 @@ public class InSkillActionState : EntitySkillState
             return false;
 
         if (RunningSkill.InSkillActionFinishOption != InSkillActionFinishOption.FinishWhenAnimationEnded)
+        {
             RunningSkill.onApplied += OnSkillApplied;
+        }
+        
+        if (RunningSkill.InSkillActionFinishOption == InSkillActionFinishOption.FinishWhenAnimationEnded)
+        {
+            Entity.Movement.enabled = false;
+        }
         
         var tupleData = ((Skill, AnimatorParameter))data;
-        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 1);
-
+        layerIndex = (int)tupleData.Item2.index;
+        float statValue = 1f;
+        if(tupleData.Item2.stat)
+        {
+            var stat = Entity.Stats.GetStat(tupleData.Item2.stat);
+            statValue = statValue + statValue * stat.Value;
+        }
+        Entity.Animator?.PlayOneShot(tupleData.Item2.name, layerIndex, 0, null, statValue);
         return true;
     }
 
     public override void Exit()
     {
         IsStateEnded = false;
+        Entity.Movement.enabled = true;
+        Entity.CanTakeDamage = true;
+
+        layerIndex = 0;
         RunningSkill.onApplied -= OnSkillApplied;
 
         base.Exit();

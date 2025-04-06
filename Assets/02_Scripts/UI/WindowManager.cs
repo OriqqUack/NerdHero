@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class WindowManager : MonoSingleton<WindowManager>
@@ -16,10 +17,12 @@ public class WindowManager : MonoSingleton<WindowManager>
 
     public static UiWindow ActiveWindow;
     private static Dictionary<WindowHolder, UiWindow> windowsDic = new();
-
+    private string sceneName;
     void Awake()
     {
         windowsDic.Clear();
+        Scene scene = SceneManager.GetActiveScene();
+        sceneName = scene.name;
     }
 
     IEnumerator ActiveWindowLater(UiWindow window)
@@ -36,7 +39,7 @@ public class WindowManager : MonoSingleton<WindowManager>
             return null;
         }
         
-        GameObject newWindow = Instantiate(Resources.Load<GameObject>("Prefabs/UI/UI_" + prefabName), transform);
+        GameObject newWindow = Instantiate(Resources.Load<GameObject>($"Prefabs/UI/{sceneName}/UI_" + prefabName), transform);
         if (!newWindow.GetComponent<UiWindow>().FixedDefaultPosition)
         {
             float width = newWindow.GetComponent<RectTransform>().sizeDelta.x * 0.5f;
@@ -74,7 +77,7 @@ public class WindowManager : MonoSingleton<WindowManager>
     {
         if (Instance == null)
         {
-            GameObject newObj = Instantiate(Resources.Load<GameObject>("Prefabs/UI/WindowsManager"), FindObjectOfType<CanvasScaler>().transform);
+            GameObject newObj = Instantiate(Resources.Load<GameObject>($"Prefabs/UI/WindowsManager"), FindObjectOfType<CanvasScaler>().transform);
             newObj.transform.SetAsLastSibling();
             newObj.transform.localPosition = Vector3.zero;
             newObj.transform.localScale = Vector3.one;

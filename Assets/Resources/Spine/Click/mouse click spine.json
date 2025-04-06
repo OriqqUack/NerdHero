@@ -1,0 +1,68 @@
+{
+"skeleton": {
+	"hash": "ip3donNLFOE",
+	"spine": "4.2.40",
+	"x": -10,
+	"y": -18,
+	"width": 29,
+	"height": 42,
+	"images": "./image/",
+	"audio": "./audio"
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "1", "bone": "root", "attachment": "1" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"1": {
+				"1": { "x": 4.5, "y": 3, "width": 29, "height": 42 },
+				"2": { "y": 0.5, "width": 120, "height": 99 },
+				"3": { "x": -1, "y": 10.5, "width": 214, "height": 239 },
+				"4": { "x": -1, "y": 2, "width": 396, "height": 406 },
+				"5": { "width": 494, "height": 496 },
+				"6": { "y": 0.5, "width": 438, "height": 481 },
+				"7": { "x": -2.5, "y": -11, "width": 485, "height": 426 },
+				"8": { "x": 22.5, "y": -7.5, "width": 443, "height": 405 },
+				"9": { "x": -4.5, "y": -16.5, "width": 413, "height": 423 }
+			}
+		}
+	}
+],
+"animations": {
+	"click": {
+		"slots": {
+			"1": {
+				"rgba": [
+					{ "color": "ffffff00" },
+					{ "time": 0.1, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4667, "color": "ffffffff" },
+					{ "time": 0.6, "color": "ffffff00" }
+				],
+				"attachment": [
+					{ "time": 0.0333, "name": "1" },
+					{ "time": 0.1, "name": "2" },
+					{ "time": 0.1667, "name": "3" },
+					{ "time": 0.2333, "name": "4" },
+					{ "time": 0.3, "name": "5" },
+					{ "time": 0.3667, "name": "6" },
+					{ "time": 0.4333, "name": "7" },
+					{ "time": 0.5, "name": "8" },
+					{ "time": 0.5667, "name": "9" }
+				]
+			}
+		},
+		"bones": {
+			"root": {
+				"scale": [
+					{ "x": 0.5, "y": 0.5 }
+				]
+			}
+		}
+	}
+}
+}

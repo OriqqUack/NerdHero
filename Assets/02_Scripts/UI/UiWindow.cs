@@ -22,7 +22,7 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
 
     protected virtual void Start()
     {
-        transform.Find("Dimed")?.GetComponent<Button>().onClick.AddListener(() => CloseUI());
+        transform.Find("Dimed")?.GetComponent<Button>().onClick.AddListener(() => Close());
     }
 
     public void RegisterCloseCallback(OnWindowClose callback, WindowHolder holder)
@@ -58,16 +58,13 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public virtual void CloseUI()
-    {
-        animator.SetTrigger("Off");
-    }
     
     public virtual void Close()
     {
+        animator.SetTrigger("Off");
         if(_closeCallback != null) _closeCallback(_windowHolder);
         //SoundManager.Instance.Play(closeSound);
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 
     public virtual void Initialize(WindowHolder holder, string name = "")

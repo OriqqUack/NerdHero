@@ -12,23 +12,33 @@ public class AnimatorParameterDrawer : PropertyDrawer
 
         var nameProperty = property.FindPropertyRelative("name");
         var typeProperty = property.FindPropertyRelative("type");
+        var indexProperty = property.FindPropertyRelative("index");
+        var statProperty = property.FindPropertyRelative("stat");
 
         position = EditorGUI.PrefixLabel(position, label);
 
-        // GUI°¡ ±×·ÁÁö´Â À§Ä¡¸¦ Á¶Á¤ÇÏ´Â °ª
-        // ¿©·¯ Editor°¡ °ãÃÄ¼­ ±×·ÁÁö´Ùº¸¸é µé¿©¾²±â(indent) ÁÂÇ¥°¡ ÀÌ»óÇØÁö´Â °æ¿ì°¡ ÀÖÀ½.
-        // AnimatorParameter°¡ ±×·± °æ¿ì¿¡ ÇØ´çÇØ¼­ Test¸¦ ÅëÇØ °¡Àå º¸±â ÁÁÀº ¼öÄ¡¸¦ Á¶Á¤ °ªÀ¸·Î »ç¿ëÇÔ
         float adjust = EditorGUI.indentLevel * 15f;
-        float leftWidth = (position.width * 0.15f) + adjust;
-        float rightWidth = (position.width * 0.85f) + adjust;
 
-        var typeRect = new Rect(position.x - adjust, position.y, leftWidth - 2.5f, position.height); ;
+        // ê° íŒŒíŠ¸ ë„ˆë¹„ ê³„ì‚°
+        float typeWidth = (position.width * 0.15f) + adjust;
+        float indexWidth = typeWidth; // typeê³¼ ê°™ì€ ë„ˆë¹„
+        float nameWidth = position.width - typeWidth - indexWidth;
+
+        // ê° Rect ë°°ì¹˜
+        var typeRect = new Rect(position.x, position.y, typeWidth - 2.5f, position.height);
         int enumInt = System.Convert.ToInt32(EditorGUI.EnumPopup(typeRect, (AnimatorParameterType)typeProperty.enumValueIndex));
         typeProperty.enumValueIndex = enumInt;
 
-        var nameRect = new Rect(typeRect.x + typeRect.width - adjust + 2.5f, position.y, rightWidth, position.height);
+        var indexRect = new Rect(typeRect.x + typeRect.width + 2.5f, position.y, indexWidth - 2.5f, position.height);
+        indexProperty.intValue = EditorGUI.IntField(indexRect, GUIContent.none, indexProperty.intValue);
+
+        var statRect = new Rect(indexRect.x + indexRect.width + 2.5f, position.y, indexWidth - 2.5f, position.height);
+        EditorGUI.PropertyField(statRect, statProperty, GUIContent.none, true);
+        
+        var nameRect = new Rect(statRect.x + statRect.width + 2.5f, position.y, nameWidth, position.height);
         nameProperty.stringValue = EditorGUI.TextField(nameRect, GUIContent.none, nameProperty.stringValue);
 
         EditorGUI.EndProperty();
     }
+
 }

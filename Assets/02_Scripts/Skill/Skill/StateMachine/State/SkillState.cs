@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SkillState : State<Skill>
 {
-    // SkillÀ» ¼ÒÀ¯ÇÑ OwnerÀÇ StateMachine¿¡°Ô »óÅÂ ÀüÈ¯ Command¿Í SKillÀÇ Á¤º¸¸¦ º¸³»´Â ÇÔ¼ö
+    // Skillï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ownerï¿½ï¿½ StateMachineï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ Commandï¿½ï¿½ SKillï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     protected void TrySendCommandToOwner(Skill skill, EntityStateCommand command, AnimatorParameter animatorParameter)
     {
         var ownerStateMachine = Entity.Owner.StateMachine;
         if (ownerStateMachine != null && animatorParameter.IsValid)
         {
-            // ÀÎÀÚ·Î ¹ÞÀº animatorParameter°¡ bool TypeÀÌ¸é ownerÀÇ StateMachineÀ¸·Î ÀÎÀÚ·Î ¹ÞÀº command¸¦ º¸³¿
-            // TransitionÀÌ Command¸¦ ¹Þ¾Æµé¿´À¸¸é, State·Î UsingSKill Message¿Í Skill Á¤º¸¸¦ º¸³¿
+            // ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ animatorParameterï¿½ï¿½ bool Typeï¿½Ì¸ï¿½ ownerï¿½ï¿½ StateMachineï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ commandï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // Transitionï¿½ï¿½ Commandï¿½ï¿½ ï¿½Þ¾Æµé¿´ï¿½ï¿½ï¿½ï¿½, Stateï¿½ï¿½ UsingSKill Messageï¿½ï¿½ Skill ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (animatorParameter.type == AnimatorParameterType.Bool && ownerStateMachine.ExecuteCommand(command))
                 ownerStateMachine.SendMessage(EntityStateMessage.UsingSkill, (skill, animatorParameter));
-            // ÀÎÀÚ·Î ¹ÞÀº animatorParameter°¡ trigger TypeÀÌ¸é Çàµ¿¿¡ Á¦¾àÀ» ÁÖÁö ¾ÊÀ» °ÍÀÌ¹Ç·Î ToDefaultState Command¸¦ º¸³»°í
-            // TransitionÀÌ ¹Þ¾Æµé¿´´ÂÁö¿Í »ó°ü¾øÀÌ, State·Î UsingSkill Message¿Í skill Á¤º¸¸¦ º¸³¿
+            // ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ animatorParameterï¿½ï¿½ trigger Typeï¿½Ì¸ï¿½ ï¿½àµ¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ ToDefaultState Commandï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // Transitionï¿½ï¿½ ï¿½Þ¾Æµé¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, Stateï¿½ï¿½ UsingSkill Messageï¿½ï¿½ skill ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             else if (animatorParameter.type == AnimatorParameterType.Trigger)
             {
                 ownerStateMachine.ExecuteCommand(EntityStateCommand.ToDefaultState);

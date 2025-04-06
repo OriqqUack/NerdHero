@@ -14,7 +14,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     [SerializeField] private TextMeshProUGUI hpValueText; //
     [SerializeField] private Slider skillCostFillImage; //
     [SerializeField] private TextMeshProUGUI skillCostValueText; //
-    [SerializeField] private GameObject panel;
+    [SerializeField] private Transform panel;
     [SerializeField] private float yOffset;
 
     [Header("Effecf List View")] 
@@ -22,19 +22,18 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     
     [Header("Effecf List View")]
     [SerializeField] private Image sameAxisImage; //
-
-    [SerializeField] private float axisOffset = 0.3f;
     
     private Entity target;
-    private Quaternion initialRotation;
-    private void Awake()
+    private float hpMaxValue;
+
+    private void Start()
     {
-        panel.SetActive(false);
+        panel.gameObject.SetActive(false);
     }
 
     private void LateUpdate()
     {
-        panel.transform.position = transform.position + new Vector3(0, yOffset, 0);
+        panel.position = transform.position + new Vector3(0, yOffset, 0);
     }
 
     private void OnDestroy() => ReleaseEvents();
@@ -53,6 +52,8 @@ public class EntityHUD : MonoSingleton<EntityHUD>
         var stats = target.Stats;
         stats.HPStat.onValueChanged += OnHPStatChanged;
 
+        hpMaxValue = stats.HPStat.Value;
+        
         if (skillCostFillImage)
         {
             stats.SkillCostStat.onValueChanged += OnSkillCostStatChanged;
@@ -63,8 +64,8 @@ public class EntityHUD : MonoSingleton<EntityHUD>
 
         if (effectListView)
             effectListView.Target = target.SkillSystem;
-
-        panel.SetActive(true);
+        
+        panel.gameObject.SetActive(true);
     }
 
     public void AxisImageControl(bool value)
@@ -79,14 +80,14 @@ public class EntityHUD : MonoSingleton<EntityHUD>
         target = null;
         if (effectListView)
             effectListView.Target = null;
-
-        panel.SetActive(false);
+        
+        panel.gameObject.SetActive(false);
     }
 
     private void UpdateStatView(Stat stat, Slider statFillAmount, Slider hpFollowFillAmount, TextMeshProUGUI statText)
     {
-        statFillAmount.value = stat.Value / stat.MaxValue;
-        hpFollowFillAmount.value = stat.Value / stat.MaxValue;
+        statFillAmount.value = stat.Value / hpMaxValue;
+        hpFollowFillAmount.value = stat.Value / hpMaxValue;
         //statText.text = $"{Mathf.RoundToInt(stat.Value)} / {stat.MaxValue}";
     }
     
@@ -98,7 +99,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
 
     private IEnumerator HpFollow(Stat stat, Slider statFillAmount, Slider hpFollowFillAmount)
     {
-        float value = stat.Value / stat.MaxValue;
+        float value = stat.Value / hpMaxValue;
         float speed = 5f; 
 
         while (Mathf.Abs(statFillAmount.value - value) > 0.01f)

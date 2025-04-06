@@ -28,7 +28,7 @@ public class BaseAttackCheck : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (_baseSkill.IsInState<ReadyState>())
+        if (_entity.IsInState<EntityDefaultState>() && _baseSkill.IsInState<ReadyState>())
         {
             _baseSkill.Use();
         }

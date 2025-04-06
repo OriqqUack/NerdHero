@@ -37,7 +37,7 @@ MonoBehaviour:
     levelUpConditions: []
     levelUpCosts: []
     precedingAction:
-      rid: 5468517351322026159
+      rid: -2
     action:
       rid: 6784395007719112875
     runningFinishOption: 0
@@ -69,28 +69,39 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
-      name: movingAttack
+      index: 0
+      stat: {fileID: 0}
+      name: 
     actionAnimatorParameter:
       type: 0
-      name: eye sad
+      index: 1
+      stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
+      name: comp/move attack
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
-    customActionsOnAction: []
+    customActionsOnAction:
+    - rid: 416588599712022710
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 5468517351322026159
-      type: {class: TestSkillPreceidingAction, ns: Test, asm: Assembly-CSharp}
-      data: 
+    - rid: 416588599712022710
+      type: {class: PlayAnimationAction, ns: , asm: Assembly-CSharp}
+      data:
+        AnimationName: eye sad
+        Index: 2
     - rid: 6784395007719112875
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:

@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 2e384e50c6a9faa459698b6515b115a4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3277225201789607977
+    second: iciclemon_0
+  - first:
+      213: 6088751785808279900
+    second: iciclemon_1
+  - first:
+      213: 898385841937395419
+    second: iciclemon_2
+  - first:
+      213: 5799101119452491110
+    second: iciclemon_3
+  - first:
+      213: 316646414341485263
+    second: iciclemon_4
+  - first:
+      213: -4515110034497384516
+    second: iciclemon_5
+  - first:
+      213: 3855531618406679243
+    second: iciclemon_6
+  - first:
+      213: -1454400602878580450
+    second: iciclemon_7
+  - first:
+      213: 2375187854752847907
+    second: iciclemon_8
+  - first:
+      213: -6015827092416744387
+    second: iciclemon_9
+  - first:
+      213: 832829701743574817
+    second: iciclemon_10
+  - first:
+      213: -7805849357156907211
+    second: iciclemon_11
+  - first:
+      213: -7859867977573632835
+    second: iciclemon_12
+  - first:
+      213: 6319840589267142000
+    second: iciclemon_13
+  - first:
+      213: 8815138154143575145
+    second: iciclemon_14
+  - first:
+      213: -6857803384212692960
+    second: iciclemon_15
+  - first:
+      213: -2403221944293866536
+    second: iciclemon_16
+  - first:
+      213: -4138517976220808918
+    second: iciclemon_17
+  - first:
+      213: 2081207316890356235
+    second: iciclemon_18
+  - first:
+      213: 639850272348617417
+    second: iciclemon_19
+  - first:
+      213: 4419317305243037580
+    second: iciclemon_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: iciclemon_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1712
+        width: 917
+        height: 584
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920a0a125fa0b7d20800000000000000
+      internalID: 3277225201789607977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_1
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 1220
+        width: 803
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c59b0a65d779f7450800000000000000
+      internalID: 6088751785808279900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_2
+      rect:
+        serializedVersion: 2
+        x: 1301
+        y: 1608
+        width: 836
+        height: 554
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bde2be3d925b77c00800000000000000
+      internalID: 898385841937395419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1079
+        width: 483
+        height: 491
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d29814ebb8a7050800000000000000
+      internalID: 5799101119452491110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_4
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 1558
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2b9367c34f46400800000000000000
+      internalID: 316646414341485263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_5
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 1114
+        width: 667
+        height: 494
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf4bff785b1751c0800000000000000
+      internalID: -4515110034497384516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 661
+        width: 1065
+        height: 417
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2ca675499918530800000000000000
+      internalID: 3855531618406679243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_7
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 730
+        width: 549
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e19ee408b5ee0dbe0800000000000000
+      internalID: -1454400602878580450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_8
+      rect:
+        serializedVersion: 2
+        x: 1235
+        y: 332
+        width: 604
+        height: 398
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3289d5505cc56f020800000000000000
+      internalID: 2375187854752847907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_9
+      rect:
+        serializedVersion: 2
+        x: 1839
+        y: 334
+        width: 448
+        height: 780
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d343456f12d738ca0800000000000000
+      internalID: -6015827092416744387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 248
+        width: 597
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12ff1d2833ece8b00800000000000000
+      internalID: 832829701743574817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_11
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 274
+        width: 637
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5378378ed5d0ca390800000000000000
+      internalID: -7805849357156907211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_12
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 1
+        width: 356
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db4714fb7b32ce290800000000000000
+      internalID: -7859867977573632835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_13
+      rect:
+        serializedVersion: 2
+        x: 1515
+        y: 1
+        width: 422
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0750d50388594b750800000000000000
+      internalID: 6319840589267142000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_14
+      rect:
+        serializedVersion: 2
+        x: 1937
+        y: 1
+        width: 340
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c68b35279a55a70800000000000000
+      internalID: 8815138154143575145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 143
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 020e780082034d0a0800000000000000
+      internalID: -6857803384212692960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_16
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1
+        width: 158
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d3c0fddf5a06aed0800000000000000
+      internalID: -2403221944293866536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_17
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 1
+        width: 71
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a294ac2d3d70196c0800000000000000
+      internalID: -4138517976220808918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_18
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 1
+        width: 82
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a813b270fe1ec10800000000000000
+      internalID: 2081207316890356235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_19
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 1
+        width: 361
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cab6c0ce6431e800800000000000000
+      internalID: 639850272348617417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_20
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 1
+        width: 343
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f6fb0bca1945d30800000000000000
+      internalID: 4419317305243037580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      iciclemon_0: 3277225201789607977
+      iciclemon_1: 6088751785808279900
+      iciclemon_10: 832829701743574817
+      iciclemon_11: -7805849357156907211
+      iciclemon_12: -7859867977573632835
+      iciclemon_13: 6319840589267142000
+      iciclemon_14: 8815138154143575145
+      iciclemon_15: -6857803384212692960
+      iciclemon_16: -2403221944293866536
+      iciclemon_17: -4138517976220808918
+      iciclemon_18: 2081207316890356235
+      iciclemon_19: 639850272348617417
+      iciclemon_2: 898385841937395419
+      iciclemon_20: 4419317305243037580
+      iciclemon_3: 5799101119452491110
+      iciclemon_4: 316646414341485263
+      iciclemon_5: -4515110034497384516
+      iciclemon_6: 3855531618406679243
+      iciclemon_7: -1454400602878580450
+      iciclemon_8: 2375187854752847907
+      iciclemon_9: -6015827092416744387
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

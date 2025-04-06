@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6385022172529430332}
   - component: {fileID: 6886661026858474359}
   - component: {fileID: 439673962530026677}
+  - component: {fileID: 1414303725209816821}
   m_Layer: 0
   m_Name: ArrowTest
   m_TagString: Untagged
@@ -192,3 +193,16 @@ MonoBehaviour:
   interval: 0.1
   lifetime: 1
   fadeSpeed: 0.5
+--- !u!114 &1414303725209816821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774133306232834283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07579571d1408b488eba2ca454fd788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0

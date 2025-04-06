@@ -21,6 +21,7 @@ public class InActionState : SkillState
         Entity.StartAction();
 
         Apply();
+        Debug.Log("In ActionState");
     }
 
     public override void Update()
@@ -39,10 +40,12 @@ public class InActionState : SkillState
     {
         Entity.CancelSelectTarget();
         Entity.ReleaseAction();
+        Debug.Log("Out ActionState");
+
     }
 
-    // Execute TypeÀÌ InputÀÏ °æ¿ì, SkillÀÇ Use ÇÔ¼ö¸¦ ÅëÇØ Use Message°¡ ³Ñ¾î¿À¸é TryApply ÇÔ¼ö¸¦ È£ÃâÇÔ
-    // Áï, SkillÀÇ ¹ßµ¿ÀÌ Update ÇÔ¼ö¿¡¼­ ÀÚµ¿(Auto)À¸·Î µÇ´Â °ÍÀÌ ¾Æ´Ï¶ó, »ç¿ëÀÚÀÇ ÀÔ·Â(Input)À» ÅëÇØ ÀÌ ÇÔ¼ö¿¡¼­ µÊ
+    // Execute Typeì´ Inputì¼ ê²½ìš°, Skillì˜ Use í•¨ìˆ˜ë¥¼ í†µí•´ Use Messageê°€ ë„˜ì–´ì˜¤ë©´ TryApply í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•¨
+    // ì¦‰, Skillì˜ ë°œë™ì´ Update í•¨ìˆ˜ì—ì„œ ìë™(Auto)ìœ¼ë¡œ ë˜ëŠ” ê²ƒì´ ì•„ë‹ˆë¼, ì‚¬ìš©ìì˜ ì…ë ¥(Input)ì„ í†µí•´ ì´ í•¨ìˆ˜ì—ì„œ ë¨
     public override bool OnReceiveMessage(int message, object data)
     {
         var stateMessage = (SkillStateMessage)message;
@@ -53,8 +56,8 @@ public class InActionState : SkillState
         {
             if (Entity.IsTargetSelectionTiming(TargetSelectionTimingOption.UseInAction))
             {
-                // SkillÀÌ SearchingÁßÀÌ ¾Æ´Ï¶ó¸é SelectTarget ÇÔ¼ö·Î ±âÁØÁ¡ °Ë»öÀ» ½ÇÇà,
-                // ±âÁØÁ¡ °Ë»öÀÌ ¼º°øÇÏ¸é OnTargetSelectionCompleted Callback ÇÔ¼ö°¡ È£ÃâµÇ¾î TryApply ÇÔ¼ö¸¦ È£ÃâÇÔ
+                // Skillì´ Searchingì¤‘ì´ ì•„ë‹ˆë¼ë©´ SelectTarget í•¨ìˆ˜ë¡œ ê¸°ì¤€ì  ê²€ìƒ‰ì„ ì‹¤í–‰,
+                // ê¸°ì¤€ì  ê²€ìƒ‰ì´ ì„±ê³µí•˜ë©´ OnTargetSelectionCompleted Callback í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì–´ TryApply í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•¨
                 if (!Entity.IsSearchingTarget)
                     Entity.SelectTarget(OnTargetSelectionCompleted);
             }

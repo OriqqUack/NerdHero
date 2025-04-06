@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChargingState : SkillState
 {
-    // Charge »óÅÂ°¡ Á¾·áµÇ¾ú´Â°¡? true¶ó¸é ´Ù¸¥ State·Î ÀüÀÌµÊ
+    // Charge ìƒíƒœê°€ ì¢…ë£Œë˜ì—ˆëŠ”ê°€? trueë¼ë©´ ë‹¤ë¥¸ Stateë¡œ ì „ì´ë¨
     public bool IsChargeEnded { get; private set; }
-    // Charge°¡ ÃÖ¼Ò ÃæÀü·®À» Ã¤¿ü°í, SkillÀÌ ±âÁØÁ¡ °Ë»ö¿¡ ¼º°øÇß´Â°¡?(=Charge¸¦ ¸¶Ä¡°í SkillÀÌ »ç¿ëµÇ¾ú´Â°¡?)
-    // À§¿Í ¸¶Âù°¡Áö·Î true¶ó¸é ´Ù¸¥ State·Î ÀüÀÌµÊ
+    // Chargeê°€ ìµœì†Œ ì¶©ì „ëŸ‰ì„ ì±„ì› ê³ , Skillì´ ê¸°ì¤€ì  ê²€ìƒ‰ì— ì„±ê³µí–ˆëŠ”ê°€?(=Chargeë¥¼ ë§ˆì¹˜ê³  Skillì´ ì‚¬ìš©ë˜ì—ˆëŠ”ê°€?)
+    // ìœ„ì™€ ë§ˆì°¬ê°€ì§€ë¡œ trueë¼ë©´ ë‹¤ë¥¸ Stateë¡œ ì „ì´ë¨
     public bool IsChargeSuccessed { get; private set; }
 
     public override void Enter()

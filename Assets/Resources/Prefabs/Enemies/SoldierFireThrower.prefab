@@ -5196,7 +5196,7 @@ RectTransform:
   m_Father: {fileID: 343134327545100024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.795, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5977,6 +5977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  CanTakeDamage: 1
+  BaseAttack: {fileID: 0}
 --- !u!114 &2760555671693953752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6227,10 +6229,10 @@ MonoBehaviour:
   hpValueText: {fileID: 0}
   skillCostFillImage: {fileID: 0}
   skillCostValueText: {fileID: 0}
-  panel: {fileID: 6684279814007415241}
+  panel: {fileID: 4156168838680346314}
+  yOffset: 0
   effectListView: {fileID: 0}
   sameAxisImage: {fileID: 1226182500174824290}
-  axisOffset: 0.3
 --- !u!1 &4613948556945507543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6393,7 +6395,7 @@ RectTransform:
   m_Father: {fileID: 343134327545100024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.211, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.00048828125, y: 0.5994873}
   m_SizeDelta: {x: -0.00048828125, y: -2.4210048}
   m_Pivot: {x: 0.5, y: 0.5}

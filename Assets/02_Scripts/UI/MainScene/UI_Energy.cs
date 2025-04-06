@@ -45,9 +45,11 @@ public class UI_Energy : MonoBehaviour
         energyManager.UseEnergy(5);
     }
 
+    #if UNITY_EDITOR
     [ContextMenu("Init Energy Count")]
     public void InitEnergyCount()
     {
         energyManager.ClearEnergy();
     }
+    #endif
 }

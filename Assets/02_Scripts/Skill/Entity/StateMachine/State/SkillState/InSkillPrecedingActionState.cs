@@ -14,7 +14,7 @@ public class InSkillPrecedingActionState : EntitySkillState
         if (!base.OnReceiveMessage(message, data))
             return false;
         var tupleData = ((Skill, AnimatorParameter))data;
-        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 2);
+        Entity.Animator?.PlayOneShot(tupleData.Item2.name, 1);
         return true;
     }
 }

@@ -20,7 +20,6 @@ public class Projectile : MonoBehaviour
     {
         this.owner = owner;
         this.speed = speed;
-        transform.right = direction;
         this.direction = direction;
         this.skill = skill.Clone() as Skill;
     }
@@ -39,16 +38,14 @@ public class Projectile : MonoBehaviour
     {
         if (!skill) return;
 
-        if (!other.CompareTag("Ground"))
-        {
-            Entity entity = other.gameObject.GetComponent<Entity>();
-            if (!entity) return;
-            if (entity == owner) return;
-            if (entity.ControlType == owner.ControlType) return;
-            
-            if (entity)
-                entity.SkillSystem.Apply(skill);
-        }
+        
+        Entity entity = other.gameObject.GetComponent<Entity>();
+        if (!entity) return;
+        if (entity == owner) return;
+        if (entity.ControlType == owner.ControlType) return;
+        
+        if (entity)
+            entity.SkillSystem.Apply(skill);
 
         if (impactPrefab)
         {
@@ -58,6 +55,6 @@ public class Projectile : MonoBehaviour
         }
 
         if(!isBouncing)
-            Destroy(gameObject);
+            Managers.Resource.Destroy(gameObject);
     }
 }

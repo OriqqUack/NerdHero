@@ -42,6 +42,7 @@ public class Entity : MonoBehaviour
     public SkillSystem SkillSystem { get; private set; }
     public Entity Target { get; set; }
     public Rigidbody Rigidbody => _rigidbody;
+    public BaseAttackCheck BaseAttack;
     
     private Coroutine _coroutine;
 
@@ -78,7 +79,8 @@ public class Entity : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponent<Collider>();
         
-        transform.Find("BaseAttackCheck")?.GetComponent<BaseAttackCheck>()?.Setup(this);
+        BaseAttack = transform.Find("BaseAttackCheck")?.GetComponent<BaseAttackCheck>();
+        BaseAttack?.Setup(this);
     }
 
     private void Start()
@@ -99,15 +101,15 @@ public class Entity : MonoBehaviour
         float prevValue = Stats.HPStat.DefaultValue;
         Stats.HPStat.DefaultValue -= damage;
 
-        if (Animator.HasAnimation("damaged")) 
+        if (Animator.HasAnimation("damaged") && controlType != EntityControlType.Player) 
             Animator.PlayOneShot("damaged", 0);
-            
+        
         onTakeDamage?.Invoke(this, instigator, causer, damage);
 
         if (Mathf.Approximately(Stats.HPStat.DefaultValue, 0f))
             OnDead();
     }
-
+    
     private void OnDead()
     {
         if (Movement)
@@ -119,8 +121,9 @@ public class Entity : MonoBehaviour
         SkillSystem.CancelAll(true);
         
         onDead?.Invoke(this);
-        Animator.PlayOneShot("dead", 0, () => Destroy(gameObject, 3.0f));
-        Animator.ClearAnimations();
+        
+        if(ControlType != EntityControlType.Player)
+            Animator.PlayOneShot("dead", 0, 0, () => Destroy(gameObject));
     }
     #endregion
 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8079234749191343907}
   - component: {fileID: 6385022172529430332}
   - component: {fileID: 6886661026858474359}
+  - component: {fileID: 7521850147728114670}
   m_Layer: 0
   m_Name: ArrowTest 1
   m_TagString: Untagged
@@ -110,3 +111,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7521850147728114670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774133306232834283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07579571d1408b488eba2ca454fd788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0

@@ -60,6 +60,12 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
     {
         foreach ((var traceTarget, var elementGroup) in elementGroupsByTarget)
         {
+            if (traceTarget == null)
+            {
+                removeTargetQueue.Enqueue(traceTarget);
+                continue;
+            }
+
             UpdatePosition(elementGroup);
 
             foreach (var elementData in elementGroup.ElementDatas)
@@ -92,7 +98,7 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
                     Destroy(targetElementData.TextMesh.gameObject);
                 if (targetElementData.Icon != null)
                     Destroy(targetElementData.Icon.gameObject);
-                
+                    
                 elementGroup.RemoveData(targetElementData);
             }
 
@@ -103,8 +109,23 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
         while (removeTargetQueue.Count > 0)
         {
             var removeTarget = removeTargetQueue.Dequeue();
-            Destroy(elementGroupsByTarget[removeTarget].GroupTransform.gameObject);
-            elementGroupsByTarget.Remove(removeTarget);
+
+            // ✅ null check 필요: 이미 null일 수도 있음
+            if (removeTarget != null && elementGroupsByTarget.ContainsKey(removeTarget))
+            {
+                Destroy(elementGroupsByTarget[removeTarget].GroupTransform.gameObject);
+                elementGroupsByTarget.Remove(removeTarget);
+            }
+            else
+            {
+                // traceTarget이 null일 때를 위한 예외 처리
+                var nullGroup = elementGroupsByTarget.FirstOrDefault(pair => pair.Key == null);
+                if (nullGroup.Value != null)
+                {
+                    Destroy(nullGroup.Value.GroupTransform.gameObject);
+                    elementGroupsByTarget.Remove(nullGroup.Key);
+                }
+            }
         }
     }
 

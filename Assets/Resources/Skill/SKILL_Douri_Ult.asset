@@ -37,7 +37,7 @@ MonoBehaviour:
     levelUpConditions: []
     levelUpCosts: []
     precedingAction:
-      rid: 416588489734226022
+      rid: -2
     action:
       rid: 416588489734226023
     runningFinishOption: 0
@@ -69,29 +69,31 @@ MonoBehaviour:
     inSkillActionFinishOption: 2
     castAnimatorParamter:
       type: 0
+      index: 0
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
       name: 
     actionAnimatorParameter:
       type: 0
-      name: ult
+      index: 0
+      name: comp/ult
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
     customActionsOnAction:
     - rid: 9209176293260656945
+    - rid: 416588556261916782
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 416588489734226022
-      type: {class: TestSkillPreceidingAction, ns: Test, asm: Assembly-CSharp}
-      data: 
     - rid: 416588489734226023
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:
@@ -112,6 +114,9 @@ MonoBehaviour:
         indicatorViewAction:
           rid: -2
         isUseScale: 0
+    - rid: 416588556261916782
+      type: {class: InvincibilityModeAction, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 9209176293260656945
       type: {class: PlayAnimationAction, ns: , asm: Assembly-CSharp}
       data:

@@ -65,6 +65,7 @@ public class Slime : MonoBehaviour
         else if (e.Data.Name == onEndName)
         {
             navMeshAgent.isStopped = true;
+            navMeshAgent.velocity = Vector3.zero;
             isMoving = false;
         }
     }

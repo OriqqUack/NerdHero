@@ -47,6 +47,7 @@ namespace Spine.Unity.Examples {
 		private Spine.Animation previousAnimation; // 이전 애니메이션 저장
 		private Dictionary<int, int> originalAnimations = new Dictionary<int, int>();
 		private Dictionary<int, TrackEntry> currentEntries = new Dictionary<int, TrackEntry>();
+		private Dictionary<int, Coroutine> _currentCoroutines = new Dictionary<int, Coroutine>();
 		
 		[System.Serializable]
 		public class StateNameToAnimationReference {
@@ -106,6 +107,14 @@ namespace Spine.Unity.Examples {
 			PlayNewAnimation(foundAnimation, layerIndex);
 		}
 
+		public void SetOriginalAnimation(string stateShortName, int layerIndex)
+		{
+			int shortNameHash = StringToHash(stateShortName);
+			
+			if(!originalAnimations.TryAdd(layerIndex, shortNameHash))
+				originalAnimations[layerIndex] = shortNameHash;
+		}
+
 		/// <summary>Gets a Spine Animation based on the state name.</summary>
 		public Spine.Animation GetAnimationForState (string stateShortName) {
 			return GetAnimationForState(StringToHash(stateShortName));
@@ -118,19 +127,25 @@ namespace Spine.Unity.Examples {
 		}
 
 		/// <summary>Play an animation. If a transition animation is defined, the transition is played before the target animation being passed.</summary>
-		public void PlayNewAnimation (Spine.Animation target, int layerIndex) {
+		public void PlayNewAnimation(Spine.Animation target, int layerIndex, float timeScale = 1f) 
+		{
 			Spine.Animation transition = null;
-			Spine.Animation current = null;
-
-			current = GetCurrentAnimation(layerIndex);
+			Spine.Animation current = GetCurrentAnimation(layerIndex);
 			if (current != null)
 				transition = TryGetTransition(current, target);
 
+			if (_currentCoroutines.TryGetValue(layerIndex, out var running))
+				skeletonAnimation.StopCoroutine(running);
+
 			if (transition != null) {
-				skeletonAnimation.AnimationState.SetAnimation(layerIndex, transition, false);
-				skeletonAnimation.AnimationState.AddAnimation(layerIndex, target, true, 0f);
+				var transitionEntry = skeletonAnimation.AnimationState.SetAnimation(layerIndex, transition, false);
+				transitionEntry.TimeScale = timeScale;
+
+				var targetEntry = skeletonAnimation.AnimationState.AddAnimation(layerIndex, target, true, 0f);
+				targetEntry.TimeScale = timeScale;
 			} else {
-				skeletonAnimation.AnimationState.SetAnimation(layerIndex, target, true);
+				var targetEntry = skeletonAnimation.AnimationState.SetAnimation(layerIndex, target, true);
+				targetEntry.TimeScale = timeScale;
 			}
 
 			this.TargetAnimation = target;
@@ -147,37 +162,59 @@ namespace Spine.Unity.Examples {
 
 			state.AddAnimation(layerIndex, this.TargetAnimation, true, 0f);
 		}*/
-		
-		public TrackEntry PlayOneShot(Spine.Animation oneShot, int layerIndex, Action callback = null)
+		public TrackEntry PlayOneShot(string stateShortName, int layerIndex, float duration = 0f, Action callback = null, float timeScale = 1f)
 		{
+			Spine.Animation oneShot = GetAnimationForState(stateShortName);
+			return PlayOneShot(oneShot, layerIndex, duration, callback, timeScale);
+		}
+		
+		public TrackEntry PlayOneShot(Spine.Animation oneShot, int layerIndex, float duration = 0f, Action callback = null, float timeScale = 1f) {
 			if (oneShot == null) return null;
 
 			AnimationState state = skeletonAnimation.AnimationState;
 			TrackEntry entry = state.SetAnimation(layerIndex, oneShot, false);
-			
-			if(!currentEntries.TryAdd(layerIndex, entry))
-				currentEntries[layerIndex] = entry;
-			
-			entry.Complete += delegate
-			{
-				if (currentEntries[layerIndex] != entry) return;
+			entry.TimeScale = timeScale; // 속도 조절 추가
 
-				Debug.Log($"LayIndex : {layerIndex} END");
-				callback?.Invoke();
-				if (originalAnimations.TryGetValue(layerIndex, out int index))
-				{
-					PlayAnimationForState(index, layerIndex);
-				}
-			};
-			
+			if (!currentEntries.TryAdd(layerIndex, entry))
+				currentEntries[layerIndex] = entry;
+
+			if (_currentCoroutines.TryGetValue(layerIndex, out var running))
+				skeletonAnimation.StopCoroutine(running);
+
+			if (duration > 0f) {
+				var coroutine = skeletonAnimation.StartCoroutine(PlayAndRevertAfterDelay(layerIndex, entry, duration, callback));
+				_currentCoroutines[layerIndex] = coroutine;
+			} else {
+				entry.Complete += delegate {
+					if (currentEntries[layerIndex] != entry) return;
+
+					callback?.Invoke();
+
+					if (originalAnimations.TryGetValue(layerIndex, out int index)) {
+						PlayAnimationForState(index, layerIndex);
+					}
+				};
+			}
+
 			return entry;
 		}
 
-		public TrackEntry PlayOneShot(string stateShortName, int layerIndex, Action callback = null)
+		private IEnumerator PlayAndRevertAfterDelay(int layerIndex, TrackEntry entry, float duration, Action callback)
 		{
-			Spine.Animation oneShot = GetAnimationForState(stateShortName);
-			return PlayOneShot(oneShot, layerIndex, callback);
+			yield return new WaitForSeconds(duration);
+
+			if (currentEntries[layerIndex] != entry) yield break;
+
+			Debug.Log($"LayIndex : {layerIndex} END (Duration: {duration}s)");
+			callback?.Invoke();
+
+			if (originalAnimations.TryGetValue(layerIndex, out int index))
+			{
+				PlayAnimationForState(index, layerIndex);
+			}
 		}
+
+		
 
 		public bool HasAnimation(string animationName)
 		{

@@ -38,6 +38,9 @@ TextureImporter:
   - first:
       213: -1071876908328471809
     second: slime_11
+  - first:
+      213: 7065398221910334755
+    second: slime_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -164,8 +167,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 110
-        width: 264
-        height: 244
+        width: 411
+        height: 226
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,7 +187,7 @@ TextureImporter:
       name: slime_1
       rect:
         serializedVersion: 2
-        x: 265
+        x: 412
         y: 173
         width: 253
         height: 249
@@ -206,7 +209,7 @@ TextureImporter:
       name: slime_2
       rect:
         serializedVersion: 2
-        x: 518
+        x: 665
         y: 198
         width: 351
         height: 267
@@ -228,8 +231,8 @@ TextureImporter:
       name: slime_3
       rect:
         serializedVersion: 2
-        x: 869
-        y: 227
+        x: 1016
+        y: 245
         width: 901
         height: 679
       alignment: 0
@@ -250,10 +253,10 @@ TextureImporter:
       name: slime_4
       rect:
         serializedVersion: 2
-        x: 1639
+        x: 1782
         y: 1
-        width: 411
-        height: 226
+        width: 264
+        height: 244
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,8 +277,8 @@ TextureImporter:
         serializedVersion: 2
         x: 1
         y: 1
-        width: 191
-        height: 91
+        width: 143
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +297,10 @@ TextureImporter:
       name: slime_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 144
         y: 1
-        width: 199
-        height: 109
+        width: 191
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +319,10 @@ TextureImporter:
       name: slime_7
       rect:
         serializedVersion: 2
-        x: 391
+        x: 335
         y: 1
-        width: 229
-        height: 172
+        width: 199
+        height: 109
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,10 +341,10 @@ TextureImporter:
       name: slime_8
       rect:
         serializedVersion: 2
-        x: 620
+        x: 534
         y: 1
-        width: 256
-        height: 197
+        width: 229
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +363,10 @@ TextureImporter:
       name: slime_9
       rect:
         serializedVersion: 2
-        x: 876
+        x: 763
         y: 1
-        width: 248
-        height: 204
+        width: 256
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,10 +385,10 @@ TextureImporter:
       name: slime_10
       rect:
         serializedVersion: 2
-        x: 1124
+        x: 1019
         y: 1
-        width: 275
-        height: 214
+        width: 248
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,7 +407,29 @@ TextureImporter:
       name: slime_11
       rect:
         serializedVersion: 2
-        x: 1399
+        x: 1267
+        y: 1
+        width: 275
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff2332481adef11f0800000000000000
+      internalID: -1071876908328471809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: slime_12
+      rect:
+        serializedVersion: 2
+        x: 1542
         y: 1
         width: 240
         height: 219
@@ -416,8 +441,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff2332481adef11f0800000000000000
-      internalID: -1071876908328471809
+      spriteID: 32d54adaf365d0260800000000000000
+      internalID: 7065398221910334755
       vertices: []
       indices: 
       edges: []
@@ -440,6 +465,7 @@ TextureImporter:
       slime_1: -458641133534639524
       slime_10: 574139385759250185
       slime_11: -1071876908328471809
+      slime_12: 7065398221910334755
       slime_2: 2542698315722941828
       slime_3: -3711818451352614709
       slime_4: -6875693984060724655

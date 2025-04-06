@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_GameEnd : UI_Popup
+public class UI_GameEnd : UiWindow
 {
     [SerializeField] private GameObject panel;
     
@@ -15,8 +15,7 @@ public class UI_GameEnd : UI_Popup
     [SerializeField] private Button acceptButton;
     private void Start()
     {
-        WaveManager.Instance.OnWaveEnd += OpenUI;
-        panel.SetActive(false);
+        OpenUI();
         acceptButton.onClick.AddListener(() => OnClickGoMainGame());
     }
 
@@ -25,8 +24,6 @@ public class UI_GameEnd : UI_Popup
         TimerSetting();
         WaveSetting();
         ItemSlotSetting();
-        
-        panel.SetActive(true);
     }
 
     private void TimerSetting()
