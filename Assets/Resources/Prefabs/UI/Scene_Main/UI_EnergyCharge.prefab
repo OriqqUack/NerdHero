@@ -312,7 +312,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -3192593074844828556}
         m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: CloseUI
+        m_MethodName: Close
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

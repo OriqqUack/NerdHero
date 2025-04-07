@@ -101,7 +101,7 @@ MonoBehaviour:
   rigidBody: {fileID: 5344927557495184894}
   isCC: 0
   jumpSpeed: 30
-  isKeyBoard: 0
+  isKeyBoard: 1
   canTakeDamageTime: 3
 --- !u!114 &2825511820645981016
 MonoBehaviour:

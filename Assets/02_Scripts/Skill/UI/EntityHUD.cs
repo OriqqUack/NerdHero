@@ -119,7 +119,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
         hpFollowFillAmount.value = value; 
     }
 
-private void ReleaseEvents()
+    private void ReleaseEvents()
     {
         if (!target)
             return;
