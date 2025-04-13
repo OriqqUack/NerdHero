@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class ProjectileParabolic : Projectile
 {
     [SerializeField] private float angle;
+    [SerializeField] private GameObject shadow;
+    
     public override void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
     {
         base.Setup(owner, speed, direction, skill);

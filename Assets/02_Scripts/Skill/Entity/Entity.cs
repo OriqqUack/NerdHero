@@ -123,7 +123,7 @@ public class Entity : MonoBehaviour
         onDead?.Invoke(this);
         
         if(ControlType != EntityControlType.Player)
-            Animator.PlayOneShot("dead", 0, 0, () => Destroy(gameObject));
+            Animator.PlayOneShot("dead", 0, 0, () => Destroy(transform.parent.gameObject));
     }
     #endregion
 

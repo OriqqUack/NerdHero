@@ -19,6 +19,8 @@ public class Effect : IdentifiedObject
 
     [SerializeField]
     private EffectType type;
+    [SerializeField]
+    private EffectRarity rarity;
     // Effect의 중복 적용 가능 여부
     [SerializeField]
     private bool isAllowDuplicate = true;
@@ -61,6 +63,7 @@ public class Effect : IdentifiedObject
 
     #region 10-2
     public EffectType Type => type;
+    public EffectRarity Rarity => rarity;
     public bool IsAllowDuplicate => isAllowDuplicate;
     public EffectRemoveDuplicateTargetOption RemoveDuplicateTargetOption => removeDuplicateTargetOption;
 

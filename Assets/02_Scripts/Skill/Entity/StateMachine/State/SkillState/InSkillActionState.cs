@@ -12,8 +12,8 @@ public class InSkillActionState : EntitySkillState
         // AnimatorParameter�� false��� State�� ����
         if (RunningSkill.InSkillActionFinishOption == InSkillActionFinishOption.FinishWhenAnimationEnded)
         {
-            /*string anim = Entity.Animator.GetCurrentAnimation(1)?.Name;
-            Debug.Log($"Current Animation Name : " + anim);*/
+            string anim = Entity.Animator.GetCurrentAnimation(1)?.Name;
+            Debug.Log($"{Entity.gameObject.name} = Current Animation Name : " + anim);
             IsStateEnded = Entity.Animator.GetCurrentAnimation(layerIndex)?.Name != AnimatorParameterName;
         }
     }

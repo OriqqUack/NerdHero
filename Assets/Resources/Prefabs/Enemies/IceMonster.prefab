@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 5098459124865139537}
   - component: {fileID: 7875049544370943486}
   - component: {fileID: 8373874295743683218}
+  - component: {fileID: 7782513143727301479}
   m_Layer: 10
   m_Name: Object
   m_TagString: Untagged
@@ -234,17 +235,17 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 412342702294098815}
   statesAndAnimations:
   - stateName: run
-    animation: {fileID: 11400000, guid: c1164c285d0a3e2489221f942630e2cd, type: 2}
+    animation: {fileID: 11400000, guid: b18d824df0321a24392959e26bbf47c1, type: 2}
   - stateName: idle
-    animation: {fileID: 11400000, guid: 87dde2f2907d8cb41bc2bc880c189d70, type: 2}
-  - stateName: attack
-    animation: {fileID: 11400000, guid: fbf40ad0bfd85d64c9b21cb0b79fe7e2, type: 2}
+    animation: {fileID: 11400000, guid: e546e28ef59b4a04fb9e7b298bce526b, type: 2}
+  - stateName: comp/attack2
+    animation: {fileID: 11400000, guid: 0881224d7e283a74cadeb99cfecfde89, type: 2}
   - stateName: dead
-    animation: {fileID: 11400000, guid: 66ddf4a7c2a6e874a99eafcc50152ed4, type: 2}
+    animation: {fileID: 11400000, guid: 3deb7a00febf34549bf882308a45697d, type: 2}
   - stateName: damaged
-    animation: {fileID: 11400000, guid: d145cd6130404b64a93cc06eeefd3008, type: 2}
+    animation: {fileID: 11400000, guid: 1c9a7907f9cc76c44b08ead7ee8923bf, type: 2}
   - stateName: walk
-    animation: {fileID: 11400000, guid: c1164c285d0a3e2489221f942630e2cd, type: 2}
+    animation: {fileID: 11400000, guid: b18d824df0321a24392959e26bbf47c1, type: 2}
   transitions: []
 --- !u!114 &6780030090404565587
 MonoBehaviour:
@@ -343,6 +344,7 @@ MonoBehaviour:
   categories: []
   controlType: 1
   CanTakeDamage: 1
+  BaseAttack: {fileID: 0}
 --- !u!114 &3194240668901909413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +521,7 @@ MonoBehaviour:
         Target Insight","Instant":true,"SinglefieldOfViewAngle":45,"SingleviewDistance":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(88.2995,135.582031)"},"ID":8,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.960335,116.030945)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-83.33332,140.952637)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CanUseSkill","NodeData":{"Offset":"(-350.520935,136.351913)"},"ID":11,"Name":"Can
         Use Skill","Instant":true,"Int32skillIndex":0},{"Type":"TracingAction","NodeData":{"Offset":"(-203.069016,141.3086)"},"ID":12,"Name":"Tracing
         Action","Instant":true,"SingleTracingTime":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":13,"Name":"Skill
-        Use Action","Instant":true,"StringeventName":"attack","StringanimationName":"attack","Int32skillIndex":0,"BooleanlogDebugMessage":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":15,"Name":"Random
+        Use Action","Instant":true,"StringeventName":"attack","StringanimationName":"","Int32skillIndex":0,"BooleanlogDebugMessage":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":15,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(120,137.619141)"},"ID":16,"Name":"Wait
         Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(249.982574,136.24852)"},"ID":17,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-112.960663,169.813843)"},"ID":18,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(65.3946838,168.53418)"},"ID":19,"Name":"Wait
@@ -610,6 +612,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7bae6ef770c1f84999e6028ea198de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7782513143727301479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708788661457796358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c867a3cc99e7f9b4499f14dbc8451ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillEventName:
+  - attack
+  nonSkillEventName: []
+  runningEffect: {fileID: 0}
+  onEndName: 
 --- !u!1 &1580346654182386670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,13 +1901,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c7f27a3c300610f4690530187ff045c2, type: 2}
-  - {fileID: 2100000, guid: b24d142525da88a4a9f2d2cd8929776c, type: 2}
-  - {fileID: 2100000, guid: c7f27a3c300610f4690530187ff045c2, type: 2}
-  - {fileID: 2100000, guid: b24d142525da88a4a9f2d2cd8929776c, type: 2}
-  - {fileID: 2100000, guid: c7f27a3c300610f4690530187ff045c2, type: 2}
-  - {fileID: 2100000, guid: b24d142525da88a4a9f2d2cd8929776c, type: 2}
-  - {fileID: 2100000, guid: c7f27a3c300610f4690530187ff045c2, type: 2}
+  - {fileID: 2100000, guid: 77458e7e62125fc468134da639bf9d42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

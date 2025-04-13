@@ -15,6 +15,7 @@ public class StraightMoveAction : EnemyAction
         entityMovement.Destination = transform.position + transform.forward * moveDistance;
 
         agent.speed += runSpeedOffset;
+        animator.PlayAnimationForState("sliding", 0);
     }
     
     public override void OnCollisionEnter(Collision collision)

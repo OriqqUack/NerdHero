@@ -9,6 +9,7 @@ using UnityEditor;
 public class EffectEditor : IdentifiedObjectEditor
 {
     private SerializedProperty typeProperty;
+    private SerializedProperty rarityProperty;
     private SerializedProperty isAllowDuplicateProperty;
     private SerializedProperty removeDuplicateTargetOptionProperty;
 
@@ -23,6 +24,7 @@ public class EffectEditor : IdentifiedObjectEditor
         base.OnEnable();
 
         typeProperty = serializedObject.FindProperty("type");
+        rarityProperty = serializedObject.FindProperty("rarity");
         isAllowDuplicateProperty = serializedObject.FindProperty("isAllowDuplicate");
         removeDuplicateTargetOptionProperty = serializedObject.FindProperty("removeDuplicateTargetOption");
 
@@ -40,7 +42,7 @@ public class EffectEditor : IdentifiedObjectEditor
 
         serializedObject.Update();
 
-        // Lebel(=InpectorÃ¢¿¡ Ç¥½ÃµÇ´Â º¯¼öÀÇ ÀÌ¸§)ÀÇ ±æÀÌ¸¦ ´Ã¸²;
+        // Lebel(=InpectorÃ¢ï¿½ï¿½ Ç¥ï¿½ÃµÇ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ã¸ï¿½;
         float prevLevelWidth = EditorGUIUtility.labelWidth;
         EditorGUIUtility.labelWidth = 175f;
 
@@ -48,7 +50,7 @@ public class EffectEditor : IdentifiedObjectEditor
         DrawOptions();
         DrawEffectDatas();
 
-        // LabelÀÇ ±æÀÌ¸¦ ¿ø·¡´ë·Î µÇµ¹¸²
+        // Labelï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½
         EditorGUIUtility.labelWidth = prevLevelWidth;
 
         serializedObject.ApplyModifiedProperties();
@@ -59,16 +61,19 @@ public class EffectEditor : IdentifiedObjectEditor
         if (!DrawFoldoutTitle("Setting"))
             return;
         
-        // EnumÀ» Toolbar ÇüÅÂ·Î ±×·ÁÁÜ
+        // Enumï¿½ï¿½ Toolbar ï¿½ï¿½ï¿½Â·ï¿½ ï¿½×·ï¿½ï¿½ï¿½
         CustomEditorUtility.DrawEnumToolbar(typeProperty);
 
         EditorGUILayout.Space();
         CustomEditorUtility.DrawUnderline();
         EditorGUILayout.Space();
-
+        CustomEditorUtility.DrawEnumToolbar(rarityProperty);
+        EditorGUILayout.Space();
+        CustomEditorUtility.DrawUnderline();
+        EditorGUILayout.Space();
         EditorGUILayout.PropertyField(isAllowDuplicateProperty);
-        // Áßº¹ Àû¿ë Çã¿ë OptionÀÌ true¶ó¸é Áßº¹ Effect¸¦ Áö¿ï ÇÊ¿ä°¡ ¾øÀ¸¹Ç·Î
-        // removeDuplicateTargetOption º¯¼ö¸¦ ±×¸®Áö ¾ÊÀ½
+        // ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Optionï¿½ï¿½ trueï¿½ï¿½ï¿½ ï¿½ßºï¿½ Effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½
+        // removeDuplicateTargetOption ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (!isAllowDuplicateProperty.boolValue)
             CustomEditorUtility.DrawEnumToolbar(removeDuplicateTargetOptionProperty);
     }
@@ -83,12 +88,12 @@ public class EffectEditor : IdentifiedObjectEditor
 
     private void DrawEffectDatas()
     {
-        // EffectÀÇ Data°¡ ¾Æ¹«°Íµµ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é 1°³¸¦ ÀÚµ¿ÀûÀ¸·Î ¸¸µé¾îÁÜ
+        // Effectï¿½ï¿½ Dataï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (effectDatasProperty.arraySize == 0)
         {
-            // ¹è¿­ ±æÀÌ¸¦ ´Ã·Á¼­ »õ·Î¿î Element¸¦ »ý¼º
+            // ï¿½è¿­ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Elementï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             effectDatasProperty.arraySize++;
-            // Ãß°¡ÇÑ DataÀÇ LevelÀ» 1·Î ¼³Á¤
+            // ï¿½ß°ï¿½ï¿½ï¿½ Dataï¿½ï¿½ Levelï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             effectDatasProperty.GetArrayElementAtIndex(0).FindPropertyRelative("level").intValue = 1;
         }
 
@@ -97,53 +102,53 @@ public class EffectEditor : IdentifiedObjectEditor
 
         EditorGUILayout.PropertyField(isAllowLevelExceedDatasProperty);
 
-        // Level »óÇÑ Á¦ÇÑÀÌ ¾ø´Ù¸é MaxLevelÀ» ±×´ë·Î ±×·ÁÁÖ°í,
-        // »óÇÑ Á¦ÇÑÀÌ ÀÖ´Ù¸é MaxLevelÀ» »óÇÑÀ¸·Î °íÁ¤ ½ÃÅ°´Â ÀÛ¾÷À» ÇÔ
+        // Level ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ MaxLevelï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö°ï¿½,
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ MaxLevelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½
         if (isAllowLevelExceedDatasProperty.boolValue)
             EditorGUILayout.PropertyField(maxLevelProperty);
         else
         {
-            // Property¸¦ ¼öÁ¤ÇÏÁö ¸øÇÏ°Ô GUI EnableÀÇ false·Î ¹Ù²Þ
+            // Propertyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ GUI Enableï¿½ï¿½ falseï¿½ï¿½ ï¿½Ù²ï¿½
             GUI.enabled = false;
-            // ¸¶Áö¸· EffectData(= °¡Àå ³ôÀº LevelÀÇ Data)¸¦ °¡Á®¿È
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ EffectData(= ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Levelï¿½ï¿½ Data)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             var lastEffectData = effectDatasProperty.GetArrayElementAtIndex(effectDatasProperty.arraySize - 1);
-            // maxLevelÀ» ¸¶Áö¸· DataÀÇ Level·Î °íÁ¤
+            // maxLevelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             maxLevelProperty.intValue = lastEffectData.FindPropertyRelative("level").intValue;
-            // maxLevel Property¸¦ ±×·ÁÁÜ
+            // maxLevel Propertyï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
             EditorGUILayout.PropertyField(maxLevelProperty);
             GUI.enabled = true;
         }
 
-        // effectDatas¸¦ µ¹¸é¼­ GUI¸¦ ±×·ÁÁÜ
+        // effectDatasï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ GUIï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
         for (int i = 0; i < effectDatasProperty.arraySize; i++)
         {
             var property = effectDatasProperty.GetArrayElementAtIndex(i);
 
             EditorGUILayout.BeginVertical("HelpBox");
             {
-                // DataÀÇ Level°ú Data »èÁ¦¸¦ À§ÇÑ X ButtonÀ» ±×·ÁÁÖ´Â Foldout TitleÀ» ±×·ÁÁÜ
-                // ´Ü, Ã¹¹øÂ° Data(= index 0) Áö¿ì¸é ¾ÈµÇ±â ¶§¹®¿¡ X ButtonÀ» ±×·ÁÁÖÁö ¾ÊÀ½
-                // X ButtonÀ» ´­·¯¼­ Data°¡ Áö¿öÁö¸é true¸¦ returnÇÔ
+                // Dataï¿½ï¿½ Levelï¿½ï¿½ Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ X Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ Foldout Titleï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
+                // ï¿½ï¿½, Ã¹ï¿½ï¿½Â° Data(= index 0) ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ X Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                // X Buttonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ returnï¿½ï¿½
                 if (DrawRemovableLevelFoldout(effectDatasProperty, property, i, i != 0))
                 {
-                    // Data°¡ »èÁ¦µÇ¾úÀ¸¸ç ´õ ÀÌ»ó GUI¸¦ ±×¸®Áö ¾Ê°í ¹Ù·Î ºüÁ®³ª°¨
-                    // ´ÙÀ½ Frame¿¡ Ã³À½ºÎÅÍ ´Ù½Ã ±×¸®±â À§ÇÔ
+                    // Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì»ï¿½ GUIï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½ Frameï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     EditorGUILayout.EndVertical();
                     break;
                 }
 
                 if (property.isExpanded)
                 {
-                    // µé¿©¾²±â
+                    // ï¿½é¿©ï¿½ï¿½ï¿½ï¿½
                     EditorGUI.indentLevel += 1;
 
                     var levelProperty = property.FindPropertyRelative("level");
-                    // Level Property¸¦ ±×·ÁÁÖ¸é¼­ Level °ªÀÌ ¼öÁ¤µÇ¸é LevelÀ» ±âÁØÀ¸·Î EffectDatas¸¦ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇØÁÜ
+                    // Level Propertyï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö¸é¼­ Level ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ EffectDatasï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     DrawAutoSortLevelProperty(effectDatasProperty, levelProperty, i, i != 0);
 
                     var maxStackProperty = property.FindPropertyRelative("maxStack");
                     EditorGUILayout.PropertyField(maxStackProperty);
-                    // maxStackÀÇ ÃÖ¼Ò °ªÀ» 1 ÀÌÇÏ·Î ³»¸®Áö ¸øÇÏ°Ô ÇÔ
+                    // maxStackï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½
                     maxStackProperty.intValue = Mathf.Max(maxStackProperty.intValue, 1);
 
                     var stackActionsProperty = property.FindPropertyRelative("stackActions");
@@ -151,25 +156,25 @@ public class EffectEditor : IdentifiedObjectEditor
 
                     EditorGUILayout.PropertyField(stackActionsProperty);
 
-                    // stackActions¿¡ Element°¡ Ãß°¡µÆ´Ù¸é, »õ·Î Ãß°¡µÈ ElementÀÇ Soft CopyµÈ action º¯¼ö¸¦ Deep Copy ÇØÁÜ
+                    // stackActionsï¿½ï¿½ Elementï¿½ï¿½ ï¿½ß°ï¿½ï¿½Æ´Ù¸ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ Elementï¿½ï¿½ Soft Copyï¿½ï¿½ action ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Deep Copy ï¿½ï¿½ï¿½ï¿½
                     if (stackActionsProperty.arraySize > prevStackActionsSize)
                     {
-                        // ¸¶Áö¸· ¹è¿­ Element(=»õ·Î ¸¸µé¾îÁø Element)¸¦ °¡Á®¿È
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ Element(=ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Element)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         var lastStackActionProperty = stackActionsProperty.GetArrayElementAtIndex(prevStackActionsSize);
-                        // Elememy¿¡¼­ action Property¸¦ Ã£¾Æ¿È
+                        // Elememyï¿½ï¿½ï¿½ï¿½ action Propertyï¿½ï¿½ Ã£ï¿½Æ¿ï¿½
                         var actionProperty = lastStackActionProperty.FindPropertyRelative("action");
-                        // Deep Copy ÇØÁÜ
+                        // Deep Copy ï¿½ï¿½ï¿½ï¿½
                         CustomEditorUtility.DeepCopySerializeReference(actionProperty);
                     }
 
-                    // StackActionµéÀÇ stack º¯¼ö¿¡ ÀÔ·Â °¡´ÉÇÑ ÃÖ´ë °ªÀ» MaxStack °ªÀ¸·Î Á¦ÇÑ
+                    // StackActionï¿½ï¿½ï¿½ï¿½ stack ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ MaxStack ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     for (int stackActionIndex = 0; stackActionIndex < stackActionsProperty.arraySize; stackActionIndex++)
                     {
-                        // Element¸¦ °¡Á®¿È
+                        // Elementï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         var stackActionProperty = stackActionsProperty.GetArrayElementAtIndex(stackActionIndex);
-                        // Element¿¡¼­ stack Property¸¦ Ã£¾Æ¿È
+                        // Elementï¿½ï¿½ï¿½ï¿½ stack Propertyï¿½ï¿½ Ã£ï¿½Æ¿ï¿½
                         var stackProperty = stackActionProperty.FindPropertyRelative("stack");
-                        // 1~MaxStackÀ¸·Î °ª Á¦ÇÑ
+                        // 1~MaxStackï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         stackProperty.intValue = Mathf.Clamp(stackProperty.intValue, 1, maxStackProperty.intValue);
                     }
 
@@ -182,33 +187,33 @@ public class EffectEditor : IdentifiedObjectEditor
 
                     EditorGUILayout.PropertyField(property.FindPropertyRelative("customActions"));
 
-                    // µé¿©¾²±â Á¾·á
+                    // ï¿½é¿©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     EditorGUI.indentLevel -= 1;
                 }
             }
             EditorGUILayout.EndVertical();
         }
 
-        // EffectDatas¿¡ »õ·Î¿î Data¸¦ Ãß°¡ÇÏ´Â Button
+        // EffectDatasï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Dataï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï´ï¿½ Button
         if (GUILayout.Button("Add New Level"))
         {
-            // ¹è¿­ ±æÀÌ¸¦ ´Ã·Á¼­ »õ·Î¿î Element¸¦ »ý¼º
+            // ï¿½è¿­ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Elementï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             var lastArraySize = effectDatasProperty.arraySize++;
-            // ÀÌÀü Element Property¸¦ °¡Á®¿È
+            // ï¿½ï¿½ï¿½ï¿½ Element Propertyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             var prevElementProperty = effectDatasProperty.GetArrayElementAtIndex(lastArraySize - 1);
-            // »õ Element Property¸¦ °¡Á®¿È
+            // ï¿½ï¿½ Element Propertyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             var newElementProperty = effectDatasProperty.GetArrayElementAtIndex(lastArraySize);
-            // »õ ElementÀÇ LevelÀº ÀÌÀü Element Level + 1
+            // ï¿½ï¿½ Elementï¿½ï¿½ Levelï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Element Level + 1
             var newElementLevel = prevElementProperty.FindPropertyRelative("level").intValue + 1;
             newElementProperty.FindPropertyRelative("level").intValue = newElementLevel;
 
-            // »õ ElementÀÇ Soft CopyµÈ StackActionsÀÇ ActionµéÀ» Deep CopyÇÔ
+            // ï¿½ï¿½ Elementï¿½ï¿½ Soft Copyï¿½ï¿½ StackActionsï¿½ï¿½ Actionï¿½ï¿½ï¿½ï¿½ Deep Copyï¿½ï¿½
             CustomEditorUtility.DeepCopySerializeReferenceArray(newElementProperty.FindPropertyRelative("stackActions"), "action");
 
-            // »õ ElementÀÇ Soft CopyµÈ ActionÀ» Deep CopyÇÔ
+            // ï¿½ï¿½ Elementï¿½ï¿½ Soft Copyï¿½ï¿½ Actionï¿½ï¿½ Deep Copyï¿½ï¿½
             CustomEditorUtility.DeepCopySerializeReference(newElementProperty.FindPropertyRelative("action"));
 
-            // »õ ElementÀÇ Soft CopyµÈ CustomActionÀ» Deep CopyÇÔ
+            // ï¿½ï¿½ Elementï¿½ï¿½ Soft Copyï¿½ï¿½ CustomActionï¿½ï¿½ Deep Copyï¿½ï¿½
             CustomEditorUtility.DeepCopySerializeReferenceArray(newElementProperty.FindPropertyRelative("customActions"));
         }
     }

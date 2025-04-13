@@ -9,55 +9,29 @@ using Event = Spine.Event;
 
 public class SkillUseAction : EnemyAction
 {
-    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    public string eventName;
-
     public string animationName;
     public int skillIndex = 0;
+    public bool IsMoveSkill = false;
     
     private SkillSystem skillSystem;
     private Skill skill;
     private bool canUseSkill;
     private bool isUse;
-    Spine.EventData eventData;
     
-    public bool logDebugMessage = false;
     public override void OnAwake()
     {
         base.OnAwake();
         skillSystem = GetComponent<SkillSystem>();
+        Debug.Assert(skillSystem.OwnSkills[skillIndex] != null, $"Skill Index : {skillIndex} Not Exist");
         skill = skillSystem.OwnSkills[skillIndex];
     }
 
     public override void OnStart()
     {
         entityMovement.ForceStop();
-        if (eventName == null)
-        {
-            Play();
-            if(animationName != null)
-                entity.Animator.PlayOneShot(animationName, 0);
-        }
-        else
-        {
-            eventData = entity.Animator.skeletonAnimation.Skeleton.Data.FindEvent(eventName);
-            entity.Animator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
-            entity.Animator.skeletonAnimation.AnimationState.Event += HandleAnimationStateEvent;
+        Play();
+        if(!string.IsNullOrEmpty(animationName))
             entity.Animator.PlayOneShot(animationName, 0);
-        }
-    }
-    
-    private void HandleAnimationStateEvent (TrackEntry trackEntry, Event e) 
-    {
-        if (logDebugMessage) Debug.Log("Event fired! " + e.Data.Name);
-        //bool eventMatch = string.Equals(e.Data.Name, eventName, System.StringComparison.Ordinal); // Testing recommendation: String compare.
-        bool eventMatch = (eventData == e.Data); // Performance recommendation: Match cached reference instead of string.
-        string animationOriginalName = entity.Animator.GetAnimationForState(animationName).Name;
-        bool animationMatch = trackEntry.Animation.Name == animationOriginalName;
-        if (eventMatch && animationMatch) 
-        {
-            Play();
-        }
     }
     
     public void Play () 
@@ -71,7 +45,10 @@ public class SkillUseAction : EnemyAction
 
     public override TaskStatus OnUpdate()
     {
-        if (canUseSkill)
+        if(IsMoveSkill && isUse)
+            return TaskStatus.Success;
+        
+        if (skill.IsInState<CooldownState>())
             return TaskStatus.Success;
         
         if(isUse && !canUseSkill)
@@ -82,7 +59,6 @@ public class SkillUseAction : EnemyAction
 
     public override void OnEnd()
     {
-        entity.Animator.skeletonAnimation.AnimationState.Event -= HandleAnimationStateEvent;
         canUseSkill = false;
         isUse = false;
     }

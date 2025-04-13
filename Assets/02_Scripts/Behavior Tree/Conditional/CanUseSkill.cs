@@ -16,7 +16,7 @@ public class CanUseSkill : EnemyCondition
 
     public override TaskStatus OnUpdate()
     {
-        if(skill.IsUseable && skill.IsCooldownCompleted)
+        if(skill.IsUseable && skill.IsInState<ReadyState>())
             return TaskStatus.Success;
         
         return TaskStatus.Failure;

@@ -14,7 +14,6 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
     [SerializeField] protected AudioClip clickSound;
     [SerializeField] protected AudioClip closeSound;
     [SerializeField] protected Animator animator;
-    
     public delegate void OnWindowClose(WindowHolder holder);
     
     private OnWindowClose _closeCallback;
@@ -61,7 +60,7 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
     
     public virtual void Close()
     {
-        animator.SetTrigger("Off");
+        animator?.SetTrigger("Off");
         if(_closeCallback != null) _closeCallback(_windowHolder);
         //SoundManager.Instance.Play(closeSound);
         Destroy(gameObject, 2f);

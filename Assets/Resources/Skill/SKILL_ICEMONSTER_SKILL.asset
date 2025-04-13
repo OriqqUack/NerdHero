@@ -22,7 +22,7 @@ MonoBehaviour:
   useType: 0
   movingType: 0
   executionType: 0
-  applyType: 0
+  applyType: 1
   needSelectionResultType: 0
   targetSelectionTimingOption: 0
   targetSearchTimingOption: 0
@@ -70,19 +70,23 @@ MonoBehaviour:
     castAnimatorParamter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
       index: 0
-      name: 
+      stat: {fileID: 0}
+      name: comp/attack2
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []

@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281368e25cab1942b02876440983195, type: 3}
+  m_Name: SKILL_FIREMONSTER_EXPLOSION
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 13
+  codeName: FIREMONSTER_EXPLOSION
+  displayName: 
+  description: 
+  type: 0
+  useType: 0
+  movingType: 1
+  executionType: 0
+  applyType: 1
+  needSelectionResultType: 0
+  targetSelectionTimingOption: 0
+  targetSearchTimingOption: 0
+  acquisitionConditions: []
+  acquisitionCosts: []
+  useConditions: []
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  defaultLevel: 1
+  skillDatas:
+  - level: 1
+    levelUpConditions: []
+    levelUpCosts: []
+    precedingAction:
+      rid: -2
+    action:
+      rid: 416588690826985631
+    runningFinishOption: 0
+    duration: 0
+    applyCount: 1
+    applyCycle: 0
+    cooldown:
+      defaultValue: 5
+      scaleStat: {fileID: 0}
+    targetSearcher:
+      selectionAction:
+        rid: 416588690826985628
+      searchAction:
+        rid: 6372897054790254689
+    costs: []
+    isUseCast: 0
+    castTime:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    isUseCharge: 1
+    chargeFinishActionOption: 0
+    chargeDuration: 3
+    chargeTime: 3
+    needChargeTimeToUse: 3
+    startChargePower: 0
+    effectSelectors:
+    - level: 1
+      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+    inSkillActionFinishOption: 0
+    castAnimatorParamter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    chargeAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    precedingActionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    actionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: comp/attack
+    customActionsOnCast: []
+    customActionsOnCharge: []
+    customActionsOnPrecedingAction: []
+    customActionsOnAction:
+    - rid: 6372897054790254595
+    - rid: 416588690826985651
+    - rid: 416588690826985640
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 416588690826985628
+      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
+    - rid: 416588690826985631
+      type: {class: InstantApplyAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 416588690826985640
+      type: {class: DestroySelfAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 416588690826985651
+      type: {class: JumpAction, ns: , asm: Assembly-CSharp}
+      data:
+        method: 1
+        angle: 30
+        jumpSpeed: 10
+        isBackJump: 0
+    - rid: 6372897054790254595
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 0
+        methodType: 1
+        prefab: {fileID: 2504214343621411470, guid: 3ed0d324122d7b24eaec75c55c74aafc, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 3, y: 3, z: 3}
+        isAttachToTarget: 0
+        isDestroyOnRelease: 0
+    - rid: 6372897054790254689
+      type: {class: SearchArea, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: 6372897054790254690
+        isUseScale: 0
+        range: 3
+        angle: 360
+        isIncludeSelf: 0
+        isSearchSameCategory: 0
+    - rid: 6372897054790254690
+      type: {class: CircleIndicatorViewAction, ns: , asm: Assembly-CSharp}
+      data:
+        indicatorPrefab: {fileID: 7545020625849464054, guid: 88ac463087731ca4198b3020e39675d7, type: 3}
+        indicatorRadiusOverride: 3
+        indicatorAngleOverride: 360
+        isUseIndicatorFillAmount: 1
+        isAttachIndicatorToRequester: 1
+        isUseFillAmount: 1

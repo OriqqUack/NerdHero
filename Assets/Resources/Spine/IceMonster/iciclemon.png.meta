@@ -65,6 +65,39 @@ TextureImporter:
   - first:
       213: 4419317305243037580
     second: iciclemon_20
+  - first:
+      213: 6958376936008646207
+    second: iciclemon_21
+  - first:
+      213: 4233301987100689340
+    second: iciclemon_22
+  - first:
+      213: -5810840571239481048
+    second: iciclemon_23
+  - first:
+      213: 6953764198921481889
+    second: iciclemon_24
+  - first:
+      213: -440973212097864658
+    second: iciclemon_25
+  - first:
+      213: -5866445759691874943
+    second: iciclemon_26
+  - first:
+      213: -8886589446395616866
+    second: iciclemon_27
+  - first:
+      213: -5472353782156882622
+    second: iciclemon_28
+  - first:
+      213: -8973243897279620745
+    second: iciclemon_29
+  - first:
+      213: 2622244407829258440
+    second: iciclemon_30
+  - first:
+      213: -2675254211110195079
+    second: iciclemon_31
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -189,10 +222,10 @@ TextureImporter:
       name: iciclemon_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1712
-        width: 917
-        height: 584
+        x: 345
+        y: 1593
+        width: 13
+        height: 7
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,10 +244,10 @@ TextureImporter:
       name: iciclemon_1
       rect:
         serializedVersion: 2
-        x: 498
-        y: 1220
-        width: 803
-        height: 492
+        x: 3138
+        y: 935
+        width: 494
+        height: 667
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,10 +266,10 @@ TextureImporter:
       name: iciclemon_2
       rect:
         serializedVersion: 2
-        x: 1301
-        y: 1608
-        width: 836
-        height: 554
+        x: 1740
+        y: 1170
+        width: 331
+        height: 422
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +288,10 @@ TextureImporter:
       name: iciclemon_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1079
-        width: 483
-        height: 491
+        x: 2072
+        y: 1171
+        width: 1065
+        height: 417
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,10 +310,10 @@ TextureImporter:
       name: iciclemon_4
       rect:
         serializedVersion: 2
-        x: 492
-        y: 1558
-        width: 6
-        height: 6
+        x: 3632
+        y: 918
+        width: 386
+        height: 637
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,10 +332,10 @@ TextureImporter:
       name: iciclemon_5
       rect:
         serializedVersion: 2
-        x: 1617
-        y: 1114
-        width: 667
-        height: 494
+        x: 4018
+        y: 837
+        width: 398
+        height: 604
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,10 +354,10 @@ TextureImporter:
       name: iciclemon_6
       rect:
         serializedVersion: 2
-        x: 2
-        y: 661
-        width: 1065
-        height: 417
+        x: 4416
+        y: 804
+        width: 448
+        height: 780
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,10 +376,10 @@ TextureImporter:
       name: iciclemon_7
       rect:
         serializedVersion: 2
-        x: 1068
-        y: 730
-        width: 549
-        height: 490
+        x: 4864
+        y: 1297
+        width: 361
+        height: 247
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +398,10 @@ TextureImporter:
       name: iciclemon_8
       rect:
         serializedVersion: 2
-        x: 1235
-        y: 332
-        width: 604
-        height: 398
+        x: 4864
+        y: 954
+        width: 263
+        height: 343
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,10 +420,10 @@ TextureImporter:
       name: iciclemon_9
       rect:
         serializedVersion: 2
-        x: 1839
-        y: 334
-        width: 448
-        height: 780
+        x: 5225
+        y: 1047
+        width: 340
+        height: 333
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,10 +442,10 @@ TextureImporter:
       name: iciclemon_10
       rect:
         serializedVersion: 2
-        x: 1
-        y: 248
-        width: 597
-        height: 382
+        x: 502
+        y: 1
+        width: 1238
+        height: 1266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,10 +464,10 @@ TextureImporter:
       name: iciclemon_11
       rect:
         serializedVersion: 2
-        x: 598
-        y: 274
-        width: 637
-        height: 386
+        x: 1740
+        y: 205
+        width: 797
+        height: 965
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,10 +486,10 @@ TextureImporter:
       name: iciclemon_12
       rect:
         serializedVersion: 2
-        x: 1159
-        y: 1
-        width: 356
-        height: 273
+        x: 2537
+        y: 935
+        width: 240
+        height: 219
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,10 +508,10 @@ TextureImporter:
       name: iciclemon_13
       rect:
         serializedVersion: 2
-        x: 1515
-        y: 1
-        width: 422
-        height: 331
+        x: 2777
+        y: 1128
+        width: 143
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,10 +530,10 @@ TextureImporter:
       name: iciclemon_14
       rect:
         serializedVersion: 2
-        x: 1937
-        y: 1
-        width: 340
-        height: 333
+        x: 2777
+        y: 935
+        width: 184
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -519,10 +552,10 @@ TextureImporter:
       name: iciclemon_15
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 143
-        height: 36
+        x: 335
+        y: 875
+        width: 231
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -541,8 +574,8 @@ TextureImporter:
       name: iciclemon_16
       rect:
         serializedVersion: 2
-        x: 144
-        y: 1
+        x: 2961
+        y: 935
         width: 158
         height: 61
       alignment: 0
@@ -563,10 +596,10 @@ TextureImporter:
       name: iciclemon_17
       rect:
         serializedVersion: 2
-        x: 302
-        y: 1
-        width: 71
-        height: 66
+        x: 4864
+        y: 598
+        width: 273
+        height: 356
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -585,10 +618,10 @@ TextureImporter:
       name: iciclemon_18
       rect:
         serializedVersion: 2
-        x: 373
-        y: 1
-        width: 82
-        height: 71
+        x: 5195
+        y: 498
+        width: 490
+        height: 549
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -607,10 +640,10 @@ TextureImporter:
       name: iciclemon_19
       rect:
         serializedVersion: 2
-        x: 455
-        y: 1
-        width: 361
-        height: 247
+        x: 2538
+        y: 2
+        width: 644
+        height: 932
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -629,10 +662,10 @@ TextureImporter:
       name: iciclemon_20
       rect:
         serializedVersion: 2
-        x: 816
+        x: 3183
         y: 1
-        width: 343
-        height: 263
+        width: 584
+        height: 917
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -643,6 +676,248 @@ TextureImporter:
       bones: []
       spriteID: c8f6fb0bca1945d30800000000000000
       internalID: 4419317305243037580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_21
+      rect:
+        serializedVersion: 2
+        x: 3767
+        y: 837
+        width: 82
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ef01cc4fe119060800000000000000
+      internalID: 6958376936008646207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_22
+      rect:
+        serializedVersion: 2
+        x: 3767
+        y: 1
+        width: 554
+        height: 836
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb387107ab5bfba30800000000000000
+      internalID: 4233301987100689340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_23
+      rect:
+        serializedVersion: 2
+        x: 3849
+        y: 837
+        width: 66
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821c7d0a94fbb5fa0800000000000000
+      internalID: -5810840571239481048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 371
+        width: 389
+        height: 426
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae2b8042bbb08060800000000000000
+      internalID: 6953764198921481889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_25
+      rect:
+        serializedVersion: 2
+        x: 4321
+        y: 1
+        width: 492
+        height: 803
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c9171333951e9f0800000000000000
+      internalID: -440973212097864658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_26
+      rect:
+        serializedVersion: 2
+        x: 4813
+        y: 1
+        width: 382
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d187fc9a2369ea0800000000000000
+      internalID: -5866445759691874943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_27
+      rect:
+        serializedVersion: 2
+        x: 5201
+        y: 492
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e91aade4bfd7ca480800000000000000
+      internalID: -8886589446395616866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_28
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 202
+        width: 47
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d06499a3b4e04b0800000000000000
+      internalID: -5472353782156882622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_29
+      rect:
+        serializedVersion: 2
+        x: 5195
+        y: 1
+        width: 491
+        height: 483
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 779d4bbb732a87380800000000000000
+      internalID: -8973243897279620745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_30
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 173
+        width: 87
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c0eaea4565146420800000000000000
+      internalID: 2622244407829258440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: iciclemon_31
+      rect:
+        serializedVersion: 2
+        x: 2010
+        y: 1
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 970b8e618769fdad0800000000000000
+      internalID: -2675254211110195079
       vertices: []
       indices: 
       edges: []
@@ -675,7 +950,18 @@ TextureImporter:
       iciclemon_19: 639850272348617417
       iciclemon_2: 898385841937395419
       iciclemon_20: 4419317305243037580
+      iciclemon_21: 6958376936008646207
+      iciclemon_22: 4233301987100689340
+      iciclemon_23: -5810840571239481048
+      iciclemon_24: 6953764198921481889
+      iciclemon_25: -440973212097864658
+      iciclemon_26: -5866445759691874943
+      iciclemon_27: -8886589446395616866
+      iciclemon_28: -5472353782156882622
+      iciclemon_29: -8973243897279620745
       iciclemon_3: 5799101119452491110
+      iciclemon_30: 2622244407829258440
+      iciclemon_31: -2675254211110195079
       iciclemon_4: 316646414341485263
       iciclemon_5: -4515110034497384516
       iciclemon_6: 3855531618406679243

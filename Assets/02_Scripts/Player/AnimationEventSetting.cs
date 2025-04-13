@@ -78,6 +78,7 @@ public class AnimationEventSetting : MonoBehaviour
     private void CreateRunEffect()
     {
         GameObject effect = Managers.Resource.Instantiate(runningEffect, _footStepTs.position, Quaternion.Euler(0, 0, 0));
+        Managers.Resource.Destroy(effect, 2.0f);
     }
     
 }

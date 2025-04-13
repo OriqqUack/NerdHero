@@ -4,18 +4,35 @@ using UnityEngine.AI;
 [System.Serializable]
 public class JumpAction : CustomAction
 {
+    private enum MethodType { Start, Run }
+    [SerializeField] MethodType method = MethodType.Run;
     [SerializeField] private float angle;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private bool isBackJump;
 
     private Entity _entity;
+    public override void Start(object data)
+    {
+        if (method == MethodType.Start)
+        {
+            var skillData = data as Skill;
+            if (skillData == null) return;
+
+            _entity = skillData.Owner;
+            Jump();
+        }
+    }
+
     public override void Run(object data)
     {
-        var skillData = data as Skill;
-        if (skillData == null) return;
+        if (method == MethodType.Run)
+        {
+            var skillData = data as Skill;
+            if (skillData == null) return;
 
-        _entity = skillData.Owner;
-        Jump();
+            _entity = skillData.Owner;
+            Jump();
+        }
     }
     
     private void Jump()

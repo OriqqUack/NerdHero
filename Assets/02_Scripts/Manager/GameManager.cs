@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>, ISaveable

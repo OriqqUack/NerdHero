@@ -3,14 +3,12 @@ using UnityEngine;
 [System.Serializable]
 public class DestroySelfAction : CustomAction
 {
-    public override void Run(object data)
+    public override void Release(object data)
     {
         Skill skill = (Skill)data;
         if (!skill) return;
-        Stat stat = skill.Owner.Stats.GetStat("HP");
-        float maxHp = stat.MaxValue;
-        skill.Owner.TakeDamage(skill.Owner, null, maxHp);
+        GameObject.Destroy(skill.Owner.transform.parent.gameObject);
     }
-    
+
     public override object Clone() => new DestroySelfAction();
 }

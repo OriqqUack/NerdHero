@@ -26,14 +26,15 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     private Entity target;
     private float hpMaxValue;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         panel.gameObject.SetActive(false);
     }
 
     private void LateUpdate()
     {
-        panel.position = transform.position + new Vector3(0, yOffset, 0);
+        panel.position = new Vector3(transform.position.x, yOffset, transform.position.z);
     }
 
     private void OnDestroy() => ReleaseEvents();

@@ -20,8 +20,9 @@ MonoBehaviour:
   description: 
   type: 0
   useType: 0
+  movingType: 0
   executionType: 0
-  applyType: 0
+  applyType: 1
   needSelectionResultType: 0
   targetSelectionTimingOption: 0
   targetSearchTimingOption: 0
@@ -68,16 +69,24 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
-      name: 
+      index: 0
+      stat: {fileID: 0}
+      name: throw(slime A)
     customActionsOnCast: []
     customActionsOnCharge: []
     customActionsOnPrecedingAction: []
@@ -90,7 +99,7 @@ MonoBehaviour:
     - rid: 5468516875944329328
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:
-        projectilePrefab: {fileID: 2045337068148025411, guid: 6d8f1beeac2b87d46b459e0ced538ee4, type: 3}
+        projectilePrefab: {fileID: 5262845508644014946, guid: fb0033a750ca5a945a73df3ebf5bc0da, type: 3}
         spawnPointSocketName: ProjectilePoint
         speed: 10
     - rid: 5468516875944329329

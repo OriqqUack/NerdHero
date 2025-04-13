@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 7934181594956304944}
   - component: {fileID: 1073841874803094883}
   - component: {fileID: 6177226709619057635}
+  - component: {fileID: 6706152826310613011}
   m_Layer: 10
   m_Name: CherrySlimeVisual
   m_TagString: Untagged
@@ -89,7 +90,7 @@ MonoBehaviour:
     animation: {fileID: 11400000, guid: ec59f00d4a9b3314fa25caaf2fd90d89, type: 2}
   - stateName: idle
     animation: {fileID: 11400000, guid: 06b492d86addadf47a1bdb8ae9e70ebf, type: 2}
-  - stateName: attack
+  - stateName: throw(slime A)
     animation: {fileID: 11400000, guid: 3215c6b2ba36bb047a260bed0091abfb, type: 2}
   - stateName: dead
     animation: {fileID: 11400000, guid: 023684b7a5a35d8429bdcaaa39b250ff, type: 2}
@@ -374,7 +375,7 @@ MonoBehaviour:
         Target Insight","Instant":true,"SinglefieldOfViewAngle":45,"SingleviewDistance":10},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(88.2995,135.582031)"},"ID":8,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.960335,116.030945)"},"ID":9,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-83.33332,140.952637)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CanUseSkill","NodeData":{"Offset":"(-350.520935,136.351913)"},"ID":11,"Name":"Can
         Use Skill","Instant":true,"Int32skillIndex":0},{"Type":"TracingAction","NodeData":{"Offset":"(-203.069016,141.3086)"},"ID":12,"Name":"Tracing
         Action","Instant":true,"SingleTracingTime":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":13,"Name":"Skill
-        Use Action","Instant":true,"StringeventName":"cherry appear","StringanimationName":"attack","Int32skillIndex":0,"BooleanlogDebugMessage":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":15,"Name":"Random
+        Use Action","Instant":true,"StringanimationName":"","Int32skillIndex":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":15,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(120,137.619141)"},"ID":16,"Name":"Wait
         Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(249.982574,136.24852)"},"ID":17,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-112.960663,169.813843)"},"ID":18,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(65.3946838,168.53418)"},"ID":19,"Name":"Wait
@@ -479,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onStartName: move start
   onEndName: move finish
+  animationName: move
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -530,6 +532,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6706152826310613011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434461345793671193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c867a3cc99e7f9b4499f14dbc8451ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillEventName:
+  - cherry appear
+  nonSkillEventName: []
+  runningEffect: {fileID: 0}
+  onEndName: 
 --- !u!1 &448737159848757318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,7 +1710,6 @@ GameObject:
   - component: {fileID: 8995224542449473724}
   - component: {fileID: 4261210740532626077}
   - component: {fileID: 2426389790717996633}
-  - component: {fileID: 1696409994160271776}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -1746,9 +1764,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06651b67c9477d248b2c0823f4972eb4, type: 2}
-  - {fileID: 2100000, guid: 326a7ac1e627dd14b8e15e5d1c595577, type: 2}
-  - {fileID: 2100000, guid: 06651b67c9477d248b2c0823f4972eb4, type: 2}
+  - {fileID: 2100000, guid: 58e17c81de6445c409a770e1b0a2ddbe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1829,25 +1845,6 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 4261210740532626077}
   skeletonGraphic: {fileID: 0}
---- !u!114 &1696409994160271776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9148198241779277830}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afde57cc4fd39bb4dbd61b73403ae6a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atlasAsset: {fileID: 11400000, guid: c574489dd067c2b4cb4dc165a4c410cc, type: 2}
-  inheritProperties: 1
-  attachments:
-  - slot: Weapon
-    region: Equipment/sword1
-  - slot: Shield
-    region: Equipment/shield1
 --- !u!1 &9185386479007887192
 GameObject:
   m_ObjectHideFlags: 0

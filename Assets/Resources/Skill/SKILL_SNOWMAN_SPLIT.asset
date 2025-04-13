@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281368e25cab1942b02876440983195, type: 3}
+  m_Name: SKILL_SNOWMAN_SPLIT
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 14
+  codeName: SNOWMAN_SPLIT
+  displayName: 
+  description: 
+  type: 0
+  useType: 0
+  movingType: 0
+  executionType: 0
+  applyType: 0
+  needSelectionResultType: 0
+  targetSelectionTimingOption: 0
+  targetSearchTimingOption: 0
+  acquisitionConditions: []
+  acquisitionCosts: []
+  useConditions: []
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  defaultLevel: 1
+  skillDatas:
+  - level: 1
+    levelUpConditions: []
+    levelUpCosts: []
+    precedingAction:
+      rid: -2
+    action:
+      rid: 5468516862014521344
+    runningFinishOption: 0
+    duration: 0
+    applyCount: 1
+    applyCycle: 0
+    cooldown:
+      defaultValue: 1
+      scaleStat: {fileID: 0}
+    targetSearcher:
+      selectionAction:
+        rid: 5468516862014521345
+      searchAction:
+        rid: 5468516862014521346
+    costs: []
+    isUseCast: 0
+    castTime:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    isUseCharge: 0
+    chargeFinishActionOption: 0
+    chargeDuration: 0
+    chargeTime: 0
+    needChargeTimeToUse: 0
+    startChargePower: 0
+    effectSelectors: []
+    inSkillActionFinishOption: 0
+    castAnimatorParamter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    chargeAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    precedingActionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    actionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    customActionsOnCast: []
+    customActionsOnCharge: []
+    customActionsOnPrecedingAction: []
+    customActionsOnAction:
+    - rid: 5468516862014521442
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5468516862014521344
+      type: {class: InstantApplyAction, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 5468516862014521345
+      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
+    - rid: 5468516862014521346
+      type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
+    - rid: 5468516862014521442
+      type: {class: SpawnSmallObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        smallObjectPrefab: {fileID: 8572546601497261180, guid: 536e2a7d2fc2dad4dabb071c92631038, type: 3}
+        count: 3
+        _dropRadius: 1
+        _forwardForce: 2
+        _upwardForce: 3

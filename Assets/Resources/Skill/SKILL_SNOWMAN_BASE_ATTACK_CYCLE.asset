@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281368e25cab1942b02876440983195, type: 3}
+  m_Name: SKILL_SNOWMAN_BASE_ATTACK_CYCLE
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 21
+  codeName: SNOWMAN_BASE_ATTACK_CYCLE
+  displayName: 
+  description: 
+  type: 0
+  useType: 0
+  movingType: 0
+  executionType: 0
+  applyType: 1
+  needSelectionResultType: 0
+  targetSelectionTimingOption: 1
+  targetSearchTimingOption: 0
+  acquisitionConditions: []
+  acquisitionCosts: []
+  useConditions: []
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  defaultLevel: 1
+  skillDatas:
+  - level: 1
+    levelUpConditions: []
+    levelUpCosts: []
+    precedingAction:
+      rid: -2
+    action:
+      rid: 416588670042374352
+    runningFinishOption: 0
+    duration: 0
+    applyCount: 3
+    applyCycle: 0.2
+    cooldown:
+      defaultValue: 2
+      scaleStat: {fileID: 0}
+    targetSearcher:
+      selectionAction:
+        rid: 416588670042374354
+      searchAction:
+        rid: 416588670042374355
+    costs: []
+    isUseCast: 0
+    castTime:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    isUseCharge: 0
+    chargeFinishActionOption: 0
+    chargeDuration: 0
+    chargeTime: 0
+    needChargeTimeToUse: 0
+    startChargePower: 0
+    effectSelectors:
+    - level: 1
+      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+    inSkillActionFinishOption: 2
+    castAnimatorParamter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    chargeAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    precedingActionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    actionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: comp/attack
+    customActionsOnCast: []
+    customActionsOnCharge: []
+    customActionsOnPrecedingAction: []
+    customActionsOnAction: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 416588670042374352
+      type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
+      data:
+        projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
+        spawnPointSocketName: ProjectilePoint
+        speed: 5
+    - rid: 416588670042374354
+      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
+    - rid: 416588670042374355
+      type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
+      data:
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
