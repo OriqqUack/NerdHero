@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SPR_FX_FantasyWarrior_DamageDirection01_Highlight_0: 3554418538761567415
+      SPR_FX_FantasyWarrior_DamageDirection01_Highlight_1: -5559843640214438504
+      SPR_FX_FantasyWarrior_DamageDirection01_Highlight_2: 7960511774537143207
+      SPR_FX_FantasyWarrior_DamageDirection01_Highlight_3: -6692423310271559367
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

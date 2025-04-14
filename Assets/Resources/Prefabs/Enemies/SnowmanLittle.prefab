@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6147812181936739954}
   - component: {fileID: 774233044917524319}
   - component: {fileID: 8211792216592201417}
-  - component: {fileID: 2885809601240373691}
+  - component: {fileID: 3770558631056410267}
   m_Layer: 5
   m_Name: HPBarUI
   m_TagString: Untagged
@@ -111,7 +111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.8}
+  m_AnchoredPosition: {x: 0, y: 2.85}
   m_SizeDelta: {x: 2280, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &774233044917524319
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &2885809601240373691
+--- !u!114 &3770558631056410267
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,14 +169,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1486060512489803986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  skeletonRenderer: {fileID: 8563913264434912682}
+  boneName: root
+  followXPosition: 1
+  followYPosition: 0
+  followZPosition: 1
+  followBoneRotation: 0
+  followSkeletonFlip: 0
+  followLocalScale: 0
+  followParentWorldScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
 --- !u!1 &1696497654743084768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1560,6 @@ MonoBehaviour:
   skillCostFillImage: {fileID: 0}
   skillCostValueText: {fileID: 0}
   panel: {fileID: 6147812181936739954}
-  yOffset: 3.7
   effectListView: {fileID: 0}
   sameAxisImage: {fileID: 812532424288545644}
 --- !u!114 &1612678211124826069
@@ -1631,7 +1636,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.03, y: -2.42, z: -2.5}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.8, y: 0.9, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6147812181936739954}

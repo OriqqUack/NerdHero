@@ -60,7 +60,9 @@ namespace Spine.Unity {
 		[SpineBone(dataField: "skeletonRenderer")]
 		public string boneName;
 
-		public bool followXYPosition = true;
+// 아래 두 줄로 대체
+		public bool followXPosition = true;
+		public bool followYPosition = true;
 		public bool followZPosition = true;
 		public bool followBoneRotation = true;
 
@@ -158,9 +160,10 @@ namespace Spine.Unity {
 			float additionalFlipScale = 1;
 			if (skeletonTransformIsParent) {
 				// Recommended setup: Use local transform properties if Spine GameObject is the immediate parent
-				thisTransform.localPosition = new Vector3(followXYPosition ? bone.WorldX : thisTransform.localPosition.x,
-														followXYPosition ? bone.WorldY : thisTransform.localPosition.y,
-														followZPosition ? 0f : thisTransform.localPosition.z);
+				thisTransform.localPosition = new Vector3(
+					followXPosition ? bone.WorldX : thisTransform.localPosition.x,
+					followYPosition ? bone.WorldY : thisTransform.localPosition.y,
+					followZPosition ? 0f : thisTransform.localPosition.z);
 				if (followBoneRotation) {
 					float halfRotation = Mathf.Atan2(bone.C, bone.A) * 0.5f;
 					if (followLocalScale && bone.ScaleX < 0) // Negate rotation from negative scaleX. Don't use negative determinant. local scaleY doesn't factor into used rotation.
@@ -175,10 +178,8 @@ namespace Spine.Unity {
 				// For special cases: Use transform world properties if transform relationship is complicated
 				Vector3 targetWorldPosition = skeletonTransform.TransformPoint(new Vector3(bone.WorldX, bone.WorldY, 0f));
 				if (!followZPosition) targetWorldPosition.z = thisTransform.position.z;
-				if (!followXYPosition) {
-					targetWorldPosition.x = thisTransform.position.x;
-					targetWorldPosition.y = thisTransform.position.y;
-				}
+				if (!followXPosition) targetWorldPosition.x = thisTransform.position.x;
+				if (!followYPosition) targetWorldPosition.y = thisTransform.position.y;
 
 				Vector3 skeletonLossyScale = skeletonTransform.lossyScale;
 				Transform transformParent = thisTransform.parent;

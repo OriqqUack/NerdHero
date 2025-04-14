@@ -14,8 +14,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     [SerializeField] private TextMeshProUGUI hpValueText; //
     [SerializeField] private Slider skillCostFillImage; //
     [SerializeField] private TextMeshProUGUI skillCostValueText; //
-    [SerializeField] private Transform panel;
-    [SerializeField] private float yOffset;
+    [SerializeField] private RectTransform panel;
 
     [Header("Effecf List View")] 
     [SerializeField] private SkillEffectListView effectListView; //
@@ -30,11 +29,6 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     {
         base.Awake();
         panel.gameObject.SetActive(false);
-    }
-
-    private void LateUpdate()
-    {
-        panel.position = new Vector3(transform.position.x, yOffset, transform.position.z);
     }
 
     private void OnDestroy() => ReleaseEvents();

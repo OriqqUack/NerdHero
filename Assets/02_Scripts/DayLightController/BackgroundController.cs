@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class BackgroundController : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup dayCanvasGroup;
     [SerializeField] private CanvasGroup nightCanvasGroup;
     [SerializeField] private LightCycle lightCycle;
 
@@ -25,7 +24,6 @@ public class BackgroundController : MonoBehaviour
     {
         _currentDayCanvasAlpha -= _offset;
         _currentNightCanvasAlpha += _offset;
-        dayCanvasGroup.DOFade(_currentDayCanvasAlpha, 2f);
         nightCanvasGroup.DOFade(_currentNightCanvasAlpha, 2f);
         DOTween.To(() => lightCycle.time, x => lightCycle.time = x, _currentNightCanvasAlpha, 2f);
     }

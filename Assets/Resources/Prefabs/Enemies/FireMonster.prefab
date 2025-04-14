@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 80758218756051774}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.12, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 4762864662360457870}
   - component: {fileID: 8553893186799934830}
   - component: {fileID: 7460969801094662924}
-  - component: {fileID: 5188481062625310474}
+  - component: {fileID: 600880065132297432}
   m_Layer: 5
   m_Name: HPBarUI
   m_TagString: Untagged
@@ -658,7 +658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.899}
+  m_AnchoredPosition: {x: 0, y: 3.89}
   m_SizeDelta: {x: 2280, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8553893186799934830
@@ -707,7 +707,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &5188481062625310474
+--- !u!114 &600880065132297432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -716,14 +716,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4902570894206436829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  skeletonRenderer: {fileID: 2628959630334984953}
+  boneName: root
+  followXPosition: 1
+  followYPosition: 0
+  followZPosition: 1
+  followBoneRotation: 0
+  followSkeletonFlip: 0
+  followLocalScale: 0
+  followParentWorldScale: 0
+  maintainedAxisOrientation: 1
+  initializeOnAwake: 1
 --- !u!1 &5022877710670546684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1156,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.03, y: -2.42, z: -2.5}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4762864662360457870}
@@ -1603,7 +1609,6 @@ MonoBehaviour:
   skillCostFillImage: {fileID: 0}
   skillCostValueText: {fileID: 0}
   panel: {fileID: 4762864662360457870}
-  yOffset: 3.9
   effectListView: {fileID: 0}
   sameAxisImage: {fileID: 6909599697216366354}
 --- !u!114 &3001715548469185371
