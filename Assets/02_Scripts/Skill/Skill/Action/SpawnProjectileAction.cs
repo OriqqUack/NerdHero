@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject;
 using UnityEngine;
 
 [System.Serializable]
@@ -15,7 +16,8 @@ public class SpawnProjectileAction : SkillAction
     public override void Apply(Skill skill)
     {
         var socket = skill.Owner.GetTransformSocket(spawnPointSocketName);
-        var projectile = Managers.Resource.Instantiate(projectilePrefab);
+        var projectile = GameObject.Instantiate(projectilePrefab);
+        GameObject.Destroy(projectile, 10f);
         projectile.transform.position = socket.position;
         projectile.GetComponent<Projectile>().Setup(skill.Owner, speed, socket.forward, skill);
     }

@@ -22,6 +22,8 @@ public class Projectile : MonoBehaviour
     protected float speed;
     protected Skill skill;
     protected Vector3 direction;
+    
+    public float Speed => speed;
     public virtual void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
     {
         this.owner = owner;

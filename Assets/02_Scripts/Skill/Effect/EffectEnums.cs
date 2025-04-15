@@ -8,8 +8,8 @@ public enum EffectType
 public enum EffectRarity
 {
     Common,
-    Uncommon,
-    Rare
+    Rare,
+    Legendary
 }
 
 // Effect�� �ߺ� ���� ����� ���� ���� ��, ���� �ߺ� ������ �Ͼ�ٸ� �ߺ� ����� Effect �� �� ������ ������ ���ΰ�?

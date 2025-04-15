@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: 
   description: 
   type: 1
+  rarity: 0
   isAllowDuplicate: 0
   removeDuplicateTargetOption: 0
   isShowInUI: 1
@@ -34,7 +35,7 @@ MonoBehaviour:
     isApplyAllWhenDurationExpires: 0
     duration:
       defaultValue: 5
-      scaleStat: {fileID: 11400000, guid: 9a69699820bc1e14683da0164eb050b5, type: 2}
+      scaleStat: {fileID: 0}
     applyCount: 0
     applyCycle: 0
     customActions:
@@ -46,6 +47,7 @@ MonoBehaviour:
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
         stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
+        isPercent: 0
         defaultValue: 2
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0

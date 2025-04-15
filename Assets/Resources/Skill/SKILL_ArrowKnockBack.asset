@@ -107,7 +107,7 @@ MonoBehaviour:
       data:
         projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
         spawnPointSocketName: ProjectilePoint
-        speed: 5
+        speed: 10
     - rid: 6784395007719112876
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:

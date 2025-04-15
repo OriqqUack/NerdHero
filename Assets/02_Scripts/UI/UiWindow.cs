@@ -16,8 +16,8 @@ public class UiWindow : MonoBehaviour, IPointerDownHandler
     [SerializeField] protected Animator animator;
     public delegate void OnWindowClose(WindowHolder holder);
     
-    private OnWindowClose _closeCallback;
-    private WindowHolder _windowHolder;
+    protected OnWindowClose _closeCallback;
+    protected WindowHolder _windowHolder;
 
     protected virtual void Start()
     {

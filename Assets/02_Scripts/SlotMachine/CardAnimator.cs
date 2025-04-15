@@ -171,6 +171,7 @@ public class CardAnimator : UiWindow
     private void CloseUI()
     {
         Time.timeScale = 1f;
+        if(_closeCallback != null) _closeCallback(_windowHolder);
         Destroy(gameObject);
     }
 }

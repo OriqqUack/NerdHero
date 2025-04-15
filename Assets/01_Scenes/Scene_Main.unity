@@ -548,14 +548,17 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: 87e76cea145eda941814f1d0268293b7, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0
-  - stat: {fileID: 11400000, guid: abb270ca8a738d949b3daf63ced9beed, type: 2}
-    isUseOverride: 0
-    overrideDefaultValue: 0
   - stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0
   - stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
     isUseOverride: 1
+    overrideDefaultValue: 0.5
+  - stat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0
+  - stat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
+    isUseOverride: 0
     overrideDefaultValue: 0.5
 --- !u!114 &333620017
 MonoBehaviour:

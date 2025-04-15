@@ -8,6 +8,8 @@ public class IncreaseStatAction : EffectAction
 {
     [SerializeField]
     private Stat stat;
+    [SerializeField] 
+    private bool isPercent;
     [SerializeField]
     private float defaultValue;
     [SerializeField]
@@ -18,17 +20,22 @@ public class IncreaseStatAction : EffectAction
     private float bonusValuePerLevel;
     [SerializeField]
     private float bonusValuePerStack;
-    // Àû¿ëÇÒ °ªÀ» StatÀÇ DefaultValue¿¡ ´õÇÒ °ÍÀÎ°¡? Bonus Value·Î Ãß°¡ÇÒ °ÍÀÎ°¡?
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Statï¿½ï¿½ DefaultValueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½? Bonus Valueï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
     [SerializeField]
     private bool isBonusType = true;
-    // Àû¿ëÇÑ °ªÀ» ReleaseÇÒ ¶§ µÇµ¹¸± °ÍÀÎ°¡?
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Releaseï¿½ï¿½ ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
     [SerializeField]
     private bool isUndoOnRelease = true;
 
     private float totalValue;
 
     private float GetDefaultValue(Effect effect)
-        => defaultValue + (effect.DataBonusLevel * bonusValuePerLevel);
+    {
+        if (isPercent)
+            return (defaultValue + 1) * (effect.DataBonusLevel * bonusValuePerLevel);
+        else
+            return defaultValue + (effect.DataBonusLevel * bonusValuePerLevel);
+    }
 
     private float GetStackValue(int stack)
         => (stack - 1) * bonusValuePerStack;
@@ -105,6 +112,7 @@ public class IncreaseStatAction : EffectAction
         return new IncreaseStatAction()
         {
             stat = stat,
+            isPercent = isPercent,
             defaultValue = defaultValue,
             bonusValueStat = bonusValueStat,
             bonusValueStatFactor = bonusValueStatFactor,

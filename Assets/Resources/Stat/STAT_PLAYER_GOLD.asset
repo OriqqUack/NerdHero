@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 17
+  id: 10
   codeName: PLAYER_GOLD
   displayName: 
   description: 

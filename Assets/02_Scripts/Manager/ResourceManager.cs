@@ -41,7 +41,7 @@ public class ResourceManager
     public GameObject Instantiate(GameObject gameObject, Transform parent = null)
     {
         if (gameObject.GetComponent<Poolable>() != null)
-            return Managers.Pool.Pop(gameObject, null).gameObject;
+            return Managers.Pool.Pop(gameObject, parent).gameObject;
 
         GameObject go = Object.Instantiate(gameObject, parent);
         go.name = gameObject.name;
