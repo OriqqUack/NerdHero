@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 5
   codeName: ENERGY
-  displayName: 
+  displayName: "\uC5D0\uB108\uC9C0"
   description: 
   isPercentType: 0
   maxValue: 100

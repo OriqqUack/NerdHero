@@ -12,8 +12,6 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     [Header("Stat View")] [SerializeField] private Slider hpFillImage;
     [SerializeField] private Slider hpFollowImage;
     [SerializeField] private TextMeshProUGUI hpValueText; //
-    [SerializeField] private Slider skillCostFillImage; //
-    [SerializeField] private TextMeshProUGUI skillCostValueText; //
     [SerializeField] private RectTransform panel;
 
     [Header("Effecf List View")] 
@@ -48,12 +46,6 @@ public class EntityHUD : MonoSingleton<EntityHUD>
         stats.HPStat.onValueChanged += OnHPStatChanged;
 
         hpMaxValue = stats.HPStat.Value;
-        
-        if (skillCostFillImage)
-        {
-            stats.SkillCostStat.onValueChanged += OnSkillCostStatChanged;
-            UpdateStatView(stats.SkillCostStat, skillCostFillImage, hpFollowImage, skillCostValueText);
-        }
 
         UpdateStatView(stats.HPStat, hpFillImage, hpFollowImage, hpValueText);
 
@@ -121,14 +113,10 @@ public class EntityHUD : MonoSingleton<EntityHUD>
 
         target.onDead -= OnEntityDead;
         target.Stats.HPStat.onValueChanged -= OnHPStatChanged;
-        target.Stats.SkillCostStat.onValueChanged -= OnSkillCostStatChanged;
     }
 
     private void OnHPStatChanged(Stat stat, float currentValue, float prevValue)
         => UpdateStatViewLerp(stat, hpFillImage, hpFollowImage, hpValueText);
-
-    private void OnSkillCostStatChanged(Stat stat, float currentValue, float prevValue)
-        => UpdateStatView(stat, skillCostFillImage, hpFollowImage, skillCostValueText);
 
     private void OnEntityDead(Entity entity) => Hide();
 }

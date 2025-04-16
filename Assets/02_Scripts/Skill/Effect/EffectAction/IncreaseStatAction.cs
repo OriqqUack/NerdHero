@@ -31,10 +31,7 @@ public class IncreaseStatAction : EffectAction
 
     private float GetDefaultValue(Effect effect)
     {
-        if (isPercent)
-            return (defaultValue + 1) * (effect.DataBonusLevel * bonusValuePerLevel);
-        else
-            return defaultValue + (effect.DataBonusLevel * bonusValuePerLevel);
+        return defaultValue + (effect.DataBonusLevel * bonusValuePerLevel);
     }
 
     private float GetStackValue(int stack)
@@ -45,7 +42,13 @@ public class IncreaseStatAction : EffectAction
 
     private float GetTotalValue(Effect effect, Entity user, int stack, float scale)
     {
-        totalValue = GetDefaultValue(effect) + GetStackValue(stack);
+        float defaultValue;
+        if (isPercent)
+            defaultValue = GetDefaultValue(effect) * user.Stats.GetValue(stat);
+        else
+            defaultValue = GetDefaultValue(effect);
+        
+        totalValue = defaultValue + GetStackValue(stack);
         if (bonusValueStat)
             totalValue += GetBonusStatValue(user);
 

@@ -20,6 +20,7 @@ public class Entity : MonoBehaviour
     #region Events
     public delegate void TakeDamageHandler(Entity entity, Entity instigator, object causer, float damage);
     public delegate void DeadHandler(Entity entity);
+    public delegate void KillHandler(Entity entity);
     #endregion
 
     [SerializeField] private Category[] categories;
@@ -49,6 +50,7 @@ public class Entity : MonoBehaviour
     #region EventHandlers
     public event TakeDamageHandler onTakeDamage;
     public event DeadHandler onDead;
+    public event KillHandler onKill;
     #endregion
 
     private void Awake()
@@ -107,7 +109,10 @@ public class Entity : MonoBehaviour
         onTakeDamage?.Invoke(this, instigator, causer, damage);
 
         if (Mathf.Approximately(Stats.HPStat.DefaultValue, 0f))
+        {
             OnDead();
+            instigator.KillEntity(this);
+        }
     }
     
     private void OnDead()
@@ -124,6 +129,11 @@ public class Entity : MonoBehaviour
         
         if(ControlType != EntityControlType.Player)
             Animator.PlayOneShot("dead", 0, 0, () => Destroy(transform.parent.gameObject));
+    }
+
+    public void KillEntity(Entity enemy)
+    {
+        onKill?.Invoke(enemy);
     }
     #endregion
 

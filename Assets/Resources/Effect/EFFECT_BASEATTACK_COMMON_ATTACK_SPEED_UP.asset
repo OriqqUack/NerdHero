@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
-  m_Name: EFFECT_COMMON_WAVE_DAMAGE_UP
+  m_Name: EFFECT_BASEATTACK_COMMON_ATTACK_SPEED_UP
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 24
-  codeName: COMMON_WAVE_DAMAGE_UP
-  displayName: "\uC6E8\uC774\uBE0C \uC2DC\uC791 \uC2DC \uC77C\uC815\uC2DC\uAC04\uB3D9\uC548
-    \uB370\uBBF8\uC9C0 \uC99D\uAC00"
-  description: "\uB9E4 \uC6E8\uC774\uBE0C \uC2DC\uC791 \uC2DC 10\uCD08\uAC04 \uACF5\uACA9\uB825
-    +20%"
+  id: 20
+  codeName: BASEATTACK_COMMON_ATTACK_SPEED_UP
+  displayName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+  description: "\uAE30\uBCF8 \uACF5\uACA9 \uC18D\uB3C4 +10%"
   type: 0
   rarity: 0
   isAllowDuplicate: 1
@@ -32,11 +30,11 @@ MonoBehaviour:
     maxStack: 1
     stackActions: []
     action:
-      rid: 416588811284250834
+      rid: 416588811284250827
     runningFinishOption: 0
     isApplyAllWhenDurationExpires: 0
     duration:
-      defaultValue: 10
+      defaultValue: 0
       scaleStat: {fileID: 0}
     applyCount: 1
     applyCycle: 0
@@ -44,15 +42,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 416588811284250834
+    - rid: 416588811284250827
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
-        stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
+        stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
         isPercent: 1
-        defaultValue: 0.2
+        defaultValue: 0.1
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0
         bonusValuePerLevel: 0
         bonusValuePerStack: 0
         isBonusType: 1
-        isUndoOnRelease: 1
+        isUndoOnRelease: 0

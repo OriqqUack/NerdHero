@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 11
   codeName: PLAYER_HEALTH
-  displayName: 
+  displayName: "\uD50C\uB808\uC774\uC5B4 \uCCB4\uB825"
   description: 
   isPercentType: 0
   maxValue: 50

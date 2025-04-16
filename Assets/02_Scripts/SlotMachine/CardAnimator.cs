@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
@@ -9,23 +10,31 @@ public class CardAnimator : UiWindow
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Vector2 centerPos = new Vector2(0f, 100f); // 중앙 기준 위치
     [SerializeField] private Button resetButton;
-
+    [SerializeField] private CardHolder cardHolder;
+    
     private GameObject[] _cards = new GameObject[3];
+    private CardBase[] _cardBases;
     private RectTransform _canvasRectTransform;
     private CanvasGroup _resetCg;
     private float _canvasHeight;
     private float _canvasWidth;
+    private CardSelector _cardSelector;
+    private Entity _entity;
     protected override void Start()
     {
+        _entity = WaveManager.Instance.PlayerEntity;
         _canvasRectTransform = transform.GetComponentInParent<RectTransform>();
         _canvasWidth = _canvasRectTransform.rect.width;
         _canvasHeight = _canvasRectTransform.rect.height;
         resetButton.onClick.AddListener(() => ResetCard());
+        _cardSelector = new CardSelector(_entity, cardHolder);
         SpawnCards();
     }
 
     private void SpawnCards()
     {
+        _cardBases = _cardSelector.GetCardBases();
+        
         float cardWidth = _canvasWidth * 0.25f; // 예: 전체 너비의 25%
         float cardHeight = cardPrefab.GetComponent<RectTransform>().sizeDelta.y;
 
@@ -36,6 +45,7 @@ public class CardAnimator : UiWindow
         for (int i = 0; i < 3; i++)
         {
             GameObject card = Instantiate(cardPrefab, transform);
+            card.GetComponent<CardUI>().Setup(_cardBases[i].Effect);
             RectTransform rect = card.GetComponent<RectTransform>();
 
             rect.sizeDelta = new Vector2(cardWidth, cardHeight);
@@ -100,6 +110,8 @@ public class CardAnimator : UiWindow
 
     private void CardSelected(int selectedIndex)
     {
+        var clone = _cardBases[selectedIndex].Clone() as CardBase;
+        clone.ApplyEffect();
         _resetCg.alpha = 0f;
         for (int i = 0; i < _cards.Length; i++)
         {

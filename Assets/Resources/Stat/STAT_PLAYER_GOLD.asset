@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 10
   codeName: PLAYER_GOLD
-  displayName: 
+  displayName: "\uD50C\uB808\uC774\uC5B4 \uB3C8"
   description: 
   isPercentType: 0
   maxValue: 1000000

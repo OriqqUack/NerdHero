@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
-  m_Name: EFFECT_COMMON_CRITICAL_DAMAGE_UP
+  m_Name: EFFECT_BASEATTACK_COMMON_WAVE_DAMAGE_UP
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 22
-  codeName: COMMON_CRITICAL_DAMAGE_UP
-  displayName: "\uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9 \uC99D\uAC00"
-  description: "\uAE30\uBCF8 \uACF5\uACA9 \uC2DC \uCE58\uBA85\uD0C0 \uD53C\uD574\uB7C9
-    +20%\r"
+  id: 24
+  codeName: BASEATTACK_COMMON_WAVE_DAMAGE_UP
+  displayName: "\uC6E8\uC774\uBE0C \uC2DC\uC791 \uC2DC \uC77C\uC815\uC2DC\uAC04\uB3D9\uC548
+    \uB370\uBBF8\uC9C0 \uC99D\uAC00"
+  description: "\uB9E4 \uC6E8\uC774\uBE0C \uC2DC\uC791 \uC2DC 10\uCD08\uAC04 \uACF5\uACA9\uB825
+    +20%"
   type: 0
   rarity: 0
   isAllowDuplicate: 1
@@ -31,22 +32,22 @@ MonoBehaviour:
     maxStack: 1
     stackActions: []
     action:
-      rid: 416588811284250829
-    runningFinishOption: 0
+      rid: 416588811284250834
+    runningFinishOption: 1
     isApplyAllWhenDurationExpires: 0
     duration:
-      defaultValue: 0
+      defaultValue: 10
       scaleStat: {fileID: 0}
-    applyCount: 1
+    applyCount: 0
     applyCycle: 0
     customActions: []
   references:
     version: 2
     RefIds:
-    - rid: 416588811284250829
+    - rid: 416588811284250834
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
-        stat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
+        stat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         isPercent: 1
         defaultValue: 0.2
         bonusValueStat: {fileID: 0}
@@ -54,4 +55,4 @@ MonoBehaviour:
         bonusValuePerLevel: 0
         bonusValuePerStack: 0
         isBonusType: 1
-        isUndoOnRelease: 0
+        isUndoOnRelease: 1

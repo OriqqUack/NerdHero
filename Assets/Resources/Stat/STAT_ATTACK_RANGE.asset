@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 7
   codeName: ATTACK_RANGE
-  displayName: 
+  displayName: "\uACF5\uACA9 \uC0AC\uAC70\uB9AC"
   description: 
   isPercentType: 0
   maxValue: 10

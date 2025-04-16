@@ -267,9 +267,9 @@ MonoBehaviour:
   closeSound: {fileID: 0}
   animator: {fileID: 0}
   cardPrefab: {fileID: 128459710786723956, guid: 921efc0892cdde345813fbd432205b60, type: 3}
-  canvasTransform: {fileID: 5252912474307306903}
   centerPos: {x: 0, y: 0}
   resetButton: {fileID: 6709149416654256999}
+  cardHolder: {fileID: 11400000, guid: 77d8f7e3512aca44c92b673112979877, type: 2}
 --- !u!1 &7098562773184372495
 GameObject:
   m_ObjectHideFlags: 0

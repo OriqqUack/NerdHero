@@ -84,8 +84,8 @@ public class Stat : IdentifiedObject
     {
         if (!bonusValuesByKey.ContainsKey(key))
             bonusValuesByKey[key] = new Dictionary<object, float>();
-        else
-            BonusValue -= bonusValuesByKey[key][subKey];
+        /*else
+            BonusValue -= bonusValuesByKey[key][subKey];*/
 
         float prevValue = Value;
         bonusValuesByKey[key][subKey] = value;

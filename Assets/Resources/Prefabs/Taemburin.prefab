@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7220960610810407192}
   - component: {fileID: 6819120596912158523}
   - component: {fileID: 6385022172529430332}
-  - component: {fileID: 439673962530026677}
   - component: {fileID: 1414303725209816821}
   - component: {fileID: 5366614886684590963}
+  - component: {fileID: 34679795184234155}
   m_Layer: 0
   m_Name: Taemburin
   m_TagString: Untagged
@@ -159,19 +159,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &439673962530026677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3774133306232834283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d49ecd4911861e48aa116e89d5fe621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  afterimagePrefab: {fileID: 3774133306232834283, guid: 32c9175cfe7ab6248a208c616a3d6dc7, type: 3}
 --- !u!114 &1414303725209816821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +194,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &34679795184234155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3774133306232834283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e395bb75c223e84c974eefdc2bad015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterimagePrefab: {fileID: 3774133306232834283, guid: 32c9175cfe7ab6248a208c616a3d6dc7, type: 3}
+  blinkImagePrefab: {fileID: 6327530703034869672, guid: 0f5051becf88e184a9fe4d15a189ede6, type: 3}
+  interval: 0.1
+  lifetime: 0.5
+  fadeSpeed: 2
 --- !u!1001 &3373508845989530514
 PrefabInstance:
   m_ObjectHideFlags: 0

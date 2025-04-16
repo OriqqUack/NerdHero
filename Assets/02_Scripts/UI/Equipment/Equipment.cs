@@ -24,11 +24,11 @@ public class Equipment : MonoSingleton<Equipment>
                 break;
             case ItemType.Armor:
                 armor = newItem;
-                GameManager.Instance.GetPlayerDefenseStat().SetBonusValue("Armor", newItem.StatValue);
+                //GameManager.Instance.GetPlayerDefenseStat().SetBonusValue("Armor", newItem.StatValue);
                 break;
             case ItemType.Boots:
                 boots = newItem;
-                GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
+                //GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
                 break;
         }
         OnEquipmentChanged?.Invoke(newItem);
@@ -72,14 +72,14 @@ public class Equipment : MonoSingleton<Equipment>
                 if (armor != null)
                 {
                     armor = null;
-                    GameManager.Instance.GetPlayerDefenseStat().RemoveBonusValue("Armor");
+                    //GameManager.Instance.GetPlayerDefenseStat().RemoveBonusValue("Armor");
                 }
                 break;
             case ItemType.Boots:
                 if (boots != null)
                 {
                     boots = null;
-                    GameManager.Instance.GetPlayerSkillDamageStat().RemoveBonusValue("Boots");
+                    //GameManager.Instance.GetPlayerSkillDamageStat().RemoveBonusValue("Boots");
                 }
                 break;
         }

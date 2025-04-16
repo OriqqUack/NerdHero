@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 4
   codeName: ATTACK_SPEED
-  displayName: 
+  displayName: "\uACF5\uACA9 \uC18D\uB3C4"
   description: 
   isPercentType: 1
   maxValue: 1

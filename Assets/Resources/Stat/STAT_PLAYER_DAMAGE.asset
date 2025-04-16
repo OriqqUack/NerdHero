@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 12
   codeName: PLAYER_DAMAGE
-  displayName: 
+  displayName: "\uD50C\uB808\uC774\uC5B4 \uB370\uBBF8\uC9C0"
   description: 
   isPercentType: 0
   maxValue: 999

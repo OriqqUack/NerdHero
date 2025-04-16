@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   id: 9
   codeName: PLAYER_LEVEL
-  displayName: 
+  displayName: "\uD50C\uB808\uC774\uC5B4 \uB808\uBCA8"
   description: 
   isPercentType: 0
   maxValue: 100

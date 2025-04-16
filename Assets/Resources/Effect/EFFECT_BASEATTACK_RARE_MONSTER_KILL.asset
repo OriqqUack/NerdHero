@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
-  m_Name: EFFECT_COMMON_DAMAGE_UP
+  m_Name: EFFECT_BASEATTACK_RARE_MONSTER_KILL
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 19
-  codeName: COMMON_DAMAGE_UP
-  displayName: "\uACF5\uACA9\uB825 \uC0C1"
-  description: "\uAE30\uBCF8 \uACF5\uACA9\uB825 +15%"
+  id: 28
+  codeName: BASEATTACK_RARE_MONSTER_KILL
+  displayName: "\uBAAC\uC2A4\uD130 \uCC98\uCE58 \uD6C4 \uACF5\uACA9\uB825 \uC99D\uAC00"
+  description: "\uBAAC\uC2A4\uD130 \uCC98\uCE58 \uD6C4 3\uCD08 \uB3D9\uC548 \uACF5\uACA9\uB825
+    +35%"
   type: 0
-  rarity: 0
+  rarity: 1
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0
@@ -30,27 +31,27 @@ MonoBehaviour:
     maxStack: 1
     stackActions: []
     action:
-      rid: 416588811284250824
-    runningFinishOption: 0
+      rid: 416588828021882988
+    runningFinishOption: 1
     isApplyAllWhenDurationExpires: 0
     duration:
-      defaultValue: 0
+      defaultValue: 3
       scaleStat: {fileID: 0}
-    applyCount: 1
+    applyCount: 0
     applyCycle: 0
     customActions: []
   references:
     version: 2
     RefIds:
-    - rid: 416588811284250824
+    - rid: 416588828021882988
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
         stat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         isPercent: 1
-        defaultValue: 0.15
+        defaultValue: 0.35
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0
         bonusValuePerLevel: 0
         bonusValuePerStack: 0
         isBonusType: 1
-        isUndoOnRelease: 0
+        isUndoOnRelease: 1
