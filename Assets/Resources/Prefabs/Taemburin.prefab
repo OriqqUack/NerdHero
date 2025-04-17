@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterimagePrefab: {fileID: 3774133306232834283, guid: 32c9175cfe7ab6248a208c616a3d6dc7, type: 3}
-  blinkImagePrefab: {fileID: 6327530703034869672, guid: 0f5051becf88e184a9fe4d15a189ede6, type: 3}
+  blinkImagePrefab: {fileID: 6328502282155553409, guid: 5b9cf308d93d2e04baca0f218c3f4601, type: 3}
   interval: 0.1
   lifetime: 0.5
   fadeSpeed: 2

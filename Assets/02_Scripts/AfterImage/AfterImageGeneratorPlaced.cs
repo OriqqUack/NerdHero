@@ -31,13 +31,8 @@ public class AfterImageGeneratorPlaced : MonoBehaviour
     {
         GameObject ai = Managers.Resource.Instantiate(afterimagePrefab, transform.position, transform.rotation);
 
-        for (int i = 0; i < 3; i++)
-        {
-            var ob = Managers.Resource.Instantiate(blinkImagePrefab);
-            Vector3 worldPos = ai.transform.TransformPoint(positionOffsets[i]);
-    
-            ob.transform.position = worldPos;
-        }
+        GameObject ob = Managers.Resource.Instantiate(blinkImagePrefab, ai.transform.position, ai.transform.rotation);
+        Destroy(ob, lifetime);
         
         SpriteRenderer aiSr = ai.GetComponent<SpriteRenderer>();
         aiSr.sprite = spriteRenderer.sprite;
