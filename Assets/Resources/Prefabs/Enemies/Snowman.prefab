@@ -479,11 +479,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a4e98600843cf4ca05cc36fd4e05fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpStat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
+  maxHpStat: {fileID: 11400000, guid: c214af5452a31584f906b9a7650639e2, type: 2}
+  hpStat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
+  maxSkillCostStat: {fileID: 0}
   skillCostStat: {fileID: 11400000, guid: 8c84dbe3d16022f4baa698702b22d808, type: 2}
   damageStat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
+  damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
   statOverrides:
-  - stat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
+  - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
     isUseOverride: 1
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
@@ -500,6 +503,12 @@ MonoBehaviour:
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
     isUseOverride: 1
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: c214af5452a31584f906b9a7650639e2, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
+    isUseOverride: 0
     overrideDefaultValue: 0.1
 --- !u!114 &6894094617909329425
 MonoBehaviour:
@@ -685,8 +694,6 @@ MonoBehaviour:
   hpFillImage: {fileID: 3082359994545608846}
   hpFollowImage: {fileID: 6284934753549992782}
   hpValueText: {fileID: 0}
-  skillCostFillImage: {fileID: 0}
-  skillCostValueText: {fileID: 0}
   panel: {fileID: 8079922435847848368}
   effectListView: {fileID: 0}
   sameAxisImage: {fileID: 4061715432594230025}
@@ -1236,7 +1243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.7999344}
+  m_AnchoredPosition: {x: 0, y: 2.7999265}
   m_SizeDelta: {x: 2280, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2211804480643136304

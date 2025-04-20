@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 1
+  id: 9
   codeName: HP
-  displayName: "\uCCB4\uB825"
+  displayName: 
   description: 
   isPercentType: 0
-  maxValue: 100
+  maxValue: 50
   minValue: 0
-  defaultValue: 100
+  defaultValue: 50

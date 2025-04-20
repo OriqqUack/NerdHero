@@ -474,7 +474,6 @@ MonoBehaviour:
   categories: []
   controlType: 2
   CanTakeDamage: 0
-  BaseAttack: {fileID: 0}
 --- !u!114 &333620014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,9 +513,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a4e98600843cf4ca05cc36fd4e05fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHpStat: {fileID: 11400000, guid: 76a521947a605e744a7297da1a555dad, type: 2}
   hpStat: {fileID: 11400000, guid: 0e02254ac4262ba4a906fadaf1810a7a, type: 2}
+  maxSkillCostStat: {fileID: 11400000, guid: 0d286127005dd0348b7029e6b125f351, type: 2}
   skillCostStat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
   damageStat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
+  damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
+  criticalDamageStat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
+  criticalPerStat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: b6d3bc43f994cdf49beaff84b37a2a2c, type: 2}
     isUseOverride: 0
@@ -528,7 +532,7 @@ MonoBehaviour:
     isUseOverride: 0
     overrideDefaultValue: 0
   - stat: {fileID: 11400000, guid: 0e02254ac4262ba4a906fadaf1810a7a, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 50
   - stat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
     isUseOverride: 0
@@ -554,6 +558,24 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0.5
+  - stat: {fileID: 11400000, guid: 50e9fe67f2768004a8d35f02959fb9eb, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.5
+  - stat: {fileID: 11400000, guid: 3ccf64b48a6803649bfeea5d315aa123, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.5
+  - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.5
+  - stat: {fileID: 11400000, guid: 0d286127005dd0348b7029e6b125f351, type: 2}
+    isUseOverride: 1
+    overrideDefaultValue: 50
+  - stat: {fileID: 11400000, guid: 76a521947a605e744a7297da1a555dad, type: 2}
+    isUseOverride: 1
+    overrideDefaultValue: 10
+  - stat: {fileID: 11400000, guid: 3ccf64b48a6803649bfeea5d315aa123, type: 2}
+    isUseOverride: 1
+    overrideDefaultValue: 0
 --- !u!114 &333620017
 MonoBehaviour:
   m_ObjectHideFlags: 0

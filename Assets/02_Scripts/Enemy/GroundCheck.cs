@@ -7,10 +7,12 @@ public class GroundCheck : MonoBehaviour
 {
     public bool IsOnGround;
     private NavMeshAgent agent;
+    private Rigidbody rb;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,6 +22,7 @@ public class GroundCheck : MonoBehaviour
             agent.nextPosition = transform.position;
             agent.updatePosition = true;
             IsOnGround = true;
+            Debug.Log("Check Ground");
         }
     }
 

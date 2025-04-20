@@ -651,7 +651,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2297311305596080477}
         m_TargetAssemblyTypeName: UI_Revive, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: CloseImmediately
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

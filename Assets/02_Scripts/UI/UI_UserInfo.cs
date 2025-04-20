@@ -18,23 +18,29 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI waveText;
     
-    [SerializeField] private Stat energyStat;
     [SerializeField] private Stat expStat;
     [SerializeField] private Stat levelStat;
+    private Stat maxHpStat;
     private Stat hpStat;
-    
+    private Stat maxEnergyStat;
+    private Stat energyStat;
+
     private Stats _playerStats;
     
     private void Start()
     {
         _playerStats = GameManager.Instance.GetComponent<Stats>();
-        energyStat = _playerStats.GetStat(energyStat);
-        expStat = _playerStats.GetStat(expStat);
+        energyStat = _playerStats.SkillCostStat;
+        maxEnergyStat = _playerStats.MaxSkillCostStat;
         hpStat = _playerStats.HPStat;
+        maxHpStat = _playerStats.MaxHpStat;
         levelStat = _playerStats.GetStat(levelStat);
+        expStat = _playerStats.GetStat(expStat);
         
         hpStat.onValueChanged += HpChangeEvent;
+        hpStat.onMaxValueChanged += HpChangeEvent;
         energyStat.onValueChanged += EnergyChangeEvent;
+        energyStat.onMaxValueChanged += EnergyChangeEvent;
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
         WaveManager.Instance.OnWaveChange += WaveChangeEvent;

@@ -45,7 +45,7 @@ public class IsTargetInsight : EnemyCondition
             // if (!Physics.Linecast(agentTransform.position, target.Value.transform.position)) {
             //     return true;
             // }
-
+            (entity.Movement as EntityMovement)?.SetTraceTarget(playerTransform);
             return true; // Target is within the field of view
         }
 

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_ICE_LEGENDARY
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 71
+  codeName: ICE_LEGENDARY
+  displayName: "(\uC5BC\uC74C \uC18D\uC131) \uB454\uD654 \uC801 \uACF5\uACA9 \uC2DC
+    \uD68C\uBCF5"
+  description: "\uB454\uD654 \uC0C1\uD0DC\uC758 \uC801\uC744 \uACF5\uACA9 \uC2DC,
+    \uD50C\uB808\uC774\uC5B4 \uCCB4\uB825 5% \uD68C\uBCF5\r"
+  type: 0
+  rarity: 2
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588893178560713
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 0
+    customActions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588893178560713
+      type: {class: FrozenPercentIncreaseStatAction, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: 0e02254ac4262ba4a906fadaf1810a7a, type: 2}
+        isPercent: 0
+        defaultValue: 0.05

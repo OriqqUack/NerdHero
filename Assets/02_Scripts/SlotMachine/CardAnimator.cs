@@ -11,6 +11,7 @@ public class CardAnimator : UiWindow
     [SerializeField] private Vector2 centerPos = new Vector2(0f, 100f); // 중앙 기준 위치
     [SerializeField] private Button resetButton;
     [SerializeField] private CardHolder cardHolder;
+    [SerializeField] private GameObject levelEffect;
     
     private GameObject[] _cards = new GameObject[3];
     private CardBase[] _cardBases;
@@ -20,6 +21,7 @@ public class CardAnimator : UiWindow
     private float _canvasWidth;
     private CardSelector _cardSelector;
     private Entity _entity;
+    private Button _backBtn;
     protected override void Start()
     {
         _entity = WaveManager.Instance.PlayerEntity;
@@ -105,11 +107,13 @@ public class CardAnimator : UiWindow
             .Append(card.transform.DORotate(new Vector3(0, 180f, 0), 0.25f, RotateMode.Fast))
             .SetEase(Ease.InOutSine);
         
-        back.Find("Button").GetComponent<Button>().onClick.AddListener(() => CardSelected(index));
+        _backBtn = back.Find("Button").GetComponent<Button>();
+        _backBtn.onClick.AddListener(() => CardSelected(index));
     }
 
     private void CardSelected(int selectedIndex)
     {
+        _backBtn.interactable = false;
         var clone = _cardBases[selectedIndex].Clone() as CardBase;
         clone.ApplyEffect();
         _resetCg.alpha = 0f;
@@ -180,10 +184,18 @@ public class CardAnimator : UiWindow
         });
     }
 
+    private void SpawnEffect()
+    {
+        GameObject go = Managers.Resource.Instantiate(levelEffect);
+        go.transform.position = _entity.transform.position;
+        go.transform.SetParent(_entity.transform);
+    }
+    
     private void CloseUI()
     {
         Time.timeScale = 1f;
         if(_closeCallback != null) _closeCallback(_windowHolder);
+        SpawnEffect();
         Destroy(gameObject);
     }
 }

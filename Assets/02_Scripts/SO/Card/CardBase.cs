@@ -2,9 +2,19 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum AttributeType
+{
+    BaseAttack,
+    Ult,
+    Survive,
+    Element,
+    Orb
+}
+
 [CreateAssetMenu(fileName = "Card_", menuName = "Card/CardBase")]
 public abstract class CardBase : ScriptableObject, ICloneable
 {
+    public AttributeType attributeType;
     [SerializeField] protected Effect effect;
     protected Effect _effect;
     

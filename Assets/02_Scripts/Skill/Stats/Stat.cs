@@ -33,7 +33,11 @@ public class Stat : IdentifiedObject
     public float MaxValue
     {
         get => maxValue;
-        set => maxValue = value;
+        set
+        { 
+            onMaxValueChanged?.Invoke(this, value, maxValue);
+            maxValue = value;
+        }
     }
 
     public float MinValue
@@ -63,6 +67,7 @@ public class Stat : IdentifiedObject
 
     #region EventHandler
     public event ValueChangedHandler onValueChanged;
+    public event ValueChangedHandler onMaxValueChanged;
     public event ValueChangedHandler onValueMax;
     public event ValueChangedHandler onValueMin;
     #endregion

@@ -21,6 +21,7 @@ MonoBehaviour:
   displayName: "\uAE30\uBCF8\uACF5\uACA9\uC5D0 \uB3C5\uC774 \uC0DD\uAE41\uB2C8\uB2E4."
   description: "\uAE30\uBCF8\uACF5\uACA9\uC5D0 \uB3C5\uC774 \uC0DD\uAE41\uB2C8\uB2E4."
   type: 0
+  rarity: 0
   isAllowDuplicate: 0
   removeDuplicateTargetOption: 0
   isShowInUI: 1

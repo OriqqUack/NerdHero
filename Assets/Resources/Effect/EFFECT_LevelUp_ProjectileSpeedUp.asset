@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: "\uD22C\uC0AC\uCCB4 \uC2A4\uD53C\uB4DC \uC99D\uAC00"
   description: "\uD22C\uC0AC\uCCB4\uC758 \uC2A4\uD53C\uB4DC\uAC00 \uC99D\uAC00\uD55C\uB2E4."
   type: 0
+  rarity: 0
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0

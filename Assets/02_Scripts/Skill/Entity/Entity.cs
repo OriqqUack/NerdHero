@@ -7,6 +7,7 @@ using Spine;
 using Spine.Unity;
 using Spine.Unity.Examples;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public enum EntityControlType
 {
@@ -43,7 +44,7 @@ public class Entity : MonoBehaviour
     public SkillSystem SkillSystem { get; private set; }
     public Entity Target { get; set; }
     public Rigidbody Rigidbody => _rigidbody;
-    public BaseAttackCheck BaseAttack;
+    public BaseAttackCheck BaseAttack { get; private set; }
     
     private Coroutine _coroutine;
 
@@ -100,8 +101,18 @@ public class Entity : MonoBehaviour
         if (IsDead || !CanTakeDamage)
             return;
 
-        float prevValue = Stats.HPStat.DefaultValue;
-        Stats.HPStat.DefaultValue -= damage;
+        //치명타
+        if (controlType == EntityControlType.AI)
+        {
+            if (Random.value < instigator.Stats.CriticalPer.Value)
+            {
+                damage *= (1 + instigator.Stats.CriticalDamage.Value);
+            }
+        }
+        
+        //데미지 감소율
+        float totalDamage = (1 + Stats.DamageReduction.Value) * damage;
+        Stats.HPStat.DefaultValue -= totalDamage;
 
         if (Animator.HasAnimation("damaged") && controlType != EntityControlType.Player) 
             Animator.PlayOneShot("damaged", 0);
@@ -111,7 +122,7 @@ public class Entity : MonoBehaviour
         if (Mathf.Approximately(Stats.HPStat.DefaultValue, 0f))
         {
             OnDead();
-            instigator.KillEntity(this);
+            instigator.onKill?.Invoke(this);
         }
     }
     
@@ -131,10 +142,6 @@ public class Entity : MonoBehaviour
             Animator.PlayOneShot("dead", 0, 0, () => Destroy(transform.parent.gameObject));
     }
 
-    public void KillEntity(Entity enemy)
-    {
-        onKill?.Invoke(enemy);
-    }
     #endregion
 
     #region EntityUtils

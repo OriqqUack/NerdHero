@@ -99,7 +99,7 @@ MonoBehaviour:
     - rid: 416588670042374352
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:
-        projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
+        projectilePrefab: {fileID: 3814496778439236206, guid: 0e97097ebbad225488a0264463560ec6, type: 3}
         spawnPointSocketName: ProjectilePoint
         speed: 5
     - rid: 416588670042374354

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// Entity°¡ SkillÀ» »ç¿ëÇÒ ¼ö ÀÖ´Â »óÅÂÀÎÁö È®ÀÎÇÏ´Â Action
+// Entityê°€ Skillì„ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ìƒíƒœì¸ì§€ í™•ì¸í•˜ëŠ” Action
 [System.Serializable]
 public class IsEntityReadyCondition : SkillCondition
 {
@@ -11,9 +11,9 @@ public class IsEntityReadyCondition : SkillCondition
     {
         var entity = skill.Owner;
         var skillSystem = entity.SkillSystem;
-        // ÇöÀç ¹ßµ¿ ÁßÀÎ Skillµé Áß¿¡¼­ EntityÀÇ Skill »ç¿ëÀ» Á¦ÇÑÇÏ´Â SkillÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
-        // ¹ßµ¿ ÁßÀÎ SkillÀÌ Toggle Type°ú Passive TypeÀÌ ¾Æ´Ï°í, »óÅÂ°¡ InAction StateÀÎµ¥, Input TypeÀÌ ¾Æ´Ï¶ó¸é True
-        // => Toggle Type°ú Passive Type ±×¸®°í InAction »óÅÂÀÎ Input TypeÀÇ SkillÀº EntityÀÇ Skill »ç¿ëÀ» Á¦ÇÑÇÏ´Â Skill·Î º¸Áö ¾ÊÀ½
+        // í˜„ìž¬ ë°œë™ ì¤‘ì¸ Skillë“¤ ì¤‘ì—ì„œ Entityì˜ Skill ì‚¬ìš©ì„ ì œí•œí•˜ëŠ” Skillì´ ì¡´ìž¬í•˜ëŠ”ì§€ í™•ì¸
+        // ë°œë™ ì¤‘ì¸ Skillì´ Toggle Typeê³¼ Passive Typeì´ ì•„ë‹ˆê³ , ìƒíƒœê°€ InAction Stateì¸ë°, Input Typeì´ ì•„ë‹ˆë¼ë©´ True
+        // => Toggle Typeê³¼ Passive Type ê·¸ë¦¬ê³  InAction ìƒíƒœì¸ Input Typeì˜ Skillì€ Entityì˜ Skill ì‚¬ìš©ì„ ì œí•œí•˜ëŠ” Skillë¡œ ë³´ì§€ ì•ŠìŒ
         var isRunningSkillExist = skillSystem.RunningSkills.Any(x => {
             return !x.IsToggleType && !x.IsPassive &&
             !(x.IsInState<InActionState>() && x.ExecutionType == SkillExecutionType.Input);

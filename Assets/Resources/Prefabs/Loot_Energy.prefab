@@ -330,6 +330,7 @@ MonoBehaviour:
   upwardForce: 1
   isFloating: 0
   attractDistance: 2
+  statFactor: {fileID: 11400000, guid: 3ccf64b48a6803649bfeea5d315aa123, type: 2}
 --- !u!54 &4476959268802044901
 Rigidbody:
   m_ObjectHideFlags: 0

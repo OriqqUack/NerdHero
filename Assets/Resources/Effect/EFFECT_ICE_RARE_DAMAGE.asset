@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_ICE_RARE_DAMAGE
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 66
+  codeName: ICE_RARE_DAMAGE
+  displayName: "(\uC5BC\uC74C \uC18D\uC131)\uCD94\uAC00 \uD53C\uD574 \uBC0F \uC801
+    \uC774\uB3D9\uC18D\uB3C4 \uAC10\uC18C"
+  description: "\uAE30\uBCF8 \uACF5\uACA9\uB825\uC758 50% \uCD94\uAC00 \uD53C\uD574
+    (\uACE0\uC815) + 25% \uD655\uB960\uB85C 2\uCD08\uAC04 \uC774\uB3D9\uC18D\uB3C4
+    -30%"
+  type: 0
+  rarity: 1
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588893178560677
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588893178560677
+      type: {class: DealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 0.5
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0

@@ -19,4 +19,10 @@ public class EffectSelector
         clone.Setup(owner, owner.Owner, level);
         return clone;
     }
+
+    public EffectSelector(int level, Effect effect)
+    {
+        this.level = level;
+        this.effect = effect;
+    }
 }

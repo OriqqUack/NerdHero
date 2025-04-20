@@ -20,6 +20,7 @@ MonoBehaviour:
   displayName: "\uC218\uBA74"
   description: 
   type: 0
+  rarity: 0
   isAllowDuplicate: 0
   removeDuplicateTargetOption: 0
   isShowInUI: 1

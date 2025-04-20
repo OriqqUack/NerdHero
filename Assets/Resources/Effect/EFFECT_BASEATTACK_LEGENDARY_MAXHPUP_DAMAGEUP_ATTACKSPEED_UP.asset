@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 31
+  id: 30
   codeName: BASEATTACK_LEGENDARY_MAXHPUP_DAMAGEUP_ATTACKSPEED_UP
   displayName: "\uB2A5\uB825\uCE58 \uC0C1\uC2B9"
   description: "\uCD5C\uB300 \uCCB4\uB825 +20% , \uACF5\uACA9\uB825 +25%, \uACF5\uACA9
@@ -56,14 +56,14 @@ MonoBehaviour:
     - rid: 416588828021882991
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
-        stat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
+        stat: {fileID: 11400000, guid: 0e02254ac4262ba4a906fadaf1810a7a, type: 2}
         isPercent: 1
         defaultValue: 0.2
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0
         bonusValuePerLevel: 0
         bonusValuePerStack: 0
-        isBonusType: 1
+        isBonusType: 0
         isUndoOnRelease: 0
     - rid: 416588828021882992
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}

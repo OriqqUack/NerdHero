@@ -23,8 +23,8 @@ public class WallAligner : MonoBehaviour
         Transform ground = transform;
 
         // Unity Plane 기본 크기: 10x10 units → Scale을 반영해야 실제 크기 나옴
-        float groundWidth = 10f * ground.localScale.x;
-        float groundDepth = 10f * ground.localScale.z;
+        float groundWidth = 10 * ground.localScale.x;
+        float groundDepth = 10 * ground.localScale.z;
         Vector3 groundCenter = ground.position;
 
         // ───────────── FRONT & BACK ─────────────

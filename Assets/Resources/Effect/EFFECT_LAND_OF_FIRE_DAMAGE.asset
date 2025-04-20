@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: 
   description: 
   type: 0
+  rarity: 0
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0

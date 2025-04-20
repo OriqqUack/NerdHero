@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Effect : IdentifiedObject
 {
-    #region 10-1
     // 몇몇 변수는 값이 0이면 무한을 의미함
     private const int kInfinity = 0;
 
@@ -59,9 +58,7 @@ public class Effect : IdentifiedObject
 
     // 쌓인 Stack에 따라 현재 적용된 Stack Actions
     private readonly List<EffectStackAction> aplliedStackActions = new();
-    #endregion
 
-    #region 10-2
     public EffectType Type => type;
     public EffectRarity Rarity => rarity;
     public bool IsAllowDuplicate => isAllowDuplicate;
@@ -71,9 +68,7 @@ public class Effect : IdentifiedObject
 
     public IReadOnlyList<EffectData> EffectDatas => effectDatas;
     public IReadOnlyList<EffectStackAction> StackActions => currentData.stackActions;
-    #endregion
 
-    #region 10-3
     public int MaxLevel => maxLevel;
     public int Level
     {
@@ -102,9 +97,7 @@ public class Effect : IdentifiedObject
     // Level이 1000까지 있는 Clicker Game의 경우 Data를 1000개 만들지 않아도
     // 위와 같이 BonusLevel을 활용해 Level 당 수치를 조절할 수 있음.
     public int DataBonusLevel => Mathf.Max(level - currentData.level, 0);
-    #endregion
 
-    #region 10-4
     // Effect의 지속 시간
     public float Duration => currentData.duration.GetValue(User.Stats);
     // Duration이 0이면 무한 지속
@@ -115,9 +108,7 @@ public class Effect : IdentifiedObject
         set => currentDuration = Mathf.Clamp(value, 0f, Duration);
     }
     public float RemainDuration => Mathf.Max(0f, Duration - currentDuration);
-    #endregion
 
-    #region 10-5
     public int MaxStack => currentData.maxStack;
     public int CurrentStack
     {
@@ -144,9 +135,7 @@ public class Effect : IdentifiedObject
             }
         }
     }
-    #endregion
 
-    #region 10-6
     public int ApplyCount => currentData.applyCount;
     // ApplyCount가 0이면 무한 적용(= 매 프레임마다 적용)
     public bool IsInfinitelyApplicable => ApplyCount == kInfinity;
@@ -173,9 +162,7 @@ public class Effect : IdentifiedObject
         get => currentApplyCycle;
         set => currentApplyCycle = Mathf.Clamp(value, 0f, ApplyCycle);
     }
-    #endregion
 
-    #region 10-7
     private EffectAction Action => currentData.action;
 
     private CustomAction[] CustomActions => currentData.customActions;
@@ -187,9 +174,7 @@ public class Effect : IdentifiedObject
     // Charge처럼 Casting 시간에 따라 위력이 달라지는 Skill에 활용할 수 있음
     public float Scale { get; set; }
     public override string Description => BuildDescription(base.Description, 0);
-    #endregion
 
-    #region 10-8
     private bool IsApplyAllWhenDurationExpires => currentData.isApplyAllWhenDurationExpires;
     private bool IsDurationEnded => !IsTimeless && Mathf.Approximately(Duration, CurrentDuration);
     private bool IsApplyCompleted => !IsInfinitelyApplicable && CurrentApplyCount == ApplyCount;
@@ -211,9 +196,7 @@ public class Effect : IdentifiedObject
     public event AppliedHandler onApplied;
     public event ReleasedHandler onReleased;
     public event StackChangedHandler onStackChanged;
-    #endregion
 
-    #region 10-9
     public void Setup(object owner, Entity user, int level, float scale = 1f)
     {
         Owner = owner;
@@ -284,9 +267,7 @@ public class Effect : IdentifiedObject
             aplliedStackActions.AddRange(stackActions);
         }
     }
-    #endregion
 
-    #region 10-10
     public void Start()
     {
         Debug.Assert(!IsReleased, "Effect::Start - 이미 종료된 Effect입니다.");
@@ -357,9 +338,7 @@ public class Effect : IdentifiedObject
 
         onReleased?.Invoke(this);
     }
-    #endregion
 
-    #region 10-11
 
     public EffectData GetData(int level) => effectDatas[level - 1];
 
@@ -396,5 +375,4 @@ public class Effect : IdentifiedObject
 
         return clone;
     }
-    #endregion
 }

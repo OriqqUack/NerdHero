@@ -10,11 +10,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private GameObject impactPrefab;
-    [SerializeField] private bool isBouncing;
+    [SerializeField] private bool canPenetrate;
     
     [Space(10)][Header("Shadow Settings")]
     [SerializeField] private GameObject shadow;
-    [SerializeField] private bool lockXAxis = false;
+    [SerializeField] private bool lockYAxis = false;
+    [SerializeField] private bool lockRotation = false;
     [SerializeField] private float yOffset;
 
     protected Entity owner;
@@ -43,8 +44,10 @@ public class Projectile : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (lockXAxis) return;
+        if (!lockYAxis) return;
         shadow.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
+        if (!lockRotation) return;
+        shadow.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
     private void OnDestroy()
@@ -55,7 +58,21 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!skill) return;
+        Entity entity = other.gameObject.GetComponent<Entity>();
 
+        if (entity)
+        {
+            if (entity == owner) return;
+            if (entity.ControlType == owner.ControlType) return;
+            
+            entity.SkillSystem.Apply(skill);
+        }
+        else
+        {
+            if (other.CompareTag("Ground")) Managers.Resource.Destroy(gameObject);
+            else return;
+        }
+        
         if (impactPrefab)
         {
             var impact = Instantiate(impactPrefab);
@@ -63,17 +80,7 @@ public class Projectile : MonoBehaviour
             impact.transform.position = transform.position;
         }
         
-        if (other.CompareTag("Ground")) Managers.Resource.Destroy(gameObject);
-        
-        Entity entity = other.gameObject.GetComponent<Entity>();
-        if (!entity) return;
-        if (entity == owner) return;
-        if (entity.ControlType == owner.ControlType) return;
-        
-        if (entity)
-            entity.SkillSystem.Apply(skill);
-
-        if(!isBouncing)
+        if(!canPenetrate)
             Managers.Resource.Destroy(gameObject);
     }
 }

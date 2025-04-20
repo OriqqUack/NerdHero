@@ -15,6 +15,11 @@ public class SpawnProjectilesAction : SkillAction
     private float intervalTime;
     [SerializeField]
     private float speed;
+
+    public void AddSpawnCount(int count)
+    {
+        spawnCount += count;
+    }
     
     public override void Apply(Skill skill)
     {

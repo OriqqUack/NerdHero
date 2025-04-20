@@ -89,7 +89,8 @@ public class Skill : IdentifiedObject
 
     public IReadOnlyList<SkillCondition> UseConditions => useConditions;
 
-    public IReadOnlyList<Effect> Effects { get; private set; } = Array.Empty<Effect>();
+    public List<Effect> Effects { get; private set; } = new List<Effect>();
+    public List<Effect> AddedEffects { get; private set; } = new List<Effect>();
 
     public int MaxLevel => maxLevel;
     public int Level
@@ -179,6 +180,8 @@ public class Skill : IdentifiedObject
     // Skill이 기준점 검색중이 아니고, 검색한 기준점이 Skill이 필요로 하는 Type이라면 True 
     public bool IsTargetSelectSuccessful => !IsSearchingTarget && HasValidTargetSelectionResult;
 
+    public SkillData CurrentData => currentData;
+    
     public IReadOnlyList<Cost> Costs => currentData.costs;
     public bool HasCost => Costs.Count > 0;
     public bool HasEnoughCost => Costs.All(x => x.HasEnoughCost(Owner));
@@ -427,13 +430,23 @@ public class Skill : IdentifiedObject
 
         currentData = newData;
 
-        Effects = currentData.effectSelectors.Select(x => x.CreateEffect(this)).ToArray();
+        Effects = currentData.effectSelectors.Select(x => x.CreateEffect(this)).ToList();
         // Skill의 현재 Level이 data의 Level보다 크면, 둘의 Level 차를 Effect의 Bonus Level 줌.
         // 만약 Skill이 2 Level이고, data가 1 level이라면, effect들은 2-1해서 1의 Bonus Level을 받게 됨.
+        foreach (var effect in AddedEffects)
+        {
+            Effects.Add(effect);
+        }
         if (level > currentData.level)
             UpdateCurrentEffectLevels();
 
         UpdateCustomActions();
+    }
+
+    public void AddEffect(Effect effect)
+    {
+        AddedEffects.Add(effect);
+        ChangeData(currentData);
     }
 
     public void LevelUp()

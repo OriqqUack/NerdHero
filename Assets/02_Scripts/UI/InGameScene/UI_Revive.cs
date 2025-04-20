@@ -30,6 +30,15 @@ public class UI_Revive : UiWindow
         Time.timeScale = 1;
     }
 
+    public void CloseImmediately()
+    {
+        if(_closeCallback != null) _closeCallback(_windowHolder);
+        //SoundManager.Instance.Play(closeSound);
+        Destroy(gameObject);
+        Time.timeScale = 1;
+        UI_InGameScene.Instance.OpenGameEnd();
+    }
+
     IEnumerator Counting()
     {
         int count = 5;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -280,6 +281,9 @@ public class SkillSystem : MonoBehaviour
 
     public Effect Find(Effect effect)
         => effect.Target == Owner ? effect : runningEffects.Find(x => x.ID == effect.ID);
+
+    public List<Effect> Find(string name)
+        => runningEffects.FindAll(x => x.CodeName.Contains(name));
 
     public Effect Find(System.Predicate<Effect> match)
         => runningEffects.Find(match);

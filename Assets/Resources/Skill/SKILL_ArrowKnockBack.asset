@@ -39,7 +39,7 @@ MonoBehaviour:
     precedingAction:
       rid: -2
     action:
-      rid: 6784395007719112875
+      rid: 416588873145778350
     runningFinishOption: 0
     duration: 0
     applyCount: 1
@@ -92,6 +92,63 @@ MonoBehaviour:
     customActionsOnPrecedingAction: []
     customActionsOnAction:
     - rid: 416588599712022710
+  currentData:
+    level: 0
+    levelUpConditions: []
+    levelUpCosts: []
+    precedingAction:
+      rid: -2
+    action:
+      rid: -2
+    runningFinishOption: 0
+    duration: 0
+    applyCount: 0
+    applyCycle: 0
+    cooldown:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    targetSearcher:
+      selectionAction:
+        rid: -2
+      searchAction:
+        rid: -2
+    costs: []
+    isUseCast: 0
+    castTime:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    isUseCharge: 0
+    chargeFinishActionOption: 0
+    chargeDuration: 0
+    chargeTime: 0
+    needChargeTimeToUse: 0
+    startChargePower: 0
+    effectSelectors: []
+    inSkillActionFinishOption: 0
+    castAnimatorParamter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    chargeAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    precedingActionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    actionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    customActionsOnCast: []
+    customActionsOnCharge: []
+    customActionsOnPrecedingAction: []
+    customActionsOnAction: []
   references:
     version: 2
     RefIds:
@@ -102,12 +159,14 @@ MonoBehaviour:
       data:
         AnimationName: eye sad
         Index: 2
-    - rid: 6784395007719112875
-      type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
+    - rid: 416588873145778350
+      type: {class: SpawnProjectilesAction, ns: , asm: Assembly-CSharp}
       data:
         projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
         spawnPointSocketName: ProjectilePoint
-        speed: 10
+        spawnCount: 1
+        intervalTime: 0.1
+        speed: 7
     - rid: 6784395007719112876
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:

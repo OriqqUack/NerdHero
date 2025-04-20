@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_POISON_LEGENDARY
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 73
+  codeName: POISON_LEGENDARY
+  displayName: "(\uB3C5 \uC18D\uC131) \uC801 \uCC98\uCE58 \uC2DC \uAD11\uC5ED \uD53C\uD574"
+  description: "\uB3C5 \uC911\uCCA9\uC911\uC778 \uC801 \uCC98\uCE58 \uC2DC, \uC804\uC7A5
+    \uB0B4 \uBAA8\uB4E0 \uC801\uC5D0\uAC8C 1\uC911\uCCA9 \uD655\uC0B0"
+  type: 0
+  rarity: 2
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588893178560687
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 0
+    customActions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588893178560687
+      type: {class: TestEffectAction, ns: Test, asm: Assembly-CSharp}
+      data: 

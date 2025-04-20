@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: 
   description: 
   type: 0
+  rarity: 0
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0
@@ -46,6 +47,7 @@ MonoBehaviour:
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
         stat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
+        isPercent: 0
         defaultValue: 10
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0

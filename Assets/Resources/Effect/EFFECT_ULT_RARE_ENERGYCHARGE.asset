@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_ULT_RARE_ENERGYCHARGE
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 41
+  codeName: ULT_RARE_ENERGYCHARGE
+  displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uAC8C\uC774\uC9C0
+    \uCDA9\uC804"
+  description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uAC8C\uC774\uC9C0
+    10% \uCDA9\uC804\r"
+  type: 0
+  rarity: 1
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588893178560617
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions:
+    - rid: 416588925403398268
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588893178560617
+      type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
+        isPercent: 1
+        defaultValue: 0.1
+        bonusValueStat: {fileID: 0}
+        bonusValueStatFactor: 0
+        bonusValuePerLevel: 0
+        bonusValuePerStack: 0
+        isBonusType: 1
+        isUndoOnRelease: 0
+    - rid: 416588925403398268
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 0
+        methodType: 1
+        prefab: {fileID: 8685162138139692958, guid: 4bd478362f68efb408a451724241045e, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 1, y: 1, z: 1}
+        isAttachToTarget: 1
+        isDestroyOnRelease: 1

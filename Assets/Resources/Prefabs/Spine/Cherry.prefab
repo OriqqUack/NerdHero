@@ -177,11 +177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb8012f6dc39794fa3b547c2c9b35a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactPrefab: {fileID: 0}
-  isBouncing: 0
+  impactPrefab: {fileID: 1449242181322416601, guid: 052d5f6cf7d3ebc44bba49fbe653f9a8, type: 3}
+  canPenetrate: 0
   shadow: {fileID: 8808130311292434941}
-  lockXAxis: 0
-  yOffset: -1
+  lockYAxis: 1
+  lockRotation: 0
+  yOffset: 0
   angle: 45
   shadow: {fileID: 8808130311292434941}
 --- !u!136 &6132572488913934019

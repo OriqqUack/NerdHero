@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: "\uC720\uB3C4 \uBBF8\uC0AC\uC77C"
   description: "\uAE30\uBCF8\uACF5\uACA9\uC774 \uC801\uC744 \uD5A5\uD574 \uC720\uB3C4\uB41C\uB2E4."
   type: 0
+  rarity: 0
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0

@@ -65,23 +65,27 @@ MonoBehaviour:
     startChargePower: 0
     effectSelectors:
     - level: 1
-      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+      effect: {fileID: 11400000, guid: dda63bcec9ab1c64c9eb3933e4102d81, type: 2}
     inSkillActionFinishOption: 2
     castAnimatorParamter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
       index: 0
+      stat: {fileID: 0}
       name: comp/ult
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -89,6 +93,63 @@ MonoBehaviour:
     customActionsOnAction:
     - rid: 9209176293260656945
     - rid: 416588556261916782
+  currentData:
+    level: 0
+    levelUpConditions: []
+    levelUpCosts: []
+    precedingAction:
+      rid: -2
+    action:
+      rid: -2
+    runningFinishOption: 0
+    duration: 0
+    applyCount: 0
+    applyCycle: 0
+    cooldown:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    targetSearcher:
+      selectionAction:
+        rid: -2
+      searchAction:
+        rid: -2
+    costs: []
+    isUseCast: 0
+    castTime:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    isUseCharge: 0
+    chargeFinishActionOption: 0
+    chargeDuration: 0
+    chargeTime: 0
+    needChargeTimeToUse: 0
+    startChargePower: 0
+    effectSelectors: []
+    inSkillActionFinishOption: 0
+    castAnimatorParamter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    chargeAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    precedingActionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    actionAnimatorParameter:
+      type: 0
+      index: 0
+      stat: {fileID: 0}
+      name: 
+    customActionsOnCast: []
+    customActionsOnCharge: []
+    customActionsOnPrecedingAction: []
+    customActionsOnAction: []
   references:
     version: 2
     RefIds:
@@ -97,7 +158,7 @@ MonoBehaviour:
     - rid: 416588489734226023
       type: {class: SpawnProjectileAction, ns: , asm: Assembly-CSharp}
       data:
-        projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
+        projectilePrefab: {fileID: 3774133306232834283, guid: a011f1070a8634c4381b8e9904a52f24, type: 3}
         spawnPointSocketName: ProjectilePoint
         speed: 7
     - rid: 416588489734226024

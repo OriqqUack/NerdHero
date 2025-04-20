@@ -163,7 +163,7 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     private void PlayerSpawn()
     { 
-        PlayerTransform = Instantiate(playerPrefab, playerSpawnPoint).transform;
+        PlayerTransform = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation).transform;
         PlayerEntity = PlayerTransform.GetComponent<Entity>();
     }
 

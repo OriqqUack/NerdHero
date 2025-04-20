@@ -7,9 +7,15 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     #region Property
+
+    [SerializeField] private Stat maxHpStat;
     [SerializeField] private Stat hpStat;
+    [SerializeField] private Stat maxSkillCostStat;
     [SerializeField] private Stat skillCostStat;
     [SerializeField] private Stat damageStat;
+    [SerializeField] private Stat damageReductionStat;
+    [SerializeField] private Stat criticalDamageStat;
+    [SerializeField] private Stat criticalPerStat;
 
     [Space]
     [SerializeField] private StatOverride[] statOverrides;
@@ -17,9 +23,14 @@ public class Stats : MonoBehaviour
     private Stat[] stats;
 
     public Entity Owner { get; private set; }
+    public Stat MaxHpStat { get; private set; }
     public Stat HPStat { get; private set; }
+    public Stat MaxSkillCostStat { get; private set; }
     public Stat SkillCostStat { get; private set; }
     public Stat Damage { get; private set; }
+    public Stat DamageReduction { get; private set; }
+    public Stat CriticalDamage { get; private set; }
+    public Stat CriticalPer { get; private set; }
     #endregion
 
     #region GUI
@@ -86,9 +97,53 @@ public class Stats : MonoBehaviour
         Owner = entity;
 
         stats = statOverrides.Select(x => x.CreateStat()).ToArray();
+        MaxHpStat = maxHpStat ? GetStat(maxHpStat) : null;
         HPStat = hpStat ? GetStat(hpStat) : null;
+        if(hpStat)
+        {
+            MaxHpStat.onValueChanged += OnChangedHpMaxValue;
+            HPStat.MaxValue = MaxHpStat.Value;
+            HPStat.DefaultValue = HPStat.MaxValue;
+        }
+        
+        MaxSkillCostStat = skillCostStat ? GetStat(maxSkillCostStat) : null;
         SkillCostStat = skillCostStat ? GetStat(skillCostStat) : null;
+        if(SkillCostStat)
+        {
+            MaxSkillCostStat.onValueChanged += OnChangedSkillCostMaxValue;
+            SkillCostStat.MaxValue = MaxSkillCostStat.Value;
+        }
+        
         Damage = damageStat ? GetStat(damageStat) : null;
+        DamageReduction = damageReductionStat ? GetStat(damageReductionStat) : null;
+        CriticalDamage = criticalDamageStat ? GetStat(criticalDamageStat) : null;
+        CriticalPer = criticalPerStat ? GetStat(criticalPerStat) : null;
+
+        //사거리 조절
+        if (entity.BaseAttack)
+        {
+            var stat = stats.First(x => x.CodeName == "ATTACK_RANGE");
+            stat.onValueChanged += (stat1, value, prevValue) =>
+            {
+                BoxCollider collider = entity.BaseAttack.GetComponent<BoxCollider>();
+                Vector3 originalSize = collider.size;
+                Vector3 originalCenter = collider.center;
+
+                float newLength = originalSize.z + value;
+                collider.size = new Vector3(originalSize.x, originalSize.y, newLength);
+                collider.center = new Vector3(originalCenter.x, originalCenter.y, originalCenter.z + value / 2f);
+            };
+        }
+    }
+
+    private void OnChangedHpMaxValue(Stat stat, float currentValue, float prevValue)
+    {
+        HPStat.MaxValue = MaxHpStat.Value;
+    }
+    
+    private void OnChangedSkillCostMaxValue(Stat stat, float currentValue, float prevValue)
+    {
+        SkillCostStat.MaxValue = MaxSkillCostStat.Value;
     }
 
     public void SetupOwner(Entity entity)

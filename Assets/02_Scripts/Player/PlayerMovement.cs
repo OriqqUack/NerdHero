@@ -31,8 +31,10 @@ public class PlayerMovement : Movement
 
     [Header("TakeDamage Setting")] 
     [SerializeField] private float canTakeDamageTime = 1.0f;
+    [SerializeField] private Effect reviveEffect;
+    [SerializeField] private GameObject stunEffect;
+    [SerializeField] private GameObject reviveVfx;
 
-    private GameObject _baseAttackCollider;
     private Vector3 _moveInput;
     private Vector3 _velocity;
     private Transform _groundCheck;
@@ -47,7 +49,6 @@ public class PlayerMovement : Movement
     {
         base.Setup(entity);
 
-        _baseAttackCollider = transform.Find("BaseAttackCollider").gameObject;
         _groundCheck = transform.Find("GroundCheck");
         entity.onDead += OnDead;
         entity.onTakeDamage += OnHitDamage;
@@ -74,15 +75,7 @@ public class PlayerMovement : Movement
         if (isCC) return;
         Move();
     }
-
-    public void Jump()
-    {
-        if (_isGrounded) // 땅에 있을 때만 점프 가능
-        {
-            rigidBody.AddForce(_moveInput * jumpSpeed, ForceMode.Impulse); // 점프 속도 설정
-            _currentState = CharacterState.Jump;
-        }
-    }
+    
     private void JoystickUpdate()
     {
         Vector2 joystickInput = joystick.GetInput();
@@ -204,10 +197,25 @@ public class PlayerMovement : Movement
     private void OnDead(Entity entity)
     {
         Stop();
+        stunEffect.SetActive(true);
         entity.BaseAttack.GetComponent<Collider>().enabled = false;
         entity.Animator.PlayAnimationForState("dead emotion", 2);
-        entity.Animator.PlayOneShot("dead", 0, 0, () => UI_InGameScene.Instance.OpenRevive());
+        entity.Animator.PlayOneShot("dead", 0, 0, () => DeadCheck());
+    }
 
+    private void DeadCheck()
+    {
+        var effect = reviveEffect.Clone() as Effect;
+        effect.Setup(gameObject, entity, 1);
+        if (entity.SkillSystem.Find(effect))
+        {
+            ReviveEvent();
+            entity.SkillSystem.RemoveEffect(effect);
+        }
+        else
+        {
+            UI_InGameScene.Instance.OpenRevive();
+        }
     }
 
     public void ReviveEvent()
@@ -224,6 +232,10 @@ public class PlayerMovement : Movement
         });
         
         entity.Animator.PlayOneShot("clear emotion", 2, 2.6f);
+        stunEffect.SetActive(false);
+        GameObject go = Managers.Resource.Instantiate(reviveVfx);
+        go.transform.position = transform.position;
+        Destroy(go, 5.0f);
     }
 
 }

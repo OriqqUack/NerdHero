@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public enum GainType { Stat, Item }
+public enum GainType { Exp, Energy, Item }
 
 public class GainLoot : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class GainLoot : MonoBehaviour
     [SerializeField] private float upwardForce = 1f;
     [SerializeField] private bool isFloating;
     [SerializeField] private float attractDistance = 2f; // 플레이어가 접근하면 자동 획득하는 거리
+    [SerializeField] private Stat statFactor;
     private bool isAttracted = false;
     private Vector3 startPosition;
     private float t = 0f;
@@ -95,13 +96,24 @@ public class GainLoot : MonoBehaviour
 
     private void Gained()
     {
-        if (gainType == GainType.Stat)
+        switch (gainType)
         {
-            playerEntity.Stats.IncreaseDefaultValue(gainStat, gainAmount);
-        }
-        else if (gainType == GainType.Item && gainItem != null)
-        {
-            WaveManager.Instance.AddGainedItem(gainItem);
+            case GainType.Exp:
+                playerEntity.Stats.IncreaseDefaultValue(gainStat, gainAmount);
+                break;
+            case GainType.Energy:
+                if (statFactor)
+                {
+                    float factor = playerEntity.Stats.GetValue(statFactor);
+                    Debug.Log(factor);
+                    gainAmount *= (1 + factor);
+                }
+                playerEntity.Stats.IncreaseDefaultValue(gainStat, gainAmount);
+                break;
+            case GainType.Item:
+                if (!gainItem) break;
+                WaveManager.Instance.AddGainedItem(gainItem);
+                break;
         }
 
         Destroy(gameObject);

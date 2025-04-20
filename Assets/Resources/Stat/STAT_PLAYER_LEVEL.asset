@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 9
+  id: 18
   codeName: PLAYER_LEVEL
   displayName: "\uD50C\uB808\uC774\uC5B4 \uB808\uBCA8"
   description: 

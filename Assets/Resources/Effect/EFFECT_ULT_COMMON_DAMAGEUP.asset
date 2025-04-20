@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_ULT_COMMON_DAMAGEUP
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 34
+  codeName: ULT_COMMON_DAMAGEUP
+  displayName: "\uAD81\uADF9\uAE30 \uD53C\uD574\uB7C9 \uC99D\uAC00"
+  description: "\uAD81\uADF9\uAE30 \uD53C\uD574\uB7C9 +20%\r\n"
+  type: 0
+  rarity: 0
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588884933083136
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588884933083136
+      type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: 50e9fe67f2768004a8d35f02959fb9eb, type: 2}
+        isPercent: 1
+        defaultValue: 0.2
+        bonusValueStat: {fileID: 0}
+        bonusValueStatFactor: 0
+        bonusValuePerLevel: 0
+        bonusValuePerStack: 0
+        isBonusType: 1
+        isUndoOnRelease: 0

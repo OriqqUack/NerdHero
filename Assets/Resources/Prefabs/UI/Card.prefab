@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7769a5aef2f0d439cdf7ec2841babd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frame: {fileID: 6937749386754911274}
   icon: {fileID: 8605302710395976242}
   description: {fileID: 3586181116306340467}
 --- !u!1 &129449160609533334

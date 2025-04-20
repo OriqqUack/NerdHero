@@ -39,7 +39,7 @@ MonoBehaviour:
     precedingAction:
       rid: -2
     action:
-      rid: 416588576260096330
+      rid: 416588925403398281
     runningFinishOption: 0
     duration: 0
     applyCount: 1
@@ -96,13 +96,6 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 416588576260096330
-      type: {class: SpawnProjectilesAction, ns: , asm: Assembly-CSharp}
-      data:
-        projectilePrefab: {fileID: 3774133306232834283, guid: 041350f0c585cc449afe3a971444a51f, type: 3}
-        spawnPointSocketName: ProjectilePoint
-        intervalTime: 0
-        speed: 5
     - rid: 416588576260096333
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:
@@ -117,3 +110,10 @@ MonoBehaviour:
         indicatorViewAction:
           rid: -2
         isUseScale: 0
+    - rid: 416588925403398281
+      type: {class: SpawnProjectilesBySocketsAction, ns: , asm: Assembly-CSharp}
+      data:
+        projectilePrefab: {fileID: 3814496778439236206, guid: 0e97097ebbad225488a0264463560ec6, type: 3}
+        spawnPointSocketName: ProjectilePoint
+        intervalTime: 0
+        speed: 5

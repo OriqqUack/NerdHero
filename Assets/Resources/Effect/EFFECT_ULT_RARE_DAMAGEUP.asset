@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80279c25703d224b96b1f41a34d9d3e, type: 3}
+  m_Name: EFFECT_ULT_RARE_DAMAGEUP
+  m_EditorClassIdentifier: 
+  categories: []
+  icon: {fileID: 0}
+  id: 44
+  codeName: ULT_RARE_DAMAGEUP
+  displayName: "\uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uAE30\uBCF8\uACF5\uACA9\uB825
+    \uC0C1\uC2B9"
+  description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uD6C4 \uAE30\uBCF8 \uACF5\uACA9\uB825
+    +25% (5\uCD08)"
+  type: 0
+  rarity: 1
+  isAllowDuplicate: 1
+  removeDuplicateTargetOption: 0
+  isShowInUI: 0
+  isAllowLevelExceedDatas: 0
+  maxLevel: 1
+  effectDatas:
+  - level: 1
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588893178560620
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 5
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 0
+    customActions: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 416588893178560620
+      type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        isPercent: 1
+        defaultValue: 0.25
+        bonusValueStat: {fileID: 0}
+        bonusValueStatFactor: 0
+        bonusValuePerLevel: 0
+        bonusValuePerStack: 0
+        isBonusType: 1
+        isUndoOnRelease: 1

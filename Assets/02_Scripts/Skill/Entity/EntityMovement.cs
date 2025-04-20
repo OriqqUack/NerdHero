@@ -94,6 +94,11 @@ public class EntityMovement : Movement
         //LookAt(destination);
     }
 
+    public void SetTraceTarget(Transform target)
+    {
+        traceTarget = target;
+    }
+
     public void Stop()
     {
         traceTarget = null;
@@ -120,12 +125,12 @@ public class EntityMovement : Movement
 
     public void LookCheck()
     {
-        var rotation = transform.rotation;
+        var rotation = transform.localRotation;
         if(traceTarget)
-            rotation.y = Mathf.Abs(transform.rotation.y) * (traceTarget.transform.position.x >= transform.position.x ? 1 : -1);
+            rotation.y = (traceTarget.transform.position.x >= transform.position.x ? 0 : 180);
         else
-            rotation.y = Mathf.Abs(transform.rotation.y) * (agent.destination.x >= transform.position.x ? 1 : -1);
-        transform.rotation = rotation;
+            rotation.y = (agent.destination.x >= transform.position.x ? 0 : 180);
+        transform.localRotation = rotation;
     }
     /*public void LookAt(Vector3 position)
     {

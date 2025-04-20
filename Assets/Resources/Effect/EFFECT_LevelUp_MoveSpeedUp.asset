@@ -19,6 +19,7 @@ MonoBehaviour:
   displayName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
   description: "\uC774\uB3D9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD55C\uB2E4."
   type: 0
+  rarity: 0
   isAllowDuplicate: 1
   removeDuplicateTargetOption: 0
   isShowInUI: 0
@@ -45,6 +46,7 @@ MonoBehaviour:
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
         stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
+        isPercent: 0
         defaultValue: 1
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0

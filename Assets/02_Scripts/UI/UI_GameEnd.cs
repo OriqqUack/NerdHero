@@ -35,7 +35,7 @@ public class UI_GameEnd : UiWindow
 
     private void WaveSetting()
     {
-        waveText.text = $"WAVE : {WaveManager.Instance.CurrentWave + 1}";
+        waveText.text = $"WAVE : {WaveManager.Instance.CurrentWave}";
     }
 
     private void IDLevelSliderSetting()

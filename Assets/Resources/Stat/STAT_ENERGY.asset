@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 5
+  id: 6
   codeName: ENERGY
   displayName: "\uC5D0\uB108\uC9C0"
   description: 

@@ -38,6 +38,7 @@ public class JumpAction : CustomAction
     private void Jump()
     {
         _entity.GetComponent<NavMeshAgent>().updatePosition = false;
+        _entity.Rigidbody.isKinematic = false;
         
         Vector3 direction = isBackJump ? -_entity.transform.forward : _entity.transform.forward;
         Vector3 rotatedDirection = Quaternion.AngleAxis(angle, Vector3.Cross(direction, Vector3.up)) * direction;
