@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c741789b32df54ba65aade49dccf12, type: 3}
   m_Name: Card_SURVIVE_COMMON_MOVESPEEDUP
   m_EditorClassIdentifier: 
+  attributeType: 2
   effect: {fileID: 11400000, guid: fa9df60526c2e5b4cae0b14eafa7f8d7, type: 2}
   useConditions: []
   references:

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca3c8ac09d056c46b5fee3acf91fba3, type: 3}
   m_Name: Card_ULT_LEGENDARY_ONEMOREULT
   m_EditorClassIdentifier: 
+  attributeType: 1
   effect: {fileID: 11400000, guid: 3b46e92c48d8cef4fb878db817542d08, type: 2}
   useConditions: []
   percent: 1

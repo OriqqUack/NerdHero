@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3ae2e1ab71d644bb485abec10a2925, type: 3}
   m_Name: Card_POISON_LEGENDARY
   m_EditorClassIdentifier: 
+  attributeType: 3
   effect: {fileID: 11400000, guid: ea8109759c8bda945840ade3732f4874, type: 2}
   useConditions: []
   references:

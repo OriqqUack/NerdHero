@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0e8b059103d2640b1f062802090319, type: 3}
   m_Name: Card_ULT_COMMON_ENERGY_CHARGE
   m_EditorClassIdentifier: 
+  attributeType: 1
   effect: {fileID: 11400000, guid: c40f6b248ae966f43ba00a3340eeb532, type: 2}
   useConditions: []
   references:

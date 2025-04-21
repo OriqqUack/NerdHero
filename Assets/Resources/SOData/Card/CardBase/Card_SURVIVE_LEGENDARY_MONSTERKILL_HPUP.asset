@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2be26eaaf3c5b45877fba8ae0d09cb, type: 3}
   m_Name: Card_SURVIVE_LEGENDARY_MONSTERKILL_HPUP
   m_EditorClassIdentifier: 
+  attributeType: 2
   effect: {fileID: 11400000, guid: 4d9b71502adbc2c4fb2ff2a51c014d01, type: 2}
   useConditions: []
   references:

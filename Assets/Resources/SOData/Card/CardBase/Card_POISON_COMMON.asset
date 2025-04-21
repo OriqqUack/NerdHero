@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac104da391b9b641a0813fa9aa6dc9e, type: 3}
   m_Name: Card_POISON_COMMON
   m_EditorClassIdentifier: 
+  attributeType: 3
   effect: {fileID: 11400000, guid: d1339b2684c421d47b0979420ec22da8, type: 2}
   useConditions: []
   elementalName: POISON

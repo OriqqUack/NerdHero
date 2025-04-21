@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1cb9820488b55479d0e26d2366c9ba, type: 3}
   m_Name: Card_ULT_RARE_HPUNDERCONDITION
   m_EditorClassIdentifier: 
+  attributeType: 1
   effect: {fileID: 11400000, guid: 4257faa49d791a3469ff9af4b7271dc8, type: 2}
   useConditions: []
   hpRate: 0.3

@@ -25,6 +25,7 @@ public class CardAnimator : UiWindow
     private CardProbabilityManager _cardProbabilityManager;
     private Entity _entity;
     private Button _backBtn;
+    private int _currentLevel;
 
     protected override void Start()
     {
@@ -36,12 +37,13 @@ public class CardAnimator : UiWindow
         _cardData = new CardDatabase(cardHolder);
         _cardProbabilityManager = new CardProbabilityManager(gradeProbConfigs);
         _cardSelector = new CardSelector(_entity, _cardData, _cardProbabilityManager);
-        SpawnCards();
+        SpawnCards(2);
     }
 
-    private void SpawnCards()
+    public void SpawnCards(int level)
     {
-        //_cardBases = _cardSelector.GetCardBases();
+        _currentLevel = level;
+        _cardBases = _cardSelector.GetCardBases(level);
         
         float cardWidth = _canvasWidth * 0.25f; // 예: 전체 너비의 25%
         float cardHeight = cardPrefab.GetComponent<RectTransform>().sizeDelta.y;
@@ -186,7 +188,7 @@ public class CardAnimator : UiWindow
             _cards = new GameObject[3];
 
             // 다시 생성
-            SpawnCards();
+            SpawnCards(_currentLevel);
         });
     }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c741789b32df54ba65aade49dccf12, type: 3}
   m_Name: Card_SURVIVE_RARE_MAXHPUP
   m_EditorClassIdentifier: 
+  attributeType: 2
   effect: {fileID: 11400000, guid: c2a57e2670b60694f97f955b8defa7ec, type: 2}
   useConditions: []
   references:

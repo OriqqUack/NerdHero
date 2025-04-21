@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c741789b32df54ba65aade49dccf12, type: 3}
   m_Name: Card_ULT_COMMON_DAMAGEUP
   m_EditorClassIdentifier: 
+  attributeType: 1
   effect: {fileID: 11400000, guid: 51c2a67a48b7d4c4ba4508e7560ea816, type: 2}
   useConditions: []
   references:

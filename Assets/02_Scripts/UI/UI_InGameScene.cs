@@ -10,6 +10,7 @@ public class UI_InGameScene : MonoSingleton<UI_InGameScene>
     [SerializeField] private WindowHolder gameEnd;
     [SerializeField] private WindowHolder cardSelec;
 
+    private UiWindow _cardSelectUI;
     private void Start()
     {
         DOTween.defaultTimeScaleIndependent = true;
@@ -34,6 +35,14 @@ public class UI_InGameScene : MonoSingleton<UI_InGameScene>
     private void OpenCardSelec(Stat stat, float currentValue, float prevValue)
     {
         Time.timeScale = 0;
-        cardSelec.OpenWindow();
+        if(_cardSelectUI)
+        {
+            _cardSelectUI.gameObject.SetActive(true);
+            (_cardSelectUI as CardAnimator).SpawnCards((int)currentValue);
+        }
+        else
+        {
+            _cardSelectUI = cardSelec.OpenWindow();
+        }
     }
 }

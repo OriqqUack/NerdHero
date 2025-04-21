@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c741789b32df54ba65aade49dccf12, type: 3}
   m_Name: Card_SURVIVE_RARE_TAKEDAMAGE_REDUCTION
   m_EditorClassIdentifier: 
+  attributeType: 2
   effect: {fileID: 11400000, guid: a413652af133f8c48ac1916ba6e1c284, type: 2}
   useConditions: []
   references:

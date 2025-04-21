@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c93046beca406b4d8700286c53ce247, type: 3}
   m_Name: Card_ICE_RARE_DAMAGE
   m_EditorClassIdentifier: 
+  attributeType: 3
   effect: {fileID: 11400000, guid: 4fc217b842cb2c44a94016be8a2de328, type: 2}
   useConditions: []
   secondEffect: {fileID: 11400000, guid: 123a51ed6657b404bba39111aa2ef3d7, type: 2}

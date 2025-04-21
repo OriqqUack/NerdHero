@@ -13,6 +13,7 @@ public class WaveCard : CardBase
     public override void ApplyEffect()
     {
         WaveManager.Instance.OnWaveChange += ChangeWave;
+        ChangeWave(0);
     }
 
     private void ChangeWave(int index)

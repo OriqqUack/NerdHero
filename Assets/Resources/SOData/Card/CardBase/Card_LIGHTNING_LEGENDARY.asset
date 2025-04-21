@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac104da391b9b641a0813fa9aa6dc9e, type: 3}
   m_Name: Card_LIGHTNING_LEGENDARY
   m_EditorClassIdentifier: 
+  attributeType: 3
   effect: {fileID: 11400000, guid: 5eb4bd17e50bb984b988cb86912f35e9, type: 2}
   useConditions: []
   elementalName: LIGHTNING

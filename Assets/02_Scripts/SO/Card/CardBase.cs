@@ -24,6 +24,7 @@ public abstract class CardBase : ScriptableObject, ICloneable
     protected Entity _owner;
 
     public Effect Effect => _effect;
+    public Effect EffectSO => effect;
     
     public abstract void Setup(Entity entity);
 

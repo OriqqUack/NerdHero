@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c741789b32df54ba65aade49dccf12, type: 3}
   m_Name: Card_ULT_RARE_ENERGYCHARGE
   m_EditorClassIdentifier: 
+  attributeType: 1
   effect: {fileID: 11400000, guid: a33553dba1fcc3a4898b942a98b295ee, type: 2}
   useConditions: []
   references:

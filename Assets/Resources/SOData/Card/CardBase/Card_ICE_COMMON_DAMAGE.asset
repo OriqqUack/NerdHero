@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c93046beca406b4d8700286c53ce247, type: 3}
   m_Name: Card_ICE_COMMON_DAMAGE
   m_EditorClassIdentifier: 
+  attributeType: 3
   effect: {fileID: 11400000, guid: 5be1c6bb185d09543b8215632f25e435, type: 2}
   useConditions: []
   secondEffect: {fileID: 11400000, guid: 2f72f0d5ea9a6624c8147ebb247c92ac, type: 2}
-  percent: 0
   references:
     version: 2
     RefIds: []

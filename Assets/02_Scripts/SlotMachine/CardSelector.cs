@@ -25,7 +25,7 @@ public class CardSelector
         var selectedCards = new List<CardBase>();
         int attempts = 0;
 
-        while (selectedCards.Count < 3 && attempts < 30)
+        while (selectedCards.Count < 3 && attempts < 999)
         {
             var result = _probabilityManager.RollCard(level, commonRareHistory, _attributeCategory);
 

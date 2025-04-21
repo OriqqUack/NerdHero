@@ -52,7 +52,7 @@ public class CardProbabilityManager
         return rates;
     }
 
-    public (EffectRarity grade, AttributeType attr)? RollCard(
+    public (EffectRarity grade, AttributeType attr)?  RollCard(
         int level,
         HashSet<AttributeType> commonRareHistory,
         AttributeType attributeCategory)
