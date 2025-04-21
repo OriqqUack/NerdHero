@@ -13,8 +13,13 @@ public class CardProbabilityConfig
 
 public class CardProbabilityManager
 {
-    public List<CardProbabilityConfig> gradeProbConfigs;
+    private List<CardProbabilityConfig> gradeProbConfigs;
 
+    public CardProbabilityManager(List<CardProbabilityConfig> gradeProbConfigs)
+    {
+        this.gradeProbConfigs = gradeProbConfigs;
+    }
+    
     private Dictionary<AttributeType, float> GetAttributeRates(AttributeType recent, AttributeType previous)
     {
         var rates = new Dictionary<AttributeType, float>();
@@ -23,7 +28,7 @@ public class CardProbabilityManager
         {
             rates[attr] = 20f;
         }
-
+        
         if (recent == previous)
         {
             rates[recent] = 25f;
@@ -49,47 +54,33 @@ public class CardProbabilityManager
 
     public (EffectRarity grade, AttributeType attr)? RollCard(
         int level,
-        AttributeType recent,
-        AttributeType previous,
-        HashSet<AttributeType> selectedForLegendary)
+        HashSet<AttributeType> commonRareHistory,
+        AttributeType attributeCategory)
     {
-        var gradeConfig = gradeProbConfigs.Find(c => c.level == level);
-        if (gradeConfig == null) return null;
+        var config = gradeProbConfigs.Find(c => c.level == level);
+        if (config == null) return null;
 
         // 1. 등급 결정
         float r = UnityEngine.Random.value * 100f;
-        EffectRarity selectedGrade;
-        if (r < gradeConfig.commonRate) selectedGrade = EffectRarity.Common;
-        else if (r < gradeConfig.commonRate + gradeConfig.rareRate) selectedGrade = EffectRarity.Rare;
-        else selectedGrade = EffectRarity.Legendary;
+        EffectRarity grade;
+        if (r < config.commonRate) grade = EffectRarity.Common;
+        else if (r < config.commonRate + config.rareRate) grade = EffectRarity.Rare;
+        else grade = EffectRarity.Legendary;
 
-        // 2. 속성 확률 결정
-        var attrRates = GetAttributeRates(recent, previous);
-        float total = 0f;
-        foreach (var rate in attrRates.Values) total += rate;
-        float pick = UnityEngine.Random.value * total;
-        float cumulative = 0f;
-        AttributeType selectedAttr = AttributeType.BaseAttack;
+        // 2. 속성 결정 (동등 확률)
+        Array values = Enum.GetValues(typeof(AttributeType));
+        AttributeType attr = (AttributeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
 
-        foreach (var kvp in attrRates)
+        // 3. 전설 카드 예외 조건
+        if (grade == EffectRarity.Legendary && attr == attributeCategory)
         {
-            cumulative += kvp.Value;
-            if (pick <= cumulative)
+            if (!commonRareHistory.Contains(attr))
             {
-                selectedAttr = kvp.Key;
-                break;
+                Debug.Log("[RollCard] 전설 조건 불충족 - 속성 카테고리 전설은 동일 속성의 Common/Rare가 있어야 함");
+                return null;
             }
         }
 
-        // 3. 전설 카드 예외 처리: 속성 카테고리에 대해서만 필터 적용
-        if (selectedGrade == EffectRarity.Legendary && selectedAttr == AttributeType.Element)
-        {
-            if (!selectedForLegendary.Contains(selectedAttr))
-            {
-                return null; // 속성 카테고리인데 일반/레어 선택 이력 없음 → 등장 불가
-            }
-        }
-
-        return (selectedGrade, selectedAttr);
+        return (grade, attr);
     }
 }

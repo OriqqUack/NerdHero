@@ -4,34 +4,56 @@ using UnityEngine;
 
 public class CardSelector
 {
-    private List<CardBase> _cardList;
     private readonly CardBase[] _cardEffects = new CardBase[3];
     private Entity _entity;
-    public CardSelector(Entity entity, CardHolder cardHolder)
+    private CardDatabase _cardDatabase;
+    private CardProbabilityManager _probabilityManager;
+
+    // 속성 카테고리 지정 (예: 얼음, 불 등)
+    private readonly AttributeType _attributeCategory = AttributeType.Element; // 예시: C가 속성 카테고리
+
+    public CardSelector(Entity entity, CardDatabase cardDatabase, CardProbabilityManager probabilityManager)
     {
-        Debug.Assert(cardHolder.cards != null, "Card Holder가 Null이 될 순 없습니다.");
-        _cardList = new List<CardBase>(cardHolder.cards);
         _entity = entity;
+        _cardDatabase = cardDatabase;
+        _probabilityManager = probabilityManager;
     }
 
-    public CardBase[] GetCardBases()
+    public CardBase[] GetCardBases(int level)
     {
-        // 중복 없는 인덱스 3개 뽑기
-        List<int> indices = new List<int>();
-        while (indices.Count < 3)
+        var commonRareHistory = new HashSet<AttributeType>();
+        var selectedCards = new List<CardBase>();
+        int attempts = 0;
+
+        while (selectedCards.Count < 3 && attempts < 30)
         {
-            int rand = Random.Range(0, _cardList.Count);
-            if (!indices.Contains(rand))
+            var result = _probabilityManager.RollCard(level, commonRareHistory, _attributeCategory);
+
+            if (result.HasValue)
             {
-                indices.Add(rand);
+                var card = _cardDatabase.GetRandomCard(result.Value.grade, result.Value.attr);
+                if (card != null && !selectedCards.Contains(card))
+                {
+                    selectedCards.Add(card.Clone() as CardBase);
+
+                    // ✅ 등급이 common 또는 rare일 경우, 등장 속성 기록
+                    if (result.Value.grade == EffectRarity.Common || result.Value.grade == EffectRarity.Rare)
+                    {
+                        commonRareHistory.Add(result.Value.attr);
+                    }
+                }
             }
+
+            attempts++;
         }
 
         for (int i = 0; i < 3; i++)
         {
-            _cardEffects[i] = _cardList[indices[i]].Clone() as CardBase;
+            _cardEffects[i] = (i < selectedCards.Count)
+                ? selectedCards[i]
+                : _cardDatabase.GetFallbackCard().Clone() as CardBase;
         }
-        
+
         return _cardEffects;
     }
 }

@@ -12,6 +12,7 @@ public class CardAnimator : UiWindow
     [SerializeField] private Button resetButton;
     [SerializeField] private CardHolder cardHolder;
     [SerializeField] private GameObject levelEffect;
+    [SerializeField] private List<CardProbabilityConfig> gradeProbConfigs;
     
     private GameObject[] _cards = new GameObject[3];
     private CardBase[] _cardBases;
@@ -20,8 +21,11 @@ public class CardAnimator : UiWindow
     private float _canvasHeight;
     private float _canvasWidth;
     private CardSelector _cardSelector;
+    private CardDatabase _cardData;
+    private CardProbabilityManager _cardProbabilityManager;
     private Entity _entity;
     private Button _backBtn;
+
     protected override void Start()
     {
         _entity = WaveManager.Instance.PlayerEntity;
@@ -29,13 +33,15 @@ public class CardAnimator : UiWindow
         _canvasWidth = _canvasRectTransform.rect.width;
         _canvasHeight = _canvasRectTransform.rect.height;
         resetButton.onClick.AddListener(() => ResetCard());
-        _cardSelector = new CardSelector(_entity, cardHolder);
+        _cardData = new CardDatabase(cardHolder);
+        _cardProbabilityManager = new CardProbabilityManager(gradeProbConfigs);
+        _cardSelector = new CardSelector(_entity, _cardData, _cardProbabilityManager);
         SpawnCards();
     }
 
     private void SpawnCards()
     {
-        _cardBases = _cardSelector.GetCardBases();
+        //_cardBases = _cardSelector.GetCardBases();
         
         float cardWidth = _canvasWidth * 0.25f; // 예: 전체 너비의 25%
         float cardHeight = cardPrefab.GetComponent<RectTransform>().sizeDelta.y;
