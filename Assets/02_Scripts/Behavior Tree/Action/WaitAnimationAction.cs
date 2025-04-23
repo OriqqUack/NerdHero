@@ -28,7 +28,7 @@ public class WaitAnimationAction : EnemyAction
         }
         
         if(entityMovement.TraceTarget)
-            entityMovement.ForceStop();
+            entityMovement.StopTracing();
         else
             entityMovement.Stop();
         

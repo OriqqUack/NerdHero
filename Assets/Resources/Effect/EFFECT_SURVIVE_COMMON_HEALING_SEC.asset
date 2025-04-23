@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 49
+  id: 47
   codeName: SURVIVE_COMMON_HEALING_SEC
   displayName: "5\uCD08\uB9C8\uB2E4 \uCCB4\uB825\uD68C\uBCF5"
   description: "5\uCD08\uB9C8\uB2E4 \uCCB4\uB825 3 \uD68C\uBCF5"
@@ -60,7 +60,7 @@ MonoBehaviour:
       data:
         targetType: 0
         methodType: 1
-        prefab: {fileID: 5640737727654945505, guid: 3d0c8d31a8a941646b2de64e41f449a8, type: 3}
+        prefab: {fileID: 5023353015567381922, guid: e747544088e0b8842a0eca8697a4f65a, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1

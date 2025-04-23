@@ -11,10 +11,10 @@ public class StraightMoveAction : EnemyAction
     private Collider collider;
     public override void OnStart()
     {
-        entityMovement.ForceStop();
+        entityMovement.StopTracing();
         entityMovement.Destination = transform.position + transform.forward * moveDistance;
 
-        agent.speed += runSpeedOffset;
+        agent.maxSpeed += runSpeedOffset;
         animator.PlayAnimationForState("sliding", 0);
     }
     
@@ -33,7 +33,7 @@ public class StraightMoveAction : EnemyAction
 
         if (isColliding)
         {
-            entityMovement.ForceStop();
+            entityMovement.StopTracing();
             return TaskStatus.Success; 
         }
         
@@ -42,7 +42,7 @@ public class StraightMoveAction : EnemyAction
 
     public override void OnEnd()
     {
-        agent.speed -= runSpeedOffset;
+        agent.maxSpeed -= runSpeedOffset;
         isColliding = false;
     }
 }

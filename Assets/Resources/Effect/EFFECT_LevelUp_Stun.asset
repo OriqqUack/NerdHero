@@ -15,7 +15,7 @@ MonoBehaviour:
   categories:
   - {fileID: 11400000, guid: b7bbf098ffbebd141a7243405590cad7, type: 2}
   icon: {fileID: 21300000, guid: 08e4fd9ce6df24563a21b5a187cfe30a, type: 3}
-  id: 13
+  id: 36
   codeName: LevelUp_Stun
   displayName: "\uC2A4\uD134 \uCD94\uAC00"
   description: "\uACF5\uACA9\uC5D0 \uC2A4\uD134\uC774 \uCD94\uAC00\uB429\uB2C8\uB2E4."

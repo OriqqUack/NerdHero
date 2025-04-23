@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 60
+  id: 18
   codeName: FIRE_COMMON
   displayName: "(\uBD88 \uC18D\uC131)\uCD08\uB2F9 \uD53C\uD574"
   description: "3\uCD08\uAC04 \uB9E4\uCD08 \uACF5\uACA9\uB825\uC758 30% \uD53C\uD574\r"
@@ -24,13 +24,26 @@ MonoBehaviour:
   removeDuplicateTargetOption: 0
   isShowInUI: 0
   isAllowLevelExceedDatas: 0
-  maxLevel: 1
+  maxLevel: 2
   effectDatas:
   - level: 1
     maxStack: 1
     stackActions: []
     action:
       rid: 416588893178560667
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 3
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 1
+    customActions: []
+  - level: 2
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142784
     runningFinishOption: 1
     isApplyAllWhenDurationExpires: 0
     duration:
@@ -48,5 +61,13 @@ MonoBehaviour:
         defaultDamage: 0
         bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         bonusDamageStatFactor: 0.3
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+    - rid: 416588967831142784
+      type: {class: DealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 0.8
         bonusDamagePerLevel: 0
         bonusDamagePerStack: 0

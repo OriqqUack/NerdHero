@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ac104da391b9b641a0813fa9aa6dc9e, type: 3}
+  m_Script: {fileID: 11500000, guid: f9c4f4b5774a0614db0a03acad57e0dd, type: 3}
   m_Name: Card_LIGHTNING_LEGENDARY
   m_EditorClassIdentifier: 
   attributeType: 3

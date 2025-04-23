@@ -1,37 +1,40 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
 
 public class GroundCheck : MonoBehaviour
 {
     public bool IsOnGround;
-    private NavMeshAgent agent;
+    private FollowerEntity aiPath;
     private Rigidbody rb;
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        aiPath = GetComponent<FollowerEntity>();
         rb = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
-            agent.nextPosition = transform.position;
-            agent.updatePosition = true;
             IsOnGround = true;
-            Debug.Log("Check Ground");
+            aiPath.canMove = true;
+            aiPath.updatePosition = true;
+            aiPath.Teleport(transform.position);
+
+            Debug.Log("Check Ground - A*");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Ground"))
+        if (other.CompareTag("Ground"))
         {
-            agent.updatePosition = false;
             IsOnGround = false;
+            aiPath.canMove = false;
+
+            Debug.Log("Left Ground - A*");
         }
     }
 }

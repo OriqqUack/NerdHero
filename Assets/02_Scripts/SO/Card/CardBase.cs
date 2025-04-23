@@ -8,7 +8,8 @@ public enum AttributeType
     Ult,
     Survive,
     Element,
-    Orb
+    Orb,
+    None
 }
 
 [CreateAssetMenu(fileName = "Card_", menuName = "Card/CardBase")]

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 20
+  id: 0
   codeName: BASEATTACK_COMMON_ATTACK_SPEED_UP
   displayName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
   description: "\uAE30\uBCF8 \uACF5\uACA9 \uC18D\uB3C4 +10%"

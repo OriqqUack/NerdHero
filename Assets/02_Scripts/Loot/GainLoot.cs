@@ -19,6 +19,7 @@ public class GainLoot : MonoBehaviour
     private Vector3 startPosition;
     private float t = 0f;
     private Transform player;
+    private Transform endPoint;
     private Entity playerEntity;
     private Rigidbody rb;
     private GainType gainType; // 스탯 or 아이템 획득 타입 설정
@@ -83,7 +84,7 @@ public class GainLoot : MonoBehaviour
         Vector3 midPoint = (startPosition + player.position) / 2 + Vector3.up * 2f;
 
         DOTween.To(() => t, x => t = x, 1f, 2f)
-            .OnUpdate(() => transform.position = CalculateBezierCurve(startPosition, midPoint, player.position, t))
+            .OnUpdate(() => transform.position = CalculateBezierCurve(startPosition, midPoint, player.position + Vector3.up, t))
             .OnComplete(() => Gained());
     }
 

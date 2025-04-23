@@ -31,9 +31,6 @@ public class EntityBaseLayerBehaviour : StateMachineBehaviour
     {
         if (agent)
             animator.SetFloat(kSpeedHash, agent.desiredVelocity.sqrMagnitude / (agent.speed * agent.speed));
-
-        if (movement)
-            animator.SetBool(kIsRollingHash, movement.IsRolling);
         
         animator.SetBool(kIsDeadHash, entity.IsDead);
 

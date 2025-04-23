@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 73
+  id: 41
   codeName: POISON_LEGENDARY
   displayName: "(\uB3C5 \uC18D\uC131) \uC801 \uCC98\uCE58 \uC2DC \uAD11\uC5ED \uD53C\uD574"
   description: "\uB3C5 \uC911\uCCA9\uC911\uC778 \uC801 \uCC98\uCE58 \uC2DC, \uC804\uC7A5

@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using Pathfinding;
 using Spine.Unity.Examples;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,7 +11,7 @@ public class EnemyAction : Action
     protected SkeletonAnimationHandleExample animator;
     protected Rigidbody rigidbody;
     protected Collider collider;
-    protected NavMeshAgent agent;
+    protected FollowerEntity agent;
     protected Transform targetTransform;
     
     public override void OnAwake()
@@ -20,7 +21,7 @@ public class EnemyAction : Action
         animator = GetComponent<SkeletonAnimationHandleExample>();
         rigidbody = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<FollowerEntity>();
         targetTransform = WaveManager.Instance.PlayerTransform;
     }
 }

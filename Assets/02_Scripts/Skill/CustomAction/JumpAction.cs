@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
 
 [System.Serializable]
 public class JumpAction : CustomAction
 {
     private enum MethodType { Start, Run }
-    [SerializeField] MethodType method = MethodType.Run;
+
+    [SerializeField] private MethodType method = MethodType.Run;
     [SerializeField] private float angle;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private bool isBackJump;
@@ -34,15 +35,22 @@ public class JumpAction : CustomAction
             Jump();
         }
     }
-    
+
     private void Jump()
     {
-        _entity.GetComponent<NavMeshAgent>().updatePosition = false;
+        var aiPath = _entity.GetComponent<FollowerEntity>();
+        if (aiPath != null)
+        {
+            aiPath.canMove = false;
+            aiPath.updatePosition = false;
+        }
+
         _entity.Rigidbody.isKinematic = false;
-        
+
         Vector3 direction = isBackJump ? -_entity.transform.forward : _entity.transform.forward;
         Vector3 rotatedDirection = Quaternion.AngleAxis(angle, Vector3.Cross(direction, Vector3.up)) * direction;
         Vector3 forceDirection = rotatedDirection.normalized * jumpSpeed;
+
         _entity.Rigidbody.AddForce(forceDirection, ForceMode.Impulse);
     }
 

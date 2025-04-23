@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 36
+  id: 61
   codeName: ULT_COMMON_ENERGY_CHARGE
   displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uC99D\uAC00"
   description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uAC8C\uC774\uC9C0

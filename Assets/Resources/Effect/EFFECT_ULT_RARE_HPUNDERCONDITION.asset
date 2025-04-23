@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 39
+  id: 71
   codeName: ULT_RARE_HPUNDERCONDITION
   displayName: "\uCCB4\uB825\uC774 \uB0AE\uC744 \uB54C \uAD81\uADF9\uAE30 \uD53C\uD574\uB7C9
     \uC99D\uAC00"

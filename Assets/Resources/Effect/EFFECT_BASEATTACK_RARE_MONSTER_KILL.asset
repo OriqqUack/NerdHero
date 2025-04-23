@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 28
+  id: 12
   codeName: BASEATTACK_RARE_MONSTER_KILL
   displayName: "\uBAAC\uC2A4\uD130 \uCC98\uCE58 \uD6C4 \uACF5\uACA9\uB825 \uC99D\uAC00"
   description: "\uBAAC\uC2A4\uD130 \uCC98\uCE58 \uD6C4 3\uCD08 \uB3D9\uC548 \uACF5\uACA9\uB825

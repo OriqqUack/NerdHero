@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 61
+  id: 22
   codeName: ICE_COMMON_DAMAGE
   displayName: "(\uC5BC\uC74C \uC18D\uC131)\uCD94\uAC00 \uD53C\uD574 \uBC0F \uC801
     \uC774\uB3D9\uC18D\uB3C4 \uAC10\uC18C"
@@ -27,13 +27,26 @@ MonoBehaviour:
   removeDuplicateTargetOption: 0
   isShowInUI: 0
   isAllowLevelExceedDatas: 0
-  maxLevel: 1
+  maxLevel: 2
   effectDatas:
   - level: 1
     maxStack: 1
     stackActions: []
     action:
       rid: 416588893178560668
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
+  - level: 2
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142788
     runningFinishOption: 0
     isApplyAllWhenDurationExpires: 0
     duration:
@@ -51,5 +64,13 @@ MonoBehaviour:
         defaultDamage: 0
         bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         bonusDamageStatFactor: 0.4
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+    - rid: 416588967831142788
+      type: {class: DealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 0.9
         bonusDamagePerLevel: 0
         bonusDamagePerStack: 0

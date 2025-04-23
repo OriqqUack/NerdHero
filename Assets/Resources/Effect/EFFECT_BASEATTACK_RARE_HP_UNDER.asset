@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 25
+  id: 11
   codeName: BASEATTACK_RARE_HP_UNDER
   displayName: "\uCCB4\uB825 \uB0AE\uC744 \uC2DC \uACF5\uACA9\uB825 \uC99D\uAC00"
   description: "\uCCB4\uB825 50% \uBBF8\uB9CC\uC77C \uB54C \uACF5\uACA9\uB825 +30%,

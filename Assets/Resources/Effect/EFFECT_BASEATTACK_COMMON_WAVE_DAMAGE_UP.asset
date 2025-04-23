@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 24
+  id: 5
   codeName: BASEATTACK_COMMON_WAVE_DAMAGE_UP
   displayName: "\uC6E8\uC774\uBE0C \uC2DC\uC791 \uC2DC \uC77C\uC815\uC2DC\uAC04\uB3D9\uC548
     \uB370\uBBF8\uC9C0 \uC99D\uAC00"

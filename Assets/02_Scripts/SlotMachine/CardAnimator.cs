@@ -26,7 +26,9 @@ public class CardAnimator : UiWindow
     private Entity _entity;
     private Button _backBtn;
     private int _currentLevel;
-
+    private AttributeType _recentAttr = AttributeType.BaseAttack;
+    private AttributeType _previousAttr = AttributeType.BaseAttack;
+    
     protected override void Start()
     {
         _entity = WaveManager.Instance.PlayerEntity;
@@ -37,13 +39,14 @@ public class CardAnimator : UiWindow
         _cardData = new CardDatabase(cardHolder);
         _cardProbabilityManager = new CardProbabilityManager(gradeProbConfigs);
         _cardSelector = new CardSelector(_entity, _cardData, _cardProbabilityManager);
-        SpawnCards(2);
+        
+        SpawnCards(2, true);
     }
 
-    public void SpawnCards(int level)
+    public void SpawnCards(int level, bool isFirst = false)
     {
         _currentLevel = level;
-        _cardBases = _cardSelector.GetCardBases(level);
+        _cardBases = _cardSelector.GetCardBases(level, _recentAttr, _previousAttr, isFirst);
         
         float cardWidth = _canvasWidth * 0.25f; // 예: 전체 너비의 25%
         float cardHeight = cardPrefab.GetComponent<RectTransform>().sizeDelta.y;
@@ -97,6 +100,7 @@ public class CardAnimator : UiWindow
 
     private void FlipCard(GameObject card, int index)
     {
+        card.GetComponent<Button>().interactable = false;
         Transform front = card.transform.Find("CardFront");
         Transform back = card.transform.Find("CardBack");
 
@@ -122,6 +126,11 @@ public class CardAnimator : UiWindow
     private void CardSelected(int selectedIndex)
     {
         _backBtn.interactable = false;
+        
+        AttributeType selectedAttr = _cardBases[selectedIndex].attributeType;
+        _previousAttr = _recentAttr;
+        _recentAttr = selectedAttr;
+        
         var clone = _cardBases[selectedIndex].Clone() as CardBase;
         clone.ApplyEffect();
         _resetCg.alpha = 0f;

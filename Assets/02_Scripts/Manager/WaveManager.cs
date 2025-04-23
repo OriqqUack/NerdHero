@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using BehaviorDesigner.Runtime;
+using DG.Tweening;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -146,7 +149,9 @@ public class WaveManager : MonoSingleton<WaveManager>
         yield return new WaitForSeconds(_spawnDelay);
 
         Entity enemyInstance = Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation).GetComponentInChildren<Entity>();
-
+        enemyInstance.GetComponent<BehaviorTree>().enabled = false;
+        enemyInstance.Animator.PlayOneShot("appear", 0, 0, () => enemyInstance.GetComponent<BehaviorTree>().enabled = true);
+        
         ActiveEnemies.Add(enemyInstance);
         OnMonsterSpawn?.Invoke(ActiveEnemies);
         enemyInstance.onDead += RemoveEnemy;

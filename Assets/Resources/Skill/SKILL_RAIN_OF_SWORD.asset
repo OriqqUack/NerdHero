@@ -22,6 +22,7 @@ MonoBehaviour:
     \uC8FC\uB294 \uAC80\uC6B0\uB97C $[skillAction.duration]\uCD08 \uB3D9\uC548 \uC18C\uD658\uD569\uB2C8\uB2E4."
   type: 0
   useType: 0
+  movingType: 0
   executionType: 0
   applyType: 0
   needSelectionResultType: 1
@@ -72,15 +73,23 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -144,6 +153,7 @@ MonoBehaviour:
         indicatorAngleOverride: 0
         isUseIndicatorFillAmount: 0
         isAttachIndicatorToRequester: 1
+        isUseFillAmount: 0
     - rid: 3978618633073197089
       type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
       data:
@@ -159,6 +169,7 @@ MonoBehaviour:
         indicatorAngleOverride: 360
         isUseIndicatorFillAmount: 0
         isAttachIndicatorToRequester: 0
+        isUseFillAmount: 0
     - rid: 3978618633073197091
       type: {class: StatCost, ns: , asm: Assembly-CSharp}
       data:

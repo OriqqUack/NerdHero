@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 72
+  id: 38
   codeName: LIGHTNING_LEGENDARY
   displayName: "(\uBC88\uAC1C \uC18D\uC131) \uC804\uC774 \uBC94\uC704 \uC99D\uAC00"
   description: "\uAE30\uBCF8 \uACF5\uACA9\uC774 \uC804\uC774 \uD53C\uD574 \uB300\uC0C1\uC744
@@ -26,7 +26,7 @@ MonoBehaviour:
   removeDuplicateTargetOption: 0
   isShowInUI: 0
   isAllowLevelExceedDatas: 0
-  maxLevel: 1
+  maxLevel: 4
   effectDatas:
   - level: 1
     maxStack: 1
@@ -41,12 +41,52 @@ MonoBehaviour:
     applyCount: 1
     applyCycle: 0
     customActions: []
+  - level: 2
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142796
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
+  - level: 3
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142797
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
+  - level: 4
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142798
+    runningFinishOption: 0
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 0
+      scaleStat: {fileID: 0}
+    applyCount: 1
+    applyCycle: 0
+    customActions: []
   references:
     version: 2
     RefIds:
     - rid: 416588893178560684
       type: {class: LightningDealDamageAction, ns: , asm: Assembly-CSharp}
       data:
+        vfxEffectPrefab: {fileID: 0}
         defaultDamage: 0
         bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         bonusDamageStatFactor: 1
@@ -55,3 +95,39 @@ MonoBehaviour:
         bounceRange: 5
         maxBounceTargets: 4
         bounceDamageFactor: 0.9
+    - rid: 416588967831142796
+      type: {class: LightningDealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        vfxEffectPrefab: {fileID: 0}
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 1
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+        bounceRange: 5
+        maxBounceTargets: 4
+        bounceDamageFactor: 1.6
+    - rid: 416588967831142797
+      type: {class: LightningDealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        vfxEffectPrefab: {fileID: 0}
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 1
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+        bounceRange: 5
+        maxBounceTargets: 4
+        bounceDamageFactor: 1.8
+    - rid: 416588967831142798
+      type: {class: LightningDealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        vfxEffectPrefab: {fileID: 0}
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 1
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+        bounceRange: 5
+        maxBounceTargets: 4
+        bounceDamageFactor: 2.4

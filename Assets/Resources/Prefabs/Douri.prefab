@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 7341295262466272840}
   - component: {fileID: 8716315341939605880}
   - component: {fileID: 841230658003839492}
+  - component: {fileID: 3324323753762601283}
   m_Layer: 8
   m_Name: Douri
   m_TagString: Player
@@ -386,6 +387,21 @@ MonoBehaviour:
   - move
   runningEffect: {fileID: 5283185308737185963, guid: 094558524e10eed41843bcd151390a1a, type: 3}
   onEndName: 
+--- !u!114 &3324323753762601283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308298092994364096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b81af2ecabdd9647bae31ab0255bcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitRadius: 4
+  moveDuration: 0.5
+  speed: 200
 --- !u!1 &2859089495214886838
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +588,7 @@ Transform:
   m_GameObject: {fileID: 5045853388278200159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.237015, z: -0.452268}
+  m_LocalPosition: {x: 0, y: 1.23926, z: -0.452268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

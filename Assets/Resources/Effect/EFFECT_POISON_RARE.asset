@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 69
+  id: 42
   codeName: POISON_RARE
   displayName: "(\uB3C5 \uC18D\uC131) \uB9E4\uCD08 \uB3C5 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4"
   description: "5\uCD08\uAC04 \uB9E4\uCD08 \uACF5\uACA9\uB825\uC758 25% \uD53C\uD574,
@@ -25,7 +25,7 @@ MonoBehaviour:
   removeDuplicateTargetOption: 0
   isShowInUI: 0
   isAllowLevelExceedDatas: 0
-  maxLevel: 1
+  maxLevel: 2
   effectDatas:
   - level: 1
     maxStack: 4
@@ -40,6 +40,19 @@ MonoBehaviour:
     applyCount: 0
     applyCycle: 1
     customActions: []
+  - level: 2
+    maxStack: 7
+    stackActions: []
+    action:
+      rid: 416588967831142804
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 10
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 1
+    customActions: []
   references:
     version: 2
     RefIds:
@@ -49,5 +62,13 @@ MonoBehaviour:
         defaultDamage: 0
         bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         bonusDamageStatFactor: 0.25
+        bonusDamagePerLevel: 0
+        bonusDamagePerStack: 0
+    - rid: 416588967831142804
+      type: {class: DealDamageAction, ns: , asm: Assembly-CSharp}
+      data:
+        defaultDamage: 0
+        bonusDamageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
+        bonusDamageStatFactor: 0.45
         bonusDamagePerLevel: 0
         bonusDamagePerStack: 0

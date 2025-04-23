@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 21
+  id: 2
   codeName: BASEATTACK_COMMON_CRITICAL_PER_UP
   displayName: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uC99D\uAC00"
   description: "\uAE30\uBCF8 \uACF5\uACA9 \uCE58\uBA85\uD0C0 \uD655\uB960 +5%"

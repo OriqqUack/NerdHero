@@ -25,7 +25,11 @@ public class EntityFloatingTextConnector : MonoBehaviour
 
     private void OnTakeDamage(Entity entity, Entity instigator, object causer, float damage)
     {
-        FloatingTextView.Instance.Show(textSpawnPoint, $"-{Mathf.RoundToInt(damage)}", Color.red);
+        Effect effect = causer as Effect;
+        if(effect)
+            FloatingTextView.Instance.Show(textSpawnPoint, $"-{Mathf.RoundToInt(damage)}", Color.red, null, effect);
+        else
+            FloatingTextView.Instance.Show(textSpawnPoint, $"-{Mathf.RoundToInt(damage)}", Color.red);
     }
 
     private void OnStateChanged(StateMachine<Entity> stateMachine, State<Entity> newState, State<Entity> prevState, int layer)

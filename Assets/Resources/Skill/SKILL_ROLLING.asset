@@ -22,6 +22,7 @@ MonoBehaviour:
     <color=green>$[effectAction.totalValue.0]</color>\uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
   type: 0
   useType: 0
+  movingType: 0
   executionType: 0
   applyType: 0
   needSelectionResultType: 0
@@ -72,15 +73,23 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -104,12 +113,14 @@ MonoBehaviour:
     - rid: 3978618564246503430
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0
     - rid: 3978618564246503437
       type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 47
+  id: 66
   codeName: ULT_LEGENDARY_ONEMOREULT
   displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uD655\uB960\uC801\uC73C\uB85C
     +1\uD68C \uC2DC"

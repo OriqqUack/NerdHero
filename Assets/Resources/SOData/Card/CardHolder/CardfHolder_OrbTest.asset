@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44961ce9b6c0d40a907cd2b5f3ddc4, type: 3}
+  m_Name: CardfHolder_OrbTest
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 82bd75183a342024188a833b813be7e1, type: 2}
+  - {fileID: 11400000, guid: 5d543ec7784ab85448902437157dfd6b, type: 2}
+  - {fileID: 11400000, guid: b018c4cf18aac1b4f86d4bbda5653216, type: 2}
+  - {fileID: 11400000, guid: b868122ea95f07d4198fb119269be52b, type: 2}
+  - {fileID: 11400000, guid: c95a5705e2ceaaf4a8b481457c42606e, type: 2}

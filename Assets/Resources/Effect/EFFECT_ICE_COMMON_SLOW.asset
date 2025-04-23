@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 62
+  id: 23
   codeName: ICE_COMMON_SLOW
   displayName: 
   description: 
@@ -24,7 +24,7 @@ MonoBehaviour:
   removeDuplicateTargetOption: 0
   isShowInUI: 0
   isAllowLevelExceedDatas: 0
-  maxLevel: 1
+  maxLevel: 2
   effectDatas:
   - level: 1
     maxStack: 1
@@ -39,6 +39,19 @@ MonoBehaviour:
     applyCount: 0
     applyCycle: 0
     customActions: []
+  - level: 2
+    maxStack: 1
+    stackActions: []
+    action:
+      rid: 416588967831142789
+    runningFinishOption: 1
+    isApplyAllWhenDurationExpires: 0
+    duration:
+      defaultValue: 4
+      scaleStat: {fileID: 0}
+    applyCount: 0
+    applyCycle: 0
+    customActions: []
   references:
     version: 2
     RefIds:
@@ -49,6 +62,19 @@ MonoBehaviour:
         stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
         isPercent: 1
         defaultValue: -0.3
+        bonusValueStat: {fileID: 0}
+        bonusValueStatFactor: 0
+        bonusValuePerLevel: 0
+        bonusValuePerStack: 0
+        isBonusType: 1
+        isUndoOnRelease: 1
+    - rid: 416588967831142789
+      type: {class: IncreaseStatPercentAction, ns: , asm: Assembly-CSharp}
+      data:
+        percent: 0.4
+        stat: {fileID: 11400000, guid: b4be1ca9a530399468a7c48207e33496, type: 2}
+        isPercent: 1
+        defaultValue: -0.6
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0
         bonusValuePerLevel: 0

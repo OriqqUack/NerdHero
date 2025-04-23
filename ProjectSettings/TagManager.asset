@@ -17,14 +17,14 @@ TagManager:
   - Ground
   - 
   - Player
-  - PlayerHit
+  - 
   - Enemey
-  - EnemeyHIt
-  - Looting
+  - Orb
+  - Wall
   - Projectile
   - AxisCheck
   - GroundCheck
-  - 
+  - Loot
   - 
   - 
   - 

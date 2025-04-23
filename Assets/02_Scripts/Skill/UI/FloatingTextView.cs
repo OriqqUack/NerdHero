@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using DamageNumbersPro;
 
 public class FloatingTextView : MonoSingleton<FloatingTextView>
 {
@@ -47,6 +48,16 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
     private GameObject floatingTextPrefab;
     [SerializeField]
     private GameObject floatingImagePrefab;
+    [SerializeField]
+    private DamageNumber normalDamagePrefab;
+    [SerializeField]
+    private DamageNumber iceNumberPrefab;
+    [SerializeField]
+    private DamageNumber lightningNumberPrefab;
+    [SerializeField]
+    private DamageNumber poisonNumberPrefab;
+    [SerializeField]
+    private DamageNumber fireNumberPrefab;
 
     [Space]
     [SerializeField]
@@ -137,16 +148,38 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
         group.GroupTransform.anchoredPosition = uiPosition;
     }
 
-    public void Show(Transform traceTarget, string text = null, Color? textColor = null, Sprite iconSprite = null)
+    public void Show(Transform traceTarget, string text = null, Color? textColor = null, Sprite iconSprite = null, Effect effect = null)
     {
         var elementGroup = CreateCachedGroup(traceTarget);
-
-        TextMeshProUGUI textMesh = null;
+        
+        
         if (!string.IsNullOrEmpty(text))
         {
-            textMesh = Instantiate(floatingTextPrefab, elementGroup.GroupTransform).GetComponent<TextMeshProUGUI>();
-            textMesh.text = text;
-            textMesh.color = textColor ?? Color.white;
+            if (!effect)
+                normalDamagePrefab.Spawn(traceTarget.position, text);
+            else
+            {
+                string str = effect.CodeName.Substring(0, 3);
+                switch (str)
+                {
+                    case "ICE":
+                        iceNumberPrefab.Spawn(traceTarget.position, text);
+                        break;
+                    case "LIG":
+                        lightningNumberPrefab.Spawn(traceTarget.position, text);
+                        break;
+                    case "POI":
+                        poisonNumberPrefab.Spawn(traceTarget.position, text);
+                        break;
+                    case "FIR":
+                        fireNumberPrefab.Spawn(traceTarget.position, text);
+                        break;
+                    default:
+                        normalDamagePrefab.Spawn(traceTarget.position, text);
+                        break;
+                }
+            }
+            
         }
 
         Image icon = null;
@@ -156,9 +189,6 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
             icon.sprite = iconSprite;
             icon.color = textColor ?? Color.white;
         }
-
-        var newElementData = new FloatingElementData(textMesh, icon);
-        elementGroup.AddData(newElementData);
     }
 
     private FloatingElementGroup CreateCachedGroup(Transform traceTarget)

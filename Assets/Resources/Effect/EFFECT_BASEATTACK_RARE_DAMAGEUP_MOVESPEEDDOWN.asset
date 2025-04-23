@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 27
+  id: 10
   codeName: BASEATTACK_RARE_DAMAGEUP_MOVESPEEDDOWN
   displayName: "\uACF5\uACA9\uB825 \uC0C1\uC2B9, \uC774\uB3D9\uC18D\uB3C4 \uAC10\uC18C"
   description: "\uACF5\uACA9\uB825 +20%, \uC18D\uB3C4 +15%"

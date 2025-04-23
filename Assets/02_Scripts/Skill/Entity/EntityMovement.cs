@@ -1,35 +1,33 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
+using Pathfinding;
+using Random = UnityEngine.Random;
 
 public class EntityMovement : Movement
 {
     #region Property
-    #region Events
     public delegate void SetDestinationHandler(EntityMovement movement, Vector3 destination);
     public delegate void FindTargetHandler(EntityMovement movement);
-    #endregion
+
     [SerializeField] private float zAttackOffset;
-    private NavMeshAgent agent;
+
+    private FollowerEntity aiPath;
     private Transform traceTarget;
     private bool isFindTarget;
-    
-    public bool HasArrived =>
-        !agent.pathPending && 
-        agent.remainingDistance <= agent.stoppingDistance && 
-        agent.velocity.sqrMagnitude < 0.01f;
-    
+    private Vector3 destination;
+
+    public bool HasArrived => aiPath.reachedDestination;
+
     public Entity Owner { get; private set; }
-    public bool IsRolling { get; private set; }
     public float ZAttackOffset => zAttackOffset;
 
     public bool IsFind
     {
         get => isFindTarget;
         set
-        { 
-            if(isFindTarget != value)
+        {
+            if (isFindTarget != value)
                 OnFindTarget?.Invoke(this);
             isFindTarget = value;
         }
@@ -40,26 +38,18 @@ public class EntityMovement : Movement
         get => traceTarget;
         set
         {
-            /*if (traceTarget == value)
-                return;*/
-
-            ForceStop();
-
+            StopTracing();
             traceTarget = value;
-            onSetDestination?.Invoke(this, traceTarget.transform.position);
 
-            if (traceTarget)
-                StartCoroutine("TraceUpdate");
+            if (traceTarget != null)
+                StartCoroutine(TraceUpdate());
         }
     }
 
     public Vector3 Destination
     {
-        get => agent.destination;
-        set
-        {
-            SetDestination(value);
-        }
+        get => destination;
+        set => SetDestination(value);
     }
 
     public event SetDestinationHandler onSetDestination;
@@ -72,11 +62,17 @@ public class EntityMovement : Movement
         base.Setup(owner);
         Owner = owner;
 
-        agent = Owner.GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
+        aiPath = Owner.GetComponent<FollowerEntity>();
 
-        agent.speed = runSpeed;
+        aiPath.canSearch = true;
+        aiPath.canMove = true;
+        aiPath.maxSpeed = runSpeed;
         moveSpeed.onValueChanged += OnMoveSpeedChanged;
+    }
+
+    private void Start()
+    {
+        aiPath.updateRotation = false;
     }
 
     private void OnDisable() => Stop();
@@ -89,119 +85,77 @@ public class EntityMovement : Movement
 
     private void SetDestination(Vector3 destination)
     {
-        agent.destination = destination;
-        LookCheck();
-        //LookAt(destination);
-    }
-
-    public void SetTraceTarget(Transform target)
-    {
-        traceTarget = target;
+        if (aiPath != null)
+        {
+            aiPath.canMove = true;
+            aiPath.destination = destination;
+            this.destination = destination;
+            onSetDestination?.Invoke(this, destination);
+        }
     }
 
     public void Stop()
     {
-        traceTarget = null;
-        StopCoroutine("TraceUpdate");
-
-        if (agent.isOnNavMesh)
-            agent.ResetPath();
-
-        agent.velocity = Vector3.zero;
+        StopTracing();
+        aiPath.canMove = false;
     }
 
-    public void ForceStop()
+    public void StopTracing()
     {
         StopCoroutine("TraceUpdate");
-
-        if (agent.isOnNavMesh)
-            agent.ResetPath();
-
-        agent.velocity = Vector3.zero;
+        aiPath.canMove = false;
     }
-    #endregion
-
-    #region LookMethod
 
     public void LookCheck()
     {
         var rotation = transform.localRotation;
-        if(traceTarget)
+        if (traceTarget)
             rotation.y = (traceTarget.transform.position.x >= transform.position.x ? 0 : 180);
         else
-            rotation.y = (agent.destination.x >= transform.position.x ? 0 : 180);
+            rotation.y = (aiPath.destination.x >= transform.position.x ? 0 : 180);
+
+
         transform.localRotation = rotation;
     }
-    /*public void LookAt(Vector3 position)
-    {
-        StopCoroutine("LookAtUpdate");
-        StartCoroutine("LookAtUpdate", position);
-    }
-
-    public void LookAtImmediate(Vector3 position)
-    {
-        position.y = transform.position.y;
-        var lookDirection = (position - transform.position).normalized;
-        var rotation = lookDirection != Vector3.zero ? Quaternion.LookRotation(lookDirection) : transform.rotation;
-        transform.rotation = rotation;
-    }
-
-    private IEnumerator LookAtUpdate(Vector3 position)
-    {
-        position.y = transform.position.y;
-        var lookDirection = (position - transform.position).normalized;
-        var rotation = lookDirection != Vector3.zero ? Quaternion.LookRotation(lookDirection) : transform.rotation;
-        var speed = 180f / 0.15f;
-
-        while (true)
-        {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, speed * Time.deltaTime);
-            if (transform.rotation == rotation)
-                break;
-
-            yield return null;
-        }
-    }*/
     #endregion
 
-    #region Tracing Method
+    #region Trace Logic
     private IEnumerator TraceUpdate()
     {
         float attackRange = Owner.Stats.GetStat("ATTACK_RANGE").Value;
-        float stopDistance = 0.3f; // 멈추는 거리
+        float stopDistance = 0.3f;
+
         while (true)
         {
-            var pos = TraceTarget.position;
-            // 대상이 공격 범위 밖에 있는 경우, attackRange 만큼 조정
-            if (Vector3.SqrMagnitude(TraceTarget.position - transform.position) > attackRange * attackRange)
+            if (traceTarget == null)
+                yield break;
+
+            Vector3 pos = traceTarget.position;
+
+            if (Vector3.SqrMagnitude(traceTarget.position - transform.position) > attackRange * attackRange)
             {
-                if (TraceTarget.position.x < transform.position.x)
-                    pos.x = TraceTarget.position.x + attackRange;
-                else
-                    pos.x = TraceTarget.position.x - attackRange;
+                pos.x += (traceTarget.position.x < transform.position.x) ? attackRange : -attackRange;
             }
             else
             {
                 pos.x = transform.position.x;
             }
-            
-            float randomZ = Random.Range(-ZAttackOffset, ZAttackOffset);
-            pos.z += randomZ;
 
-            SetDestination(pos); // 최종 위치 설정
+            pos.z += Random.Range(-ZAttackOffset, ZAttackOffset);
 
-            // 목표 지점에 도달하면 탈출
+            SetDestination(pos);
+
             if (Vector3.SqrMagnitude(transform.position - pos) <= stopDistance * stopDistance)
             {
-                SetDestination(transform.position); // 최종 위치 설정
+                SetDestination(transform.position);
                 break;
             }
+
             yield return null;
         }
     }
 
-
     private void OnMoveSpeedChanged(Stat stat, float currentValue, float prevValue)
-        => agent.speed = currentValue;
+        => aiPath.maxSpeed = currentValue;
     #endregion
 }

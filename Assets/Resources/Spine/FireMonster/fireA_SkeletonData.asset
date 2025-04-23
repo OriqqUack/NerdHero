@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: fireA_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: f4929a81acc65474d9a05db6cc72f116, type: 2}
+  - {fileID: 11400000, guid: d2e69449b3ffea047b1570836c0949a0, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: ff32d73bf310c1242befe401686c0cf7, type: 3}
   isUpgradingBlendModeMaterials: 0

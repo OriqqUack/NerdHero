@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 33
+  id: 8
   codeName: BASEATTACK_LEGENDARY_WEAPONADD
   displayName: "\uBB34\uAE30\uB97C \uCD94\uAC00\uD569\uB2C8\uB2E4."
   description: "\uBB34\uAE30+1"

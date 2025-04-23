@@ -22,6 +22,7 @@ MonoBehaviour:
     \uD53C\uD574\uB97C \uCD1D $[applyCount.0]\uBC88 \uC90D\uB2C8\uB2E4."
   type: 0
   useType: 0
+  movingType: 0
   executionType: 0
   applyType: 0
   needSelectionResultType: 0
@@ -72,15 +73,23 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 1
+      index: 0
+      stat: {fileID: 0}
       name: upHandCast
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -100,6 +109,7 @@ MonoBehaviour:
     - rid: 3978618633073197116
       type: {class: SelectEntity, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: 3978618633073197117
         isUseScale: 0
@@ -110,15 +120,16 @@ MonoBehaviour:
     - rid: 3978618633073197117
       type: {class: CircleIndicatorViewAction, ns: , asm: Assembly-CSharp}
       data:
-        indicatorPrefab: {fileID: 7545020625849464054, guid: 88ac463087731ca4198b3020e39675d7,
-          type: 3}
+        indicatorPrefab: {fileID: 7545020625849464054, guid: 88ac463087731ca4198b3020e39675d7, type: 3}
         indicatorRadiusOverride: 0
         indicatorAngleOverride: 0
         isUseIndicatorFillAmount: 0
         isAttachIndicatorToRequester: 1
+        isUseFillAmount: 0
     - rid: 3978618633073197118
       type: {class: SelectedTarget, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0

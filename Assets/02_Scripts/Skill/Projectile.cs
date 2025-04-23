@@ -15,7 +15,6 @@ public class Projectile : MonoBehaviour
     [Space(10)][Header("Shadow Settings")]
     [SerializeField] private GameObject shadow;
     [SerializeField] private bool lockYAxis = false;
-    [SerializeField] private bool lockRotation = false;
     [SerializeField] private float yOffset;
 
     protected Entity owner;
@@ -23,7 +22,6 @@ public class Projectile : MonoBehaviour
     protected float speed;
     protected Skill skill;
     protected Vector3 direction;
-    
     public float Speed => speed;
     public virtual void Setup(Entity owner, float speed, Vector3 direction, Skill skill)
     {
@@ -32,6 +30,11 @@ public class Projectile : MonoBehaviour
         this.direction = direction;
         this.skill = skill.Clone() as Skill;
         transform.right = direction.normalized;
+        if(!shadow)
+        {
+            GameObject go = Resources.Load<GameObject>("Prefabs/Shadow");
+            shadow = Managers.Resource.Instantiate(go, transform.position, Quaternion.identity);
+        }
         shadow.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
         shadow.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
@@ -39,15 +42,12 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        shadow.transform.position = new Vector3(transform.position.x, yOffset , transform.position.z);
     }
 
     protected virtual void FixedUpdate()
     {
         if (!lockYAxis) return;
         shadow.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
-        if (!lockRotation) return;
-        shadow.transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
     private void OnDestroy()
@@ -81,6 +81,10 @@ public class Projectile : MonoBehaviour
         }
         
         if(!canPenetrate)
+        {
             Managers.Resource.Destroy(gameObject);
+            Managers.Resource.Destroy(shadow);
+        }
+
     }
 }

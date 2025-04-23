@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LightningDealDamageAction : EffectAction
+public class LightningDealDamageAction : ElementEffectAction
 {
     [SerializeField]
     private float defaultDamage;

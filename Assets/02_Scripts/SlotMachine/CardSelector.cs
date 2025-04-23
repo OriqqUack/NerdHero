@@ -8,7 +8,6 @@ public class CardSelector
     private Entity _entity;
     private CardDatabase _cardDatabase;
     private CardProbabilityManager _probabilityManager;
-
     // 속성 카테고리 지정 (예: 얼음, 불 등)
     private readonly AttributeType _attributeCategory = AttributeType.Element; // 예시: C가 속성 카테고리
 
@@ -19,7 +18,7 @@ public class CardSelector
         _probabilityManager = probabilityManager;
     }
 
-    public CardBase[] GetCardBases(int level)
+    public CardBase[] GetCardBases(int level, AttributeType recent, AttributeType previous, bool isFirst = false)
     {
         var commonRareHistory = new HashSet<AttributeType>();
         var selectedCards = new List<CardBase>();
@@ -27,7 +26,7 @@ public class CardSelector
 
         while (selectedCards.Count < 3 && attempts < 999)
         {
-            var result = _probabilityManager.RollCard(level, commonRareHistory, _attributeCategory);
+            var result = _probabilityManager.RollCard(level, commonRareHistory, _attributeCategory, recent, previous, isFirst);
 
             if (result.HasValue)
             {
@@ -36,7 +35,10 @@ public class CardSelector
                 {
                     selectedCards.Add(card.Clone() as CardBase);
 
-                    // ✅ 등급이 common 또는 rare일 경우, 등장 속성 기록
+                    // 최근 등장 속성 업데이트
+                    previous = recent;
+                    recent = result.Value.attr;
+
                     if (result.Value.grade == EffectRarity.Common || result.Value.grade == EffectRarity.Rare)
                     {
                         commonRareHistory.Add(result.Value.attr);

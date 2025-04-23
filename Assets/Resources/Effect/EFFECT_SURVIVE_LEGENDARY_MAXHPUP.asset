@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 58
+  id: 52
   codeName: SURVIVE_LEGENDARY_MAXHPUP
   displayName: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00"
   description: "\uCD5C\uB300 \uCCB4\uB825 +40%\r"

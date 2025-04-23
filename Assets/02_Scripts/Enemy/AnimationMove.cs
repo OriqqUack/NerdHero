@@ -1,3 +1,4 @@
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 using Spine;
@@ -13,7 +14,7 @@ public class AnimationMove : MonoBehaviour
     public string animationName;
     
     private Entity entity;
-    private NavMeshAgent navMeshAgent;
+    private FollowerEntity navMeshAgent;
     private EntityMovement entityMovement;
     
     public AnimationCurve speedCurve; // Inspector에서 조정 가능
@@ -25,7 +26,7 @@ public class AnimationMove : MonoBehaviour
     private void Awake()
     {
         entity = GetComponent<Entity>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<FollowerEntity>();
         entityMovement = GetComponent<EntityMovement>();
     }
 
@@ -50,7 +51,7 @@ public class AnimationMove : MonoBehaviour
 
             // 애니메이션 진행률에 따라 속도 조절
             float speedMultiplier = speedCurve.Evaluate(animationProgress);
-            navMeshAgent.speed = moveSpeedStat.Value * speedMultiplier; // 기본 속도 * 곡선 값
+            navMeshAgent.maxSpeed = moveSpeedStat.Value * speedMultiplier; // 기본 속도 * 곡선 값
         }
     }
 

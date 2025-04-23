@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: af696ca5704a4024a8312b858a0fd61d
-AssetOrigin:
-  serializedVersion: 1
-  productId: 239285
-  packageName: Casual RPG VFX
-  packageVersion: 1.0
-  assetPath: Assets/Lana Studio/Casual RPG VFX/Textures/electric02.png
-  uploadId: 714497
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -34,7 +27,7 @@ TextureImporter:
       213: -7944468296618393518
     second: electric02_3
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -51,12 +44,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -95,10 +87,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  swizzle: 50462976
-  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -108,10 +98,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 512
     resizeAlgorithm: 0
@@ -121,11 +110,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
+  - serializedVersion: 3
+    buildTarget: iPhone
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
@@ -134,10 +122,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 8192
     resizeAlgorithm: 0
@@ -147,11 +134,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
@@ -160,7 +146,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -177,7 +162,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -199,7 +183,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -221,7 +204,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -243,7 +225,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -255,7 +236,6 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -265,15 +245,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    spriteCustomMetadata:
-      entries: []
     nameFileIdTable:
-      electric02_0: 4583950038921740241
       electric02_1: -2795951679594785487
+      electric02_0: 4583950038921740241
       electric02_2: -6919394750607302617
       electric02_3: -7944468296618393518
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 239285
+  packageName: Casual RPG VFX
+  packageVersion: 1.0
+  assetPath: Assets/03_Packages/VFX/Lana Studio/Casual RPG VFX/Textures/electric02.png
+  uploadId: 714497

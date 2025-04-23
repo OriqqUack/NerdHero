@@ -1,0 +1,1469 @@
+fileFormatVersion: 2
+guid: 30d1bf027c58edd4bac3869e4daa0186
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4316020401841744176
+    second: fireA appear_0
+  - first:
+      213: -5042362697339515411
+    second: fireA appear_1
+  - first:
+      213: 7774591817677695029
+    second: fireA appear_2
+  - first:
+      213: 9024550876521104022
+    second: fireA appear_3
+  - first:
+      213: -773934851732739702
+    second: fireA appear_4
+  - first:
+      213: 809109418441759612
+    second: fireA appear_5
+  - first:
+      213: -4183826458323459232
+    second: fireA appear_6
+  - first:
+      213: 5725979314972443196
+    second: fireA appear_7
+  - first:
+      213: 778862018418380621
+    second: fireA appear_8
+  - first:
+      213: -8827526291301573833
+    second: fireA appear_9
+  - first:
+      213: 865764336800914880
+    second: fireA appear_10
+  - first:
+      213: 5621971364175670229
+    second: fireA appear_11
+  - first:
+      213: 6525263604052183320
+    second: fireA appear_12
+  - first:
+      213: 4996534825798211717
+    second: fireA appear_13
+  - first:
+      213: 389914118851656822
+    second: fireA appear_14
+  - first:
+      213: 8229981334097927873
+    second: fireA appear_15
+  - first:
+      213: 1414929469617425632
+    second: fireA appear_16
+  - first:
+      213: 4404056710391601516
+    second: fireA appear_17
+  - first:
+      213: -6281354832534693314
+    second: fireA appear_18
+  - first:
+      213: 2217078318280292519
+    second: fireA appear_19
+  - first:
+      213: -6235625193642168477
+    second: fireA appear_20
+  - first:
+      213: -2048681064014659967
+    second: fireA appear_21
+  - first:
+      213: -8655831037392979761
+    second: fireA appear_22
+  - first:
+      213: -4570414124936776040
+    second: fireA appear_23
+  - first:
+      213: -8316386863655799490
+    second: fireA appear_24
+  - first:
+      213: -746314433844435286
+    second: fireA appear_25
+  - first:
+      213: -7764175261562938061
+    second: fireA appear_26
+  - first:
+      213: -2112718379652395544
+    second: fireA appear_27
+  - first:
+      213: -8533541722326502999
+    second: fireA appear_28
+  - first:
+      213: 691146950098839616
+    second: fireA appear_29
+  - first:
+      213: 1714707063697118249
+    second: fireA appear_30
+  - first:
+      213: 6567393438592504318
+    second: fireA appear_31
+  - first:
+      213: 4109546566505901917
+    second: fireA appear_32
+  - first:
+      213: 6473228456405410132
+    second: fireA appear_33
+  - first:
+      213: 5821476162516975111
+    second: fireA appear_34
+  - first:
+      213: 524878727675475566
+    second: fireA appear_35
+  - first:
+      213: -4283616292271360740
+    second: fireA appear_36
+  - first:
+      213: 1887971957340724593
+    second: fireA appear_37
+  - first:
+      213: -4003918550223839827
+    second: fireA appear_38
+  - first:
+      213: 6855225187628818250
+    second: fireA appear_39
+  - first:
+      213: -2359745806422463390
+    second: fireA appear_40
+  - first:
+      213: 7736054502631099615
+    second: fireA appear_41
+  - first:
+      213: 5776934237240403397
+    second: fireA appear_42
+  - first:
+      213: 7050010516286002506
+    second: fireA appear_43
+  - first:
+      213: 2206592775831643021
+    second: fireA appear_44
+  - first:
+      213: 3477269089474488498
+    second: fireA appear_45
+  - first:
+      213: -4825286665347935758
+    second: fireA appear_46
+  - first:
+      213: 2395363945323500070
+    second: fireA appear_47
+  - first:
+      213: 5739995730641933796
+    second: fireA appear_48
+  - first:
+      213: -880850830278532229
+    second: fireA appear_49
+  - first:
+      213: -6278920171837757717
+    second: fireA appear_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fireA appear_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2000
+        width: 1887
+        height: 1268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039ad1f20b595eb30800000000000000
+      internalID: 4316020401841744176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_1
+      rect:
+        serializedVersion: 2
+        x: 1891
+        y: 1988
+        width: 1933
+        height: 1267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dedc564a7dde50ab0800000000000000
+      internalID: -5042362697339515411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_2
+      rect:
+        serializedVersion: 2
+        x: 3826
+        y: 2915
+        width: 637
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 538665e0116e4eb60800000000000000
+      internalID: 7774591817677695029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_3
+      rect:
+        serializedVersion: 2
+        x: 4464
+        y: 3075
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6920b744535ad3d70800000000000000
+      internalID: 9024550876521104022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_4
+      rect:
+        serializedVersion: 2
+        x: 4464
+        y: 2914
+        width: 159
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a89ec235a5e6245f0800000000000000
+      internalID: -773934851732739702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_5
+      rect:
+        serializedVersion: 2
+        x: 4625
+        y: 2761
+        width: 587
+        height: 353
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7bd4aeaab88a3b00800000000000000
+      internalID: 809109418441759612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_6
+      rect:
+        serializedVersion: 2
+        x: 5213
+        y: 2990
+        width: 130
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 063efb5c00010f5c0800000000000000
+      internalID: -4183826458323459232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_7
+      rect:
+        serializedVersion: 2
+        x: 5349
+        y: 3030
+        width: 120
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c32ca2479d3c67f40800000000000000
+      internalID: 5725979314972443196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_8
+      rect:
+        serializedVersion: 2
+        x: 5491
+        y: 3043
+        width: 139
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4f0fd011e21fca00800000000000000
+      internalID: 778862018418380621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_9
+      rect:
+        serializedVersion: 2
+        x: 5491
+        y: 2878
+        width: 167
+        height: 165
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73b5c89bb935e7580800000000000000
+      internalID: -8827526291301573833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_10
+      rect:
+        serializedVersion: 2
+        x: 5228
+        y: 2878
+        width: 142
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cd583ac310d30c00800000000000000
+      internalID: 865764336800914880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_11
+      rect:
+        serializedVersion: 2
+        x: 5374
+        y: 2885
+        width: 81
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dbeb135b21450e40800000000000000
+      internalID: 5621971364175670229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_12
+      rect:
+        serializedVersion: 2
+        x: 5416
+        y: 2944
+        width: 75
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819c051fca46e8a50800000000000000
+      internalID: 6525263604052183320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_13
+      rect:
+        serializedVersion: 2
+        x: 5658
+        y: 2878
+        width: 31
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 588129783f1475540800000000000000
+      internalID: 4996534825798211717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_14
+      rect:
+        serializedVersion: 2
+        x: 3826
+        y: 1949
+        width: 797
+        height: 964
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cff0343d0496500800000000000000
+      internalID: 389914118851656822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_15
+      rect:
+        serializedVersion: 2
+        x: 4625
+        y: 1949
+        width: 386
+        height: 810
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ce90074b64c63270800000000000000
+      internalID: 8229981334097927873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_16
+      rect:
+        serializedVersion: 2
+        x: 5012
+        y: 2646
+        width: 103
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ec47c22bd6d2a310800000000000000
+      internalID: 1414929469617425632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_17
+      rect:
+        serializedVersion: 2
+        x: 5274
+        y: 2562
+        width: 276
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6911919e3a5e1d30800000000000000
+      internalID: 4404056710391601516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_18
+      rect:
+        serializedVersion: 2
+        x: 5013
+        y: 1949
+        width: 259
+        height: 696
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a16925f0524d8a0800000000000000
+      internalID: -6281354832534693314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_19
+      rect:
+        serializedVersion: 2
+        x: 5558
+        y: 2503
+        width: 232
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a83150ebf4a4ce10800000000000000
+      internalID: 2217078318280292519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_20
+      rect:
+        serializedVersion: 2
+        x: 5274
+        y: 1930
+        width: 411
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36f6b749ceb9679a0800000000000000
+      internalID: -6235625193642168477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_21
+      rect:
+        serializedVersion: 2
+        x: 5686
+        y: 2293
+        width: 143
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e36593d6f9193e0800000000000000
+      internalID: -2048681064014659967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_22
+      rect:
+        serializedVersion: 2
+        x: 5686
+        y: 2106
+        width: 187
+        height: 187
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8f364388f40e780800000000000000
+      internalID: -8655831037392979761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_23
+      rect:
+        serializedVersion: 2
+        x: 5686
+        y: 1979
+        width: 64
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89637b68190a290c0800000000000000
+      internalID: -4570414124936776040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_24
+      rect:
+        serializedVersion: 2
+        x: 5779
+        y: 2065
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e353219a532469c80800000000000000
+      internalID: -8316386863655799490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_25
+      rect:
+        serializedVersion: 2
+        x: 5814
+        y: 2019
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa6a4fff9fe84a5f0800000000000000
+      internalID: -746314433844435286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_26
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1761
+        width: 175
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d5aa86cbb104490800000000000000
+      internalID: -7764175261562938061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_27
+      rect:
+        serializedVersion: 2
+        x: 2185
+        y: 1906
+        width: 123
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed416ec3dd1ea2e0800000000000000
+      internalID: -2112718379652395544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_28
+      rect:
+        serializedVersion: 2
+        x: 2840
+        y: 1607
+        width: 352
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1f0c42405c29980800000000000000
+      internalID: -8533541722326502999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_29
+      rect:
+        serializedVersion: 2
+        x: 4179
+        y: 1881
+        width: 71
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0486c304d72779900800000000000000
+      internalID: 691146950098839616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_30
+      rect:
+        serializedVersion: 2
+        x: 5081
+        y: 1438
+        width: 567
+        height: 490
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92415815dfcdbc710800000000000000
+      internalID: 1714707063697118249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_31
+      rect:
+        serializedVersion: 2
+        x: 5709
+        y: 1927
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef1998f6981142b50800000000000000
+      internalID: 6567393438592504318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_32
+      rect:
+        serializedVersion: 2
+        x: 5771
+        y: 1912
+        width: 111
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fa28434da080930800000000000000
+      internalID: 4109546566505901917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_33
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 2
+        width: 1267
+        height: 1867
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 451aef50cf685d950800000000000000
+      internalID: 6473228456405410132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_34
+      rect:
+        serializedVersion: 2
+        x: 3561
+        y: 1759
+        width: 55
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70e7a3fe9b90ac050800000000000000
+      internalID: 5821476162516975111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_35
+      rect:
+        serializedVersion: 2
+        x: 3812
+        y: 2
+        width: 1267
+        height: 1811
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6671410c6eb84700800000000000000
+      internalID: 524878727675475566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_36
+      rect:
+        serializedVersion: 2
+        x: 5649
+        y: 1672
+        width: 219
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c15f6118da98d84c0800000000000000
+      internalID: -4283616292271360740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_37
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 1269
+        height: 1683
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17d51370e7c633a10800000000000000
+      internalID: 1887971957340724593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_38
+      rect:
+        serializedVersion: 2
+        x: 2542
+        y: 2
+        width: 1268
+        height: 1577
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dad9f40da493f68c0800000000000000
+      internalID: -4003918550223839827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_39
+      rect:
+        serializedVersion: 2
+        x: 5649
+        y: 1437
+        width: 233
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4f1de3dcf6a22f50800000000000000
+      internalID: 6855225187628818250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_40
+      rect:
+        serializedVersion: 2
+        x: 5376
+        y: 1109
+        width: 349
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ca8f701bf704fd0800000000000000
+      internalID: -2359745806422463390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_41
+      rect:
+        serializedVersion: 2
+        x: 5099
+        y: 824
+        width: 149
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdc4360359cfb5b60800000000000000
+      internalID: 7736054502631099615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_42
+      rect:
+        serializedVersion: 2
+        x: 5081
+        y: 237
+        width: 170
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c5a18dc41bcb2050800000000000000
+      internalID: 5776934237240403397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_43
+      rect:
+        serializedVersion: 2
+        x: 5353
+        y: 2
+        width: 318
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a45def5463ba6d160800000000000000
+      internalID: 7050010516286002506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_44
+      rect:
+        serializedVersion: 2
+        x: 5743
+        y: 113
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d83636740746f9e10800000000000000
+      internalID: 2206592775831643021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_45
+      rect:
+        serializedVersion: 2
+        x: 5786
+        y: 128
+        width: 23
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b8a29240ddb14030800000000000000
+      internalID: 3477269089474488498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_46
+      rect:
+        serializedVersion: 2
+        x: 5730
+        y: 98
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f1d184e753290db0800000000000000
+      internalID: -4825286665347935758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_47
+      rect:
+        serializedVersion: 2
+        x: 5830
+        y: 88
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62219cc21da0e3120800000000000000
+      internalID: 2395363945323500070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_48
+      rect:
+        serializedVersion: 2
+        x: 5726
+        y: 37
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e5db2984bf88af40800000000000000
+      internalID: 5739995730641933796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_49
+      rect:
+        serializedVersion: 2
+        x: 5824
+        y: 28
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b73e32936d696c3f0800000000000000
+      internalID: -880850830278532229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fireA appear_50
+      rect:
+        serializedVersion: 2
+        x: 5774
+        y: 1
+        width: 33
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be66390fe5bccd8a0800000000000000
+      internalID: -6278920171837757717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fireA appear_0: 4316020401841744176
+      fireA appear_1: -5042362697339515411
+      fireA appear_10: 865764336800914880
+      fireA appear_11: 5621971364175670229
+      fireA appear_12: 6525263604052183320
+      fireA appear_13: 4996534825798211717
+      fireA appear_14: 389914118851656822
+      fireA appear_15: 8229981334097927873
+      fireA appear_16: 1414929469617425632
+      fireA appear_17: 4404056710391601516
+      fireA appear_18: -6281354832534693314
+      fireA appear_19: 2217078318280292519
+      fireA appear_2: 7774591817677695029
+      fireA appear_20: -6235625193642168477
+      fireA appear_21: -2048681064014659967
+      fireA appear_22: -8655831037392979761
+      fireA appear_23: -4570414124936776040
+      fireA appear_24: -8316386863655799490
+      fireA appear_25: -746314433844435286
+      fireA appear_26: -7764175261562938061
+      fireA appear_27: -2112718379652395544
+      fireA appear_28: -8533541722326502999
+      fireA appear_29: 691146950098839616
+      fireA appear_3: 9024550876521104022
+      fireA appear_30: 1714707063697118249
+      fireA appear_31: 6567393438592504318
+      fireA appear_32: 4109546566505901917
+      fireA appear_33: 6473228456405410132
+      fireA appear_34: 5821476162516975111
+      fireA appear_35: 524878727675475566
+      fireA appear_36: -4283616292271360740
+      fireA appear_37: 1887971957340724593
+      fireA appear_38: -4003918550223839827
+      fireA appear_39: 6855225187628818250
+      fireA appear_4: -773934851732739702
+      fireA appear_40: -2359745806422463390
+      fireA appear_41: 7736054502631099615
+      fireA appear_42: 5776934237240403397
+      fireA appear_43: 7050010516286002506
+      fireA appear_44: 2206592775831643021
+      fireA appear_45: 3477269089474488498
+      fireA appear_46: -4825286665347935758
+      fireA appear_47: 2395363945323500070
+      fireA appear_48: 5739995730641933796
+      fireA appear_49: -880850830278532229
+      fireA appear_5: 809109418441759612
+      fireA appear_50: -6278920171837757717
+      fireA appear_6: -4183826458323459232
+      fireA appear_7: 5725979314972443196
+      fireA appear_8: 778862018418380621
+      fireA appear_9: -8827526291301573833
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

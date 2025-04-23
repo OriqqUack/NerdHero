@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
     static Managers s_instance; // 유일성이 보장된다
     static Managers Instance { get { Init(); return s_instance; } } // 유일한 매니저를 갖고온다
-
+    public static bool IsDestroying = false;
     #region Core
     //InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
@@ -39,5 +40,11 @@ public class Managers : MonoBehaviour
     {
         //Input.Clear();
         Pool.Clear();
+    }
+
+    private void OnApplicationQuit()
+    {
+        IsDestroying = true;
+        Clear();
     }
 }

@@ -20,6 +20,7 @@ MonoBehaviour:
   description: 
   type: 0
   useType: 0
+  movingType: 0
   executionType: 0
   applyType: 0
   needSelectionResultType: 0
@@ -66,15 +67,23 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -103,6 +112,7 @@ MonoBehaviour:
     - rid: 5468516881812947085
       type: {class: JumpAction, ns: , asm: Assembly-CSharp}
       data:
+        method: 1
         angle: 30
         jumpSpeed: 7
         isBackJump: 1

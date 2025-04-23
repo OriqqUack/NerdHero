@@ -29,7 +29,7 @@ public class TracingAction : EnemyAction
         
         if (entityMovement.HasArrived)
         {
-            entityMovement.ForceStop();
+            entityMovement.StopTracing();
             return TaskStatus.Success;
         }
         

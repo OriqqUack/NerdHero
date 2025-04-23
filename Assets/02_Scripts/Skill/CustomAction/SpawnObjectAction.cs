@@ -41,12 +41,14 @@ public class SpawnObjectAction : CustomAction
     public override void Release(object data)
     {
         if (spawnedObject && isDestroyOnRelease)
-            GameObject.Destroy(spawnedObject);
+            Managers.Resource.Destroy(spawnedObject);
     }
 
     private GameObject Spawn(Vector3 position)
     {
-        spawnedObject = GameObject.Instantiate(prefab);
+        spawnedObject = Managers.Resource.Instantiate(prefab);
+        if(!isDestroyOnRelease)
+            Managers.Resource.Destroy(spawnedObject, 10f);
         spawnedObject.transform.position = position + offset;
         var localScale = spawnedObject.transform.localScale;
         spawnedObject.transform.localScale = Vector3.Scale(localScale, scaleFactor);

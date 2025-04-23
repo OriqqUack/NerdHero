@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: f6750144d0b107b49a54dc7f5e889552
-AssetOrigin:
-  serializedVersion: 1
-  productId: 239285
-  packageName: Casual RPG VFX
-  packageVersion: 1.0
-  assetPath: Assets/Lana Studio/Casual RPG VFX/Textures/cloud03.png
-  uploadId: 714497
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -34,7 +27,7 @@ TextureImporter:
       213: -2501365042045559999
     second: cloud03_3
   externalObjects: {}
-  serializedVersion: 13
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -51,12 +44,11 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMipmapLimit: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -95,10 +87,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
-  swizzle: 50462976
-  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -108,10 +98,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -121,10 +110,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 4
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -134,20 +122,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 256
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 3
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
@@ -164,7 +138,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -186,7 +159,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -208,7 +180,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -230,7 +201,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -242,7 +212,6 @@ TextureImporter:
       edges: []
       weights: []
     outline: []
-    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e963800933c9324c83334ebdec57ee9
@@ -252,15 +221,21 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    spriteCustomMetadata:
-      entries: []
     nameFileIdTable:
       cloud03_0: -8893667983439969239
+      cloud03_3: -2501365042045559999
       cloud03_1: -5470423351802428229
       cloud03_2: -2825924370038317822
-      cloud03_3: -2501365042045559999
-  mipmapLimitGroupName: 
+  spritePackingTag: 
   pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 239285
+  packageName: Casual RPG VFX
+  packageVersion: 1.0
+  assetPath: Assets/03_Packages/VFX/Lana Studio/Casual RPG VFX/Textures/cloud03.png
+  uploadId: 714497

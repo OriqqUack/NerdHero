@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 31
+  id: 6
   codeName: BASEATTACK_LEGENDARY_MAXHPDOWN_DAMAGEUP
   displayName: "\uCD5C\uB300 \uCCB4\uB825 \uAC10\uC18C \uACF5\uACA9\uB825 \uC99D\uAC00"
   description: "\uCD5C\uB300 \uCCB4\uB825 -30% + \uACF5\uACA9\uB825 +50% +\uACF5\uACA9

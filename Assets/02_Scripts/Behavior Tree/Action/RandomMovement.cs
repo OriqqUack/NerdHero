@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +18,7 @@ public class RandomMovement : EnemyAction
         SetRandomDestination();
         
         animator.PlayAnimationForState("walk", 0);
-        agent.speed -= walkSpeedOffset;
+        agent.maxSpeed -= walkSpeedOffset;
         isWalking = true;
     }
 
@@ -35,7 +36,7 @@ public class RandomMovement : EnemyAction
     public override void OnEnd()
     {
         if(isWalking)
-            agent.speed += walkSpeedOffset;
+            agent.maxSpeed += walkSpeedOffset;
     }
 
     private void SetRandomDestination()
@@ -49,14 +50,7 @@ public class RandomMovement : EnemyAction
         Vector3 randomDirection = Random.insideUnitSphere * moveRadius.Value;
         randomDirection += transform.position;
 
-        NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomDirection, out hit, moveRadius.Value, NavMesh.AllAreas))
-        {
-            return hit.position;
-        }
-        else
-        {
-            return transform.position;
-        }
+        var nearestNodeInfo = AstarPath.active.GetNearest(randomDirection, NNConstraint.Default);
+        return nearestNodeInfo.position;
     }
 }

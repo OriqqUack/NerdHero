@@ -28,7 +28,7 @@ public class SkillUseAction : EnemyAction
 
     public override void OnStart()
     {
-        entityMovement.ForceStop();
+        entityMovement.StopTracing();
         Play();
         if(!string.IsNullOrEmpty(animationName))
             entity.Animator.PlayOneShot(animationName, 0);

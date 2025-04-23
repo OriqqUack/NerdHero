@@ -77,10 +77,20 @@ public class AfterimageGenerator : MonoBehaviour
     }
     
     private void OnDestroy()
+{
+    // 모든 DOTween 애니메이션 중지
+    DOTween.KillAll();
+    
+    // 씬이 종료 중인지 확인
+    if (Managers.IsDestroying) return;
+    
+    foreach (GameObject afterimage in afterimageList)
     {
-        foreach (GameObject afterimage in afterimageList)
+        if (afterimage != null)
         {
             Managers.Resource.Destroy(afterimage);
         }
     }
+    afterimageList.Clear();
+}
 }

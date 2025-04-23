@@ -20,31 +20,47 @@ public class CardProbabilityManager
         this.gradeProbConfigs = gradeProbConfigs;
     }
     
-    private Dictionary<AttributeType, float> GetAttributeRates(AttributeType recent, AttributeType previous)
+    private Dictionary<AttributeType, float> GetAttributeRates(AttributeType recent, AttributeType previous, bool isFirst)
     {
         var rates = new Dictionary<AttributeType, float>();
 
-        foreach (AttributeType attr in Enum.GetValues(typeof(AttributeType)))
+        if (isFirst)
         {
-            rates[attr] = 20f;
+            foreach (AttributeType attr in Enum.GetValues(typeof(AttributeType)))
+                rates[attr] = 20f;
+
+            rates[AttributeType.None] = 0f;
+            return rates;
         }
-        
+
+        // 기존 로직 그대로
         if (recent == previous)
         {
             rates[recent] = 25f;
             float remainRate = (100f - 25f) / 4f;
-            foreach (AttributeType attr in Enum.GetValues(typeof(AttributeType)))
+            Array values = Enum.GetValues(typeof(AttributeType));
+
+            for (int i = 0; i < values.Length - 1; i++)
             {
-                if (attr != recent) rates[attr] = remainRate;
+                AttributeType attr = (AttributeType)values.GetValue(i);
+                if (attr != recent)
+                {
+                    rates[attr] = remainRate;
+                }
             }
         }
         else
         {
+            Array values = Enum.GetValues(typeof(AttributeType));
+
             rates[recent] = 25f;
-            rates[previous] = 20f;
-            float remainRate = (100f - 25f - 20f) / 3f;
-            foreach (AttributeType attr in Enum.GetValues(typeof(AttributeType)))
+            if(previous != AttributeType.None)
+                rates[previous] = 20f;
+            float remainRate = (100f - 25f - rates[previous]) / (values.Length - 2);
+
+            for (int i = 0; i < values.Length - 1; i++)
             {
+                AttributeType attr = (AttributeType)values.GetValue(i);
                 if (attr != recent && attr != previous) rates[attr] = remainRate;
             }
         }
@@ -55,7 +71,10 @@ public class CardProbabilityManager
     public (EffectRarity grade, AttributeType attr)?  RollCard(
         int level,
         HashSet<AttributeType> commonRareHistory,
-        AttributeType attributeCategory)
+        AttributeType attributeCategory,
+        AttributeType recent,
+        AttributeType previous,
+        bool isFirst)
     {
         var config = gradeProbConfigs.Find(c => c.level == level);
         if (config == null) return null;
@@ -67,9 +86,9 @@ public class CardProbabilityManager
         else if (r < config.commonRate + config.rareRate) grade = EffectRarity.Rare;
         else grade = EffectRarity.Legendary;
 
-        // 2. 속성 결정 (동등 확률)
-        Array values = Enum.GetValues(typeof(AttributeType));
-        AttributeType attr = (AttributeType)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+        // 2. 속성 결정 - 확률 기반으로 선택
+        var attrRates = GetAttributeRates(recent, previous, isFirst);
+        AttributeType attr = WeightedRandom(attrRates);
 
         // 3. 전설 카드 예외 조건
         if (grade == EffectRarity.Legendary && attr == attributeCategory)
@@ -83,4 +102,24 @@ public class CardProbabilityManager
 
         return (grade, attr);
     }
+    
+    private AttributeType WeightedRandom(Dictionary<AttributeType, float> rates)
+    {
+        float total = 0f;
+        foreach (var rate in rates.Values)
+            total += rate;
+
+        float roll = UnityEngine.Random.Range(0f, total);
+        float cumulative = 0f;
+
+        foreach (var pair in rates)
+        {
+            cumulative += pair.Value;
+            if (roll <= cumulative)
+                return pair.Key;
+        }
+
+        return AttributeType.BaseAttack; // fallback
+    }
+
 }

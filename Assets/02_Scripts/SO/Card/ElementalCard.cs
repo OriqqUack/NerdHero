@@ -7,8 +7,15 @@ public class ElementalCard : CardBase
     public override void Setup(Entity entity)
     {
         _owner = entity;
+        
+        var list = _owner.SkillSystem.Find(elementalName);
+        bool isFind = list.Count > 0;
+        
         _effect = effect.Clone() as Effect;
-        _effect.Setup(_owner.gameObject, _owner, 1);
+        if(isFind)
+            _effect.Setup(_owner.gameObject, _owner, 2);
+        else
+            _effect.Setup(_owner.gameObject, _owner, 1);
     }
 
     public override void ApplyEffect()
@@ -19,6 +26,6 @@ public class ElementalCard : CardBase
             _owner.SkillSystem.RemoveEffect(effect);
         }
         
-        _owner.SkillSystem.Apply(_effect);
+        _owner.SkillSystem.OwnSkills[0].AddEffect(_effect);
     }
 }

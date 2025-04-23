@@ -116,6 +116,6 @@ MonoBehaviour:
       type: {class: JumpAction, ns: , asm: Assembly-CSharp}
       data:
         method: 1
-        angle: 50
+        angle: 30
         jumpSpeed: 10
         isBackJump: 0

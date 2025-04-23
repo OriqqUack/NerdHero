@@ -21,6 +21,7 @@ MonoBehaviour:
     <color=red>$[effectAction.totalDamage.0]</color> \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4."
   type: 0
   useType: 1
+  movingType: 0
   executionType: 0
   applyType: 0
   needSelectionResultType: 0
@@ -70,15 +71,23 @@ MonoBehaviour:
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     chargeAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     precedingActionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     actionAnimatorParameter:
       type: 0
+      index: 0
+      stat: {fileID: 0}
       name: 
     customActionsOnCast: []
     customActionsOnCharge: []
@@ -96,12 +105,14 @@ MonoBehaviour:
     - rid: 3978618633073197126
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0
     - rid: 3978618633073197127
       type: {class: SearchArea, ns: , asm: Assembly-CSharp}
       data:
+        isShowIndicatorPlayerOnly: 0
         indicatorViewAction:
           rid: -2
         isUseScale: 0
@@ -121,8 +132,7 @@ MonoBehaviour:
       data:
         targetType: 0
         methodType: 0
-        prefab: {fileID: 5845424203269617360, guid: 4ec4b6c482e9ca34fa648cdd8e3b3e75,
-          type: 3}
+        prefab: {fileID: 5845424203269617360, guid: 4ec4b6c482e9ca34fa648cdd8e3b3e75, type: 3}
         offset: {x: 0, y: 0.001, z: 0}
         scaleFactor: {x: 5, y: 1, z: 5}
         isAttachToTarget: 1

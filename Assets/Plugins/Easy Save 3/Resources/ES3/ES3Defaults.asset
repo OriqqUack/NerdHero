@@ -34,16 +34,25 @@ MonoBehaviour:
     serializationDepthLimit: 64
     assemblyNames:
     - AllIn1SpriteShaderAssembly
+    - AllIn1VfxAssmebly
+    - AllIn1VfxDemoScriptAssemblies
+    - AllIn1VfxTexDemoAssembly
+    - andywiecko.BurstTriangulator
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - AstarPathfindingProject
+    - AstarPathfindingProjectExamples
     - Autodesk.Fbx
     - Autodesk.Fbx.BuildTestAssets
     - CFXRDemo
     - CFXRRuntime
+    - DamageNumbersPro
+    - Drawing
     - Google.Play.Games
     - KinoBloom.Runtime
     - MackySoft.SerializeReferenceExtensions
     - NavMeshPlus
+    - PackageTools
     - spine-csharp
     - spine-unity
     - spine-unity-examples
