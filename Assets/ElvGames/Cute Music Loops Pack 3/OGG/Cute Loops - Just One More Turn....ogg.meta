@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 256cb477f98e30e4c85d359bc3a32ca2
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294627
+  packageName: Cute Music Loops Bundle
+  packageVersion: 1.0
+  assetPath: Assets/ElvGames/Cute Music Loops Pack 3/OGG/Cute Loops - Just One More
+    Turn....ogg
+  uploadId: 688061

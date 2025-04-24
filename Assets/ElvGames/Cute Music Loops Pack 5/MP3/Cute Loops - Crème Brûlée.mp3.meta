@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: c81e250a49f93ee4cb67993d43a73fa4
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 7
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 294627
+  packageName: Cute Music Loops Bundle
+  packageVersion: 1.0
+  assetPath: "Assets/ElvGames/Cute Music Loops Pack 5/MP3/Cute Loops - Cr\xE8me Br\xFBl\xE9e.mp3"
+  uploadId: 688061

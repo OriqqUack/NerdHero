@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -65,6 +66,31 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
     }
 
+    public void FadeOutBgm(float duration = 1f, System.Action onComplete = null)
+    {
+        if (BgmSource.isPlaying)
+        {
+            DOTween.To(() => BgmSource.volume, x => BgmSource.volume = x, 0f, duration)
+                .OnComplete(() =>
+                {
+                    BgmSource.Stop();
+                    onComplete?.Invoke();
+                });
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
+    }
+
+    public void FadeInBgm(AudioClip newClip, float duration = 1f, float volume = 1f)
+    {
+        BgmSource.clip = newClip;
+        BgmSource.volume = 0f;
+        BgmSource.Play();
+        DOTween.To(() => BgmSource.volume, x => BgmSource.volume = x, volume, duration);
+    }
+    
     private AudioClip GetOrAddAudioClip(string path, Sound type = Sound.Effect)
     {
         if (path.Contains("Sounds/") == false)
