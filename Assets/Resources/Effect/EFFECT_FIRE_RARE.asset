@@ -38,7 +38,8 @@ MonoBehaviour:
       scaleStat: {fileID: 0}
     applyCount: 0
     applyCycle: 1
-    customActions: []
+    customActions:
+    - rid: 416589032516223100
   - level: 2
     maxStack: 1
     stackActions: []
@@ -51,7 +52,8 @@ MonoBehaviour:
       scaleStat: {fileID: 0}
     applyCount: 0
     applyCycle: 1
-    customActions: []
+    customActions:
+    - rid: 416589032516222977
   references:
     version: 2
     RefIds:
@@ -71,3 +73,23 @@ MonoBehaviour:
         bonusDamageStatFactor: 0.8
         bonusDamagePerLevel: 0
         bonusDamagePerStack: 0
+    - rid: 416589032516222977
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 1
+        methodType: 1
+        prefab: {fileID: 1835174905073365006, guid: 20ef6b939ba969b4bb8a4aca1e25f32b, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 1, y: 1, z: 1}
+        isAttachToTarget: 1
+        isDestroyOnRelease: 1
+    - rid: 416589032516223100
+      type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
+      data:
+        targetType: 1
+        methodType: 1
+        prefab: {fileID: 1835174905073365006, guid: 20ef6b939ba969b4bb8a4aca1e25f32b, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+        scaleFactor: {x: 1, y: 1, z: 1}
+        isAttachToTarget: 1
+        isDestroyOnRelease: 1

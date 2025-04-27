@@ -15,6 +15,8 @@ public class SkillSlot : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHand
     [SerializeField]
     private Image usingBorderImage;
     [SerializeField]
+    private GameObject usingEffect;
+    [SerializeField]
     private TextMeshProUGUI cooldownText;
     [SerializeField]
     private TextMeshProUGUI remainInputCountText;
@@ -73,12 +75,17 @@ public class SkillSlot : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHand
         if (skill.IsInState<ReadyState>())
         {
             if (!skill.IsUseable)
+            {
                 blindImage.gameObject.SetActive(true);
+                usingEffect.SetActive(false);
+            }
             else
+            {
                 blindImage.gameObject.SetActive(false);
+                usingEffect.SetActive(true);
+            }
         }
     }
-
 
     private void SkillUse()
     {
@@ -97,6 +104,7 @@ public class SkillSlot : MonoBehaviour/*, IPointerEnterHandler, IPointerExitHand
         iconImage.gameObject.SetActive(isOn);
         remainInputCountText.gameObject.SetActive(isOn);
         usingBorderImage.gameObject.SetActive(isOn);
+        usingEffect.SetActive(isOn);
     }
 
     private void OnSkillStateChanged(Skill skill, State<Skill> currentState, State<Skill> prevState, int layer)

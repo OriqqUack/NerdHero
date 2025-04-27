@@ -27,7 +27,7 @@ MonoBehaviour:
     dropChance: 1
   - gainType: 1
     stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
-    statAmount: 10
+    statAmount: 50
     lootPrefab: {fileID: 7789590194871500304, guid: b31b20f26fc6ccc499190d22c1cb3b98, type: 3}
     item: {fileID: 0}
     dropChance: 1

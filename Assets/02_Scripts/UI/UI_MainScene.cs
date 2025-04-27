@@ -23,8 +23,6 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     private void Start()
     {
         ButtonSetting();
-        
-        
     }
 
     private void ButtonSetting()
@@ -36,6 +34,8 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     {
         SoundManager.Instance.Play(onClickSound);
         SoundManager.Instance.Clear();
+        GameManager.Instance.WaveData = CircleExpositor.Instance.CurrentIsland.WaveData;
+        GameManager.Instance.CurrentIslandIndex = CircleExpositor.Instance.CurrentTargetIndex;
         if (EnergyManager.Instance.UseEnergy(5))
         {
             SceneTransitioner.Instance.StartTransitioning(SceneType.InGameScene, 1, 0);

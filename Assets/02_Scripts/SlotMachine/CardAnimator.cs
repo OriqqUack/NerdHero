@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 
 public class CardAnimator : UiWindow
 {
+    public delegate void OnCardSpawned();
+    public static OnCardSpawned onCardSpawned;
+    public delegate void OnCardDelete();
+    public static OnCardDelete onCardDelete;
+    
     [UnderlineTitle("Card Setting")]
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private Vector2 centerPos = new Vector2(0f, 100f); // 중앙 기준 위치
@@ -28,6 +33,8 @@ public class CardAnimator : UiWindow
     private int _currentLevel;
     private AttributeType _recentAttr = AttributeType.BaseAttack;
     private AttributeType _previousAttr = AttributeType.BaseAttack;
+    
+    public GameObject[] Cards => _cards;
     
     protected override void Start()
     {
@@ -95,6 +102,7 @@ public class CardAnimator : UiWindow
                 _resetCg.interactable = true;
                 _resetCg.blocksRaycasts = true;
             });
+            onCardSpawned?.Invoke();
         });
     }
 
@@ -213,6 +221,7 @@ public class CardAnimator : UiWindow
         Time.timeScale = 1f;
         if(_closeCallback != null) _closeCallback(_windowHolder);
         SpawnEffect();
+        onCardDelete?.Invoke();
         Destroy(gameObject);
     }
 }

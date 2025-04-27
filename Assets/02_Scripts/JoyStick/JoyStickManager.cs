@@ -18,7 +18,6 @@ public class JoyStickManager : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     private void Awake()
     {
         _canvas = GetComponent<Canvas>();
-        SetTouchPanelSize();
         background.gameObject.SetActive(false);
     }
 

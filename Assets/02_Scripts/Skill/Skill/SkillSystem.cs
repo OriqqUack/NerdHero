@@ -271,6 +271,12 @@ public class SkillSystem : MonoBehaviour
 
         foreach (var skill in runningSkills.ToArray())
             skill.Cancel(isForce);
+        
+        if(Owner.ControlType == EntityControlType.AI)
+        {
+            foreach (var effect in runningEffects.ToArray())
+                effect.Release();
+        }
     }
 
     public Skill Find(Skill skill)

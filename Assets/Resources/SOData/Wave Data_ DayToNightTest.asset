@@ -16,17 +16,7 @@ MonoBehaviour:
   - Wave: 0
     Enemies:
     - EnemyPrefab:
-      - {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
-      EnemyCount: 01000000
-  - Wave: 0
-    Enemies:
-    - EnemyPrefab:
-      - {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
-      EnemyCount: 01000000
-  - Wave: 0
-    Enemies:
-    - EnemyPrefab:
-      - {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
+      - {fileID: 3873516473804846084, guid: 951285940ac3fcd489deee89dd53b568, type: 3}
       EnemyCount: 01000000
   - Wave: 0
     Enemies:

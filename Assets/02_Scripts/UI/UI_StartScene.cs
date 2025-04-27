@@ -30,6 +30,15 @@ public class UI_StartScene : MonoBehaviour
 
     private void OnClickPanel()
     {
-        SceneTransitionManager.LoadScene("Scene_Main");
+        bool isTutorialCleared = ES3.Load<bool>("TutorialCleared", false);
+
+        if (!isTutorialCleared)
+        {
+            SceneTransitionManager.LoadScene("Scene_Tutorial");
+        }
+        else
+        {
+            SceneTransitionManager.LoadScene("Scene_Main");
+        }
     }
 }

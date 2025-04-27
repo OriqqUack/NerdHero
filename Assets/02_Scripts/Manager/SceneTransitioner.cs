@@ -42,7 +42,7 @@ public class SceneTransitioner : MonoSingleton<SceneTransitioner>
         {
             if (_elapsedTime < lerpDuration)
             {
-                _elapsedTime += Time.deltaTime;
+                _elapsedTime += Time.unscaledDeltaTime;
 
                 // 0 → 1로 Lerp
                 float t = _elapsedTime / lerpDuration;

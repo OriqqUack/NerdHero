@@ -64,6 +64,11 @@ public class Entity : MonoBehaviour
             Stats = GameManager.Instance.GetComponent<Stats>();
             Stats.SetupOwner(this);
         }
+        else if (controlType == EntityControlType.Owner)
+        {
+            Stats = GetComponent<Stats>();
+            Stats.Setup(this);
+        }
         else
         {
             Stats = GetComponent<Stats>();

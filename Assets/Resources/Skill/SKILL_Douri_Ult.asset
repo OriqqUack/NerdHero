@@ -52,7 +52,8 @@ MonoBehaviour:
         rid: 416588489734226024
       searchAction:
         rid: 416588489734226025
-    costs: []
+    costs:
+    - rid: 416589057613365248
     isUseCast: 0
     castTime:
       defaultValue: 0
@@ -121,6 +122,10 @@ MonoBehaviour:
     - rid: 416588556261916782
       type: {class: InvincibilityModeAction, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 416589057613365248
+      type: {class: StatCostMax, ns: , asm: Assembly-CSharp}
+      data:
+        stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
     - rid: 9209176293260656945
       type: {class: PlayAnimationAction, ns: , asm: Assembly-CSharp}
       data:

@@ -18,7 +18,7 @@ public class EntityHUD : MonoSingleton<EntityHUD>
     [SerializeField] private SkillEffectListView effectListView; //
     
     [Header("Effecf List View")]
-    [SerializeField] private Image sameAxisImage; //
+    public Image sameAxisImage; //
     
     private Entity target;
     private float hpMaxValue;

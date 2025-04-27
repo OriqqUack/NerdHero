@@ -65,7 +65,7 @@ namespace PixelCrushers.DialogueSystem
             }
             continueButton = GetComponent<UnityEngine.UI.Button>();
         }
-
+        
         public virtual void OnFastForward()
         {
             if ((typewriterEffect != null) && typewriterEffect.isPlaying)

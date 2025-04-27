@@ -17,6 +17,8 @@ public class UI_InGameScene : MonoSingleton<UI_InGameScene>
         WaveManager.Instance.OnWaveEnd += OpenGameEnd;
         WaveManager.Instance.PlayerEntity.Stats.GetStat("LEVEL").onValueChanged += OpenCardSelec;
     }
+    
+    public UiWindow GetCardSelectUI() => _cardSelectUI;
 
     public void OpenPause() => pause.OpenWindow();
     public void OpenExitAlert() => exitAlert.OpenWindow();

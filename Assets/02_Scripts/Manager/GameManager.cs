@@ -7,7 +7,21 @@ public class GameManager : MonoSingleton<GameManager>, ISaveable
     private Entity _playerEntity;
     private Stat _playerExp, _playerLevel, _playerGold, _playerHealth, _playerDamage; //_playerSkillDamage, _playerDefense;
     private Skill _playerSkill1, _playerSkill2;
+    private SOWaveData _waveData;
+    private int _currentIslandIndex;
 
+    public int CurrentIslandIndex
+    {
+        get => _currentIslandIndex;
+        set => _currentIslandIndex = value;
+    }
+    
+    public SOWaveData WaveData
+    {
+        get => _waveData;
+        set => _waveData = value;
+    }
+    
     public Skill PlayerSkill1
     {
         get => _playerSkill1;

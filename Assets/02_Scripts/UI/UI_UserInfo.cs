@@ -12,6 +12,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     [SerializeField] private Slider energySlider; 
     [SerializeField] private Slider energyFollowSlider;
     [SerializeField] private Slider expSlider;
+    [SerializeField] private Slider waveSlider;
 
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI energyText;
@@ -24,12 +25,13 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     private Stat hpStat;
     private Stat maxEnergyStat;
     private Stat energyStat;
-
     private Stats _playerStats;
-    
+
+    private WaveManager _waveManager;
     private void Start()
     {
-        _playerStats = GameManager.Instance.GetComponent<Stats>();
+        _waveManager = WaveManager.Instance;
+        _playerStats = _waveManager.PlayerEntity.Stats;
         energyStat = _playerStats.SkillCostStat;
         maxEnergyStat = _playerStats.MaxSkillCostStat;
         hpStat = _playerStats.HPStat;
@@ -43,7 +45,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         energyStat.onMaxValueChanged += EnergyChangeEvent;
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
-        WaveManager.Instance.OnWaveChange += WaveChangeEvent;
+        _waveManager.OnWaveChange += WaveChangeEvent;
         
         hpSlider.value = hpStat.Value / hpStat.MaxValue;
         energySlider.value = energyStat.Value / energyStat.MaxValue;
@@ -51,6 +53,11 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         hpText.text = $"{hpStat.Value} / {hpStat.MaxValue}";
         energyText.text = $"{energyStat.Value} / {energyStat.MaxValue}";
         levelText.text = levelStat.Value.ToString();
+    }
+
+    private void Update()
+    {
+        waveSlider.value = _waveManager.RemainingWaveTime;
     }
 
     private void WaveChangeEvent(int waveIndex)
