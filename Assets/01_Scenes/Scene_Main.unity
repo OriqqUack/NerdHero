@@ -420,6 +420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &124423191
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -988,6 +989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &241374487
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2004,7 +2006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &493297658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,8 +3315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5967d70c855c0b9448f2216e6880a632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
+  WaveData: {fileID: 11400000, guid: 156bdd0372d69f542a506349259c9bf0, type: 2}
   IsLocked: 0
+  LockedEffect: {fileID: 0}
 --- !u!114 &961061641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3823,6 +3826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &1300776613
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5014,9 +5018,9 @@ RectTransform:
   m_Father: {fileID: 493297660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 2355.7046}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1679683722
 MonoBehaviour:
@@ -5549,6 +5553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &1820467932
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5835,6 +5840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &1959771081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6002,6 +6008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaveData: {fileID: 11400000, guid: 81d30277bf7f67a4ab9e4a0c57073425, type: 2}
   IsLocked: 1
+  LockedEffect: {fileID: 0}
 --- !u!212 &2003653199
 SpriteRenderer:
   m_ObjectHideFlags: 0

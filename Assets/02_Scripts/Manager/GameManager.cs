@@ -10,6 +10,8 @@ public class GameManager : MonoSingleton<GameManager>, ISaveable
     private SOWaveData _waveData;
     private int _currentIslandIndex;
 
+    public bool IsClear { get; set; }
+    
     public int CurrentIslandIndex
     {
         get => _currentIslandIndex;

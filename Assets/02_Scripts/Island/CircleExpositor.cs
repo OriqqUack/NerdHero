@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +21,10 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
     
     public int CurrentTargetIndex => _currentTarget;
     public Island CurrentIsland => _islands[_currentTarget];
-    
+
     private void Start()
     {
+        _currentTarget = GameManager.Instance.CurrentIslandIndex;
         _dummyRotation = transform.rotation;
         _iniY = transform.position.y;
 
@@ -43,13 +46,33 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
 
         _zOffset = radius - 40f;
         transform.position = new Vector3(transform.position.x, transform.position.y, _zOffset);
+
+        if (GameManager.Instance.IsClear)
+        {
+            StartCoroutine(ScrollingCoroutine());
+        }
+    }
+
+    private IEnumerator ScrollingCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        int index = GameManager.Instance.CurrentIslandIndex + 1;
+        if (!_islands.IsValidIndex(index)) yield break;
+        
+        ChangeTarget(index);
+        if (_islands[_currentTarget].IsLocked)
+        {
+            _islands[_currentTarget].LockedEffect.ShakeAndBreak();
+        }
+        
+        yield return null;
     }
 
     private void Update()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, _dummyRotation, rotateSpeed * Time.deltaTime);
     }
-
 
     public void ChangeTarget(int offset)
     {
@@ -60,13 +83,20 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
 
         if (_islands[_currentTarget].IsLocked)
         {
-            enterButton.interactable = false;
-            enterButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            EnterButtonActive(false);
         }
         else
         {
-            enterButton.interactable = true;
-            enterButton.image.color = Color.white;
+            EnterButtonActive(true);
         }
+    }
+
+    public void EnterButtonActive(bool active)
+    {
+        enterButton.interactable = active;
+        if(active)
+            enterButton.image.color = Color.white;
+        else
+            enterButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 }

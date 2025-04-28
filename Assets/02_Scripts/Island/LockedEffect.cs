@@ -61,7 +61,14 @@ public class LockedEffect : MonoBehaviour
         {
             Instantiate(breakVFXPrefab, transform.position, Quaternion.identity);
         }
-        parentSpriteRenderer.GetComponent<Island>().IsLocked = false;
+
+        ActiveButton();
         Destroy(transform.gameObject); // 자물쇠 파괴
+    }
+
+    private void ActiveButton()
+    {
+        parentSpriteRenderer.GetComponent<Island>().IsLocked = false;
+        CircleExpositor.Instance.EnterButtonActive(true);
     }
 }

@@ -61,6 +61,7 @@ public class UI_GameEnd : UiWindow
             InventoryManager.Instance.AddItem(item);
         }
         Time.timeScale = 1;
+
         SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene, 1, 0);
     }
     

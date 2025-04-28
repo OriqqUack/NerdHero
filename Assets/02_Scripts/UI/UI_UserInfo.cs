@@ -12,7 +12,6 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
     [SerializeField] private Slider energySlider; 
     [SerializeField] private Slider energyFollowSlider;
     [SerializeField] private Slider expSlider;
-    [SerializeField] private Slider waveSlider;
 
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private TextMeshProUGUI energyText;
@@ -53,11 +52,6 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         hpText.text = $"{hpStat.Value} / {hpStat.MaxValue}";
         energyText.text = $"{energyStat.Value} / {energyStat.MaxValue}";
         levelText.text = levelStat.Value.ToString();
-    }
-
-    private void Update()
-    {
-        waveSlider.value = _waveManager.RemainingWaveTime;
     }
 
     private void WaveChangeEvent(int waveIndex)

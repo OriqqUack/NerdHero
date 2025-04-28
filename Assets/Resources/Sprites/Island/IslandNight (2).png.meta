@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      IslandNight (2)_0: 862613891493182226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
