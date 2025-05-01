@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image gradientImage;
     [SerializeField] private Image icon; // 아이템 아이콘
     [SerializeField] private GameObject categoryDot;
     [SerializeField] private TextMeshProUGUI quantityText;
@@ -20,9 +21,23 @@ public class ItemSlot : MonoBehaviour
         _itemRarity = item.itemRarity;
         icon.sprite = item.icon;
         icon.enabled = true;
-        
-        backgroundImage.sprite = Resources.Load<Sprite>("ItemRarity/ItemFrame_" + item.itemRarity.ToString());
 
+        switch(item.itemRarity)
+        {
+            case ItemRarity.Common:
+                backgroundImage.color = GameColors.CommonBG;
+                gradientImage.color = GameColors.CommonGradient;
+                break;
+            case ItemRarity.Rare:
+                backgroundImage.color = GameColors.RareBG;
+                gradientImage.color = GameColors.RareGradient;
+                break;
+            case ItemRarity.Legendary:
+                backgroundImage.color = GameColors.LegendaryBG;
+                gradientImage.color = GameColors.LegendaryGradient;
+                break;
+        }
+        
         if (item.itemType == ItemType.Stuff)
         {
             itemLevelText.gameObject.SetActive(false);

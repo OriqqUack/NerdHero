@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum ItemType { Weapon, Helmet, Armor, Boots, Stuff, Skill}
-public enum ItemRarity { Common, Uncommon, Rare, Epic, Legendary }
+public enum ItemRarity { Common, Rare, Legendary }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemSO : ScriptableObject

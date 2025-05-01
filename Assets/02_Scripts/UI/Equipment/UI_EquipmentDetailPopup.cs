@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI_EquipmentDetailPopup : UiWindow
 {
     [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image gradientImage;
     [SerializeField] private Image icon; // 아이템 아이콘
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI itemLevelText;
@@ -17,7 +18,7 @@ public class UI_EquipmentDetailPopup : UiWindow
     [SerializeField] private Button dimed;
 
     private ItemSO _currentItem;
-    private Skill _currentSkill;
+    //private Skill _currentSkill;
     private ItemRarity _itemRarity;
 
     public void SetupItem(ItemSO item)
@@ -30,7 +31,21 @@ public class UI_EquipmentDetailPopup : UiWindow
         icon.sprite = item.icon;
         icon.enabled = true;
         
-        backgroundImage.sprite = Resources.Load<Sprite>("ItemRarity/ItemFrame_" + item.itemRarity.ToString());
+        switch(item.itemRarity)
+        {
+            case ItemRarity.Common:
+                backgroundImage.color = GameColors.CommonBG;
+                gradientImage.color = GameColors.CommonGradient;
+                break;
+            case ItemRarity.Rare:
+                backgroundImage.color = GameColors.RareBG;
+                gradientImage.color = GameColors.RareGradient;
+                break;
+            case ItemRarity.Legendary:
+                backgroundImage.color = GameColors.LegendaryBG;
+                gradientImage.color = GameColors.LegendaryGradient;
+                break;
+        }
 
         if (item.itemType == ItemType.Stuff)
         {
@@ -53,7 +68,8 @@ public class UI_EquipmentDetailPopup : UiWindow
         cloneBtn.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "장착";
     }
 
-    public void SetupSkill(Skill skill)
+    //Skill Slot
+    /*public void SetupSkill(Skill skill)
     {
         foreach (Transform child in contents) Destroy(child.gameObject);
         foreach (Transform child in buttonContents) Destroy(child.gameObject);
@@ -77,7 +93,7 @@ public class UI_EquipmentDetailPopup : UiWindow
         Button cloneBtn1 = Instantiate(equipButton, buttonContents);
         cloneBtn1.onClick.AddListener(() => EquipSkill(_currentSkill, 1));
         cloneBtn1.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "스킬2";
-    }
+    }*/
     
     public void EquipItem(ItemSO item)
     {
@@ -86,9 +102,10 @@ public class UI_EquipmentDetailPopup : UiWindow
         DataManager.Instance.DataSave();
     }
 
-    public void EquipSkill(Skill skill, int index)
+    //Skill SLot
+    /*public void EquipSkill(Skill skill, int index)
     {
         Equipment.Instance.Equip(skill, index);
         DataManager.Instance.DataSave();
-    }
+    }*/
 }

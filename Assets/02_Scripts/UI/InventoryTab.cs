@@ -7,14 +7,12 @@ public class InventoryTab : MonoBehaviour
     [SerializeField] private Image bg;
     [SerializeField] private GameObject glowImage;
     [SerializeField] private GameObject glowLine;
-    [SerializeField] private Color selectedColor;
     [SerializeField] private Image border;
-    [SerializeField] private Color borderColor;
 
     private Color _baseColor;
     private Color _baseBorderColor;
 
-    private void Start()
+    private void Awake()
     {
         _baseColor = bg.color;
         _baseBorderColor = border.color;
@@ -22,8 +20,8 @@ public class InventoryTab : MonoBehaviour
 
     public void Setup()
     {
-        bg.color = selectedColor;
-        border.color = borderColor;
+        bg.color = GameColors.SelectedInventoryTabColor;
+        border.color = GameColors.SelectedInventoryBorderColor;
         glowImage.SetActive(true);
         glowLine.SetActive(true);
     }
