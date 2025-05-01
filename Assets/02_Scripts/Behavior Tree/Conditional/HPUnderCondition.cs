@@ -1,23 +1,33 @@
-using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HPUnderCondition : EnemyCondition
+public class HpUnderCondition : EnemyCondition
 {
-    private bool isDead = false;
+    [SerializeField] private float hpRate;
+    private bool _conditionCheck;
     public override void OnAwake()
     {
         base.OnAwake();
-        entity.onDead += OnDead;
-    }
-    
-    public override TaskStatus OnUpdate()
-    {
-        return isDead? TaskStatus.Success : TaskStatus.Failure;
+        entity.Stats.HPStat.onValueChanged += StatChanged;
     }
 
-    private void OnDead(Entity entity)
+    public override TaskStatus OnUpdate()
     {
-        isDead = true;
+        if(_conditionCheck)
+            return TaskStatus.Success;
+
+        return TaskStatus.Failure;
+    }
+
+    public override void OnEnd()
+    {
+        _conditionCheck = false;
+    }
+
+    private void StatChanged(Stat stat, float currentValue, float prevValue)
+    {
+        if (hpRate >= (stat.Value / stat.MaxValue))
+            _conditionCheck = true;
     }
 }

@@ -31,5 +31,17 @@ public class Movement : MonoBehaviour
     }
 
     public virtual void Stop() => isCC = true;
-    public virtual void ReStart() => isCC = false;
+
+    public virtual void ReStart()
+    {
+        if (!GameManager.Instance.IsClear)
+        {
+            isCC = false;
+        }
+    }
+
+    public virtual void Clear()
+    {
+        
+    }
 }

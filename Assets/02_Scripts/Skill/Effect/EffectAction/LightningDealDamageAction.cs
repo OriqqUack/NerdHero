@@ -24,6 +24,8 @@ public class LightningDealDamageAction : ElementEffectAction
     private int maxBounceTargets = 2; // 최대 전이 수
     [SerializeField]
     private float bounceDamageFactor = 0.7f; // 전이 피해 배율
+    
+    private List<Entity> _allEntities = new List<Entity>();
 
     private float GetDefaultDamage(Effect effect)
         => defaultDamage + (effect.DataBonusLevel * bonusDamagePerLevel);
@@ -74,7 +76,7 @@ public class LightningDealDamageAction : ElementEffectAction
 
         foreach (var e in allEntities)
         {
-            if (e == excludeTarget || e == origin)
+            if (e == excludeTarget || e == origin || e == null)
                 continue;
 
             float dist = Vector3.Distance(origin.transform.position, e.transform.position);

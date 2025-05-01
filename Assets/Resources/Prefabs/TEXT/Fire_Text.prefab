@@ -550,17 +550,17 @@ MonoBehaviour:
   enableOffsetFadeIn: 0
   offsetFadeIn: {x: 0.5, y: 0}
   enableScaleFadeIn: 1
-  scaleFadeIn: {x: -1.5, y: 2}
+  scaleFadeIn: {x: 0, y: 0}
   enableCrossScaleFadeIn: 0
   crossScaleFadeIn: {x: 1, y: 1.5}
   enableShakeFadeIn: 0
   shakeOffsetFadeIn: {x: 0, y: 1.5}
   shakeFrequencyFadeIn: 4
   durationFadeOut: 0.2
-  enableOffsetFadeOut: 1
+  enableOffsetFadeOut: 0
   offsetFadeOut: {x: 0.5, y: 0}
-  enableScaleFadeOut: 0
-  scaleFadeOut: {x: 2, y: 2}
+  enableScaleFadeOut: 1
+  scaleFadeOut: {x: 0.4, y: 0.4}
   enableCrossScaleFadeOut: 0
   crossScaleFadeOut: {x: 1, y: 1.5}
   enableShakeFadeOut: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  enableScaleByNumber: 0
+  enableScaleByNumber: 1
   scaleByNumberSettings:
     fromNumber: 0
     toNumber: 1000
@@ -678,7 +678,7 @@ MonoBehaviour:
   defaultOrthographicSize: 5
   maxOrthographicSize: 1.5
   orthographicCamera: {fileID: 0}
-  spamGroup: 
+  spamGroup: Damaged
   enableCombination: 0
   combinationSettings:
     method: 0
@@ -810,18 +810,18 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  enableCollision: 0
+  enableCollision: 1
   collisionSettings:
     radius: 0.5
-    pushFactor: 1
+    pushFactor: 1.5
     desiredDirection: {x: 0, y: 0, z: 0}
   enablePush: 0
   pushSettings:
     radius: 4
     pushOffset: 0.8
   updateDelay: 0.0125
-  enablePooling: 0
-  poolSize: 50
+  enablePooling: 1
+  poolSize: 20
   disableOnSceneLoad: 1
   editorLastFont: 
   position: {x: 0, y: 0, z: 0}

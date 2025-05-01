@@ -7,6 +7,7 @@ public class DestroySelfAction : CustomAction
     {
         Skill skill = (Skill)data;
         if (!skill) return;
+        WaveManager.Instance.RemoveEnemy(skill.Owner);
         GameObject.Destroy(skill.Owner.transform.parent.gameObject);
     }
 

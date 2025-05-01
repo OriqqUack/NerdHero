@@ -209,7 +209,7 @@ public class WaveManagerCounting : MonoSingleton<WaveManager>
 
     private IEnumerator EndRoutine()
     {
-        PlayerEntity.Movement.isCC = true;
+        PlayerEntity.Movement.Stop();
         PlayerEntity.Animator.PlayAnimationForState("idle", 0);
         PlayerEntity.Animator.PlayAnimationForState("clear emotion", 2);
         PlayerEntity.Animator.PlayOneShot("jump", 0);

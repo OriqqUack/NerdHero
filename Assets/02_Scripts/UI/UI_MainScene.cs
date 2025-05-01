@@ -42,8 +42,6 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
         }
     }
 
-    
-
     public void OpenShop() => shop.OpenWindow();
     public void OpenProfile() => profile.OpenWindow();
     public void OpenQuest() => quest.OpenWindow();

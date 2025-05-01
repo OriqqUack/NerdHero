@@ -9,10 +9,7 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     [Header("UI Elements")]
     [SerializeField] private Transform inventoryPanel;
     [SerializeField] private GameObject inventorySlotPrefab;
-    [SerializeField] private GameObject inventorySkillSlotPrefab;
     [SerializeField] private TextMeshProUGUI inventoryAmount;
-    [SerializeField] private Sprite focusImage;
-    [SerializeField] private Sprite defaultImage;
     [SerializeField] private Transform sortArrowSprite;
     [SerializeField] private TMP_Dropdown dropdown;
 
@@ -24,9 +21,9 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
 
     private bool isWeaponFilter = false;
     private bool isArmorFilter = false;
-    private Image weaponImage;
-    private Image armorImage;
-    private Image allImage;
+    private InventoryTab weaponImage;
+    private InventoryTab armorImage;
+    private InventoryTab allImage;
 
     private int currentDropdownIndex;
     private bool isAcending;
@@ -35,9 +32,9 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
         //sortButton.onClick.AddListener(() => SortItem());
         dropdown.onValueChanged.AddListener(OnDropdownValueChanged);
 
-        weaponImage = weaponFilterBtn.GetComponent<Image>();
-        armorImage = armorFilterBtn.GetComponent<Image>();
-        allImage = allFilterBtn.GetComponent<Image>();
+        weaponImage = weaponFilterBtn.GetComponent<InventoryTab>();
+        armorImage = armorFilterBtn.GetComponent<InventoryTab>();
+        allImage = allFilterBtn.GetComponent<InventoryTab>();
         
         weaponFilterBtn.onClick.AddListener(() => ApplyFilter(true, false));
         armorFilterBtn.onClick.AddListener(() => ApplyFilter(false, true));
@@ -61,23 +58,23 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
         if (isWeaponFilter)
         {
             filteredItems = filteredItems.FindAll(item => item.itemType == ItemType.Weapon);
-            weaponImage.sprite = focusImage;
-            armorImage.sprite = defaultImage;
-            allImage.sprite = defaultImage;
+            weaponImage.Setup();
+            armorImage.Clear();
+            allImage.Clear();
         }
         else if (isArmorFilter)
         {
             filteredItems = filteredItems.FindAll(item =>
                 item.itemType == ItemType.Helmet || item.itemType == ItemType.Armor || item.itemType == ItemType.Boots);
-            weaponImage.sprite = defaultImage;
-            armorImage.sprite = focusImage;
-            allImage.sprite = defaultImage;
+            weaponImage.Clear();
+            armorImage.Setup();
+            allImage.Clear();
         }
         else
         {
-            weaponImage.sprite = defaultImage;
-            armorImage.sprite = defaultImage;
-            allImage.sprite = focusImage;
+            weaponImage.Clear();
+            armorImage.Clear();
+            allImage.Setup();
         }
 
         foreach (ItemSO item in filteredItems)
@@ -86,11 +83,12 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
             slotObj.GetComponent<ItemSlot>().SetItem(item);
         }
 
-        foreach (Skill skill in filteredSkills)
+        //Skill
+        /*foreach (Skill skill in filteredSkills)
         {
             GameObject slotObj = Instantiate(inventorySkillSlotPrefab, inventoryPanel);
             slotObj.GetComponent<InventorySkillSlot>().SetItem(skill);
-        }
+        }*/
 
         inventoryAmount.text = $"<color=#32bbff>{filteredItems.Count + filteredSkills.Count}</color> / 120";
     }

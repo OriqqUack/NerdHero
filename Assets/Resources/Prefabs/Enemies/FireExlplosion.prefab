@@ -225,8 +225,8 @@ MonoBehaviour:
   skillCostStat: {fileID: 11400000, guid: 8c84dbe3d16022f4baa698702b22d808, type: 2}
   damageStat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
   damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
-  criticalDamageStat: {fileID: 0}
-  criticalPerStat: {fileID: 0}
+  criticalDamageStat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
+  criticalPerStat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
     isUseOverride: 1
@@ -252,6 +252,12 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 1
+  - stat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
+    isUseOverride: 1
+    overrideDefaultValue: 0
+  - stat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
+    isUseOverride: 1
+    overrideDefaultValue: 0
 --- !u!114 &4676148266480167598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,14 +362,13 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(192.5,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(2.5,136.666656)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3.06917381,134.996338)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-338.140778,163.8838)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"HPUnderCondition","NodeData":{"Offset":"(-177.110443,164.844116)"},"ID":4,"Name":"HP
-        Under Condition","Instant":true},{"Type":"DeadAction","NodeData":{"Offset":"(-16.973999,164.21051)"},"ID":5,"Name":"Dead
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(192.5,30)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(2.5,136.666656)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-3.06917381,134.996338)"},"ID":2,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-338.140778,163.8838)"},"ID":3,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"DeadCondition","NodeData":{"Offset":"(-156.519379,152.352661)"},"ID":4,"Name":"Dead
+        Condition","Instant":true},{"Type":"DeadAction","NodeData":{"Offset":"(-16.973999,164.21051)"},"ID":5,"Name":"Dead
         Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-69.37616,155.74913)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"IsTargetInsight","NodeData":{"Offset":"(-146.861145,163.313538)"},"ID":7,"Name":"Is
         Target Insight","Instant":true,"SinglefieldOfViewAngle":45,"SingleviewDistance":10},{"Type":"SkillUseAction","NodeData":{"Offset":"(2.97043037,163.862747)"},"ID":8,"Name":"Skill
-        Use Action","Instant":true,"Int32skillIndex":0,"BooleanIsMoveSkill":true},{"Type":"TracingAction","NodeData":{"Offset":"(134.333176,158.918777)"},"ID":9,"Name":"Tracing
-        Action","Instant":true,"SingleTracingTime":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(317.552155,149.762024)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-112.960663,169.813843)"},"ID":11,"Name":"Random
-        Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(65.3946838,168.53418)"},"ID":12,"Name":"Wait
-        Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"}]}]}]}}'
+        Use Action","Instant":true,"Int32skillIndex":0,"BooleanIsMoveSkill":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(137.142761,162.856934)"},"ID":9,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"TracingAction","NodeData":{"Offset":"(4.28571224,124.285759)"},"ID":10,"Name":"Tracing
+        Action","Instant":true,"SingleTracingTime":0}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(248.8233,155.294128)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"TracingAction","NodeData":{"Offset":"(-6.32366943,171.96051)"},"ID":12,"Name":"Tracing
+        Action","Instant":true,"SingleTracingTime":0}]}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 

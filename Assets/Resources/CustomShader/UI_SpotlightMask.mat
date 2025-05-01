@@ -33,10 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CircleRadius: 0
+    - _CircleRadius: 1e-45
     - _SpotRadius: 0.1
     m_Colors:
-    - _CircleCenter: {r: 0, g: 0, b: 0, a: 0}
+    - _CircleCenter: {r: 1e-45, g: 1e-45, b: 0, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0.7490196}
     - _RectCenter: {r: 1e-45, g: 1e-45, b: 0, a: 0}
     - _RectSize: {r: 1e-45, g: 1e-45, b: 0, a: 0}

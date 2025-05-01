@@ -28,7 +28,7 @@ public class PoolManager
             GameObject go = Object.Instantiate<GameObject>(Original);
             go.name = Original.name;
             var poolable = go.GetOrAddComponent<Poolable>();
-            poolable.transform.parent = Root; // ✅ 추가
+            poolable.transform.SetParent(Root); // ✅ 추가
             return poolable;
         }
 
@@ -37,7 +37,7 @@ public class PoolManager
             if (poolable == null)
                 return;
 
-            poolable.transform.parent = Root;
+            poolable.transform.SetParent(Root);
             poolable.gameObject.SetActive(false);
             poolable.IsUsing = false;
 
@@ -59,7 +59,7 @@ public class PoolManager
             /*if (parent == null)
                 poolable.transform.parent = Managers.Scene.CurrentScene.transform;*/
 
-            poolable.transform.parent = parent;
+            poolable.transform.SetParent(parent);
             poolable.IsUsing = true;
 
             return poolable;

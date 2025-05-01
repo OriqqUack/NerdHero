@@ -132,8 +132,6 @@ public class PlayerMovement : Movement
 
     private void Move()
     {
-        if (isCC) return;
-        
         if (_moveInput.magnitude > 1) 
         {
             _moveInput.Normalize(); // 대각선 속도 보정

@@ -33,6 +33,8 @@ public class TracingAction : EnemyAction
             return TaskStatus.Success;
         }
         
+        entityMovement.LookCheck();
+        
         return TaskStatus.Running;
     }
 

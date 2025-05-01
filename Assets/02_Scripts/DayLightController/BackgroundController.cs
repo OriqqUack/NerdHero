@@ -10,7 +10,8 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private LightCycle lightCycle;
     [SerializeField] private AudioClip dayLightSound;
     [SerializeField] private AudioClip nightLightSound;
-
+    [SerializeField] private GameObject[] lights;
+    
     private int waveCount;
     private float _currentNightCanvasAlpha = 0;
     private float _offset;
@@ -28,12 +29,17 @@ public class BackgroundController : MonoBehaviour
         nightCanvasGroup.DOFade(_currentNightCanvasAlpha, 2f);
         DOTween.To(() => lightCycle.time, x => lightCycle.time = x, _currentNightCanvasAlpha, 2f);
 
-        if (wave >= waveCount - 2)
+        if (wave == waveCount - 1)
         {
             SoundManager.Instance.FadeOutBgm(1f, () =>
             {
                 SoundManager.Instance.FadeInBgm(nightLightSound, 1f, 1f);
             });
+
+            foreach (var light in lights)
+            {
+                light.SetActive(true);
+            }
         }
     }
 }

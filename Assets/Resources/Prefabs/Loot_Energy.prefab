@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropRadius: 1
   forwardForce: 1
-  upwardForce: 1
-  isFloating: 0
-  attractDistance: 2
+  upwardForce: 2
+  isFloating: 1
+  attractDistance: 5
   statFactor: {fileID: 11400000, guid: 3ccf64b48a6803649bfeea5d315aa123, type: 2}
 --- !u!54 &4476959268802044901
 Rigidbody:

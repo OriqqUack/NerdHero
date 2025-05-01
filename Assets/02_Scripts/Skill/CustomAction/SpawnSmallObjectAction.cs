@@ -33,7 +33,7 @@ public class SpawnSmallObjectAction : CustomAction
             go.transform.localEulerAngles = new Vector3(0, 90, 0);
 
             _entity = go.transform.GetComponentInChildren<Entity>();
-
+            WaveManager.Instance.AddActiveEnemies(_entity);
             var aiPath = _entity.GetComponent<FollowerEntity>();
             if (aiPath != null)
             {

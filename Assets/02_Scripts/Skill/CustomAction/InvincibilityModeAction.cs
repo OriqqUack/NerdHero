@@ -16,7 +16,7 @@ public class InvincibilityModeAction : CustomAction
     {
         return new InvincibilityModeAction()
         {
-            
+            _entity = _entity
         };
     }
 }

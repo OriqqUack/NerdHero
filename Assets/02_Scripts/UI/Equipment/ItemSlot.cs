@@ -6,7 +6,7 @@ public class ItemSlot : MonoBehaviour
 {
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image icon; // 아이템 아이콘
-    [SerializeField] private GameObject alertDot;
+    [SerializeField] private GameObject categoryDot;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI itemLevelText;
     
@@ -20,9 +20,6 @@ public class ItemSlot : MonoBehaviour
         _itemRarity = item.itemRarity;
         icon.sprite = item.icon;
         icon.enabled = true;
-
-        if(item.isOld)
-            alertDot.SetActive(false);
         
         backgroundImage.sprite = Resources.Load<Sprite>("ItemRarity/ItemFrame_" + item.itemRarity.ToString());
 
@@ -46,7 +43,6 @@ public class ItemSlot : MonoBehaviour
     private void OpenDetailPopup()
     {
         _currentItem.isOld = true;
-        alertDot.SetActive(false);
         UI_MainScene.Instance.OpenEquipmentDetailPopup(_currentItem);
     }
     

@@ -8,8 +8,7 @@ public class DeadAction : EnemyAction
 {
     public override void OnStart()
     {
-        entityMovement.Stop();
-        gameObject.GetComponent<BehaviorTree>().enabled = false;
+        
     }
 }
 

@@ -25,14 +25,16 @@ public class GainLoot : MonoBehaviour
     private GainType gainType; // 스탯 or 아이템 획득 타입 설정
     private ItemSO gainItem; // 획득할 아이템 데이터
 
+    private Tween moveTween;
     private Stat gainStat;
     private float gainAmount;
-
+    private float attractDistanceSqr;
+    
     private bool isSetup;
     
     public void Setup(DropTable.DropEntry entry)
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = WaveManager.Instance.PlayerTransform;
         playerEntity = player.GetComponent<Entity>();
 
         gainType = entry.gainType;
@@ -43,6 +45,8 @@ public class GainLoot : MonoBehaviour
         
         if (!isFloating)
             Floating();
+        
+        attractDistanceSqr = attractDistance * attractDistance;
         
         isSetup = true;
     }
@@ -70,8 +74,7 @@ public class GainLoot : MonoBehaviour
         if (player == null || !isSetup)
             return;
 
-        float distance = Vector3.SqrMagnitude(transform.position - player.position);
-        if (!isAttracted && (distance <= attractDistance * attractDistance))
+        if (!isAttracted && (Vector3.SqrMagnitude(transform.position - player.position) <= attractDistanceSqr))
         {
             startPosition = transform.position;
             MoveToPlayer();
@@ -81,9 +84,13 @@ public class GainLoot : MonoBehaviour
 
     private void MoveToPlayer()
     {
-        Vector3 midPoint = (startPosition + player.position) / 2 + Vector3.up * 2f;
+        if (moveTween != null && moveTween.IsActive()) return;
 
-        DOTween.To(() => t, x => t = x, 1f, 2f)
+        float height = Mathf.Clamp(Vector3.Distance(startPosition, player.position), 1f, 5f);
+        Vector3 midPoint = (startPosition + player.position) / 2 + Vector3.up * height;
+        t = 0f;
+
+        moveTween = DOTween.To(() => t, x => t = x, 1f, 1f)
             .OnUpdate(() => transform.position = CalculateBezierCurve(startPosition, midPoint, player.position + Vector3.up, t))
             .OnComplete(() => Gained());
     }

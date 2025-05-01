@@ -24,7 +24,7 @@ public class SpotlightController : MonoSingleton<SpotlightController>
     private float smoothedCircleRadius;
     
     private Material _mat;
-
+    private bool _canClick;
     void Start()
     {
         _mat = spotlightImage.material;
@@ -53,16 +53,23 @@ public class SpotlightController : MonoSingleton<SpotlightController>
         _mat.SetFloat("_CircleRadius", smoothedCircleRadius);
 
         // ➤ Raycast 마스크에 값 전달
-        if (raycastMask != null)
+        if (raycastMask != null && _canClick)
         {
             raycastMask.rectCenterUV = smoothedRectCenterUV;
             raycastMask.rectSizeUV = smoothedRectSizeUV;
             raycastMask.circleCenter = smoothedCircleCenter;
             raycastMask.circleRadius = smoothedCircleRadius;
         }
+        else
+        {
+            raycastMask.rectCenterUV = Vector2.zero;
+            raycastMask.rectSizeUV = Vector2.zero;
+            raycastMask.circleCenter = Vector2.zero;
+            raycastMask.circleRadius = 0f;
+        }
     }
 
-    public void SetTarget(Transform rectTarget, Transform circleTarget)
+    public void SetTarget(Transform rectTarget, Transform circleTarget, bool canClick = true)
     {
         spotlightImage.gameObject.SetActive(true);
         raycastMask.gameObject.SetActive(true);
@@ -75,6 +82,8 @@ public class SpotlightController : MonoSingleton<SpotlightController>
             this.circleTarget = circleTarget.GetComponent<RectTransform>();
         else
             this.circleTarget = null;
+        
+        _canClick = canClick;
     }
 
     public void OffSpotlight()

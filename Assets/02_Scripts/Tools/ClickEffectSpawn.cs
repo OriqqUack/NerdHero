@@ -39,8 +39,10 @@ public class ClickEffectSpawn : MonoBehaviour
             out localPos
         );
 
-        GameObject effect = Managers.Resource.Instantiate(clickEffectPrefab, canvas.transform);
-        effect.GetComponent<RectTransform>().anchoredPosition = localPos;
-        Managers.Resource.Destroy(effect, 3.0f);
+        GameObject effect = Managers.Resource.Instantiate(clickEffectPrefab);
+        RectTransform rect = effect.GetComponent<RectTransform>();
+        rect.SetParent(canvas.transform, false); // ✅ worldPositionStays = false로 해야 UI 기준으로 붙음
+        rect.anchoredPosition = localPos;
+        Destroy(effect, 3.0f);
     }
 }

@@ -453,8 +453,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -474
     y: -3569
-    width: 5215
-    height: 8622
+    width: 5217
+    height: 8586
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: PortalVFX_v4
+  m_Name: vfxgraph_PortalVFX_v4
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -1444,7 +1444,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PortalVFX_v4
+  m_Name: vfxgraph_PortalVFX_v4
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -7597,7 +7597,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"a5d14dc7260c2524b8fe48ee3fcc0c83","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"2ab1b614e919e9b40be2b11de4b1daae","type":3}}'
     m_Space: -1
   m_Property:
     name: mainTexture
@@ -11471,7 +11471,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"17934332d82eec741ac5bcc4c80b0e16","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"7ce24389945649649a342c16006e28be","type":3}}'
     m_Space: -1
   m_Property:
     name: mainTexture
@@ -16984,7 +16984,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"17934332d82eec741ac5bcc4c80b0e16","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"7ce24389945649649a342c16006e28be","type":3}}'
     m_Space: -1
   m_Property:
     name: mainTexture
@@ -27524,7 +27524,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: True
+      m_SerializableObject: False
     m_Space: -1
   m_Property:
     name: _vfx_enabled

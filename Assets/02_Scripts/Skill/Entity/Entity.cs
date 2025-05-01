@@ -118,9 +118,6 @@ public class Entity : MonoBehaviour
         //데미지 감소율
         float totalDamage = (1 + Stats.DamageReduction.Value) * damage;
         Stats.HPStat.DefaultValue -= totalDamage;
-
-        if (Animator.HasAnimation("damaged") && controlType != EntityControlType.Player) 
-            Animator.PlayOneShot("damaged", 0);
         
         onTakeDamage?.Invoke(this, instigator, causer, damage);
 
@@ -133,6 +130,7 @@ public class Entity : MonoBehaviour
     
     private void OnDead()
     {
+        Movement.Clear();
         if (Movement)
             Movement.enabled = false;
 
@@ -146,7 +144,6 @@ public class Entity : MonoBehaviour
         if(ControlType != EntityControlType.Player)
             Animator.PlayOneShot("dead", 0, 0, () => Destroy(transform.parent.gameObject));
     }
-
     #endregion
 
     #region EntityUtils

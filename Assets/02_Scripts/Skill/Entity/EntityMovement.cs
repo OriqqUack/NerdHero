@@ -16,7 +16,8 @@ public class EntityMovement : Movement
     private Transform traceTarget;
     private bool isFindTarget;
     private Vector3 destination;
-
+    private Coroutine traceCoroutine;
+    
     public bool HasArrived => aiPath.reachedDestination;
 
     public Entity Owner { get; private set; }
@@ -42,7 +43,7 @@ public class EntityMovement : Movement
             traceTarget = value;
 
             if (traceTarget != null)
-                StartCoroutine(TraceUpdate());
+                traceCoroutine = StartCoroutine(TraceUpdate());
         }
     }
 
@@ -85,8 +86,9 @@ public class EntityMovement : Movement
 
     private void SetDestination(Vector3 destination)
     {
-        if (aiPath != null)
+        if (aiPath != null && aiPath.enabled)
         {
+            aiPath.updatePosition = true;
             aiPath.canMove = true;
             aiPath.destination = destination;
             this.destination = destination;
@@ -102,8 +104,25 @@ public class EntityMovement : Movement
 
     public void StopTracing()
     {
-        StopCoroutine("TraceUpdate");
+        aiPath.destination = transform.position;
         aiPath.canMove = false;
+        aiPath.updatePosition = false;
+
+        if (traceCoroutine != null)
+        {
+            StopCoroutine(traceCoroutine);
+            traceCoroutine = null;
+        }
+    }
+
+    public void StopMoment()
+    {
+        aiPath.isStopped = true;
+    }
+
+    public void RestartMovement()
+    {
+        aiPath.isStopped = false;
     }
 
     public void LookCheck()
@@ -114,9 +133,14 @@ public class EntityMovement : Movement
         else
             rotation.y = (aiPath.destination.x >= transform.position.x ? 0 : 180);
 
-
         transform.localRotation = rotation;
     }
+
+    public override void Clear()
+    {
+        StopTracing();
+    }
+
     #endregion
 
     #region Trace Logic
@@ -127,7 +151,7 @@ public class EntityMovement : Movement
 
         while (true)
         {
-            if (traceTarget == null)
+            if (traceTarget == null || aiPath == null || !aiPath.enabled)
                 yield break;
 
             Vector3 pos = traceTarget.position;
@@ -157,5 +181,7 @@ public class EntityMovement : Movement
 
     private void OnMoveSpeedChanged(Stat stat, float currentValue, float prevValue)
         => aiPath.maxSpeed = currentValue;
+    
+    
     #endregion
 }
