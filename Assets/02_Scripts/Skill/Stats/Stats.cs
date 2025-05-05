@@ -7,7 +7,6 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     #region Property
-
     [SerializeField] private Stat maxHpStat;
     [SerializeField] private Stat hpStat;
     [SerializeField] private Stat maxSkillCostStat;
@@ -16,13 +15,17 @@ public class Stats : MonoBehaviour
     [SerializeField] private Stat damageReductionStat;
     [SerializeField] private Stat criticalDamageStat;
     [SerializeField] private Stat criticalPerStat;
+    [SerializeField] private Stat expChargeStat;
+    [SerializeField] private Stat heartDropRateStat;
 
     [Space]
+    [SerializeField] private StatGrowthTable statGrowthTable; // 테이블 연결
     [SerializeField] private StatOverride[] statOverrides;
 
     private Stat[] stats;
 
     public Entity Owner { get; private set; }
+    public int Level = 1;
     public Stat MaxHpStat { get; private set; }
     public Stat HPStat { get; private set; }
     public Stat MaxSkillCostStat { get; private set; }
@@ -31,6 +34,8 @@ public class Stats : MonoBehaviour
     public Stat DamageReduction { get; private set; }
     public Stat CriticalDamage { get; private set; }
     public Stat CriticalPer { get; private set; }
+    public Stat ExpCharge { get; private set; }
+    public Stat HeartDropRate { get; private set; }
     #endregion
 
     #region GUI
@@ -92,11 +97,12 @@ public class Stats : MonoBehaviour
     #endregion
 
     #region Stat Methods
-    public void Setup(Entity entity)
+    public void Setup(Entity entity, int level = 1)
     {
         Owner = entity;
 
         stats = statOverrides.Select(x => x.CreateStat()).ToArray();
+        
         MaxHpStat = maxHpStat ? GetStat(maxHpStat) : null;
         HPStat = hpStat ? GetStat(hpStat) : null;
         if(hpStat)
@@ -118,7 +124,9 @@ public class Stats : MonoBehaviour
         DamageReduction = damageReductionStat ? GetStat(damageReductionStat) : null;
         CriticalDamage = criticalDamageStat ? GetStat(criticalDamageStat) : null;
         CriticalPer = criticalPerStat ? GetStat(criticalPerStat) : null;
-
+        ExpCharge = expChargeStat ? GetStat(expChargeStat) : null;
+        HeartDropRate = heartDropRateStat ? GetStat(heartDropRateStat) : null;
+        
         //사거리 조절
         if (entity.BaseAttack)
         {
@@ -134,6 +142,11 @@ public class Stats : MonoBehaviour
                 collider.center = new Vector3(originalCenter.x, originalCenter.y, originalCenter.z + value / 2f);
             };
         }
+    }
+    
+    public void LevelSetup(int level)
+    {
+        UpdateStatsByLevel(null, level, 0);
     }
 
     private void OnChangedHpMaxValue(Stat stat, float currentValue, float prevValue)
@@ -191,6 +204,25 @@ public class Stats : MonoBehaviour
     #endregion
 
     #region Public Methods
+    private void UpdateStatsByLevel(Stat stat, float currentValue, float prevValue)
+    {
+        if (!statGrowthTable) return;
+        var growthData = statGrowthTable.GrowthDataList.Find(x => x.Level == (int)currentValue);
+        if (growthData == null)
+        {
+            Debug.LogWarning($"레벨 {currentValue}에 해당하는 스탯 데이터가 없습니다!");
+            return;
+        }
+        
+        SetDefaultValue(MaxHpStat, growthData.MaxHp);
+        HPStat.MaxValue = MaxHpStat.Value;
+        HPStat.DefaultValue = HPStat.MaxValue;
+        
+        SetDefaultValue(Damage, growthData.Damage);
+        SetDefaultValue(ExpCharge, growthData.expChargeAmount);
+        SetDefaultValue(HeartDropRate, growthData.heartDropRate);
+    }
+    
     public void SetDefaultValue(Stat stat, float value)
         => GetStat(stat).DefaultValue = value;
 

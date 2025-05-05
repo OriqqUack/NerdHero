@@ -7,6 +7,12 @@ public class TutorialScene : MonoBehaviour
 {
     [SerializeField] private Transform actor;
     private Stats _playerStats;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     private void Start()
     {
         _playerStats = WaveManager.Instance.PlayerEntity.Stats;
@@ -16,16 +22,14 @@ public class TutorialScene : MonoBehaviour
         _playerStats.GetStat("ENERGY").onValueMax += OnStatMaxChanged;
         WaveManager.Instance.OnMonsterSpawn += MonsterSpawn;
         DialogueManager.StartConversation("TutorialStart", actor);
+        GameManager.Instance.CurrentIslandIndex = -1;
     }
     
     private void MonsterSpawn(List<Entity> entities)
     {
-        if (WaveManager.Instance.CurrentWave == 2)
-        {
-            DialogueManager.StartConversation("TutorialIndicator", actor);
-        }
         if (WaveManager.Instance.CurrentWave == 3)
         {
+            DialogueManager.StartConversation("TutorialIndicator", actor);
         }
     }
 
@@ -68,5 +72,10 @@ public class TutorialScene : MonoBehaviour
     private void OnDialogueStart(Transform actor)
     {
         Time.timeScale = 0;
+    }
+
+    private void OnDestroy()
+    {
+        ES3.Save<bool>("TutorialCleared", true);
     }
 }

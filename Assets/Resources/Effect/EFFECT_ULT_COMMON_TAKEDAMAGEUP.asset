@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 63
+  id: 71
   codeName: ULT_COMMON_TAKEDAMAGEUP
   displayName: "\uBAAC\uC2A4\uD130 \uBC1B\uB294 \uD53C\uD574 \uC99D"
   description: "\uAD81\uADF9\uAE30 \uD53C\uACA9 \uBAAC\uC2A4\uD130\uB294 5\uCD08\uAC04

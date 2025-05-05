@@ -99,6 +99,7 @@ public class SOWaveDataEditor : Editor
                 for (int j = 0; j < enemiesProperty.arraySize; j++)
                 {
                     SerializedProperty enemyProperty = enemiesProperty.GetArrayElementAtIndex(j);
+                    SerializedProperty enemyLevelProperty = enemyProperty.FindPropertyRelative("EnemyLevel");
                     SerializedProperty enemyPrefabProperty = enemyProperty.FindPropertyRelative("EnemyPrefab");
                     SerializedProperty enemyCountProperty = enemyProperty.FindPropertyRelative("EnemyCount");
 
@@ -111,11 +112,13 @@ public class SOWaveDataEditor : Editor
                         for (int k = 0; k < enemyPrefabProperty.arraySize; k++)
                         {
                             EditorGUILayout.BeginHorizontal();
+                            EditorGUILayout.PropertyField(enemyLevelProperty.GetArrayElementAtIndex(k), GUIContent.none, GUILayout.Width(50));
                             EditorGUILayout.PropertyField(enemyPrefabProperty.GetArrayElementAtIndex(k), GUIContent.none, GUILayout.Width(150));
                             EditorGUILayout.PropertyField(enemyCountProperty.GetArrayElementAtIndex(k), GUIContent.none, GUILayout.Width(50));
 
                             if (GUILayout.Button("❌", GUILayout.Width(30)))
                             {
+                                enemyLevelProperty.DeleteArrayElementAtIndex(k);
                                 enemyPrefabProperty.DeleteArrayElementAtIndex(k);
                                 enemyCountProperty.DeleteArrayElementAtIndex(k);
                                 break;
@@ -125,6 +128,7 @@ public class SOWaveDataEditor : Editor
 
                         if (GUILayout.Button("+ Add Enemy", GUILayout.Height(22)))
                         {
+                            enemyLevelProperty.arraySize++;
                             enemyPrefabProperty.arraySize++;
                             enemyCountProperty.arraySize++;
                         }

@@ -7,7 +7,7 @@ public class Test_InventoryAdd : MonoBehaviour
 
     public void AddItem(ItemSO item)
     {
-        InventoryManager.Instance.AddItem(item);
+        Managers.InventoryManager.AddItem(item);
         inventory.UpdatUI();
     }
 }

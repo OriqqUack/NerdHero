@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 79
+  id: 15
   codeName: BLOOD_RARE
   displayName: "\uD761\uD608"
   description: "\uACF5\uACA9\uC744 \uD558\uACE0 \uCCB4\uB825\uC744 \uD68C\uBCF5\uD55C\uB2E4."

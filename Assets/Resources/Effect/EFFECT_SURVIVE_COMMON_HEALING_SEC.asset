@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 47
+  id: 55
   codeName: SURVIVE_COMMON_HEALING_SEC
   displayName: "5\uCD08\uB9C8\uB2E4 \uCCB4\uB825\uD68C\uBCF5"
   description: "5\uCD08\uB9C8\uB2E4 \uCCB4\uB825 3 \uD68C\uBCF5"

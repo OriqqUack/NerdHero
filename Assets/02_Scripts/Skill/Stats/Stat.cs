@@ -75,6 +75,7 @@ public class Stat : IdentifiedObject
     #region Methods
     private void TryInvokeValueChangedEvent(float currentValue, float prevValue)
     {
+
         if (!Mathf.Approximately(currentValue, prevValue))
         {
             onValueChanged?.Invoke(this, currentValue, prevValue);

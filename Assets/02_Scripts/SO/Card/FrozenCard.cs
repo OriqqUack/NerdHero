@@ -38,7 +38,7 @@ public class FrozenCard : CardBase
             }
         }
         
-        _owner.SkillSystem.OwnSkills[0].AddedEffects.Add(_effect);
-        _owner.SkillSystem.OwnSkills[0].AddedEffects.Add(_secondEffectClone);
+        _owner.SkillSystem.OwnSkills[0].Effects.Add(_effect);
+        _owner.SkillSystem.OwnSkills[0].Effects.Add(_secondEffectClone);
     }
 }

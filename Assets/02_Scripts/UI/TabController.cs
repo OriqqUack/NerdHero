@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using DG.Tweening; // ✅ 꼭 추가!
+using DG.Tweening; 
 
-public class TabController : MonoBehaviour
+public class TabController : MonoSingleton<TabController>
 {
     public List<Tab> tabs;      // 탭들
     public float widthOffset = 20f;
     public float heightOffset = 20f;
-    public float tweenDuration = 0.3f;    // ✅ 트윈 지속 시간
+    public float tweenDuration = 0.3f;    
 
     private RectTransform containerRect;
     private float normalHeight;

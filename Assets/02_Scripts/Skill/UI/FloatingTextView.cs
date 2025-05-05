@@ -58,6 +58,8 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
     private DamageNumber poisonNumberPrefab;
     [SerializeField]
     private DamageNumber fireNumberPrefab;
+    [SerializeField]
+    private DamageNumber criticalPrefab;
 
     [Space]
     [SerializeField]
@@ -189,6 +191,11 @@ public class FloatingTextView : MonoSingleton<FloatingTextView>
             icon.sprite = iconSprite;
             icon.color = textColor ?? Color.white;
         }
+    }
+
+    public void ShowCritical(Transform traceTarget, string text = null, Color? textColor = null)
+    {
+        criticalPrefab.Spawn(traceTarget.position, text);
     }
 
     private FloatingElementGroup CreateCachedGroup(Transform traceTarget)

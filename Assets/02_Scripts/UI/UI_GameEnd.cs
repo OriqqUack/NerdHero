@@ -55,10 +55,10 @@ public class UI_GameEnd : UiWindow
     private void OnClickGoMainGame()
     {
         //SoundManager.Instance.Play(clickSound);
-        SoundManager.Instance.Clear();
+        Managers.SoundManager.Clear();
         foreach (var item in WaveManager.Instance.GetGainedItems())
         {
-            InventoryManager.Instance.AddItem(item);
+            Managers.InventoryManager.AddItem(item);
         }
         Time.timeScale = 1;
 

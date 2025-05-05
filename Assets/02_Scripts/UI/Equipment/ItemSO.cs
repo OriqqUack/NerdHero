@@ -7,6 +7,7 @@ public enum ItemRarity { Common, Rare, Legendary }
 public class ItemSO : ScriptableObject
 {
     public string itemName;
+    public string itemDescription;
     public int itemCode;
     public ItemType itemType;
     public ItemRarity itemRarity;

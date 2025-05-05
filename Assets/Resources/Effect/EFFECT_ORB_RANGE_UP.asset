@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 80
+  id: 46
   codeName: ORB_RANGE_UP
   displayName: "\uC624\uBE0C \uC0AC\uAC70\uB9AC \uC99D\uAC00"
   description: "\uC624\uBE0C\uC758 \uC0AC\uAC70\uB9AC\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4.\n"

@@ -39,9 +39,9 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         expStat = _playerStats.GetStat(expStat);
         
         hpStat.onValueChanged += HpChangeEvent;
-        hpStat.onMaxValueChanged += HpChangeEvent;
+        maxHpStat.onMaxValueChanged += HpChangeEvent;
         energyStat.onValueChanged += EnergyChangeEvent;
-        energyStat.onMaxValueChanged += EnergyChangeEvent;
+        maxEnergyStat.onMaxValueChanged += EnergyChangeEvent;
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
         _waveManager.OnWaveChange += WaveChangeEvent;
@@ -83,7 +83,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
             statText.text = $"{Mathf.RoundToInt(stat.Value)} / {stat.MaxValue}";
         }
     }
-    
+
     private void EnergyChangeEvent(Stat stat, float currentValue, float prevValue)
     {
         UpdateStatViewLerp(stat, energySlider, energyFollowSlider, energyText);

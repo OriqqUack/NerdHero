@@ -26,6 +26,6 @@ public class ElementalCard : CardBase
             _owner.SkillSystem.RemoveEffect(effect);
         }
         
-        _owner.SkillSystem.OwnSkills[0].AddEffect(_effect);
+        _owner.SkillSystem.OwnSkills[0].Effects.Add(_effect);
     }
 }

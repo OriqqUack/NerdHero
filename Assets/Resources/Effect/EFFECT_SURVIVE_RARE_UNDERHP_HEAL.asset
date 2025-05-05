@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 58
+  id: 66
   codeName: SURVIVE_RARE_UNDERHP_HEAL
   displayName: "\uCCB4\uB825\uC774 \uB0AE\uC544\uC9C0\uBA74 \uCCB4\uB825 \uD68C\uBCF5"
   description: "\uCCB4\uB825\uC774 30% \uBBF8\uB9CC\uC77C \uB54C \uCC9C\uCC9C\uD788

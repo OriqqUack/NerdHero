@@ -243,7 +243,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\uBB50\uC57C"
+        value: "\uC548\uB155!"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -272,7 +272,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 234.66173
-        y: 176.99268
+        y: 174.73279
         width: 160
         height: 30
     - id: 6

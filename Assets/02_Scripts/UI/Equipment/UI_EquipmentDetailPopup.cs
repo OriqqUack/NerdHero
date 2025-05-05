@@ -8,14 +8,13 @@ public class UI_EquipmentDetailPopup : UiWindow
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image gradientImage;
     [SerializeField] private Image icon; // 아이템 아이콘
+    [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI quantityText;
     [SerializeField] private TextMeshProUGUI itemLevelText;
     [SerializeField] private Transform contents;
-    [SerializeField] private Transform buttonContents;
+    //[SerializeField] private Transform buttonContents;
     [SerializeField] private UI_StatsDetailDescription statDetailPrefab;
     [SerializeField] private Button equipButton;
-    [SerializeField] private Button closeButton;
-    [SerializeField] private Button dimed;
 
     private ItemSO _currentItem;
     //private Skill _currentSkill;
@@ -24,7 +23,7 @@ public class UI_EquipmentDetailPopup : UiWindow
     public void SetupItem(ItemSO item)
     {
         foreach (Transform child in contents) Destroy(child.gameObject);
-        foreach (Transform child in buttonContents) Destroy(child.gameObject);
+        //foreach (Transform child in buttonContents) Destroy(child.gameObject);
         
         _currentItem = item;
         _itemRarity = item.itemRarity;
@@ -47,6 +46,8 @@ public class UI_EquipmentDetailPopup : UiWindow
                 break;
         }
 
+        descriptionText.text = item.itemDescription;
+        
         if (item.itemType == ItemType.Stuff)
         {
             itemLevelText.gameObject.SetActive(false);
@@ -63,9 +64,9 @@ public class UI_EquipmentDetailPopup : UiWindow
         UI_StatsDetailDescription statPrefab = Instantiate(statDetailPrefab, contents);
         statPrefab.Setup(item);
         
-        Button cloneBtn = Instantiate(equipButton, buttonContents);
-        cloneBtn.onClick.AddListener(() => EquipItem(_currentItem));
-        cloneBtn.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "장착";
+        //Button cloneBtn = Instantiate(equipButton, buttonContents);
+        equipButton.onClick.AddListener(() => EquipItem(_currentItem));
+        //cloneBtn.transform.Find("Text").GetComponent<TextMeshProUGUI>().text = "장착";
     }
 
     //Skill Slot
@@ -99,7 +100,8 @@ public class UI_EquipmentDetailPopup : UiWindow
     {
         if (item.itemType == ItemType.Stuff) return;
         Equipment.Instance.Equip(item);
-        DataManager.Instance.DataSave();
+        Managers.DataManager.DataSave();
+        Close();
     }
 
     //Skill SLot

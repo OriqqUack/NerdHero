@@ -29,7 +29,6 @@ public class CardAnimator : UiWindow
     private CardDatabase _cardData;
     private CardProbabilityManager _cardProbabilityManager;
     private Entity _entity;
-    private Button _backBtn;
     private int _currentLevel;
     private AttributeType _recentAttr = AttributeType.BaseAttack;
     private AttributeType _previousAttr = AttributeType.BaseAttack;
@@ -47,10 +46,68 @@ public class CardAnimator : UiWindow
         _cardProbabilityManager = new CardProbabilityManager(gradeProbConfigs);
         _cardSelector = new CardSelector(_entity, _cardData, _cardProbabilityManager);
         
-        SpawnCards(2, true);
+        SpawnScrolls(2, true);
     }
 
-    public void SpawnCards(int level, bool isFirst = false)
+    public void SpawnScrolls(int level, bool isFirst = false)
+    {
+        _currentLevel = level;
+        _cardBases = _cardSelector.GetCardBases(level, _recentAttr, _previousAttr, isFirst);
+
+        float scrollWidth = _canvasWidth * 0.25f; // 두루마리 너비
+        float scrollHeight = cardPrefab.GetComponent<RectTransform>().sizeDelta.y;
+
+        float spacing = scrollWidth * 1.1f;
+
+        Sequence spawnSeq = DOTween.Sequence();
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject scroll = Instantiate(cardPrefab, transform);
+            scroll.GetComponent<CardUI>().Setup(_cardBases[i].Effect);
+            RectTransform rect = scroll.GetComponent<RectTransform>();
+
+            rect.sizeDelta = new Vector2(scrollWidth, scrollHeight);
+            rect.anchoredPosition = new Vector2(centerPos.x + (i - 1) * spacing, centerPos.y);
+
+            // 처음엔 Y Scale을 0으로 시작
+            rect.localScale = new Vector3(1f, 0f, 1f);
+
+            // 두루마리처럼 위에서 아래로 펼치는 애니메이션
+            spawnSeq.Insert(0.2f * i, rect.DOScaleY(1f, 0.6f).SetEase(Ease.OutBack));
+
+            _cards[i] = scroll;
+        }
+
+        // ResetButton은 그대로
+        _resetCg = resetButton.GetComponent<CanvasGroup>();
+        if (_resetCg == null)
+        {
+            _resetCg = resetButton.gameObject.AddComponent<CanvasGroup>();
+        }
+
+        resetButton.gameObject.SetActive(true);
+        _resetCg.alpha = 0f;
+        _resetCg.interactable = false;
+        _resetCg.blocksRaycasts = false;
+
+        spawnSeq.OnComplete(() =>
+        {
+            _resetCg.DOFade(1f, 0.5f).OnComplete(() =>
+            {
+                _resetCg.interactable = true;
+                _resetCg.blocksRaycasts = true;
+                for (int i = 0; i < _cards.Length; i++)
+                {
+                    int i1 = i;
+                    _cards[i].GetComponent<Button>().onClick.AddListener(() => CardSelected(i1));
+                }
+            });
+            onCardSpawned?.Invoke();
+        });
+    }
+    
+    /*public void SpawnCards(int level, bool isFirst = false)
     {
         _currentLevel = level;
         _cardBases = _cardSelector.GetCardBases(level, _recentAttr, _previousAttr, isFirst);
@@ -104,9 +161,9 @@ public class CardAnimator : UiWindow
             });
             onCardSpawned?.Invoke();
         });
-    }
+    }*/
 
-    private void FlipCard(GameObject card, int index)
+    /*private void FlipCard(GameObject card, int index)
     {
         card.GetComponent<Button>().interactable = false;
         Transform front = card.transform.Find("CardFront");
@@ -129,11 +186,11 @@ public class CardAnimator : UiWindow
         
         _backBtn = back.Find("Button").GetComponent<Button>();
         _backBtn.onClick.AddListener(() => CardSelected(index));
-    }
+    }*/
 
     private void CardSelected(int selectedIndex)
     {
-        _backBtn.interactable = false;
+        _cards[selectedIndex].GetComponent<Button>().interactable = false;
         
         AttributeType selectedAttr = _cardBases[selectedIndex].attributeType;
         _previousAttr = _recentAttr;
@@ -205,7 +262,7 @@ public class CardAnimator : UiWindow
             _cards = new GameObject[3];
 
             // 다시 생성
-            SpawnCards(_currentLevel);
+            SpawnScrolls(_currentLevel);
         });
     }
 

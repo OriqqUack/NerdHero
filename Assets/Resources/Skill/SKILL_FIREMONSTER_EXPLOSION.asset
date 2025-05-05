@@ -25,7 +25,7 @@ MonoBehaviour:
   applyType: 1
   needSelectionResultType: 0
   targetSelectionTimingOption: 0
-  targetSearchTimingOption: 0
+  targetSearchTimingOption: 1
   acquisitionConditions: []
   acquisitionCosts: []
   useConditions: []
@@ -49,7 +49,7 @@ MonoBehaviour:
       scaleStat: {fileID: 0}
     targetSearcher:
       selectionAction:
-        rid: 416588690826985628
+        rid: 2562862739691929731
       searchAction:
         rid: 6372897054790254689
     costs: []
@@ -65,7 +65,7 @@ MonoBehaviour:
     startChargePower: 0
     effectSelectors:
     - level: 1
-      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+      effect: {fileID: 11400000, guid: f0a07ed705d528f4d80fed1d7df7354d, type: 2}
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0
@@ -92,33 +92,25 @@ MonoBehaviour:
     customActionsOnPrecedingAction: []
     customActionsOnAction:
     - rid: 6372897054790254595
-    - rid: 416588690826985651
     - rid: 416588690826985640
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 416588690826985628
-      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
-      data:
-        isShowIndicatorPlayerOnly: 0
-        indicatorViewAction:
-          rid: -2
-        isUseScale: 0
     - rid: 416588690826985631
       type: {class: InstantApplyAction, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 416588690826985640
       type: {class: DestroySelfAction, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 416588690826985651
-      type: {class: JumpAction, ns: , asm: Assembly-CSharp}
+    - rid: 2562862739691929731
+      type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:
-        method: 1
-        angle: 30
-        jumpSpeed: 10
-        isBackJump: 0
+        isShowIndicatorPlayerOnly: 0
+        indicatorViewAction:
+          rid: -2
+        isUseScale: 0
     - rid: 6372897054790254595
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:

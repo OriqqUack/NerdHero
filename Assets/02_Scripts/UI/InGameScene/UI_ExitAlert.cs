@@ -16,7 +16,7 @@ public class UI_ExitAlert : UiWindow
 
     private void OnClickClaimBtn()
     {
-        SoundManager.Instance.Clear();
+        Managers.SoundManager.Clear();
         Time.timeScale = 1;
         SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene, 1, 0);
     }

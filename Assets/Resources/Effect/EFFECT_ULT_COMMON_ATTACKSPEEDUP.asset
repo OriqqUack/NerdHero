@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 59
+  id: 67
   codeName: ULT_COMMON_ATTACKSPEEDUP
   displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uACF5\uACA9 \uC18D\uB3C4
     \uC99D"
@@ -48,11 +48,11 @@ MonoBehaviour:
       type: {class: IncreaseStatAction, ns: , asm: Assembly-CSharp}
       data:
         stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
-        isPercent: 1
+        isPercent: 0
         defaultValue: 0.15
         bonusValueStat: {fileID: 0}
         bonusValueStatFactor: 0
         bonusValuePerLevel: 0
         bonusValuePerStack: 0
         isBonusType: 1
-        isUndoOnRelease: 0
+        isUndoOnRelease: 1

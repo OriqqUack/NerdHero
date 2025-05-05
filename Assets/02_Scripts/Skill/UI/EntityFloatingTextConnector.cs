@@ -7,8 +7,8 @@ public class EntityFloatingTextConnector : MonoBehaviour
 {
     [SerializeField] private Transform textSpawnPoint;
     [SerializeField] private Sprite alertSprite;
-    private Entity entity;    
-
+    private Entity entity;
+    
     private void Start()
     {
         entity = GetComponent<Entity>();
@@ -26,6 +26,15 @@ public class EntityFloatingTextConnector : MonoBehaviour
     private void OnTakeDamage(Entity entity, Entity instigator, object causer, float damage)
     {
         Effect effect = causer as Effect;
+
+        float value = instigator.Stats.Damage.Value;
+        bool isCritical = damage >= value * ( 1 + instigator.Stats.CriticalDamage.Value );
+        if(isCritical)
+        {
+            FloatingTextView.Instance.ShowCritical(textSpawnPoint, $"-{Mathf.RoundToInt(damage)}");
+            return;
+        }
+        
         if(effect)
             FloatingTextView.Instance.Show(textSpawnPoint, $"-{Mathf.RoundToInt(damage)}", Color.red, null, effect);
         else

@@ -51,7 +51,7 @@ MonoBehaviour:
   forwardForce: 1
   upwardForce: 2
   isFloating: 1
-  attractDistance: 5
+  attractDistance: 8
   statFactor: {fileID: 0}
 --- !u!54 &491454818390507185
 Rigidbody:

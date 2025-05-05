@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 19
+  id: 21
   codeName: FIRE_RARE
   displayName: "(\uBD88 \uC18D\uC131)\uCD08\uB2F9 \uD53C\uD574"
   description: "3\uCD08\uAC04 \uB9E4\uCD08 \uACF5\uACA9\uB825\uC758 50% \uD53C\uD574\r"

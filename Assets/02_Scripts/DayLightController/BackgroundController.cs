@@ -17,7 +17,7 @@ public class BackgroundController : MonoBehaviour
     private float _offset;
     private void Start()
     {
-        SoundManager.Instance.Play(dayLightSound, Sound.Bgm);
+        Managers.SoundManager.Play(dayLightSound, Sound.Bgm);
         WaveManager.Instance.OnWaveChange += ChangeWave;
         waveCount = WaveManager.Instance.TotalWaveCount;
         _offset = 1.0f/waveCount;
@@ -31,9 +31,9 @@ public class BackgroundController : MonoBehaviour
 
         if (wave == waveCount - 1)
         {
-            SoundManager.Instance.FadeOutBgm(1f, () =>
+            Managers.SoundManager.FadeOutBgm(1f, () =>
             {
-                SoundManager.Instance.FadeInBgm(nightLightSound, 1f, 1f);
+                Managers.SoundManager.FadeInBgm(nightLightSound, 1f, 1f);
             });
 
             foreach (var light in lights)

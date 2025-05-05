@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 204467809759226318, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
+      propertyPath: statOverrides.Array.data[8].isUseOverride
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 204467809759226318, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
+      propertyPath: statOverrides.Array.data[8].overrideDefaultValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 710930120121764238, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

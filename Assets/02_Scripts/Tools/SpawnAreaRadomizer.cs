@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class SpawnAreaRandomizer : MonoBehaviour
 {
@@ -13,8 +15,14 @@ public class SpawnAreaRandomizer : MonoBehaviour
     public int columns = 3;
     public int rows = 3;
 
+    private void Start()
+    {
+        WaveManager.Instance.OnWaveChange += RepositionSpawnPoints;
+        RepositionSpawnPoints(0);
+    }
+
     [ContextMenu("Reposition Spawn Points")]
-    public void RepositionSpawnPoints()
+    public void RepositionSpawnPoints(int wave)
     {
         List<Transform> spawnPoints = new List<Transform>();
 
@@ -68,44 +76,4 @@ public class SpawnAreaRandomizer : MonoBehaviour
             (list[i], list[j]) = (list[j], list[i]);
         }
     }
-    
-    private void OnDrawGizmos()
-    {
-        if (columns <= 0 || rows <= 0) return;
-
-        Gizmos.color = Color.green;
-
-        float MinX = -minX;
-        float MaxX = -maxX;
-        
-        float cellWidth = (maxZ - minZ) / columns;   // ⚠️ Z값으로 X축 길이 만들기
-        float cellHeight = (MaxX - MinX) / rows;     // ⚠️ X값으로 Z축 길이 만들기
-
-        for (int row = 0; row < rows; row++)
-        {
-            for (int col = 0; col < columns; col++)
-            {
-                // ⚠️ X, Z 위치를 스왑해서 배치
-                float centerX = minZ + col * cellWidth + cellWidth / 2f;
-                float centerZ = MinX + row * cellHeight + cellHeight / 2f;
-
-                Vector3 center = new Vector3(centerX, 0f, centerZ);
-                Vector3 size = new Vector3(cellWidth, 0f, cellHeight);
-
-                Gizmos.DrawWireCube(center, size);
-            }
-        }
-
-        // 전체 영역 외곽선 (노란색)
-        Gizmos.color = Color.yellow;
-        float areaCenterX = (minZ + maxZ) / 2f;  // X ← Z 기준
-        float areaCenterZ = (MinX + MaxX) / 2f;  // Z ← X 기준
-
-        Vector3 areaCenter = new Vector3(areaCenterX, 0f, areaCenterZ);
-        Vector3 areaSize = new Vector3(maxZ - minZ, 0f, MaxX - MinX);
-
-        Gizmos.DrawWireCube(areaCenter, areaSize);
-    }
-
-
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
     startChargePower: 0
     effectSelectors:
     - level: 1
-      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+      effect: {fileID: 11400000, guid: f0a07ed705d528f4d80fed1d7df7354d, type: 2}
     inSkillActionFinishOption: 2
     castAnimatorParamter:
       type: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
         projectilePrefab: {fileID: 3814496778439236206, guid: 0e97097ebbad225488a0264463560ec6, type: 3}
         spawnPointSocketName: ProjectilePoint
         spawnCount: 3
-        intervalTime: 1
+        intervalTime: 0.3
         speed: 5
     - rid: 416588690826985694
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}

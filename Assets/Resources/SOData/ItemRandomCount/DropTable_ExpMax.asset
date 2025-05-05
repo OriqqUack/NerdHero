@@ -13,12 +13,6 @@ MonoBehaviour:
   m_Name: DropTable_ExpMax
   m_EditorClassIdentifier: 
   drops:
-  - gainType: 2
-    stat: {fileID: 0}
-    statAmount: 0
-    lootPrefab: {fileID: 6751589402356546582, guid: 5e1eb1a2328cd9f43bec7020c47f0a66, type: 3}
-    item: {fileID: 11400000, guid: a3f84c48ccd345d4ba77255e58aade52, type: 2}
-    dropChance: 1
   - gainType: 0
     stat: {fileID: 11400000, guid: 87e76cea145eda941814f1d0268293b7, type: 2}
     statAmount: 100

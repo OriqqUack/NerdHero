@@ -13,12 +13,6 @@ MonoBehaviour:
   m_Name: DropTable
   m_EditorClassIdentifier: 
   drops:
-  - gainType: 2
-    stat: {fileID: 0}
-    statAmount: 0
-    lootPrefab: {fileID: 6751589402356546582, guid: 5e1eb1a2328cd9f43bec7020c47f0a66, type: 3}
-    item: {fileID: 11400000, guid: a3f84c48ccd345d4ba77255e58aade52, type: 2}
-    dropChance: 1
   - gainType: 0
     stat: {fileID: 11400000, guid: 87e76cea145eda941814f1d0268293b7, type: 2}
     statAmount: 20
@@ -27,7 +21,13 @@ MonoBehaviour:
     dropChance: 1
   - gainType: 1
     stat: {fileID: 11400000, guid: ea25c1785c3bce64887a4cfff2ae82e5, type: 2}
-    statAmount: 50
+    statAmount: 30
     lootPrefab: {fileID: 7789590194871500304, guid: b31b20f26fc6ccc499190d22c1cb3b98, type: 3}
+    item: {fileID: 0}
+    dropChance: 1
+  - gainType: 3
+    stat: {fileID: 11400000, guid: 0e02254ac4262ba4a906fadaf1810a7a, type: 2}
+    statAmount: 50
+    lootPrefab: {fileID: 8279848934425254194, guid: cb86cff035fc71b4e8787a86a809fd99, type: 3}
     item: {fileID: 0}
     dropChance: 1

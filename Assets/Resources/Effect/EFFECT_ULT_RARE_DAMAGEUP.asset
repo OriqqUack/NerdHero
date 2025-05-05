@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 67
+  id: 75
   codeName: ULT_RARE_DAMAGEUP
   displayName: "\uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548 \uAE30\uBCF8\uACF5\uACA9\uB825
     \uC0C1\uC2B9"

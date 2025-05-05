@@ -65,7 +65,7 @@ MonoBehaviour:
     startChargePower: 0
     effectSelectors:
     - level: 1
-      effect: {fileID: 11400000, guid: 236843ff76439f04eb903a25a803fdcb, type: 2}
+      effect: {fileID: 11400000, guid: f0a07ed705d528f4d80fed1d7df7354d, type: 2}
     inSkillActionFinishOption: 0
     castAnimatorParamter:
       type: 0

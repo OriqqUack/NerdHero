@@ -1,4 +1,4 @@
-# Install script for directory: H:/NerdHero/Library/PramData/AndroidApplicationController/Cache/com.NerdHero.NerdHero/gradle-project/unityLibrary/src/main/cpp
+# Install script for directory: H:/NerdHero/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,7 +45,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("H:/NerdHero/.utmp/Debug/296f4uw6/arm64-v8a/GameActivity/cmake_install.cmake")
-  include("H:/NerdHero/.utmp/Debug/296f4uw6/arm64-v8a/FramePacing/cmake_install.cmake")
 
 endif()
 

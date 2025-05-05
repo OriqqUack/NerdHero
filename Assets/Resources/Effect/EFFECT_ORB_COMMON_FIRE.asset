@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 74
+  id: 42
   codeName: ORB_COMMON_FIRE
   displayName: "\uD654\uC5FC \uAD6C\uCCB4"
   description: "\uD654\uC5FC \uAD6C\uCCB4\uC774\uB2E4."

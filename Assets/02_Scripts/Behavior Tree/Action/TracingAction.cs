@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class TracingAction : EnemyAction
 {
     public float TracingTime;
+    public bool InfinityChasing;
 
     private float elapsedTime;
     
@@ -22,6 +23,14 @@ public class TracingAction : EnemyAction
     {
         elapsedTime += Time.deltaTime;
 
+        entityMovement.LookCheck();
+        
+        if (InfinityChasing)
+        {
+            entityMovement.TraceTarget = targetTransform;
+            return TaskStatus.Running;
+        }
+        
         if (elapsedTime >= TracingTime)
         {
             return TaskStatus.Failure;
@@ -33,7 +42,6 @@ public class TracingAction : EnemyAction
             return TaskStatus.Success;
         }
         
-        entityMovement.LookCheck();
         
         return TaskStatus.Running;
     }

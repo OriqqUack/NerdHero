@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillBar : MonoBehaviour
+public class SkillBar : MonoSingleton<SkillBar>
 {
     [SerializeField]
     private GameObject slotPrefab;
@@ -10,7 +10,7 @@ public class SkillBar : MonoBehaviour
     private int slotCount;
 
     private SkillSystem skillSystem;
-    private List<SkillSlot> slots = new();
+    public List<SkillSlot> slots = new();
     private int emptySlotIndex;
 
     private void Start()

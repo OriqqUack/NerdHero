@@ -23,7 +23,6 @@ public class GroundCheck : MonoBehaviour
             aiPath.updatePosition = true;
             aiPath.Teleport(transform.position);
 
-            Debug.Log("Check Ground - A*");
         }
     }
 
@@ -34,7 +33,6 @@ public class GroundCheck : MonoBehaviour
             IsOnGround = false;
             aiPath.canMove = false;
 
-            Debug.Log("Left Ground - A*");
         }
     }
 }

@@ -15,9 +15,9 @@ MonoBehaviour:
   settings:
     _location: 0
     path: SaveFile.es3
-    encryptionType: 0
+    encryptionType: 1
     compressionType: 0
-    encryptionPassword: password
+    encryptionPassword: a7244290a
     directory: 0
     format: 0
     prettyPrint: 1
@@ -50,7 +50,6 @@ MonoBehaviour:
     - Google.Play.Games
     - KinoBloom.Runtime
     - MackySoft.SerializeReferenceExtensions
-    - NavMeshPlus
     - PackageTools
     - spine-csharp
     - spine-unity

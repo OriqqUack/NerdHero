@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 56
+  id: 64
   codeName: SURVIVE_RARE_MAXHPUP_MOVESPEEDDOWN
   displayName: "\uCD5C\uB300 \uCCB4\uB825 \uC99D\uAC00 \uBC0F \uC774\uB3D9\uC18D\uB3C4
     \uAC10\uC18C"

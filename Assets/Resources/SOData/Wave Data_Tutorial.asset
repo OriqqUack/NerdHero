@@ -15,16 +15,25 @@ MonoBehaviour:
   Waves:
   - Wave: 0
     Enemies:
-    - EnemyPrefab:
+    - EnemyLevel: 00000000
+      EnemyPrefab:
       - {fileID: 3873516473804846084, guid: 951285940ac3fcd489deee89dd53b568, type: 3}
       EnemyCount: 01000000
   - Wave: 0
     Enemies:
-    - EnemyPrefab:
+    - EnemyLevel: 00000000
+      EnemyPrefab:
       - {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
       EnemyCount: 01000000
   - Wave: 0
     Enemies:
-    - EnemyPrefab:
+    - EnemyLevel: 00000000
+      EnemyPrefab:
+      - {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
+      EnemyCount: 01000000
+  - Wave: 0
+    Enemies:
+    - EnemyLevel: 00000000
+      EnemyPrefab:
       - {fileID: 4877061990944437879, guid: 766e3e73749705244adc7619d48a6112, type: 3}
       EnemyCount: 04000000

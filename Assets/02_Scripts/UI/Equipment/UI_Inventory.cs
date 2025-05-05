@@ -52,8 +52,8 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     private void UpdateInventoryUI()
     {
         foreach (Transform child in inventoryPanel) Destroy(child.gameObject);
-        List<ItemSO> filteredItems = InventoryManager.Instance.GetItems();
-        List<Skill> filteredSkills = InventoryManager.Instance.GetSkills();
+        List<ItemSO> filteredItems = Managers.InventoryManager.GetItems();
+        List<Skill> filteredSkills = Managers.InventoryManager.GetSkills();
 
         if (isWeaponFilter)
         {
@@ -121,7 +121,7 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     
     private void SortItem(bool sortByLevel, bool ascending)
     {
-        var items = InventoryManager.Instance.GetItems();
+        var items = Managers.InventoryManager.GetItems();
 
         if (sortByLevel)
         {

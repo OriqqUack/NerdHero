@@ -47,7 +47,7 @@ public class SearchArea: TargetSearchAction
             if (entity != requesterEntity)
             {
                 var hasCategory = requesterEntity.Categories.Any(x => entity.HasCategory(x));
-                if ((hasCategory && !isSearchSameCategory) || (!hasCategory && isSearchSameCategory))
+                if ((requesterEntity.ControlType == entity.ControlType) || (hasCategory && !isSearchSameCategory) || (!hasCategory && isSearchSameCategory))
                     continue;
             }
 

@@ -3,19 +3,24 @@ using System;
 using System.Collections;
 using System.Data;
 
-public class EnergyManager : MonoSingleton<EnergyManager>, ISaveable
+public class EnergyManager : ISaveable
 {
     public delegate void EnergyChangeDelegate(int energy);
     public event EnergyChangeDelegate OnEnergyChange;
     
-    public int maxEnergy = 30;
-    public int chargeIntervalMinutes = 10;
+    public int maxEnergy = 100;
+    public int chargeIntervalMinutes = 1;
 
     public int CurrentEnergy { get; private set; }
     public TimeSpan PassedTime { get; private set; }
     
     private DateTime lastChargeTime;
 
+    public void Init()
+    {
+        Managers.DataManager.AddSaveable(this);
+    }
+    
     void UpdateEnergyFromOffline()
     {
         if (CurrentEnergy >= maxEnergy) return;
@@ -90,17 +95,17 @@ public class EnergyManager : MonoSingleton<EnergyManager>, ISaveable
     
     public void Save(SaveData data)
     {
-        data.energyCount = CurrentEnergy;
-        data.energyLastCharge = lastChargeTime.Ticks.ToString();
+        data.CurrencyData.energyCount = CurrentEnergy;
+        data.CurrencyData.energyLastCharge = lastChargeTime.Ticks.ToString();
     }
 
     public void Load(SaveData data)
     {
-        CurrentEnergy = data.energyCount;
-        long lastTicks = Convert.ToInt64(data.energyLastCharge);
+        CurrentEnergy = data.CurrencyData.energyCount;
+        long lastTicks = Convert.ToInt64(data.CurrencyData.energyLastCharge);
         lastChargeTime = lastTicks == 0 ? DateTime.UtcNow : new DateTime(lastTicks);
 
         UpdateEnergyFromOffline();
-        StartCoroutine(EnergyTick());
+        Managers.Instance.StartManagedCoroutine(EnergyTick());
     }
 }

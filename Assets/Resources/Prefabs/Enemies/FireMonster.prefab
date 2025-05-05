@@ -1187,6 +1187,7 @@ GameObject:
   - component: {fileID: 419592082378494970}
   - component: {fileID: 3001715548469185371}
   - component: {fileID: 3276357310785418201}
+  - component: {fileID: 362051884618550770}
   m_Layer: 10
   m_Name: FireMonster
   m_TagString: Untagged
@@ -1394,9 +1395,12 @@ MonoBehaviour:
   damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
   criticalDamageStat: {fileID: 0}
   criticalPerStat: {fileID: 0}
+  expChargeStat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+  heartDropRateStat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+  statGrowthTable: {fileID: 11400000, guid: 81d498ee1013795488e921235452417e, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
     isUseOverride: 0
@@ -1419,6 +1423,16 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  Level: 1
 --- !u!114 &5739293698399664054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,6 +1672,19 @@ MonoBehaviour:
   movementPlaneSourceBacking: 0
   syncPosition: 1
   syncRotation: 1
+--- !u!114 &362051884618550770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649077307094895301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329934d98121e0b48b3255820d1541f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropTable: {fileID: 11400000, guid: 90009f2f200987b4abd35752fa7c8885, type: 2}
 --- !u!1 &8829812946344080332
 GameObject:
   m_ObjectHideFlags: 0

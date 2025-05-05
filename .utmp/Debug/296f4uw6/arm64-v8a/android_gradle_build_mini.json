@@ -1,8 +1,7 @@
 {
   "buildFiles": [
-    "H:\\NerdHero\\Library\\PramData\\AndroidApplicationController\\Cache\\com.NerdHero.NerdHero\\gradle-project\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
-    "H:\\NerdHero\\Library\\PramData\\AndroidApplicationController\\Cache\\com.NerdHero.NerdHero\\gradle-project\\unityLibrary\\src\\main\\cpp\\FramePacing\\CMakeLists.txt",
-    "H:\\NerdHero\\Library\\PramData\\AndroidApplicationController\\Cache\\com.NerdHero.NerdHero\\gradle-project\\unityLibrary\\src\\main\\cpp\\GameActivity\\CMakeLists.txt"
+    "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
+    "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\GameActivity\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
@@ -22,13 +21,7 @@
     "game::@d02bb112ea9f9c2ed29f": {
       "artifactName": "game",
       "abi": "arm64-v8a",
-      "output": "H:\\NerdHero\\Library\\PramData\\AndroidApplicationController\\Cache\\com.NerdHero.NerdHero\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\296f4uw6\\obj\\arm64-v8a\\libgame.so",
-      "runtimeFiles": []
-    },
-    "swappywrapper::@7e25bd1f32ce224db4e9": {
-      "artifactName": "swappywrapper",
-      "abi": "arm64-v8a",
-      "output": "H:\\NerdHero\\Library\\PramData\\AndroidApplicationController\\Cache\\com.NerdHero.NerdHero\\gradle-project\\unityLibrary\\build\\intermediates\\cxx\\Debug\\296f4uw6\\obj\\arm64-v8a\\libswappywrapper.so",
+      "output": "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\Debug\\296f4uw6\\obj\\arm64-v8a\\libgame.so",
       "runtimeFiles": []
     }
   }

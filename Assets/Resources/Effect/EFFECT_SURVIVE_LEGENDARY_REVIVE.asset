@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 54
+  id: 62
   codeName: SURVIVE_LEGENDARY_REVIVE
   displayName: "1\uD68C \uBD80\uD65C"
   description: "\uC0AC\uB9DD \uC2DC 1\uD68C \uBD80\uD65C (\uCCB4\uB825 100% \uD68C\uBCF5)\r"

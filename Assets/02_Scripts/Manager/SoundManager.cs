@@ -9,14 +9,14 @@ public enum Sound
     Effect,
     MaxCount
 }
-public class SoundManager : MonoSingleton<SoundManager>
+public class SoundManager
 {
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
 
     [HideInInspector] public AudioSource BgmSource;
     [HideInInspector] public AudioSource EffectSource;
 
-    private void Awake()
+    public void Init()
     {
         string[] soundNames = System.Enum.GetNames(typeof(Sound)); // "Bgm", "Effect"
         for (int i = 0; i < soundNames.Length - 1; i++)
@@ -31,12 +31,11 @@ public class SoundManager : MonoSingleton<SoundManager>
             {
                 EffectSource = go.GetComponent<AudioSource>();
             }
-            go.transform.parent = transform;
+            go.transform.parent = Managers.Instance.transform;
         }
 
         BgmSource.loop = true; // bgm 재생기는 무한 반복 재생
         //오브젝트화 필수
-        DontDestroyOnLoad(this);
     }
 
     public void Play(string path, Sound type = Sound.Effect, float pitch = 1.0f)

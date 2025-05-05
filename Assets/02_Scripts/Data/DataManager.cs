@@ -2,35 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
-public class DataManager : MonoSingleton<DataManager>
+public class DataManager
 {
     public SaveData SaveData;
 
     private List<ISaveable> _saveables = new List<ISaveable>();
-
-    protected override void Awake()
-    {
-        base.Awake();
-        DontDestroyOnLoad(this);
-        Init();
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    private void OnApplicationQuit()
-    {
-        DataSave();
-    }
-
+    private ES3Settings _es3Settings;
+    private static readonly string _myPassword = "a7244290a";
     public void Init()
     {
         // 모든 ISaveable을 찾아서 리스트에 저장
-        _saveables.AddRange(FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        _saveables.AddRange(Object.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());
+        _es3Settings = new ES3Settings(ES3.EncryptionType.AES, _myPassword);
+        
         DataLoad();
+    }
+
+    public void AddSaveable(ISaveable saveable)
+    {
+        _saveables.Add(saveable);
     }
 
     public void DataSave()
@@ -40,15 +34,15 @@ public class DataManager : MonoSingleton<DataManager>
             saveable.Save(SaveData);
         }
 
-        ES3.Save("SaveData", SaveData, "SaveFile.txt");
+        ES3.Save("SaveData", SaveData, _es3Settings.path);
         Debug.Log("💾 데이터 저장 완료");
     }
 
     public void DataLoad()
     {
-        if (ES3.FileExists("SaveFile.txt"))
+        if (ES3.FileExists(_es3Settings.path))
         {
-            SaveData = ES3.Load<SaveData>("SaveData", "SaveFile.txt");
+            SaveData = ES3.Load<SaveData>("SaveData", _es3Settings.path);
             foreach (var saveable in _saveables)
             {
                 saveable.Load(SaveData);
@@ -58,21 +52,18 @@ public class DataManager : MonoSingleton<DataManager>
         else
         {
             SaveData = new SaveData();
+            foreach (var saveable in _saveables)
+            {
+                saveable.Load(SaveData);
+            }
             DataSave();
         }
     }
 
-    [ContextMenu("💣 저장 파일 삭제")]
-    public void DataDelete()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (ES3.FileExists("SaveFile.txt"))
-        {
-            ES3.DeleteFile("SaveFile.txt");
-            Debug.Log("🧹 저장 파일 삭제 완료!");
-        }
-        else
-        {
-            Debug.Log("❗ 삭제할 저장 파일이 없습니다.");
-        }
+        _saveables.Clear();
+        _saveables.AddRange(Object.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());
+        DataLoad();
     }
 }

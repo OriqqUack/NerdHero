@@ -10,6 +10,7 @@ using UnityEngine.VFX;
 [System.Serializable]
 public class WaveEntry
 {
+    public List<int> EnemyLevel = new List<int>();
     public List<GameObject> EnemyPrefab = new List<GameObject>();
     public List<int> EnemyCount = new List<int>();
 }
@@ -45,8 +46,8 @@ public class WaveManager : MonoSingleton<WaveManager>
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private Transform[] spawnPoints;
 
-    [Space(10)] [Header("Spawn Settings")] [SerializeField]
-    private VisualEffect monsterSpawnVFXPrefab;
+    [Space(10)] [Header("Spawn Settings")] 
+    //[SerializeField] private VisualEffect monsterSpawnVFXPrefab;
 
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private GameObject playerPrefab;
@@ -59,7 +60,7 @@ public class WaveManager : MonoSingleton<WaveManager>
     private int _currentEntryIndex = 0;
     private int _spawningCount = 0;
     private int _spawnedEnemies = 0;
-    private float _spawnDelay;
+    private float _spawnDelay = 2f;
     private List<Entity> _activeEnemies = new();
     private List<ItemSO> _gainedItemsList = new();
 
@@ -88,14 +89,13 @@ public class WaveManager : MonoSingleton<WaveManager>
 
     void Start()
     {
-        _spawnDelay = monsterSpawnVFXPrefab.GetFloat("Delay");
+        //_spawnDelay = monsterSpawnVFXPrefab.GetFloat("Delay");
         StartCoroutine(StartWaveRoutine());
     }
 
     private void Update()
     {
         CurrentTime += Time.deltaTime;
-        Debug.Log("Active Enemies Count : " + ActiveEnemies.Count);
     }
 
     public List<ItemSO> GetGainedItems()
@@ -168,20 +168,21 @@ public class WaveManager : MonoSingleton<WaveManager>
                 int spawnIndex = _spawnedEnemies % spawnPoints.Length;
                 _spawningCount++;
                 _spawnedEnemies++;
-                StartCoroutine(SpawnDelay(entry.EnemyPrefab[i], spawnIndex));
+                StartCoroutine(SpawnDelay(entry.EnemyPrefab[i], entry.EnemyLevel[i],spawnIndex));
             }
         }
     }
 
-    private IEnumerator SpawnDelay(GameObject enemyPrefab, int spawnIndex)
+    private IEnumerator SpawnDelay(GameObject enemyPrefab, int level, int spawnIndex)
     {
-        var spawnEffect = Instantiate(monsterSpawnVFXPrefab);
-        spawnEffect.transform.position = spawnPoints[spawnIndex].position;
+        /*var spawnEffect = Instantiate(monsterSpawnVFXPrefab);
+        spawnEffect.transform.position = spawnPoints[spawnIndex].position;*/
         yield return new WaitForSeconds(_spawnDelay);
 
         Entity enemyInstance =
             Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation)
                 .GetComponentInChildren<Entity>();
+        enemyInstance.Stats.LevelSetup(level);
         enemyInstance.GetComponent<BehaviorTree>().enabled = false;
         enemyInstance.Animator.PlayOneShot("appear", 0, 0,
             () => enemyInstance.GetComponent<BehaviorTree>().enabled = true);
@@ -191,13 +192,13 @@ public class WaveManager : MonoSingleton<WaveManager>
         enemyInstance.onDead += RemoveEnemy;
 
         yield return new WaitForSeconds(1f);
-        spawnEffect.Stop();
-        
+        //spawnEffect.Stop();
+
         _spawningCount--;
         _isSpawning = _spawningCount > 0;
         
-        while (spawnEffect.aliveParticleCount > 0) yield return null;
-        Destroy(spawnEffect.gameObject);
+        /*while (spawnEffect.aliveParticleCount > 0) yield return null;
+        Destroy(spawnEffect.gameObject);*/
     }
 
     private void PlayerSpawn()

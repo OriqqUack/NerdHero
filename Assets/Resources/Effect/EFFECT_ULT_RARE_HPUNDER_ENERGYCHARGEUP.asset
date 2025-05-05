@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 70
+  id: 78
   codeName: ULT_RARE_HPUNDER_ENERGYCHARGEUP
   displayName: "\uCCB4\uB825\uC774 \uB0AE\uC744 \uB54C \uC6A9\uAE30 \uD68D\uB4DD\uB7C9
     \uC99D\uAC00"

@@ -12,4 +12,8 @@ public static class GameColors
     public static readonly Color SelectedBottomTabColor = new Color(0.3685112f, 0.3051303f, 0.4779873f);
     public static readonly Color SelectedInventoryTabColor = new Color(0.254902f, 0.1764706f, 0.4392157f);
     public static readonly Color SelectedInventoryBorderColor = new Color(0.3333333f, 0.2509804f, 0.5215687f);
+    
+    public static readonly Color SelectedProfileBackgroundColor = new Color(0.427451f, 0.3529412f, 0.8039216f);
+    public static readonly Color SelectedProfileInnerBorderColor = new Color(0.5529412f, 0.4705882f, 0.8823529f);
+    public static readonly Color SelectedProfileDecoColor = new Color(0.5529412f, 0.4705882f, 0.8823529f);
 }

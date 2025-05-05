@@ -5,7 +5,7 @@ public class LockedEffect : MonoBehaviour
 {
     public GameObject breakVFXPrefab; // 터질 때 나올 VFX 프리팹
     public float shakeAngle = 20f; // 흔들리는 각도
-    public int shakeCount = 6; // 흔들릴 횟수 (왕복 기준)
+    public int shakeCount = 20; // 흔들릴 횟수 (왕복 기준)
     public float shakeDuration = 0.1f; // 한 번 흔들리는 시간
 
     private SpriteRenderer parentSpriteRenderer;

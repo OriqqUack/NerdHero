@@ -11,12 +11,15 @@ public class EntityMovement : Movement
     public delegate void FindTargetHandler(EntityMovement movement);
 
     [SerializeField] private float zAttackOffset;
+    [SerializeField] private float stifnessCycle = 3.0f;
+
 
     private FollowerEntity aiPath;
     private Transform traceTarget;
     private bool isFindTarget;
     private Vector3 destination;
     private Coroutine traceCoroutine;
+    private bool isStiffness;
     
     public bool HasArrived => aiPath.reachedDestination;
 
@@ -69,11 +72,18 @@ public class EntityMovement : Movement
         aiPath.canMove = true;
         aiPath.maxSpeed = runSpeed;
         moveSpeed.onValueChanged += OnMoveSpeedChanged;
+
+        owner.onTakeDamage += TakeDamage;
     }
 
     private void Start()
     {
         aiPath.updateRotation = false;
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnDisable() => Stop();
@@ -82,6 +92,25 @@ public class EntityMovement : Movement
     {
         if (moveSpeed)
             moveSpeed.onValueChanged -= OnMoveSpeedChanged;
+    }
+
+    private void TakeDamage(Entity instigator, Entity owner, object causer, float damage)
+    {
+        if(!isStiffness) return;
+        
+        isStiffness = true;
+        StopMoment();
+        owner.Animator.PlayOneShot("damaged", 0, 0, RestartMovement);
+        
+        if (isStiffness)
+        {
+            float elapsedTime = 0;
+            while (elapsedTime >= stifnessCycle)
+            {
+                elapsedTime += Time.deltaTime;
+            }
+            isStiffness = false;
+        }
     }
 
     private void SetDestination(Vector3 destination)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 20
+  id: 22
   codeName: FRE_LEGENDARY
   displayName: "(\uBD88 \uC18D\uC131) \uC989\uC0AC \uD655\uB960 \uBD80\uC5EC"
   description: "\uAE30\uBCF8 \uACF5\uACA9\uC73C\uB85C \uBD88 \uB3C4\uD2B8 \uC0C1\uD0DC\uC778

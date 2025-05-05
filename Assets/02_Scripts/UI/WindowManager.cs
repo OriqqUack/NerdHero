@@ -35,8 +35,7 @@ public class WindowManager : MonoSingleton<WindowManager>
     {
         if (windowsDic.ContainsKey(holder))
         {
-            //windowsDic[holder].Close();
-            return null;
+            return windowsDic[holder];
         }
         
         GameObject newWindow = Instantiate(Resources.Load<GameObject>($"Prefabs/UI/{sceneName}/UI_" + prefabName), transform);

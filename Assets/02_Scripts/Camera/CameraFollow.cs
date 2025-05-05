@@ -30,7 +30,7 @@ public class CameraFollow : MonoBehaviour {
 		targetZoomSize = initialZoomSize;
 	}
 	
-	private void Update()
+	private void FixedUpdate()
 	{
 		TrackPlayer();
 		HandleZoom();
@@ -69,24 +69,24 @@ public class CameraFollow : MonoBehaviour {
 		return Mathf.Abs(transform.position.x - _player.position.x) > xMargin;
 	}
 
+	private Vector3 velocity = Vector3.zero;
+
 	private void TrackPlayer()
 	{
-		// By default the target x and y coordinates of the camera are it's current x and y coordinates.
-		float targetX = transform.position.x;
-		float targetY = transform.position.y;
+		if (_player == null)
+			return;
 
-		// If the player has moved beyond the x margin...
-		if (CheckXMargin())
-		{
-			// ... the target x coordinate should be a Lerp between the camera's current x position and the player's current x position.
-			targetX = Mathf.Lerp(transform.position.x, _player.position.x, xSmooth * Time.deltaTime);
-		}
+		Vector3 targetPos = new Vector3(_player.position.x, transform.position.y, transform.position.z);
 
-		// The target x and y coordinates should not be larger than the maximum or smaller than the minimum.
-		targetX = Mathf.Clamp(targetX, minXAndY.x, maxXAndY.x);
-		//targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
+		// 마진 체크 (움직일 때만 따라가고 싶으면)
+		if (!CheckXMargin())
+			targetPos.x = transform.position.x; // xMargin 안 넘었으면 이동 안 함
 
-		// Set the camera's position to the target position with the same z component.
-		transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+		// Clamp
+		targetPos.x = Mathf.Clamp(targetPos.x, minXAndY.x, maxXAndY.x);
+
+		// SmoothDamp로 부드럽게 이동
+		transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, 1f / xSmooth);
 	}
+
 }

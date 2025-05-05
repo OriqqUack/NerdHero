@@ -12,7 +12,7 @@ public class UseUltCard : CardBase
 
     public override void ApplyEffect()
     {
-        _owner.SkillSystem.OwnSkills[1].onUsed += UsedSkill;
+        SkillBar.Instance.slots[0].Skill.onUsed += UsedSkill;
     }
 
     private void UsedSkill(Skill skill)

@@ -13,10 +13,10 @@ public class UI_Energy : MonoBehaviour
 
     private void Start()
     {
-        energyManager = EnergyManager.Instance;
+        energyManager = Managers.EnergyManager;
         energyManager.OnEnergyChange += EnergySliderValueChanged;
         UIUpdateEnergy();
-        energySlider.value = energyManager.CurrentEnergy / 30f;
+        energySlider.value = energyManager.CurrentEnergy / (float)energyManager.maxEnergy;
     }
 
     private void Update()
@@ -27,7 +27,7 @@ public class UI_Energy : MonoBehaviour
 
     private void EnergySliderValueChanged(int energy)
     {
-        energySlider.value = energy / 30f;
+        energySlider.value = energy / (float)energyManager.maxEnergy;
     }
 
     private void UIUpdateEnergy()

@@ -1940,7 +1940,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124657888804274261}
   - component: {fileID: 5676769426070819433}
-  - component: {fileID: 7802536607801687003}
+  - component: {fileID: 7200676248016780669}
   m_Layer: 5
   m_Name: UI_Shop
   m_TagString: Untagged
@@ -1986,29 +1986,20 @@ MonoBehaviour:
   ChildWindow: 0
   clickSound: {fileID: 0}
   closeSound: {fileID: 0}
-  animator: {fileID: 7802536607801687003}
---- !u!95 &7802536607801687003
-Animator:
-  serializedVersion: 7
+  animator: {fileID: 0}
+  closeBtn: {fileID: 6345304584729109593}
+--- !u!225 &7200676248016780669
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776816406580163715}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce52d6b006399884d82f9e34ea66260b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3149098337175397399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4956,19 +4947,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3674409895376992129}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5676769426070819433}
-        m_TargetAssemblyTypeName: UiWindow, Assembly-CSharp
-        m_MethodName: Close
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7906572514761292065
 GameObject:
   m_ObjectHideFlags: 0

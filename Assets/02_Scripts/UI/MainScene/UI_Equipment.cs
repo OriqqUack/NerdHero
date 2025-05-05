@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class UI_Equipment : UiWindow
 {
     [SerializeField] private EquipmentSlot weaponSlot, headsetSlot, armorSlot, bootsSlot;
+    [SerializeField] private Button closeBtn;
 
     protected override void Start()
     {
         base.Start();
-        
+        closeBtn.onClick.AddListener(() => CloseUI());
         Equipment equipment = Equipment.Instance;
         
         equipment.OnEquipmentChanged -= Equip;
@@ -41,5 +42,11 @@ public class UI_Equipment : UiWindow
                 headsetSlot.EquipItem(item);
                 break;
         }
+    }
+    
+    private void CloseUI()
+    {
+        UI_MainScene.Instance.CloseCurrentWindow();
+        TabController.Instance.ResetTabs();
     }
 }

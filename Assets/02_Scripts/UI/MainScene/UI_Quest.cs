@@ -18,14 +18,14 @@ public class UI_Quest : UiWindow
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(CheckDailyReward());
+        /*StartCoroutine(CheckDailyReward());
 
         currentPopup = popups[0];
         for (int i = 0; i < buttons.Count; i++)
         {
             int i1 = i;
             buttons[i].onClick.AddListener(() => OpenPopup(i1));
-        }
+        }*/
     }
 
     public override void Initialize(WindowHolder holder, string name = "")

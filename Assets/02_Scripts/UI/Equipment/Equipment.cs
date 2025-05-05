@@ -16,19 +16,19 @@ public class Equipment : MonoSingleton<Equipment>
         {
             case ItemType.Weapon:
                 weapon = newItem;
-                GameManager.Instance.GetPlayerDamageStat().SetBonusValue("Weapon", newItem.StatValue);
+                GameManager.Instance.GetCriticalPerStat().SetBonusValue("Weapon", newItem.StatValue);
                 break;
             case ItemType.Helmet:
                 helmet = newItem;
-                GameManager.Instance.GetPlayerDamageStat().SetBonusValue("Helmet", newItem.StatValue);
+                GameManager.Instance.GetEnergyAmountStat().SetBonusValue("Helmet", newItem.StatValue);
                 break;
             case ItemType.Armor:
                 armor = newItem;
-                //GameManager.Instance.GetPlayerDefenseStat().SetBonusValue("Armor", newItem.StatValue);
+                GameManager.Instance.GetPlayerHealthStat().SetBonusValue("Armor", newItem.StatValue);
                 break;
             case ItemType.Boots:
                 boots = newItem;
-                //GameManager.Instance.GetPlayerSkillDamageStat().SetBonusValue("Boots", newItem.StatValue);
+                GameManager.Instance.GetDodgePerStat().SetBonusValue("Boots", newItem.StatValue);
                 break;
         }
         OnEquipmentChanged?.Invoke(newItem);
@@ -58,33 +58,33 @@ public class Equipment : MonoSingleton<Equipment>
                 if (weapon != null)
                 {
                     weapon = null;
-                    GameManager.Instance.GetPlayerDamageStat().RemoveBonusValue("Weapon");
+                    GameManager.Instance.GetCriticalPerStat().RemoveBonusValue("Weapon");
                 }
                 break;
             case ItemType.Helmet:
                 if (helmet != null)
                 {
                     helmet = null;
-                    GameManager.Instance.GetPlayerHealthStat().RemoveBonusValue("Helmet");
+                    GameManager.Instance.GetEnergyAmountStat().RemoveBonusValue("Helmet");
                 }
                 break;
             case ItemType.Armor:
                 if (armor != null)
                 {
                     armor = null;
-                    //GameManager.Instance.GetPlayerDefenseStat().RemoveBonusValue("Armor");
+                    GameManager.Instance.GetPlayerHealthStat().RemoveBonusValue("Armor");
                 }
                 break;
             case ItemType.Boots:
                 if (boots != null)
                 {
                     boots = null;
-                    //GameManager.Instance.GetPlayerSkillDamageStat().RemoveBonusValue("Boots");
+                    GameManager.Instance.GetDodgePerStat().RemoveBonusValue("Boots");
                 }
                 break;
         }
 
-        DataManager.Instance.DataSave();
+        Managers.DataManager.DataSave();
     }
 
     public void UnequipSkill(int index)
@@ -98,33 +98,33 @@ public class Equipment : MonoSingleton<Equipment>
             GameManager.Instance.PlayerSkill2 = null;
         }
         
-        DataManager.Instance.DataSave();
+        Managers.DataManager.DataSave();
     }
     
     public void LoadEquipment(SaveData data)
     {
-        weapon = ItemDatabase.Instance.GetItemByName(data.equippedWeapon);
+        weapon = ItemDatabase.Instance.GetItemByName(data.Inventory.equippedWeapon);
         if(weapon)
         {
-            weapon.quantityOrLevel = data.weaponLevel;
+            weapon.quantityOrLevel = data.Inventory.weaponLevel;
             Equip(weapon);
         }
-        helmet = ItemDatabase.Instance.GetItemByName(data.equippedHelmet);
+        helmet = ItemDatabase.Instance.GetItemByName(data.Inventory.equippedHelmet);
         if (helmet)
         {
-            helmet.quantityOrLevel = data.helmetLevel;
+            helmet.quantityOrLevel = data.Inventory.helmetLevel;
             Equip(helmet);
         }
-        armor = ItemDatabase.Instance.GetItemByName(data.equippedArmor);
+        armor = ItemDatabase.Instance.GetItemByName(data.Inventory.equippedArmor);
         if (armor)
         {
-            armor.quantityOrLevel = data.armorLevel;
+            armor.quantityOrLevel = data.Inventory.armorLevel;
             Equip(armor);
         }
-        boots = ItemDatabase.Instance.GetItemByName(data.equippedBoots);
+        boots = ItemDatabase.Instance.GetItemByName(data.Inventory.equippedBoots);
         if (boots)
         {
-            boots.quantityOrLevel = data.bootsLevel;
+            boots.quantityOrLevel = data.Inventory.bootsLevel;
             Equip(boots);
         }
     }

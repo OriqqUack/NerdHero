@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CircleExpositor : MonoSingleton<CircleExpositor>
+public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
 {
     [SerializeField] private float radius = 40f;
     [SerializeField] private float rotateSpeed = 10f;
@@ -27,15 +27,7 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
         _currentTarget = GameManager.Instance.CurrentIslandIndex;
         _dummyRotation = transform.rotation;
         _iniY = transform.position.y;
-
-        _items = new Transform[transform.childCount];
-        foreach (Transform child in transform)
-        {
-            _islands.Add(child.GetComponent<Island>());
-            _items[_count] = child;
-            _count++;
-        }
-
+        
         _offsetRotation = 360.0f / _count;
         for (int i = 0; i < _count; i++)
         {
@@ -58,11 +50,12 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
         yield return new WaitForSeconds(1f);
         
         int index = GameManager.Instance.CurrentIslandIndex + 1;
+        _currentTarget = index;
         if (!_islands.IsValidIndex(index)) yield break;
         
-        ChangeTarget(index);
-        if (_islands[_currentTarget].IsLocked)
+        if (_islands[index].IsLocked)
         {
+            ChangeTarget(index);
             _islands[_currentTarget].LockedEffect.ShakeAndBreak();
         }
         
@@ -76,19 +69,11 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
 
     public void ChangeTarget(int offset)
     {
-        _currentTarget += offset;
-        if (_currentTarget > _items.Length - 1) _currentTarget = 0;
-        else if (_currentTarget < 0) _currentTarget = _items.Length - 1;
+        if (offset > _items.Length - 1) _currentTarget = 0;
+        else if (offset < 0) _currentTarget = _items.Length - 1;
         _dummyRotation *= Quaternion.Euler(Vector3.up * (offset * _offsetRotation));
 
-        if (_islands[_currentTarget].IsLocked)
-        {
-            EnterButtonActive(false);
-        }
-        else
-        {
-            EnterButtonActive(true);
-        }
+        EnterButtonActive(false);
     }
 
     public void EnterButtonActive(bool active)
@@ -98,5 +83,33 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>
             enterButton.image.color = Color.white;
         else
             enterButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+    }
+
+    public void Save(SaveData data)
+    {
+        List<bool> isLocked = new List<bool>();
+        foreach (Island island in _islands)
+        {
+            isLocked.Add(!island.IsLocked);
+        }
+
+        data.Map.clearedMap = new List<bool>(isLocked);
+    }
+
+    public void Load(SaveData data)
+    {
+        _items = new Transform[transform.childCount];
+
+        foreach (Transform child in transform)
+        {
+            _islands.Add(child.GetComponent<Island>());
+            _items[_count] = child;
+            _count++;
+        }
+
+        for (int i = 0; i < data.Map.clearedMap.Count; i++)
+        {
+            _islands[i].IsLocked = !data.Map.clearedMap[i];
+        }
     }
 }

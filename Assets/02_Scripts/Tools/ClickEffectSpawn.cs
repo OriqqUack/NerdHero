@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Canvas))]
 public class ClickEffectSpawn : MonoBehaviour
 {
     public GameObject clickEffectPrefab;
     private Canvas canvas;
+    private bool spawnEffectPending = false;
+    private Vector2 pendingPosition;
 
     void Start()
     {
@@ -14,19 +17,53 @@ public class ClickEffectSpawn : MonoBehaviour
 
     void Update()
     {
-        // PC 클릭
         if (Input.GetMouseButtonDown(0))
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
-                SpawnEffect(Input.mousePosition);
+            pendingPosition = Input.mousePosition;
+            spawnEffectPending = true;
         }
 
-        // 모바일 터치
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-                SpawnEffect(Input.GetTouch(0).position);
+            pendingPosition = Input.GetTouch(0).position;
+            spawnEffectPending = true;
         }
+    }
+
+    void LateUpdate()
+    {
+        if (spawnEffectPending)
+        {
+            CheckUIAndSpawnEffect(pendingPosition);
+            spawnEffectPending = false;
+        }
+    }
+
+    void CheckUIAndSpawnEffect(Vector2 screenPosition)
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = screenPosition;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+        foreach (var result in raycastResults)
+        {
+            if (IsBlockedUI(result.gameObject))
+            {
+                // ❗이펙트만 생성하지 않고 함수는 그냥 끝내
+                return;
+            }
+        }
+
+        // 여기까지 오면, 이펙트를 생성할 수 있다!
+        SpawnEffect(screenPosition);
+    }
+
+    bool IsBlockedUI(GameObject uiObject)
+    {
+        // ❗ 여기 태그를 "NoEffect" 로 설정한다고 가정
+        return uiObject.CompareTag("NoEffect");
     }
 
     void SpawnEffect(Vector2 screenPosition)
@@ -41,7 +78,7 @@ public class ClickEffectSpawn : MonoBehaviour
 
         GameObject effect = Managers.Resource.Instantiate(clickEffectPrefab);
         RectTransform rect = effect.GetComponent<RectTransform>();
-        rect.SetParent(canvas.transform, false); // ✅ worldPositionStays = false로 해야 UI 기준으로 붙음
+        rect.SetParent(canvas.transform, false);
         rect.anchoredPosition = localPos;
         Destroy(effect, 3.0f);
     }

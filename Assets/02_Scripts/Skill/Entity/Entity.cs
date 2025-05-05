@@ -22,6 +22,7 @@ public class Entity : MonoBehaviour
     public delegate void TakeDamageHandler(Entity entity, Entity instigator, object causer, float damage);
     public delegate void DeadHandler(Entity entity);
     public delegate void KillHandler(Entity entity);
+
     #endregion
 
     [SerializeField] private Category[] categories;
@@ -128,7 +129,7 @@ public class Entity : MonoBehaviour
         }
     }
     
-    private void OnDead()
+    public void OnDead()
     {
         Movement.Clear();
         if (Movement)

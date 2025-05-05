@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 64
+  id: 72
   codeName: ULT_LEGENDARY_ALLDAMAGE
   displayName: "\uD654\uBA74 \uC804\uC5ED \uBAAC\uC2A4\uD130 \uD53C\uD574"
   description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uD654\uBA74 \uC804\uC5ED
@@ -46,7 +46,7 @@ MonoBehaviour:
     - rid: 416588893178560642
       type: {class: DealPerDamageAllAction, ns: , asm: Assembly-CSharp}
       data:
-        damageStat: {fileID: 11400000, guid: a14c26e18068d564d9b5ad0c069ab271, type: 2}
+        damageStat: {fileID: 11400000, guid: bf4067e0886533a48aee79a61a13f0c2, type: 2}
         defaultPerDamage: 0.3
         bonusDamageStat: {fileID: 0}
         bonusDamageStatFactor: 0

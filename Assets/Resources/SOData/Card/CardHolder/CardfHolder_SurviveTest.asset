@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f44961ce9b6c0d40a907cd2b5f3ddc4, type: 3}
+  m_Name: CardfHolder_SurviveTest
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: 36e196b01edd47a458e3c9b7ce50dec9, type: 2}
+  - {fileID: 11400000, guid: ce57592713293124ebaa6cb4fd2dd162, type: 2}
+  - {fileID: 11400000, guid: c9b8abefbb2bdc64e80378494c3018a9, type: 2}
+  - {fileID: 11400000, guid: 59a1da136d9691b46b69c0423c7e3503, type: 2}
+  - {fileID: 11400000, guid: 056ea0b020dc7c14c94f302b5f39a1e5, type: 2}
+  - {fileID: 11400000, guid: 37b32efb96a602f4baece147ef61b1f2, type: 2}
+  - {fileID: 11400000, guid: 33d49b5754545bd4a9709e047f9ad84e, type: 2}
+  - {fileID: 11400000, guid: e6d29939c70af5945be4b3db34da79e3, type: 2}
+  - {fileID: 11400000, guid: 45dc515e1bcac5649a1c894cafe79505, type: 2}
+  - {fileID: 11400000, guid: 02637dc08c55541449e6553ca10d1efd, type: 2}
+  - {fileID: 11400000, guid: a976e2a5890de514e867aab844a8524e, type: 2}
+  - {fileID: 11400000, guid: 2f8814a152c6e3d4aa2a4c88967305da, type: 2}

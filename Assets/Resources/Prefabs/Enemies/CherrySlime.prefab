@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0a4e98600843cf4ca05cc36fd4e05fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelStat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
   maxHpStat: {fileID: 11400000, guid: c214af5452a31584f906b9a7650639e2, type: 2}
   hpStat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
   maxSkillCostStat: {fileID: 0}
@@ -234,9 +235,12 @@ MonoBehaviour:
   damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
   criticalDamageStat: {fileID: 0}
   criticalPerStat: {fileID: 0}
+  expChargeStat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+  heartDropRateStat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+  statGrowthTable: {fileID: 11400000, guid: f5ec0ab398393e8439f34472afea482b, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 30
   - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
     isUseOverride: 0
@@ -257,6 +261,15 @@ MonoBehaviour:
     isUseOverride: 0
     overrideDefaultValue: 0.1
   - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0.1
 --- !u!114 &7215360710016184342

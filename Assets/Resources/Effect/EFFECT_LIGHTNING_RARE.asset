@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 39
+  id: 41
   codeName: LIGHTNING_RARE
   displayName: "(\uBC88\uAC1C \uC18D\uC131) \uC8FC\uBCC0 \uBAAC\uC2A4\uD130\uC5D0\uAC8C
     \uC804\uC774"

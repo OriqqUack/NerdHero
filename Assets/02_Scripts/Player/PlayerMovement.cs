@@ -60,8 +60,6 @@ public class PlayerMovement : Movement
 
     private void Update()
     {
-        Debug.Log($"Current State: {entity.StateMachine.GetCurrentState().GetType().Name}");
-        //TEST CODE
         if(isKeyBoard)
             KeyBoardUpdate();
         else

@@ -1,7 +1,6 @@
 {
   "buildFiles": [
     "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
-    "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\FramePacing\\CMakeLists.txt",
     "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\GameActivity\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
@@ -24,13 +23,6 @@
       "abi": "armeabi-v7a",
       "artifactName": "game",
       "output": "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\5n1j5q5l\\obj\\armeabi-v7a\\libgame.so",
-      "runtimeFiles": []
-    },
-    "swappywrapper::@7e25bd1f32ce224db4e9": {
-      "toolchain": "toolchain",
-      "abi": "armeabi-v7a",
-      "artifactName": "swappywrapper",
-      "output": "H:\\NerdHero\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\5n1j5q5l\\obj\\armeabi-v7a\\libswappywrapper.so",
       "runtimeFiles": []
     }
   },

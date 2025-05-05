@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 76
+  id: 43
   codeName: ORB_COMMON_ICE
   displayName: "\uC5BC\uC74C \uAD6C\uCCB4"
   description: "\uC5BC\uC74C \uAD6C\uCCB4\uC774\uB2E4.\n"

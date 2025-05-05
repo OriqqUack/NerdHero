@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
+public class InventoryManager : ISaveable
 {
     private List<ItemSO> items = new List<ItemSO>();
     private List<Skill> skillList = new List<Skill>();
@@ -14,6 +14,11 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
 
     public List<ItemSO> GetItems() => items;
 
+    public void Init()
+    {
+        Managers.DataManager.AddSaveable(this);
+    }
+    
     public void SetupSkills()
     {
         _filteredSkillList.Clear();
@@ -81,41 +86,41 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
     {
         Equipment equipment = Equipment.Instance;
 
-        data.inventoryItems.Clear();
-        data.quantityOrLevel.Clear();
+        data.Inventory.inventoryItems.Clear();
+        data.Inventory.quantityOrLevel.Clear();
         foreach (ItemSO item in items)
         {
-            data.inventoryItems.Add(item.itemName);
-            data.quantityOrLevel.Add(item.quantityOrLevel);
+            data.Inventory.inventoryItems.Add(item.itemName);
+            data.Inventory.quantityOrLevel.Add(item.quantityOrLevel);
         }
         
         if(equipment)
         {
-            data.equippedWeapon = equipment.weapon?.itemName;
-            if (equipment.weapon != null) data.weaponLevel = equipment.weapon.quantityOrLevel;
+            data.Inventory.equippedWeapon = equipment.weapon?.itemName;
+            if (equipment.weapon != null) data.Inventory.weaponLevel = equipment.weapon.quantityOrLevel;
 
-            data.equippedArmor = equipment.armor?.itemName;
-            if (equipment.armor != null) data.armorLevel = equipment.armor.quantityOrLevel;
+            data.Inventory.equippedArmor = equipment.armor?.itemName;
+            if (equipment.armor != null) data.Inventory.armorLevel = equipment.armor.quantityOrLevel;
 
-            data.equippedHelmet = equipment.helmet?.itemName;
-            if (equipment.helmet != null) data.helmetLevel = equipment.helmet.quantityOrLevel;
+            data.Inventory.equippedHelmet = equipment.helmet?.itemName;
+            if (equipment.helmet != null) data.Inventory.helmetLevel = equipment.helmet.quantityOrLevel;
 
-            data.equippedBoots = equipment.boots?.itemName;
-            if (equipment.boots != null) data.bootsLevel = equipment.boots.quantityOrLevel;
+            data.Inventory.equippedBoots = equipment.boots?.itemName;
+            if (equipment.boots != null) data.Inventory.bootsLevel = equipment.boots.quantityOrLevel;
         }
         
-        data.skills.Clear();
-        data.skillLevels.Clear();
+        data.Inventory.skills.Clear();
+        data.Inventory.skillLevels.Clear();
         foreach (Skill skill in _filteredSkillList)
         {
-            data.skills.Add(skill.CodeName);
-            data.skillLevels.Add(skill.Level);
+            data.Inventory.skills.Add(skill.CodeName);
+            data.Inventory.skillLevels.Add(skill.Level);
         }
         
         if(equipment?.skill1)
-            data.equippedSkill1 = equipment.skill1.CodeName;
+            data.Inventory.equippedSkill1 = equipment.skill1.CodeName;
         if(equipment?.skill2)
-            data.equippedSkill2 = equipment.skill2.CodeName;
+            data.Inventory.equippedSkill2 = equipment.skill2.CodeName;
     }
 
     public void Load(SaveData data)
@@ -125,12 +130,12 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
         //인벤토리 로드
         items.Clear();
         int index = 0;
-        foreach (string itemName in data.inventoryItems)
+        foreach (string itemName in data.Inventory.inventoryItems)
         {
             ItemSO item = ItemDatabase.Instance.GetItemByName(itemName);
             if (item != null)
             {
-                item.quantityOrLevel = data.quantityOrLevel[index];
+                item.quantityOrLevel = data.Inventory.quantityOrLevel[index];
                 items.Add(item);
             }
             index++;
@@ -138,25 +143,25 @@ public class InventoryManager : MonoSingleton<InventoryManager>, ISaveable
 
         //Skill
         skillList.Clear();
-        for (int i = 0; i < data.skills.Count; i++)
+        for (int i = 0; i < data.Inventory.skills.Count; i++)
         {
-            skillList.Add(Resources.Load<Skill>($"Skill/SKILL_{data.skills[i]}"));
+            skillList.Add(Resources.Load<Skill>($"Skill/SKILL_{data.Inventory.skills[i]}"));
         }
         SetupSkills();
         for (int i = 0; i < _filteredSkillList.Count; i++)
         {
-            _filteredSkillList[i].Level = data.skillLevels[i];
+            _filteredSkillList[i].Level = data.Inventory.skillLevels[i];
         }
             
         //EquippedSkill 불러오기
-        if(!string.IsNullOrEmpty(data.equippedSkill1))
+        if(!string.IsNullOrEmpty(data.Inventory.equippedSkill1))
         {
-            var skill = _filteredSkillList.Find((x) => x.CodeName == data.equippedSkill1);
+            var skill = _filteredSkillList.Find((x) => x.CodeName == data.Inventory.equippedSkill1);
             equipment.Equip(skill, 0);
         }
-        if(!string.IsNullOrEmpty(data.equippedSkill2))
+        if(!string.IsNullOrEmpty(data.Inventory.equippedSkill2))
         {
-            var skill = _filteredSkillList.Find((x) => x.CodeName == data.equippedSkill2);
+            var skill = _filteredSkillList.Find((x) => x.CodeName == data.Inventory.equippedSkill2);
             equipment.Equip(skill, 1);
         }
            

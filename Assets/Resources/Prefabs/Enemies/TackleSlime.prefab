@@ -6009,16 +6009,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &710930120121764238
-Transform:
+--- !u!224 &710930120121764238
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7053841995453985184}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 2.5, y: -2.061, z: -0.85}
+  m_LocalPosition: {x: 0, y: 0, z: -0.85}
   m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6026,6 +6025,11 @@ Transform:
   - {fileID: 3791803216410981441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.5, y: -2.061}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7680415852058913355
 GameObject:
   m_ObjectHideFlags: 0
@@ -6330,7 +6334,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9061245989788286607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a0f8a82c5d8a334db6996478778b892, type: 3}
   m_Name: 
@@ -6455,9 +6459,12 @@ MonoBehaviour:
   damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
   criticalDamageStat: {fileID: 0}
   criticalPerStat: {fileID: 0}
+  expChargeStat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+  heartDropRateStat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+  statGrowthTable: {fileID: 11400000, guid: fb6664d486d8c9f4b9f121c9699ee80e, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
     isUseOverride: 0
@@ -6475,11 +6482,21 @@ MonoBehaviour:
     isUseOverride: 1
     overrideDefaultValue: 0.1
   - stat: {fileID: 11400000, guid: c214af5452a31584f906b9a7650639e2, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
     isUseOverride: 0
     overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  - stat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0.1
+  Level: 1
 --- !u!114 &8883713105781629486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6591,7 +6608,7 @@ MonoBehaviour:
         Damage Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(367.6099,174.150543)"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WaitAnimationAction","NodeData":{"Offset":"(-73.2767639,149.607727)"},"ID":10,"Name":"Wait
         Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(88.2995,145.582031)"},"ID":11,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.960335,116.030945)"},"ID":12,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-697.156,130.636475)"},"ID":13,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"OnAirCondition","NodeData":{"Offset":"(-329.91272,156.854462)"},"ID":14,"Name":"On
         Air Condition","Instant":true},{"Type":"InAirColliderDetectCondition","NodeData":{"Offset":"(-145.832092,164.5833)"},"ID":15,"Name":"In
-        Air Collider Detect Condition","Instant":true},{"Type":"SkillUseAction","NodeData":{"Offset":"(30.08728,159.2583)"},"ID":16,"Name":"Skill
+        Air Collider Detect Condition","Instant":true,"GameObjectvfxPrefab":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(30.08728,159.2583)"},"ID":16,"Name":"Skill
         Use Action","Instant":true,"StringanimationName":"comeback","Int32skillIndex":1,"BooleanIsMoveSkill":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-187.499939,140.952637)"},"ID":17,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CanUseSkill","NodeData":{"Offset":"(-333.279572,164.009949)"},"ID":18,"Name":"Can
         Use Skill","Instant":true,"Int32skillIndex":0},{"Type":"TracingAction","NodeData":{"Offset":"(-185.827652,158.549957)"},"ID":19,"Name":"Tracing
         Action","Instant":true,"SingleTracingTime":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(-35.65159,155.33609)"},"ID":20,"Name":"Skill
@@ -6603,7 +6620,8 @@ MonoBehaviour:
         fieldNameHash: 
         startIndex: 
         dataPosition: 
-        unityObjects: []
+        unityObjects:
+        - {fileID: 3223031359271505891, guid: 155410a7086d1d34ca48c448dfc33156, type: 3}
         byteData: 
         byteDataArray: 
       Version: 1.7.12
@@ -6628,6 +6646,7 @@ MonoBehaviour:
   rigidBody: {fileID: 5020488481555261390}
   isCC: 0
   zAttackOffset: 2
+  stifnessCycle: 3
 --- !u!114 &3220409125600034622
 MonoBehaviour:
   m_ObjectHideFlags: 0

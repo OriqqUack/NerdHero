@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 527226059664411072}
   - component: {fileID: 4121123713214688634}
   - component: {fileID: 8621681244891324275}
+  - component: {fileID: 1470377142633485874}
   m_Layer: 10
   m_Name: FireExlplosion
   m_TagString: Untagged
@@ -227,9 +228,12 @@ MonoBehaviour:
   damageReductionStat: {fileID: 11400000, guid: d9e18c45d2c0bf241a62fc582ae99ce1, type: 2}
   criticalDamageStat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
   criticalPerStat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
+  expChargeStat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+  heartDropRateStat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+  statGrowthTable: {fileID: 11400000, guid: 1f0d8b43e852e284196efa32b3784d7c, type: 2}
   statOverrides:
   - stat: {fileID: 11400000, guid: 5fd051661aca54d4099609a9dda2ee30, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 10
   - stat: {fileID: 11400000, guid: 2158de39d0c02af42876524eb4198a59, type: 2}
     isUseOverride: 0
@@ -253,11 +257,21 @@ MonoBehaviour:
     isUseOverride: 0
     overrideDefaultValue: 1
   - stat: {fileID: 11400000, guid: 3734852b39b3e394c93b66bbabfa47bf, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 0
   - stat: {fileID: 11400000, guid: c60f8e6fb6d09b54abe868338304be28, type: 2}
-    isUseOverride: 1
+    isUseOverride: 0
     overrideDefaultValue: 0
+  - stat: {fileID: 11400000, guid: 653e860c98ce9ec4a898b176b2ccea0c, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0
+  - stat: {fileID: 11400000, guid: cd8fbcbebd04f89418c70c23ed2ece63, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0
+  - stat: {fileID: 11400000, guid: 033cd2b00137250419ed4b5997642c80, type: 2}
+    isUseOverride: 0
+    overrideDefaultValue: 0
+  Level: 1
 --- !u!114 &4676148266480167598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,9 +380,9 @@ MonoBehaviour:
         Condition","Instant":true},{"Type":"DeadAction","NodeData":{"Offset":"(-16.973999,164.21051)"},"ID":5,"Name":"Dead
         Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-69.37616,155.74913)"},"ID":6,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"IsTargetInsight","NodeData":{"Offset":"(-146.861145,163.313538)"},"ID":7,"Name":"Is
         Target Insight","Instant":true,"SinglefieldOfViewAngle":45,"SingleviewDistance":10},{"Type":"SkillUseAction","NodeData":{"Offset":"(2.97043037,163.862747)"},"ID":8,"Name":"Skill
-        Use Action","Instant":true,"Int32skillIndex":0,"BooleanIsMoveSkill":true},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(137.142761,162.856934)"},"ID":9,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"TracingAction","NodeData":{"Offset":"(4.28571224,124.285759)"},"ID":10,"Name":"Tracing
-        Action","Instant":true,"SingleTracingTime":0}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(248.8233,155.294128)"},"ID":11,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"TracingAction","NodeData":{"Offset":"(-6.32366943,171.96051)"},"ID":12,"Name":"Tracing
-        Action","Instant":true,"SingleTracingTime":0}]}]}]}}'
+        Use Action","Instant":true,"Int32skillIndex":0,"BooleanIsMoveSkill":true},{"Type":"TracingAction","NodeData":{"Offset":"(140,162.978638)"},"ID":9,"Name":"Tracing
+        Action","Instant":true,"SingleTracingTime":0,"BooleanInfinityChasing":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(248.8233,155.294128)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"TracingAction","NodeData":{"Offset":"(-6.32366943,171.96051)"},"ID":11,"Name":"Tracing
+        Action","Instant":true,"SingleTracingTime":0,"BooleanInfinityChasing":false}]}]}]}}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -494,6 +508,19 @@ MonoBehaviour:
   movementPlaneSourceBacking: 0
   syncPosition: 1
   syncRotation: 1
+--- !u!114 &1470377142633485874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847966470076697188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329934d98121e0b48b3255820d1541f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropTable: {fileID: 11400000, guid: 90009f2f200987b4abd35752fa7c8885, type: 2}
 --- !u!1 &2401395277905165740
 GameObject:
   m_ObjectHideFlags: 0

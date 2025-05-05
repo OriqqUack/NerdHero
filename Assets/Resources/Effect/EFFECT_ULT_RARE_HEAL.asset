@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   icon: {fileID: 0}
-  id: 69
+  id: 77
   codeName: ULT_RARE_HEAL
   displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uCCB4\uB825 \uD68C\uBCF5"
   description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uCCB4\uB825 +20% \uD68C\uBCF5\r"
