@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class UI_Profile : UiWindow
     [SerializeField] private Image iconInnerBorder;
     [SerializeField] private Image iconDeco;
     [SerializeField] private GameObject iconGlow;
+    [SerializeField] private TextMeshProUGUI playerNickName;
+    [SerializeField] private Button nickChangeBtn;
 
     [Space(10)] [Header("Profile Info")] 
     [SerializeField] private GameObject profileMiddle;
@@ -80,6 +83,7 @@ public class UI_Profile : UiWindow
     protected override void Start()
     {
         base.Start();
+        
         _baseProfileImage = profileBtn.GetComponent<Image>();
         _baseProfileBgColor = _baseProfileImage.color;
         _baseProfileInnerBorderImage = profileInnerBorder.GetComponent<Image>();
@@ -90,7 +94,8 @@ public class UI_Profile : UiWindow
         profileBtn.onClick.AddListener(() => UpdateProfile());
         frameBtn.onClick.AddListener(() => UpdatePlayerFrame());
         playerIconBtn.onClick.AddListener(() => UpdatePlayerIcon());
-
+        nickChangeBtn.onClick.AddListener(() => UI_MainScene.Instance.OpenNickNameChanger());
+        UserInfo.Instance.OnUserInfoUpdated.AddListener(() => UpdateNickName());
         foreach (var data in frameLists)
         {
             Button btn = Instantiate(framePrefab, frameContents);
@@ -111,6 +116,12 @@ public class UI_Profile : UiWindow
             Resources.Load<Sprite>($"Sprites/ProfileIcon/{GameManager.Instance.PlayerProfile.profileIconName}");
         
         UpdateProfile();
+        UpdateNickName();
+    }
+
+    public void UpdateNickName()
+    {
+        playerNickName.text = string.IsNullOrEmpty(UserInfo.Data.nickName) ? UserInfo.Data.gamerId : UserInfo.Data.nickName;
     }
 
     public void SelectFrame(FrameData frameData)

@@ -7,7 +7,7 @@ public class UI_PlayerInfo : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerLevel;
     [SerializeField] private TextMeshProUGUI playerName;
-    [SerializeField] private Image playerPortrait;
+    [SerializeField] private TextMeshProUGUI playerNickname;
     [SerializeField] private Slider expSlider;
 
     private void Start()
@@ -17,6 +17,11 @@ public class UI_PlayerInfo : MonoBehaviour
         
         UpdateLevel(GameManager.Instance.GetPlayerLevelStat(), 0 ,0);
         UpdateExp(GameManager.Instance.GetPlayerExpStat(), 0, 0);
+    }
+
+    public void UpdateNickName()
+    {
+        playerNickname.text = string.IsNullOrEmpty(UserInfo.Data.nickName) ? UserInfo.Data.gamerId : UserInfo.Data.nickName;
     }
 
     private void UpdateLevel(Stat stat, float currentLevel, float prevLevel)

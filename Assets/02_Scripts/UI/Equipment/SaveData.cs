@@ -5,6 +5,29 @@ using System;
 using UnityEngine;
 
 [System.Serializable]
+public class UserInfoData
+{
+    public string gamerId;
+    public string countryCode;
+    public string nickName;
+    public string inDate;
+    public string emailForFindPassword;
+    public string subscriptionType;
+    public string federationId;
+
+    public void Reset()
+    {
+        gamerId = "Offline";
+        countryCode = "Unknown";
+        nickName = "noName";
+        inDate = string.Empty;
+        emailForFindPassword = string.Empty;
+        subscriptionType = string.Empty;
+        federationId = string.Empty;
+    }
+}
+
+[System.Serializable]
 public class PlayerProfile
 {
     public string playerName;          // 플레이어 이름
@@ -87,7 +110,6 @@ public class CurrencyData
         gold = 0;
         gem = 0;
         energyCount = 100;
-        energyLastCharge = "";
     }
 }
 

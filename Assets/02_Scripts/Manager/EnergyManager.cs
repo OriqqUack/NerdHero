@@ -102,7 +102,17 @@ public class EnergyManager : ISaveable
     public void Load(SaveData data)
     {
         CurrentEnergy = data.CurrencyData.energyCount;
-        long lastTicks = Convert.ToInt64(data.CurrencyData.energyLastCharge);
+        long lastTicks = 0;
+        if (!string.IsNullOrEmpty(data.CurrencyData.energyLastCharge))
+        {
+            bool success = long.TryParse(data.CurrencyData.energyLastCharge, out lastTicks);
+            if (!success)
+            {
+                Debug.LogWarning("EnergyManager: 저장된 lastChargeTime 포맷 이상. 기본값으로 초기화.");
+                lastTicks = 0;
+            }
+        }
+
         lastChargeTime = lastTicks == 0 ? DateTime.UtcNow : new DateTime(lastTicks);
 
         UpdateEnergyFromOffline();

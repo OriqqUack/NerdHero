@@ -18,7 +18,8 @@ public class WindowHolder : MonoBehaviour
         ExitAlert,
         Revive,
         GameEnd,
-        CardSelec
+        CardSelec,
+        ChangeNickName
     }
 
     public string Name = "Window";
@@ -71,6 +72,10 @@ public class WindowHolder : MonoBehaviour
             case HolderType.CardSelec:
                 newWindow = WindowManager.GetWindow("CardSelec", this);
                 break;
+            case HolderType.ChangeNickName:
+                newWindow = WindowManager.GetWindow("ChangeNickName", this);
+                break;
+
         }
         if(newWindow != null) newWindow.Initialize(this, Name);
 

@@ -162,6 +162,7 @@ Transform:
   - {fileID: 2071109635}
   - {fileID: 453677129}
   - {fileID: 902315638}
+  - {fileID: 649363358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &38690500
@@ -1256,6 +1257,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Quest
   Type: 2
+--- !u!1 &649363356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 649363358}
+  - component: {fileID: 649363357}
+  m_Layer: 0
+  m_Name: Holder_ChangeNickName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &649363357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649363356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3848ee8189a98a546b5e254b13a0af3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: ChangeNickName
+  Type: 14
+--- !u!4 &649363358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649363356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 37389702}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &688084752
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,6 +1805,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: dbd351b754a5948baa4497d72a93b63d, type: 3}
+    - target: {fileID: 9116038024035312280, guid: 9cb4a6cd0edbd464593a11930f5ae03f, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9127558778453615602, guid: 9cb4a6cd0edbd464593a11930f5ae03f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 32.274933
@@ -1898,7 +1949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLevel: {fileID: 750407529}
   playerName: {fileID: 750407531}
-  playerPortrait: {fileID: 0}
+  playerNickname: {fileID: 750407531}
   expSlider: {fileID: 750407530}
 --- !u!1 &758617344
 GameObject:
@@ -2657,6 +2708,7 @@ MonoBehaviour:
   energyCharge: {fileID: 2071109636}
   equipment: {fileID: 453677130}
   equipmentDetailPopup: {fileID: 902315639}
+  nickNameChanger: {fileID: 649363357}
 --- !u!114 &1297214281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,6 +3681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1799422747}
   - component: {fileID: 1799422746}
+  - component: {fileID: 1799422748}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -3648,6 +3701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1077fe5dbdd1447bd3e4638a01f4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userInfo: {fileID: 1799422748}
   backgroundMusic: {fileID: 8300000, guid: 6861e8bd05151f547a9294277fa10b9a, type: 3}
 --- !u!4 &1799422747
 Transform:
@@ -3664,6 +3718,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799422748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799422745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e07f8ad81698ec469913fb61f756aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUserInfoUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 750407535}
+        m_TargetAssemblyTypeName: UI_PlayerInfo, Assembly-CSharp
+        m_MethodName: UpdateNickName
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1820467928
 GameObject:
   m_ObjectHideFlags: 0

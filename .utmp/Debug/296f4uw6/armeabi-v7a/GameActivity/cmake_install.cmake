@@ -1,4 +1,4 @@
-# Install script for directory: H:/NerdHero/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity
+# Install script for directory: H:/NerdHero/Library/PramData/AndroidApplicationController/Cache/com.NerdHero.NerdHero/gradle-project/unityLibrary/src/main/cpp/GameActivity
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
