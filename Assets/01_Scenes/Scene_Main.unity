@@ -2292,7 +2292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5967d70c855c0b9448f2216e6880a632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WaveData: {fileID: 11400000, guid: e3ec03da37094864d9e5a054300ee492, type: 2}
+  WaveData: {fileID: 11400000, guid: e9bd84020d6baac458dac023ecb92476, type: 2}
   IsLocked: 1
   LockedEffect: {fileID: 0}
 --- !u!114 &961061641

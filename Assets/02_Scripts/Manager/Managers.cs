@@ -13,6 +13,7 @@ public class Managers : MonoSingleton<Managers>
     EnergyManager _energy = new EnergyManager();
     SoundManager _sound = new SoundManager();
     DataManager _data = new DataManager();
+    BackendDataManager _backend = new BackendDataManager();
     InventoryManager _inventory = new InventoryManager();
 
     //public static InputManager Input { get { return Instance._input; } }
@@ -21,6 +22,7 @@ public class Managers : MonoSingleton<Managers>
     public static EnergyManager EnergyManager { get { return Instance._energy; } }
     public static SoundManager SoundManager { get { return Instance._sound; } }
     public static DataManager DataManager { get { return Instance._data; } }
+    public static BackendDataManager BackendManager { get { return Instance._backend; } }
     public static InventoryManager InventoryManager { get { return Instance._inventory; } }
     #endregion
 
