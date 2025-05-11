@@ -9,6 +9,7 @@ public class Progress : MonoBehaviour
     [SerializeField] private Slider sliderProgress;
     [SerializeField] private TextMeshProUGUI progressText;
     [SerializeField] private float progressTime;
+    [SerializeField] private StartSceneBgController bgController;
 
     public void Play(UnityAction action = null)
     {
@@ -30,6 +31,7 @@ public class Progress : MonoBehaviour
             yield return null;
         }
         
+        bgController.Setup();
         action?.Invoke();
     }
 }

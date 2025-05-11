@@ -3,6 +3,6 @@ using UnityEngine;
 
 public interface ISaveable
 {
-    void Save(SaveData data);
-    void Load(SaveData data);
+    void Save(GameData data);
+    void Load(GameData data);
 }

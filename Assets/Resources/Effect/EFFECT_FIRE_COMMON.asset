@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EFFECT_FIRE_COMMON
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: 960763591, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 20
   codeName: FIRE_COMMON
-  displayName: "(\uBD88 \uC18D\uC131)\uCD08\uB2F9 \uD53C\uD574"
+  displayName: "\uD654\uC5FC"
   description: "3\uCD08\uAC04 \uB9E4\uCD08 \uACF5\uACA9\uB825\uC758 30% \uD53C\uD574\r"
   type: 0
   rarity: 0
@@ -77,19 +77,21 @@ MonoBehaviour:
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:
         targetType: 1
-        methodType: 1
+        methodType: 0
         prefab: {fileID: 1835174905073365006, guid: 20ef6b939ba969b4bb8a4aca1e25f32b, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1
         isDestroyOnRelease: 1
+        audioClip: {fileID: 0}
     - rid: 416589032516223099
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:
         targetType: 1
-        methodType: 1
+        methodType: 0
         prefab: {fileID: 1835174905073365006, guid: 20ef6b939ba969b4bb8a4aca1e25f32b, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1
         isDestroyOnRelease: 1
+        audioClip: {fileID: 0}

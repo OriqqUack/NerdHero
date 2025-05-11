@@ -7,7 +7,7 @@ using Object = UnityEngine.Object;
 
 public class DataManager
 {
-    public SaveData SaveData;
+    /*public SaveData SaveData;
 
     private List<ISaveable> _saveables = new List<ISaveable>();
     private ES3Settings _es3Settings;
@@ -65,5 +65,5 @@ public class DataManager
         _saveables.Clear();
         _saveables.AddRange(Object.FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveable>());
         DataLoad();
-    }
+    }*/
 }

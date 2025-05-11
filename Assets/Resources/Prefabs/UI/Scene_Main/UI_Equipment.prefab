@@ -392,10 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 0
-  backgroundImage: {fileID: 3908297109781277526}
-  icon: {fileID: 7526836091837253466}
-  itemLevelText: {fileID: 8905347079930630066}
-  skillIndex: 0
+  slotPrefab: {fileID: 0}
 --- !u!114 &2252449647087091680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,7 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.14509805, g: 0.13333334, b: 0.2509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -697,10 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 0
-  backgroundImage: {fileID: 815667693697980601}
-  icon: {fileID: 5617904966901554423}
-  itemLevelText: {fileID: 2807767220376097057}
-  skillIndex: 0
+  slotPrefab: {fileID: 309838711964443349, guid: 38d230b30befc63439d3d072a56b5df0, type: 3}
 --- !u!222 &1729957946351835077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1232,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.14509805, g: 0.13333334, b: 0.2509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1307,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.11764706, g: 0.10980392, b: 0.21176471, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4447,10 +4441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 0
-  backgroundImage: {fileID: 6459177117462754501}
-  icon: {fileID: 8850277840473342718}
-  itemLevelText: {fileID: 5617051143106240404}
-  skillIndex: 0
+  slotPrefab: {fileID: 0}
 --- !u!1 &1623465180093201404
 GameObject:
   m_ObjectHideFlags: 0
@@ -4900,7 +4891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.18039216, g: 0.14901961, b: 0.28627452, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5824,10 +5815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 3
-  backgroundImage: {fileID: 6821549064910444695}
-  icon: {fileID: 3290303991403481256}
-  itemLevelText: {fileID: 6652474676840573181}
-  skillIndex: 0
+  slotPrefab: {fileID: 309838711964443349, guid: 38d230b30befc63439d3d072a56b5df0, type: 3}
 --- !u!222 &6424499710242559641
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6242,10 +6230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 1
-  backgroundImage: {fileID: 8055343543686934329}
-  icon: {fileID: 2532296633929443092}
-  itemLevelText: {fileID: 7612785438971438282}
-  skillIndex: 0
+  slotPrefab: {fileID: 0}
 --- !u!114 &4500436472248100912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7585,7 +7570,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bfaeae48685d247718c2ae43eee3ee37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ceeb0587c5bf34afa97f3b996a0d2e99, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8427,7 +8412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.11764706, g: 0.10980392, b: 0.21176471, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10217,7 +10202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD5EC\uBA67"
+  m_text: "\uC637"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6c7a22561d7dca14b9e4fbdee263683a, type: 2}
   m_sharedMaterial: {fileID: 8760086736241160182, guid: 6c7a22561d7dca14b9e4fbdee263683a, type: 2}
@@ -10635,7 +10620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpStatsText: {fileID: 5947257885761568305}
-  damageStatsText: {fileID: 187313232802919637}
+  criticalStatsText: {fileID: 0}
 --- !u!114 &3503909673125232176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10908,7 +10893,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 37.12, y: 59.07}
+  m_SizeDelta: {x: 92, y: 59.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2772374289838546913
 CanvasRenderer:
@@ -12764,7 +12749,7 @@ MonoBehaviour:
         m_MethodName: AddItem
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: a3f84c48ccd345d4ba77255e58aade52, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 3780a49b60fc5a14795d7e84098ff402, type: 2}
           m_ObjectArgumentAssemblyTypeName: ItemSO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -14396,7 +14381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.11764706, g: 0.10980392, b: 0.21176471, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -14490,7 +14475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpStatsText: {fileID: 1792043511443654853}
-  damageStatsText: {fileID: 7008124048487536026}
+  criticalStatsText: {fileID: 7008124048487536026}
 --- !u!1 &5162647563115365636
 GameObject:
   m_ObjectHideFlags: 0
@@ -14776,7 +14761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.14509805, g: 0.13333334, b: 0.2509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -16243,7 +16228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.14509805, g: 0.13333334, b: 0.2509804, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -17799,7 +17784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.18039216, g: 0.14901961, b: 0.28627452, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19264,7 +19249,7 @@ MonoBehaviour:
         m_MethodName: AddItem
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 4f61f24950bf2fd419988cd13ae1b608, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 471da84985526694ab1eb035a442aa38, type: 2}
           m_ObjectArgumentAssemblyTypeName: ItemSO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -19819,6 +19804,8 @@ MonoBehaviour:
   armorSlot: {fileID: 7670348681292093177}
   bootsSlot: {fileID: 2938927402522065238}
   closeBtn: {fileID: 443081101259493228}
+  skeleton: {fileID: 6204401048318793567}
+  emotion: {fileID: 11400000, guid: 4c63d0c2e94c54e40b5ec0a90c8cbd24, type: 2}
 --- !u!225 &35398511636052602
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -21076,7 +21063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.11764706, g: 0.10980392, b: 0.21176471, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -22726,10 +22713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 2
-  backgroundImage: {fileID: 7642147414845186171}
-  icon: {fileID: 8172717481225078797}
-  itemLevelText: {fileID: 5795463204149726128}
-  skillIndex: 0
+  slotPrefab: {fileID: 309838711964443349, guid: 38d230b30befc63439d3d072a56b5df0, type: 3}
 --- !u!222 &8469095517940023177
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23356,7 +23340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.18039216, g: 0.14901961, b: 0.28627452, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -23796,10 +23780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 3
-  backgroundImage: {fileID: 5338963510649180919}
-  icon: {fileID: 9107080330088555425}
-  itemLevelText: {fileID: 138461632451059589}
-  skillIndex: 0
+  slotPrefab: {fileID: 0}
 --- !u!1 &8485835613095972558
 GameObject:
   m_ObjectHideFlags: 0
@@ -25432,7 +25413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.18039216, g: 0.14901961, b: 0.28627452, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -26501,10 +26482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotType: 1
-  backgroundImage: {fileID: 5045318599670969765}
-  icon: {fileID: 3447216038756182780}
-  itemLevelText: {fileID: 3730081241290294466}
-  skillIndex: 0
+  slotPrefab: {fileID: 309838711964443349, guid: 38d230b30befc63439d3d072a56b5df0, type: 3}
 --- !u!222 &7971209280366628951
 CanvasRenderer:
   m_ObjectHideFlags: 0

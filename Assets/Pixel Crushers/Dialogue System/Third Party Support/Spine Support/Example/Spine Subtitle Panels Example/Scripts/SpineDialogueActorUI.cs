@@ -13,6 +13,7 @@ namespace PixelCrushers.DialogueSystem.SpineSupport
     [RequireComponent(typeof(DialogueActor))]
     public class SpineDialogueActorUI : SpineDialogueActor
     {
+        [SerializeField] private AudioClip audioClip;
         public override void Show(StandardUISubtitlePanel subtitlePanel)
         {
             if (spineGameObject == null || subtitlePanel == null || subtitlePanel.portraitImage == null) return;
@@ -35,6 +36,12 @@ namespace PixelCrushers.DialogueSystem.SpineSupport
             spineGameObject.GetComponent<RectTransform>().anchoredPosition = subtitlePanel.portraitImage.GetComponent<RectTransform>().anchoredPosition;
             subtitlePanel.GetComponent<Animator>().Rebind();
             subtitlePanel.GetComponent<Animator>().SetTrigger(subtitlePanel.showAnimationTrigger);
+        }
+
+        public void PlayAudio()
+        {
+            if(audioClip)
+                Managers.SoundManager.Play(audioClip);
         }
     }
 }

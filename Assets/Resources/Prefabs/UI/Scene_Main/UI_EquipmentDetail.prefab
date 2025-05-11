@@ -1948,7 +1948,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6696202708059994442}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: Bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

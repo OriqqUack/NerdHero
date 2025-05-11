@@ -1,4 +1,5 @@
 using System;
+using Spine.Unity;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +8,9 @@ public class UI_Equipment : UiWindow
 {
     [SerializeField] private EquipmentSlot weaponSlot, headsetSlot, armorSlot, bootsSlot;
     [SerializeField] private Button closeBtn;
-
+    [SerializeField] private SkeletonGraphic skeleton;
+    [SerializeField] private AnimationReferenceAsset emotion;
+    
     protected override void Start()
     {
         base.Start();
@@ -21,6 +24,8 @@ public class UI_Equipment : UiWindow
         Equip(equipment.helmet);
         Equip(equipment.armor);
         Equip(equipment.boots);
+
+        skeleton.AnimationState.AddAnimation(1, emotion, true, 0);
     }
 
     private void Equip(ItemSO item)

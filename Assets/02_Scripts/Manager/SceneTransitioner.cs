@@ -1,10 +1,16 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
+using PixelCrushers.DialogueSystem;
 
 public enum SceneType
 {
+    CurrentScene,
+    StartScene,
+    StoryScene,
+    TutorialScene,
     MainScene,
     InGameScene,
     LoadingScene
@@ -12,63 +18,106 @@ public enum SceneType
 
 public class SceneTransitioner : MonoSingleton<SceneTransitioner>
 {
+    [SerializeField] private SceneType sceneType;
     [SerializeField] private Image transitionImage;
-    [SerializeField] private float lerpDuration = 1f; // 몇 초 동안 변화할지
-
-    private static string referenceName = "_Lerp"; 
+    [SerializeField] private float fadeDuration = 1f; // 페이드 인/아웃 시간
     
-    private float _elapsedTime = 0f;
+    private static readonly string referenceName = "_Lerp";
     private Material _mat;
-    private bool _isStartScene = true;
+    private bool _isTransitioning = false;
+    private SceneType _nextSceneType;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // Canvas를 
+    }
+
     private void Start()
     {
         if (transitionImage != null)
         {
             _mat = new Material(transitionImage.material);
             transitionImage.material = _mat;
-        }    
-        
-        StartCoroutine(SceneTransition(SceneType.MainScene, 0, 1));
-    }
-
-    public void StartTransitioning(SceneType sceneType, int currentLerp, int targetLerp)
-    {
-        StartCoroutine(SceneTransition(sceneType, currentLerp, targetLerp));
-    }
-
-    IEnumerator SceneTransition(SceneType sceneType, int currentLerp, int targetLerp)
-    {
-        while (true)
-        {
-            if (_elapsedTime < lerpDuration)
-            {
-                _elapsedTime += Time.unscaledDeltaTime;
-
-                // 0 → 1로 Lerp
-                float t = _elapsedTime / lerpDuration;
-                float lerpedValue = Mathf.Lerp(currentLerp, targetLerp, t);
-
-                _mat.SetFloat(referenceName, lerpedValue);
-            }
-            else
-            {
-                _mat.SetFloat(referenceName, targetLerp);
-                break;
-            }
-            yield return null;
         }
-        _elapsedTime = 0;
-        
-        if(!_isStartScene)
-            TransitionToScene(sceneType);
-        
-        _isStartScene = false;
-    }
-    
-    private void TransitionToScene(SceneType sceneType)
-    {
-        switch (sceneType)
+
+        if (sceneType != SceneType.StartScene)
         {
+            // 첫 로딩 때는 FadeOut 해서 서서히 보이게
+            FadeOut(null);
+        }
+    }
+
+    public void StartTransitioning(SceneType nextSceneType)
+    {
+        if (_isTransitioning) return;
+        _isTransitioning = true;
+        _nextSceneType = nextSceneType;
+
+        FadeIn(() =>
+        {
+            // FadeIn이 끝나면 LoadScene
+            LoadScene(_nextSceneType);
+            // 그리고 SceneLoaded 이벤트 등록
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        });
+    }
+
+    public void FadeIn(Action onComplete)
+    {
+        float value = 1f;
+
+        DOTween.To(() => value,
+            x => {
+                value = x;
+                _mat.SetFloat(referenceName, value);
+            },
+            0f,
+            fadeDuration)
+        .SetUpdate(true)
+        .OnComplete(() =>
+        {
+            _mat.SetFloat(referenceName, 0f);
+            onComplete?.Invoke();
+        });
+    }
+
+    public void FadeOut(Action onComplete)
+    {
+        float value = 0f;
+
+        DOVirtual.DelayedCall(0.1f, () =>
+        {
+            DOTween.To(() => value,
+                    x => {
+                        value = x;
+                        _mat.SetFloat(referenceName, value);
+                    },
+                    1f,
+                    fadeDuration)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    _mat.SetFloat(referenceName, 1f);
+                    _isTransitioning = false;
+                    SceneManager.sceneLoaded -= OnSceneLoaded; // FadeOut 끝났으면 이벤트 제거
+                    onComplete?.Invoke();
+                });
+        });
+    }
+
+    private void LoadScene(SceneType nextSceneType)
+    {
+        switch (nextSceneType)
+        {
+            case SceneType.StartScene:
+                SceneTransitionManager.LoadSceneInstantly("Scene_Start");
+                break;
+            case SceneType.StoryScene:
+                SceneTransitionManager.LoadSceneInstantly("Scene_Story");
+                break;
+            case SceneType.TutorialScene:
+                SceneTransitionManager.LoadSceneInstantly("Scene_Tutorial");
+                break;
             case SceneType.MainScene:
                 SceneTransitionManager.LoadSceneInstantly("Scene_Main");
                 break;
@@ -79,5 +128,11 @@ public class SceneTransitioner : MonoSingleton<SceneTransitioner>
                 SceneTransitionManager.LoadSceneInstantly("Scene_Loading");
                 break;
         }
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 새 Scene이 완전히 로드된 순간, FadeOut 시작
+        FadeOut(null);
     }
 }

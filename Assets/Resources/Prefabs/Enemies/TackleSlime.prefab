@@ -503,7 +503,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.28}
+  m_AnchoredPosition: {x: 0, y: 2.2799897}
   m_SizeDelta: {x: 2280, y: 1080}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!223 &9038194472106950923
@@ -6233,9 +6233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791803216410981441}
-  - component: {fileID: 141899882629632135}
   - component: {fileID: 5519794772937116663}
-  - component: {fileID: 1281495441182730438}
   - component: {fileID: 8574492264372714579}
   - component: {fileID: 4364245470698133998}
   - component: {fileID: 204467809759226318}
@@ -6277,25 +6275,6 @@ Transform:
   - {fileID: 5846141591404865767}
   m_Father: {fileID: 710930120121764238}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &141899882629632135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9061245989788286607}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d55a3bd6ac81af44b2f9a4447f2ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 5488060046308707656}
-  eventName: 
-  audioSource: {fileID: 2032492732321834234}
-  audioClip: {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
-  basePitch: 1
-  randomPitchOffset: 0.2
-  logDebugMessage: 0
 --- !u!114 &5519794772937116663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6327,88 +6306,6 @@ MonoBehaviour:
   - stateName: appear
     animation: {fileID: 11400000, guid: 377fde08069794945976c0014282552d, type: 2}
   transitions: []
---- !u!114 &1281495441182730438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9061245989788286607}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0f8a82c5d8a334db6996478778b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSource: {fileID: 0}
-  OnJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 141899882629632135}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 141899882629632135}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 330528289267901247}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Emit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnHardLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7857241760221985024}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 330528289267901247}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Emit
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8574492264372714579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6423,6 +6320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  damagedSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8217823893de90a49811bd85ca7e5213, type: 3}
   CanTakeDamage: 1
 --- !u!114 &4364245470698133998
 MonoBehaviour:

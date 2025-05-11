@@ -121,6 +121,7 @@ MonoBehaviour:
         scaleFactor: {x: 3, y: 3, z: 3}
         isAttachToTarget: 0
         isDestroyOnRelease: 0
+        audioClip: {fileID: 8300000, guid: 0c898447cf658fa4aae261a8a8981e90, type: 3}
     - rid: 6372897054790254689
       type: {class: SearchArea, ns: , asm: Assembly-CSharp}
       data:

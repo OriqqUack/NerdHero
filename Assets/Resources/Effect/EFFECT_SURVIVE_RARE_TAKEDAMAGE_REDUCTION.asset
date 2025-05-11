@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EFFECT_SURVIVE_RARE_TAKEDAMAGE_REDUCTION
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: -658999309, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 65
   codeName: SURVIVE_RARE_TAKEDAMAGE_REDUCTION
-  displayName: "\uBC1B\uB294 \uD53C\uD574 \uAC10\uC18C"
+  displayName: "\uACE0\uAE09 \uCDA9\uACA9 \uC644\uD654"
   description: "\uBC1B\uB294 \uD53C\uD574 -20%"
   type: 0
   rarity: 1

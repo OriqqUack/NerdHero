@@ -10,7 +10,9 @@ public class AnimationEventSetting : MonoBehaviour
     [SerializeField] private List<string> nonSkillEventName;
 
     [SerializeField] private GameObject runningEffect;
-
+    [SerializeField] private AudioClip runningSound;
+    [SerializeField] private float randomPitchOffset = 0.1f;
+    
     [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
     public string onEndName;
 
@@ -78,6 +80,7 @@ public class AnimationEventSetting : MonoBehaviour
     private void CreateRunEffect()
     {
         GameObject effect = Managers.Resource.Instantiate(runningEffect, _footStepTs.position, Quaternion.Euler(0, 0, 0));
+        Managers.SoundManager.Play(runningSound, Sound.Effect, 1 + Random.Range(-randomPitchOffset, randomPitchOffset));
         Managers.Resource.Destroy(effect, 2.0f);
     }
     

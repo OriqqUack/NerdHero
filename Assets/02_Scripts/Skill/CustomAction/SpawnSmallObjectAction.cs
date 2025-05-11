@@ -9,6 +9,7 @@ public class SpawnSmallObjectAction : CustomAction
     [Header("SpawnPrefab Settings")]
     [SerializeField] private GameObject smallObjectPrefab;
     [SerializeField] private int count;
+    [SerializeField] private AudioClip soundEffect;
 
     [Space(10)] [Header("Drop Settings")]
     [SerializeField] private float _dropRadius = 1f;
@@ -23,6 +24,9 @@ public class SpawnSmallObjectAction : CustomAction
         if (skillData == null || smallObjectPrefab == null || count <= 0) return;
 
         float angleStep = 360f / count;
+        
+        if(soundEffect)
+            Managers.SoundManager.Play(soundEffect);
 
         for (int i = 0; i < count; i++)
         {

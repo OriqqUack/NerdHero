@@ -104,6 +104,7 @@ MonoBehaviour:
         spawnCount: 3
         intervalTime: 0.3
         speed: 5
+        audioClip: {fileID: 8300000, guid: 8cada65d633e9084a8801662f7e2fdeb, type: 3}
     - rid: 416588690826985694
       type: {class: SelectSelf, ns: , asm: Assembly-CSharp}
       data:

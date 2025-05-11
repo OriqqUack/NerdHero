@@ -14,7 +14,7 @@ public class UI_Revive : UiWindow
         base.Start();
         
         //reviveButton.onClick.AddListener();
-        StartCoroutine(Counting());
+        //StartCoroutine(Counting());
         reviveButton.onClick.AddListener(() => Revive());
     }
 
@@ -39,7 +39,12 @@ public class UI_Revive : UiWindow
         UI_InGameScene.Instance.OpenGameEnd();
     }
 
-    IEnumerator Counting()
+    public void SceneTransition()
+    {
+        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene);
+    }
+
+    /*IEnumerator Counting()
     {
         int count = 5;
         while (count > 0)
@@ -48,5 +53,5 @@ public class UI_Revive : UiWindow
             yield return new WaitForSeconds(1f);
             count--;
         }
-    }
+    }*/
 }

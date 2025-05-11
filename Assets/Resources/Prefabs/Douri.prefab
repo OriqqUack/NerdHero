@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 1241937940629438622}
   - component: {fileID: 5379269116897283412}
   - component: {fileID: 3411330198504052601}
-  - component: {fileID: 2825511820645981016}
   - component: {fileID: 5679971787496278211}
-  - component: {fileID: 2428597153046400203}
   - component: {fileID: 422771461854240463}
   - component: {fileID: 1561119053779488424}
   - component: {fileID: 5972043704819620193}
@@ -106,25 +104,6 @@ MonoBehaviour:
   reviveEffect: {fileID: 11400000, guid: b6e502c9928817245b7d303e126ce19c, type: 2}
   stunEffect: {fileID: 6022973848819567502}
   reviveVfx: {fileID: 7851882727209530665, guid: 778a811f899c1964aa279ac3d5a2cb06, type: 3}
---- !u!114 &2825511820645981016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308298092994364096}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d55a3bd6ac81af44b2f9a4447f2ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 7783432133389913720}
-  eventName: 
-  audioSource: {fileID: 3794621842031489604}
-  audioClip: {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
-  basePitch: 1
-  randomPitchOffset: 0.2
-  logDebugMessage: 0
 --- !u!114 &5679971787496278211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,88 +147,6 @@ MonoBehaviour:
   - stateName: revive
     animation: {fileID: 11400000, guid: 8be80e35ca3be754ebc9e47fe5149bba, type: 2}
   transitions: []
---- !u!114 &2428597153046400203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1308298092994364096}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0f8a82c5d8a334db6996478778b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSource: {fileID: 0}
-  OnJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2825511820645981016}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2825511820645981016}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnHardLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 759166232499984062}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 10
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &422771461854240463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 0
+  damagedSound: {fileID: 8300000, guid: ab5ef8f4ddffcb540ab660dbdfa700c4, type: 3}
+  deathSound: {fileID: 0}
   CanTakeDamage: 1
 --- !u!114 &1561119053779488424
 MonoBehaviour:
@@ -372,6 +271,8 @@ MonoBehaviour:
   - footstep
   - move
   runningEffect: {fileID: 5283185308737185963, guid: 094558524e10eed41843bcd151390a1a, type: 3}
+  runningSound: {fileID: 8300000, guid: 5dcde5b1dec2fa845adcfd3c3489e609, type: 3}
+  randomPitchOffset: 0.1
   onEndName: 
 --- !u!114 &3324323753762601283
 MonoBehaviour:
@@ -574,7 +475,7 @@ Transform:
   m_GameObject: {fileID: 5045853388278200159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2268381, z: -0.452268}
+  m_LocalPosition: {x: 0, y: 1.237015, z: -0.452268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,14 +11,24 @@ public class EnergyManager : ISaveable
     public int maxEnergy = 100;
     public int chargeIntervalMinutes = 1;
 
-    public int CurrentEnergy { get; private set; }
+    private int _currentEnergy = 0;
+    
+    public int CurrentEnergy 
+    { 
+        get => _currentEnergy;
+        set
+        {
+            _currentEnergy = value;
+            Managers.BackendManager.UpdateField("currentEnergy", value);
+        }
+    }
     public TimeSpan PassedTime { get; private set; }
     
     private DateTime lastChargeTime;
 
     public void Init()
     {
-        Managers.DataManager.AddSaveable(this);
+        Managers.BackendManager.AddSavable(this);
     }
     
     void UpdateEnergyFromOffline()
@@ -92,20 +102,19 @@ public class EnergyManager : ISaveable
         CurrentEnergy = maxEnergy;
     }
 #endif
-    
-    public void Save(SaveData data)
-    {
-        data.CurrencyData.energyCount = CurrentEnergy;
-        data.CurrencyData.energyLastCharge = lastChargeTime.Ticks.ToString();
-    }
 
-    public void Load(SaveData data)
+    public void Save(GameData data)
     {
-        CurrentEnergy = data.CurrencyData.energyCount;
+        
+    }
+    
+    public void Load(GameData data)
+    {
+        CurrentEnergy = data.currentEnergy;
         long lastTicks = 0;
-        if (!string.IsNullOrEmpty(data.CurrencyData.energyLastCharge))
+        if (!string.IsNullOrEmpty(data.energyLastCharge))
         {
-            bool success = long.TryParse(data.CurrencyData.energyLastCharge, out lastTicks);
+            bool success = long.TryParse(data.energyLastCharge, out lastTicks);
             if (!success)
             {
                 Debug.LogWarning("EnergyManager: 저장된 lastChargeTime 포맷 이상. 기본값으로 초기화.");

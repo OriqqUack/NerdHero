@@ -10,6 +10,7 @@ public class JumpAction : CustomAction
     [SerializeField] private float angle;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private bool isBackJump;
+    [SerializeField] private AudioClip jumpSound;
 
     private Entity _entity;
     public override void Start(object data)
@@ -52,6 +53,8 @@ public class JumpAction : CustomAction
         Vector3 forceDirection = rotatedDirection.normalized * jumpSpeed;
 
         _entity.Rigidbody.AddForce(forceDirection, ForceMode.Impulse);
+        if(jumpSound)
+            Managers.SoundManager.Play(jumpSound);
     }
 
     public override object Clone() => new JumpAction();

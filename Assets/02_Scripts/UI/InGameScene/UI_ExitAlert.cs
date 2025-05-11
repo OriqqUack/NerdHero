@@ -18,6 +18,6 @@ public class UI_ExitAlert : UiWindow
     {
         Managers.SoundManager.Clear();
         Time.timeScale = 1;
-        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene, 1, 0);
+        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene);
     }
 }

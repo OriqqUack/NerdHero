@@ -22,7 +22,7 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     private const string EditorCustomId = "EditorTestAccount";
     private const string EditorCustomPw = "EditorTestPassword";
     
-    private void Awake()
+    public void Init()
     {
         configuration = new GoogleSignInConfiguration
         {
@@ -53,22 +53,30 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     private void AutoLoginIfPossible()
     {
 #if UNITY_EDITOR
-        Debug.Log("🖥️ 에디터에서 커스텀 계정으로 자동 로그인 시도");
+        // ✅ 1순위: 에디터는 무조건 커스텀 계정
+        Debug.Log("🖥️ [Editor] 커스텀 계정으로 자동 로그인 시도");
         LoginWithEditorCustomAccount();
-#else
+
+#elif UNITY_ANDROID
+    // ✅ 2순위: 안드로이드는 구글 로그인 사용
     if (PlayerPrefs.GetInt("GoogleLoginSuccess", 0) == 1 && PlayerPrefs.HasKey("SavedGoogleEmail"))
     {
-        Debug.Log("⚡ 저장된 이메일 발견, 자동 로그인 시도");
-
+        Debug.Log("📱 [Android] 저장된 이메일로 자동 로그인 시도");
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.DefaultInstance.SignIn()
             .ContinueWith(OnGoogleAuthenticationFinished, TaskScheduler.FromCurrentSynchronizationContext());
     }
     else
     {
-        Debug.Log("📌 저장된 이메일 없음, 수동 로그인 대기");
+        Debug.Log("📱 [Android] 수동 로그인 대기");
         googleLoginButton.gameObject.SetActive(true);
     }
+
+#else
+    // ✅ 3순위: PC, Mac, 기타 플랫폼 → 커스텀 계정 로그인
+    Debug.Log("🖥️ [Standalone] 커스텀 계정으로 자동 로그인 시도");
+    LoginWithEditorCustomAccount();
+
 #endif
     }
     
@@ -137,12 +145,10 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
         else
         {
             Debug.Log("✅ 구글 로그인 성공");
+            InGameLogger.Log("✅ 구글 로그인 성공");
 
             string idToken = task.Result.IdToken;
             string email = task.Result.Email;
-
-            Debug.Log($"[구글 이메일] {email}");
-            Debug.Log($"[구글 ID Token] {idToken}");
 
             PlayerPrefs.SetInt("GoogleLoginSuccess", 1);
             PlayerPrefs.SetString("SavedGoogleEmail", email);
@@ -161,6 +167,7 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
         if (bro.IsSuccess())
         {
             Debug.Log("✅ 뒤끝 ID Token 로그인 성공!");
+
             googleLoginButton.gameObject.SetActive(false);
             LoadingProgress();
         }
@@ -181,6 +188,7 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     private void LoadingProgress()
     {
         loadingPanel.gameObject.SetActive(true);
+        Managers.BackendManager.LoadUserData();
         loadingPanel.Play(OnAfterProgress);
     }
 

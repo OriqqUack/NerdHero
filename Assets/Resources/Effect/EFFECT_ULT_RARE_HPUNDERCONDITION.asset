@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories:
   - {fileID: 11400000, guid: bd2a3fa78e60e164398a6d396a0bec5a, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: -944841142, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 79
   codeName: ULT_RARE_HPUNDERCONDITION
-  displayName: "\uCCB4\uB825\uC774 \uB0AE\uC744 \uB54C \uAD81\uADF9\uAE30 \uD53C\uD574\uB7C9
-    \uC99D\uAC00"
+  displayName: "\uCC98\uD615"
   description: "\uC801 \uCCB4\uB825 30% \uC774\uD558\uC77C \uB54C, \uAD81\uADF9\uAE30
     \uD53C\uD574\uB7C9 +50%"
   type: 0

@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class UI_Currency : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI gold;
-
-    private Stat _playerMoney;
+    [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private TextMeshProUGUI gemText;
 
     private void Start()
     {
-        GameManager.Instance.GetPlayerGoldStat().onValueChanged += UpdateGold;
+        GameManager.Instance.OnGoldChanged += UpdateGold;
+        GameManager.Instance.OnGemChanged += UpdateGem;
+        
+        goldText.text = GameManager.Instance.Gold.ToString();
+        gemText.text = GameManager.Instance.Gem.ToString();
     }
     
-    private void UpdateGold(Stat stat, float currentLevel, float prevLevel)
+    private void UpdateGold(int gold)
     {
-        gold.text = currentLevel.ToString();
+        goldText.text = gold.ToString();
+    }
+    
+    private void UpdateGem(int gem)
+    {
+        gemText.text = gem.ToString();
     }
 }

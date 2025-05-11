@@ -9,4 +9,9 @@ public class ItemDatabase : MonoSingleton<ItemDatabase>
     {
         return allItems.Find(item => item.itemName == name);
     }
+
+    public ItemSO GetItemById(int id)
+    {
+        return allItems.Find((item => item.itemCode == id));
+    }
 }

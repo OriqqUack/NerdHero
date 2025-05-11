@@ -1,3 +1,4 @@
+using BackEnd.Quobject.SocketIoClientDotNet.Client;
 using UnityEngine;
 
 public class OrbitalMotion : MonoBehaviour
@@ -6,6 +7,7 @@ public class OrbitalMotion : MonoBehaviour
     
     [SerializeField] private Effect effect;
     [SerializeField] private Effect effect2;
+    [SerializeField] private AudioClip impactSound;
     
     private Entity _entity;
     private Transform _center;
@@ -68,5 +70,7 @@ public class OrbitalMotion : MonoBehaviour
             entity.SkillSystem.Apply(_effect);
         if(_effect2 != null)
             entity.SkillSystem.Apply(_effect2);
+        
+        Managers.SoundManager.Play(impactSound);
     }
 }

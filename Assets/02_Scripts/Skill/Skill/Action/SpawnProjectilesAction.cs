@@ -15,6 +15,9 @@ public class SpawnProjectilesAction : SkillAction
     private float intervalTime;
     [SerializeField]
     private float speed;
+    [SerializeField] 
+    private AudioClip audioClip;
+
 
     public void AddSpawnCount(int count)
     {
@@ -29,6 +32,8 @@ public class SpawnProjectilesAction : SkillAction
     
     private IEnumerator SpawnWithInterval(Transform socket, Skill skill)
     {
+        if(audioClip)
+            Managers.SoundManager.Play(audioClip);
         for(int i = 0 ; i < spawnCount ; i++)
         {
             var projectile = GameObject.Instantiate(projectilePrefab);

@@ -5,11 +5,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private GameObject impactPrefab;
+    [SerializeField] private List<AudioClip> impactSounds;
+    [SerializeField] private AudioClip createSound;
     [SerializeField] private bool canPenetrate;
     
     [Space(10)][Header("Shadow Settings")]
@@ -37,6 +40,9 @@ public class Projectile : MonoBehaviour
         }
         shadow.transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
         shadow.transform.rotation = Quaternion.Euler(90, 0, 0);
+        
+        if(createSound)
+            Managers.SoundManager.Play(createSound);
     }
 
     private void Awake()
@@ -79,11 +85,17 @@ public class Projectile : MonoBehaviour
             impact.transform.forward = -transform.forward;
             impact.transform.position = transform.position;
         }
+
+        if (impactSounds.Count >= 1)
+        {
+            int value = Random.Range(0, impactSounds.Count);
+            Managers.SoundManager.Play(impactSounds[value]);
+        }
         
         if(!canPenetrate)
         {
-            Managers.Resource.Destroy(gameObject);
             Managers.Resource.Destroy(shadow);
+            Managers.Resource.Destroy(gameObject);
         }
 
     }

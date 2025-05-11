@@ -9828,10 +9828,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 8260617210669617129, guid: 5ebe2034595c94f41a8e89907c5be9a5, type: 3}
+  impactSounds:
+  - {fileID: 8300000, guid: 14c9c2747d8809c449a91b1657a17346, type: 3}
+  createSound: {fileID: 0}
   canPenetrate: 0
   shadow: {fileID: 7324781155534706530}
   lockYAxis: 1
-  lockRotation: 0
   yOffset: 0
 --- !u!1 &3814496779098471175
 GameObject:

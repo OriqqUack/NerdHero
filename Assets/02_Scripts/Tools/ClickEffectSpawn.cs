@@ -5,7 +5,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Canvas))]
 public class ClickEffectSpawn : MonoBehaviour
 {
-    public GameObject clickEffectPrefab;
+    [SerializeField] private GameObject clickEffectPrefab;
+    [SerializeField] private AudioClip clickSound;
     private Canvas canvas;
     private bool spawnEffectPending = false;
     private Vector2 pendingPosition;
@@ -80,6 +81,10 @@ public class ClickEffectSpawn : MonoBehaviour
         RectTransform rect = effect.GetComponent<RectTransform>();
         rect.SetParent(canvas.transform, false);
         rect.anchoredPosition = localPos;
+        
+        if(clickSound)
+            Managers.SoundManager.Play(clickSound);
+        
         Destroy(effect, 3.0f);
     }
 }

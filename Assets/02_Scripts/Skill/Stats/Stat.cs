@@ -100,8 +100,26 @@ public class Stat : IdentifiedObject
         TryInvokeValueChangedEvent(Value, prevValue);
     }
 
+    public void SetMultiplierBonusValue(object key, object subKey, float value)
+    {
+        if (!bonusValuesByKey.ContainsKey(key))
+            bonusValuesByKey[key] = new Dictionary<object, float>();
+        /*else
+            BonusValue -= bonusValuesByKey[key][subKey];*/
+
+        float prevValue = Value;
+        float totalValue = Value * value;
+        bonusValuesByKey[key][subKey] = totalValue;
+        BonusValue += totalValue;
+
+        TryInvokeValueChangedEvent(Value, prevValue);
+    }
+
     public void SetBonusValue(object key, float value)
         => SetBonusValue(key, string.Empty, value);
+    
+    public void SetMultiplierBonusValue(object key, float value)
+        => SetMultiplierBonusValue(key, string.Empty, value);
 
     public float GetBonusValue(object key)
         => bonusValuesByKey.TryGetValue(key, out var bonusValuesBySubkey) ?

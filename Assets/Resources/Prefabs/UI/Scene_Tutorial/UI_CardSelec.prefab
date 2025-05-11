@@ -269,7 +269,7 @@ MonoBehaviour:
   cardPrefab: {fileID: 128459710786723956, guid: 921efc0892cdde345813fbd432205b60, type: 3}
   centerPos: {x: 0, y: 0}
   resetButton: {fileID: 6709149416654256999}
-  cardHolder: {fileID: 11400000, guid: d26a252d33597494dbd848253dc0e20d, type: 2}
+  cardHolder: {fileID: 11400000, guid: c4246de14ded7d7438839ada28de7b9f, type: 2}
   levelEffect: {fileID: 4557073698510574151, guid: 152b26d6bb970d14192b83bf861851d0, type: 3}
   gradeProbConfigs:
   - level: 2

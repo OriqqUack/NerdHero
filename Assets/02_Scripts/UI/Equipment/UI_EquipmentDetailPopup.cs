@@ -100,7 +100,7 @@ public class UI_EquipmentDetailPopup : UiWindow
     {
         if (item.itemType == ItemType.Stuff) return;
         Equipment.Instance.Equip(item);
-        Managers.DataManager.DataSave();
+        Managers.BackendManager.UpdateField($"equipped{item.itemType.ToString()}",item.itemCode);
         Close();
     }
 

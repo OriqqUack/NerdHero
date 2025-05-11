@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: EFFECT_LIGHTNING_RARE
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: 307714722, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 41
   codeName: LIGHTNING_RARE
-  displayName: "(\uBC88\uAC1C \uC18D\uC131) \uC8FC\uBCC0 \uBAAC\uC2A4\uD130\uC5D0\uAC8C
-    \uC804\uC774"
+  displayName: "\uBC88\uAC1C \uAC15\uD654"
   description: "\uBAAC\uC2A4\uD130 1\uB9C8\uB9AC \uACF5\uACA9 \uC2DC \uC8FC\uBCC0
     \uBAAC\uC2A4\uD130 2\uB9C8\uB9AC\uC5D0\uAC8C \uC804\uC774 (\uAC10\uC1E0 90%)"
   type: 0
@@ -93,13 +92,15 @@ MonoBehaviour:
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 0
         isDestroyOnRelease: 0
+        audioClip: {fileID: 0}
     - rid: 416589032516223104
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:
         targetType: 1
-        methodType: 1
+        methodType: 0
         prefab: {fileID: 934617562227915448, guid: 3fda89e3a5390f246b7a1251b1fbcbfe, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 0
         isDestroyOnRelease: 0
+        audioClip: {fileID: 0}

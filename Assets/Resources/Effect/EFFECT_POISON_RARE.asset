@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EFFECT_POISON_RARE
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: -1589727526, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 50
   codeName: POISON_RARE
   displayName: "(\uB3C5 \uC18D\uC131) \uB9E4\uCD08 \uB3C5 \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4"
@@ -78,19 +78,21 @@ MonoBehaviour:
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:
         targetType: 1
-        methodType: 1
+        methodType: 0
         prefab: {fileID: 8260617210669617129, guid: 0b12b62c8ab0dac498fb9a1e3b94ff0b, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1
         isDestroyOnRelease: 1
+        audioClip: {fileID: 0}
     - rid: 416589032516223106
       type: {class: SpawnObjectAction, ns: , asm: Assembly-CSharp}
       data:
         targetType: 1
-        methodType: 1
+        methodType: 0
         prefab: {fileID: 8260617210669617129, guid: 0b12b62c8ab0dac498fb9a1e3b94ff0b, type: 3}
         offset: {x: 0, y: 0, z: 0}
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 1
         isDestroyOnRelease: 1
+        audioClip: {fileID: 0}

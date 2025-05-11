@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EFFECT_LIGHTNING_LEGENDARY
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: -669353094, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 40
   codeName: LIGHTNING_LEGENDARY
   displayName: "(\uBC88\uAC1C \uC18D\uC131) \uC804\uC774 \uBC94\uC704 \uC99D\uAC00"
@@ -142,3 +142,4 @@ MonoBehaviour:
         scaleFactor: {x: 1, y: 1, z: 1}
         isAttachToTarget: 0
         isDestroyOnRelease: 0
+        audioClip: {fileID: 0}

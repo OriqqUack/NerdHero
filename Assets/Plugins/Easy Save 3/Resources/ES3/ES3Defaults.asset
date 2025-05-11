@@ -45,6 +45,7 @@ MonoBehaviour:
     - Autodesk.Fbx.BuildTestAssets
     - CFXRDemo
     - CFXRRuntime
+    - Coffee.UIParticle
     - DamageNumbersPro
     - Drawing
     - Google.Play.Games

@@ -198,6 +198,7 @@ public class SkillSystem : MonoBehaviour
     private void ApplyNewEffect(Effect effect)
     {
         var newEffect = effect.Clone() as Effect;
+        if (!newEffect) return;
         newEffect.SetTarget(Owner);
         newEffect.onStarted += OnEffectStarted;
         newEffect.onApplied += OnEffectApplied;

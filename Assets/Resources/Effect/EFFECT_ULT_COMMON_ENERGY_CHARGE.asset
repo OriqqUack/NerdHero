@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EFFECT_ULT_COMMON_ENERGY_CHARGE
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: -929155702, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 69
   codeName: ULT_COMMON_ENERGY_CHARGE
-  displayName: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uC99D\uAC00"
+  displayName: "\uC6A9\uAE30 \uCDA9\uC804"
   description: "\uAD81\uADF9\uAE30 \uC0AC\uC6A9 \uC2DC \uC6A9\uAE30 \uAC8C\uC774\uC9C0
     5% \uCDA9\uC804\r"
   type: 0

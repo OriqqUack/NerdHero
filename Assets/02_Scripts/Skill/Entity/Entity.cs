@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.Linq;
+using BackEnd.Quobject.SocketIoClientDotNet.Client;
 using Spine;
 using Spine.Unity;
 using Spine.Unity.Examples;
@@ -27,7 +28,9 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private Category[] categories;
     [SerializeField] private EntityControlType controlType;
-    
+    [SerializeField] private AudioClip damagedSound;
+    [SerializeField] private AudioClip deathSound;
+
     private Dictionary<string, Transform> socketsByName = new();
     private Rigidbody _rigidbody;
     private Collider _collider;
@@ -121,7 +124,10 @@ public class Entity : MonoBehaviour
         Stats.HPStat.DefaultValue -= totalDamage;
         
         onTakeDamage?.Invoke(this, instigator, causer, damage);
-
+        
+        if(damagedSound)
+            Managers.SoundManager.Play(damagedSound);
+        
         if (Mathf.Approximately(Stats.HPStat.DefaultValue, 0f))
         {
             OnDead();
@@ -135,6 +141,9 @@ public class Entity : MonoBehaviour
         if (Movement)
             Movement.enabled = false;
 
+        if(deathSound)
+            Managers.SoundManager.Play(deathSound);
+        
         _rigidbody.isKinematic = true;
         _collider.enabled = false;
         

@@ -35,6 +35,6 @@ public class LightningLegendaryCard : CardBase
             _owner.SkillSystem.RemoveEffect(effect);
         }
         
-        _owner.SkillSystem.OwnSkills[0].Effects.Add(_effect);
+        _owner.SkillSystem.OwnSkills[0].ExtraAddEffects.Add(_effect);
     }
 }

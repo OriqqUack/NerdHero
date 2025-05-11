@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EFFECT_POISON_LEGENDARY
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: 136501616, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 49
   codeName: POISON_LEGENDARY
   displayName: "(\uB3C5 \uC18D\uC131) \uC801 \uCC98\uCE58 \uC2DC \uAD11\uC5ED \uD53C\uD574"

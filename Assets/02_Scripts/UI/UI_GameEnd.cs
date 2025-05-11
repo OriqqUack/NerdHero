@@ -15,6 +15,7 @@ public class UI_GameEnd : UiWindow
     [SerializeField] private Button acceptButton;
     private void Start()
     {
+        WaveManager.Instance.PlayerEntity.SkillSystem.CancelAll();
         OpenUI();
         acceptButton.onClick.AddListener(() => OnClickGoMainGame());
     }
@@ -62,7 +63,7 @@ public class UI_GameEnd : UiWindow
         }
         Time.timeScale = 1;
 
-        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene, 1, 0);
+        SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene);
     }
     
     public override void Close()

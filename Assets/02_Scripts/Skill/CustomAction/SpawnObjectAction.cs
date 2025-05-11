@@ -23,6 +23,8 @@ public class SpawnObjectAction : CustomAction
     private bool isAttachToTarget;
     [SerializeField]
     private bool isDestroyOnRelease;
+    [SerializeField]
+    private AudioClip audioClip;
 
     private GameObject spawnedObject;
 
@@ -83,6 +85,8 @@ public class SpawnObjectAction : CustomAction
             Spawn(data as Skill);
         else
             Spawn(data as Effect);
+        
+        Managers.SoundManager.Play(audioClip);
     }
 
     public override object Clone()

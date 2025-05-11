@@ -22,23 +22,25 @@ public class UI_StartScene : MonoBehaviour
 
     private void TextFloating()
     {
-        _initialPos = alertText.transform.position;
-        alertText.transform.DOMoveY(_initialPos.y + height, duration)
+        RectTransform rect = alertText.GetComponent<RectTransform>();
+        _initialPos = rect.anchoredPosition;
+
+        rect.DOAnchorPosY(_initialPos.y + height, duration)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
     }
 
     private void OnClickPanel()
     {
-        bool isTutorialCleared = ES3.Load<bool>("TutorialCleared", false);
+        bool isTutorialCleared = Managers.BackendManager.gameData.isClearedTutorial;
 
         if (!isTutorialCleared)
         {
-            SceneTransitionManager.LoadScene("Scene_Tutorial");
+            SceneTransitioner.Instance.StartTransitioning(SceneType.StoryScene);
         }
         else
         {
-            SceneTransitionManager.LoadScene("Scene_Main");
+            SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene);
         }
     }
 }

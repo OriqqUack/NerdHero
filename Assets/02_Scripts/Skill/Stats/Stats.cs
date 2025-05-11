@@ -39,7 +39,7 @@ public class Stats : MonoBehaviour
     #endregion
 
     #region GUI
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (!Owner.IsPlayer)
             return;
@@ -93,7 +93,7 @@ public class Stats : MonoBehaviour
             textRect.y += 22f;
             plusButtonRect.y = minusButtonRect.y = textRect.y;
         }
-    }
+    }*/
     #endregion
 
     #region Stat Methods
@@ -170,7 +170,7 @@ public class Stats : MonoBehaviour
             Destroy(stat);
         stats = null;
     }
-
+    
     public Stat GetStat(Stat stat)
     {
         Debug.Assert(stat != null, $"Stats::GetStat - stat�� null�� �� �� �����ϴ�.");

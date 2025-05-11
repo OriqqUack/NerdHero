@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
 
 public class TutorialScene : MonoBehaviour
 {
     [SerializeField] private Transform actor;
+    [SerializeField] private AudioClip bgSound;
     private Stats _playerStats;
-
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-    }
 
     private void Start()
     {
@@ -23,10 +20,33 @@ public class TutorialScene : MonoBehaviour
         WaveManager.Instance.OnMonsterSpawn += MonsterSpawn;
         DialogueManager.StartConversation("TutorialStart", actor);
         GameManager.Instance.CurrentIslandIndex = -1;
+        WaveManager.Instance.OnWaveEnd += () => { DialogueManager.StartConversation("Tutorial_End", actor); };
+        WaveManager.Instance.OnWaveEnd += () => { Managers.BackendManager.UpdateField("isClearedTutorial", true); };
+        
+        _playerStats.Owner.BaseAttack.gameObject.SetActive(false);
+        
+        if(bgSound)
+            Managers.SoundManager.Play(bgSound, Sound.Bgm);
+        
+        _playerStats.Owner.onKill += MonsterKill;
+    }
+
+    private void MonsterKill(Entity entity)
+    {
+        DialogueManager.StartConversation("Tutorial_MonsterKill", actor);
+        _playerStats.Owner.onKill -= MonsterKill;
     }
     
     private void MonsterSpawn(List<Entity> entities)
     {
+        if (WaveManager.Instance.CurrentWave == 1)
+        {
+            DOVirtual.DelayedCall(1.2f, () =>
+            {
+                DialogueManager.StartConversation("Tutorial_Move", actor);
+                _playerStats.Owner.BaseAttack.gameObject.SetActive(true);
+            });
+        }
         if (WaveManager.Instance.CurrentWave == 3)
         {
             DialogueManager.StartConversation("TutorialIndicator", actor);
@@ -72,10 +92,5 @@ public class TutorialScene : MonoBehaviour
     private void OnDialogueStart(Transform actor)
     {
         Time.timeScale = 0;
-    }
-
-    private void OnDestroy()
-    {
-        ES3.Save<bool>("TutorialCleared", true);
     }
 }

@@ -52,17 +52,61 @@ public class SoundManager
         if (type == Sound.Bgm) // BGM 배경음악 재생
         {
             if (BgmSource.isPlaying)
+            {
+                FadeOutBgm(1f, () =>
+                {
+                    FadeInBgm(audioClip, 1f, 1f);
+                });
                 BgmSource.Stop();
-
-            BgmSource.pitch = pitch;
-            BgmSource.clip = audioClip;
-            BgmSource.Play();
+            }
+            else
+            {
+                BgmSource.pitch = pitch;
+                BgmSource.clip = audioClip;
+                BgmSource.Play();
+            }
         }
         else // Effect 효과음 재생
         {
-            EffectSource.pitch = pitch;
-            EffectSource.PlayOneShot(audioClip);
+            if (Mathf.Approximately(pitch, 1.0f))
+            {
+                EffectSource.PlayOneShot(audioClip);
+            }
+            else
+            {
+                // 오브젝트 이름 지정
+                string objName = $"Effect_{audioClip.name}_{pitch:F2}";
+
+                // 이미 존재하는 오브젝트 확인
+                Transform existing = Managers.Instance.transform.Find(objName);
+
+                AudioSource temp;
+
+                if (existing != null)
+                {
+                    // 오디오소스 재활용
+                    temp = existing.GetComponent<AudioSource>();
+                }
+                else
+                {
+                    // 새로 생성
+                    GameObject go = new GameObject(objName);
+                    go.transform.parent = Managers.Instance.transform;
+
+                    temp = go.AddComponent<AudioSource>();
+                    temp.clip = audioClip;
+                    temp.pitch = pitch;
+                    temp.volume = EffectSource.volume;
+                    temp.outputAudioMixerGroup = EffectSource.outputAudioMixerGroup;
+
+                    Object.Destroy(go, audioClip.length / pitch);
+                }
+
+                temp.Play();
+            }
         }
+
+
     }
 
     public void FadeOutBgm(float duration = 1f, System.Action onComplete = null)

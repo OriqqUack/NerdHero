@@ -1122,7 +1122,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5115847883975217301}
-  - component: {fileID: 4965594433686768438}
   - component: {fileID: 2407788699740246480}
   - component: {fileID: 3530316570247290405}
   - component: {fileID: 3035822875658077527}
@@ -1164,25 +1163,6 @@ Transform:
   - {fileID: 1423010547082607047}
   m_Father: {fileID: 2183501470778617963}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &4965594433686768438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8184036937903201028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d55a3bd6ac81af44b2f9a4447f2ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 8563913264434912682}
-  eventName: Hit
-  audioSource: {fileID: 1126542860946541886}
-  audioClip: {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
-  basePitch: 1
-  randomPitchOffset: 0.2
-  logDebugMessage: 0
 --- !u!114 &2407788699740246480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,7 +1208,7 @@ MonoBehaviour:
   OnJump:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4965594433686768438}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -1243,7 +1223,7 @@ MonoBehaviour:
   OnLand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4965594433686768438}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -1308,6 +1288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  damagedSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8217823893de90a49811bd85ca7e5213, type: 3}
   CanTakeDamage: 1
 --- !u!114 &7567195262745201164
 MonoBehaviour:
@@ -1526,6 +1508,7 @@ MonoBehaviour:
   rigidBody: {fileID: 3364009847482118127}
   isCC: 0
   zAttackOffset: 2
+  stifnessCycle: 3
 --- !u!114 &1277724074916613662
 MonoBehaviour:
   m_ObjectHideFlags: 0

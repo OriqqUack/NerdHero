@@ -117,3 +117,4 @@ MonoBehaviour:
         spawnPointSocketName: ProjectilePoint
         intervalTime: 0
         speed: 5
+        audioClip: {fileID: 8300000, guid: c7d48d9eb8d86a44e8a04d91bedaa41b, type: 3}

@@ -276,7 +276,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 18.666672
-        y: 75.33333
+        y: 73.999985
         width: 160
         height: 30
     - id: 2
@@ -496,7 +496,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 18.666672
-        y: 277.33334
+        y: 274
         width: 160
         height: 30
     entryGroups: []

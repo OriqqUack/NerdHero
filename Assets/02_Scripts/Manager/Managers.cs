@@ -12,7 +12,6 @@ public class Managers : MonoSingleton<Managers>
     ResourceManager _resource = new ResourceManager();
     EnergyManager _energy = new EnergyManager();
     SoundManager _sound = new SoundManager();
-    DataManager _data = new DataManager();
     BackendDataManager _backend = new BackendDataManager();
     InventoryManager _inventory = new InventoryManager();
 
@@ -21,7 +20,6 @@ public class Managers : MonoSingleton<Managers>
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static EnergyManager EnergyManager { get { return Instance._energy; } }
     public static SoundManager SoundManager { get { return Instance._sound; } }
-    public static DataManager DataManager { get { return Instance._data; } }
     public static BackendDataManager BackendManager { get { return Instance._backend; } }
     public static InventoryManager InventoryManager { get { return Instance._inventory; } }
     #endregion
@@ -50,10 +48,7 @@ public class Managers : MonoSingleton<Managers>
 
             instance._pool.Init();
             instance._sound.Init();
-            instance._inventory.Init();
             instance._energy.Init();
-            
-            instance._data.Init();
         }		
     }
 
@@ -91,7 +86,6 @@ public class Managers : MonoSingleton<Managers>
 
     private void OnApplicationQuit()
     {
-        DataManager.DataSave();
         IsDestroying = true;
         Clear();
     }

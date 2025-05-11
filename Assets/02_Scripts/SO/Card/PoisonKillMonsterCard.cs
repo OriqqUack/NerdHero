@@ -7,7 +7,7 @@ public class PoisonKillMonsterCard : CardBase
     public override void Setup(Entity entity)
     {
         _owner = entity;
-        _effect = _owner.SkillSystem.OwnSkills[0].Effects.Find(x => x.CodeName.Contains("POISON"));
+        _effect = _owner.SkillSystem.OwnSkills[0].ExtraAddEffects.Find(x => x.CodeName.Contains("POISON"));
         _owner.onKill += KillMonster;
     }
 

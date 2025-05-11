@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6385022172529430332}
   - component: {fileID: 1414303725209816821}
   - component: {fileID: 5366614886684590963}
-  - component: {fileID: 34679795184234155}
   - component: {fileID: 6685518207946717931}
   m_Layer: 0
   m_Name: Taemburin
@@ -100,6 +99,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 8680598818964007281, guid: dcd90c4976197424b9958a7c54b6bb8c, type: 3}
+  impactSounds:
+  - {fileID: 8300000, guid: f64460658bc0cb247b087e523a22e0fe, type: 3}
+  - {fileID: 8300000, guid: 853f08e47fd9cfb489e74f0e4925049e, type: 3}
+  - {fileID: 8300000, guid: 6200be34191214d4892f03002f5c6081, type: 3}
+  createSound: {fileID: 8300000, guid: 8206e7361d656944dbacb89edd72ab33, type: 3}
   canPenetrate: 0
   shadow: {fileID: 0}
   lockYAxis: 1
@@ -194,24 +198,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &34679795184234155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3774133306232834283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e395bb75c223e84c974eefdc2bad015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  afterimagePrefab: {fileID: 3774133306232834283, guid: 32c9175cfe7ab6248a208c616a3d6dc7, type: 3}
-  blinkImagePrefab: {fileID: 6328502282155553409, guid: 5b9cf308d93d2e04baca0f218c3f4601, type: 3}
-  interval: 0.1
-  lifetime: 0.5
-  fadeSpeed: 2
-  maxAfterimages: 2
 --- !u!114 &6685518207946717931
 MonoBehaviour:
   m_ObjectHideFlags: 0

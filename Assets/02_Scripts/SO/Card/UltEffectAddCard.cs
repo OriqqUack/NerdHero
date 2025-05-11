@@ -13,7 +13,7 @@ public class UltEffectAddCard : CardBase
 
     public override void ApplyEffect()
     {
-        _owner.SkillSystem.OwnSkills[index].Effects.Add(_effect);
+        _owner.SkillSystem.OwnSkills[index].ExtraAddEffects.Add(_effect);
         SkillBar.Instance.slots[0].Skill = _owner.SkillSystem.OwnSkills[1];
     }
 }

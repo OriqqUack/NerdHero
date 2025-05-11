@@ -28,6 +28,8 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     private void Start()
     {
         ButtonSetting();
+        if(CircleExpositor.Instance.CurrentIsland.IsLocked)
+            startGameButton.interactable = false;
     }
 
     private void ButtonSetting()
@@ -43,7 +45,7 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
         GameManager.Instance.CurrentIslandIndex = CircleExpositor.Instance.CurrentTargetIndex;
         if (Managers.EnergyManager.UseEnergy(5))
         {
-            SceneTransitioner.Instance.StartTransitioning(SceneType.InGameScene, 1, 0);
+            SceneTransitioner.Instance.StartTransitioning(SceneType.InGameScene);
         }
     }
 
@@ -66,7 +68,11 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     public void CloseCurrentWindow()
     {
         if(_currentWindow)
+        {
             SlideHide(_currentWindow);
+            _currentWindow = null;
+            _currentHolder = null;
+        }
     }
     
     private void OpenNewWindow(WindowHolder newHolder)
@@ -120,7 +126,7 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
 
         if (panel != null && canvasGroup != null)
         {
-            Vector2 hiddenPos = new Vector2(0, -Screen.height);
+            Vector2 hiddenPos = new Vector2(0, -Screen.height * 2);
             float duration = uiDuration;
 
             // 애니메이션 실행 후 완전히 닫기

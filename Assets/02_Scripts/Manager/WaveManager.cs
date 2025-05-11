@@ -131,8 +131,8 @@ public class WaveManager : MonoSingleton<WaveManager>
         while (_currentWaveIndex < waveData.Waves.Count)
         {
             // 적이 다 죽었고, 이전 SubWave도 끝났으면 다음 웨이브 시작
-            yield return new WaitUntil(() => ActiveEnemies.Count == 0 && _isSubWaveEnd);
             yield return StartCoroutine(StartNewWave());
+            yield return new WaitUntil(() => ActiveEnemies.Count == 0 && _isSubWaveEnd);
         }
 
         EndWave();

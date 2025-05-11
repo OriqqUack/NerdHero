@@ -178,10 +178,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 1449242181322416601, guid: 052d5f6cf7d3ebc44bba49fbe653f9a8, type: 3}
+  impactSounds:
+  - {fileID: 8300000, guid: 0c898447cf658fa4aae261a8a8981e90, type: 3}
+  createSound: {fileID: 0}
   canPenetrate: 0
   shadow: {fileID: 8808130311292434941}
   lockYAxis: 1
-  lockRotation: 0
   yOffset: 0
   angle: 45
   shadow: {fileID: 8808130311292434941}

@@ -40,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2361693942326854968}
-  - component: {fileID: 974719797927876294}
   - component: {fileID: 8988270525945489025}
   - component: {fileID: 6780030090404565587}
   - component: {fileID: 7756090815485195355}
@@ -83,25 +82,6 @@ Transform:
   - {fileID: 1756362245927033764}
   m_Father: {fileID: 3301941732311643484}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &974719797927876294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708788661457796358}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d55a3bd6ac81af44b2f9a4447f2ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 412342702294098815}
-  eventName: 
-  audioSource: {fileID: 1267556317349698091}
-  audioClip: {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
-  basePitch: 1
-  randomPitchOffset: 0.2
-  logDebugMessage: 0
 --- !u!114 &8988270525945489025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +127,7 @@ MonoBehaviour:
   OnJump:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974719797927876294}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -162,7 +142,7 @@ MonoBehaviour:
   OnLand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 974719797927876294}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -227,6 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  damagedSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8217823893de90a49811bd85ca7e5213, type: 3}
   CanTakeDamage: 1
 --- !u!114 &3194240668901909413
 MonoBehaviour:
@@ -280,7 +262,7 @@ MonoBehaviour:
     overrideDefaultValue: 5
   - stat: {fileID: 11400000, guid: 66a8e19f72c37b44bbbcd53e1aa72e6c, type: 2}
     isUseOverride: 1
-    overrideDefaultValue: 10
+    overrideDefaultValue: 5
   - stat: {fileID: 11400000, guid: a32ec9262c38f1846b8f6d8635715f6c, type: 2}
     isUseOverride: 1
     overrideDefaultValue: 0.1
@@ -410,7 +392,7 @@ MonoBehaviour:
         Under Condition","Instant":true,"SinglehpRate":0.5},{"Type":"TakeDamageAction","NodeData":{"Offset":"(47.7519531,147.5968)"},"ID":8,"Name":"Take
         Damage Action","Instant":true}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-203.818237,174.150543)"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(-3.80573845,135.582031)"},"ID":10,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.960335,116.030945)"},"ID":11,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-83.33332,140.952637)"},"ID":12,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"CanUseSkill","NodeData":{"Offset":"(-350.520935,136.351913)"},"ID":13,"Name":"Can
         Use Skill","Instant":true,"Int32skillIndex":0},{"Type":"TracingAction","NodeData":{"Offset":"(-203.069016,141.3086)"},"ID":14,"Name":"Tracing
-        Action","Instant":true,"SingleTracingTime":0},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":15,"Name":"Skill
+        Action","Instant":true,"SingleTracingTime":0,"BooleanInfinityChasing":false},{"Type":"SkillUseAction","NodeData":{"Offset":"(-42.4762878,138.094727)"},"ID":15,"Name":"Skill
         Use Action","Instant":true,"StringanimationName":"","Int32skillIndex":0,"BooleanIsMoveSkill":false}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(106.190491,162.856934)"},"ID":16,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"RandomMovement","NodeData":{"Offset":"(-61.9047546,142.857422)"},"ID":17,"Name":"Random
         Movement","Instant":true,"SharedFloatmoveRadius":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":10},"SinglerotationSpeed":10,"SinglewalkSpeedOffset":3},{"Type":"WaitAnimationAction","NodeData":{"Offset":"(120,137.619141)"},"ID":18,"Name":"Wait
         Animation Action","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"StringwaitAnimation":"idle"}]}]}]}]}]}]}}'
@@ -444,6 +426,7 @@ MonoBehaviour:
   rigidBody: {fileID: 1251101917760775566}
   isCC: 0
   zAttackOffset: 2
+  stifnessCycle: 3
 --- !u!114 &7875049544370943486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,6 +474,8 @@ MonoBehaviour:
   - attack
   nonSkillEventName: []
   runningEffect: {fileID: 0}
+  runningSound: {fileID: 0}
+  randomPitchOffset: 0.1
   onEndName: 
 --- !u!114 &4064151045817686354
 MonoBehaviour:

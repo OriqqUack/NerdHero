@@ -10041,6 +10041,7 @@ MonoBehaviour:
   radiusOffset: 0
   effect: {fileID: 11400000, guid: 5be1c6bb185d09543b8215632f25e435, type: 2}
   effect2: {fileID: 11400000, guid: 2f72f0d5ea9a6624c8147ebb247c92ac, type: 2}
+  impactSound: {fileID: 8300000, guid: 5b58d1614e26bd944abf16defefcd2a3, type: 3}
 --- !u!1 &8395075386571653500
 GameObject:
   m_ObjectHideFlags: 0

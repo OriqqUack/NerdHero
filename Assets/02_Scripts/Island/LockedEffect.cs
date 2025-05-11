@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class LockedEffect : MonoBehaviour
 
     private SpriteRenderer parentSpriteRenderer;
     private Island parentIsland;
-    
+    private Action action;
     private void Start()
     {
         if (transform.parent != null)
@@ -31,8 +32,9 @@ public class LockedEffect : MonoBehaviour
         }
     }
 
-    public void ShakeAndBreak()
+    public void ShakeAndBreak(Action callback)
     {
+        action = callback;
         Sequence seq = DOTween.Sequence();
 
         for (int i = 0; i < shakeCount; i++)
@@ -51,7 +53,7 @@ public class LockedEffect : MonoBehaviour
                 parentSpriteRenderer.DOColor(Color.white, 0.5f);
             }
         });
-
+            
         seq.AppendCallback(ExplodeLock); // 터뜨리기
     }
 
@@ -63,12 +65,17 @@ public class LockedEffect : MonoBehaviour
         }
 
         ActiveButton();
-        Destroy(transform.gameObject); // 자물쇠 파괴
     }
 
     private void ActiveButton()
     {
         parentSpriteRenderer.GetComponent<Island>().IsLocked = false;
         CircleExpositor.Instance.EnterButtonActive(true);
+        Destroy(transform.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        action?.Invoke();
     }
 }

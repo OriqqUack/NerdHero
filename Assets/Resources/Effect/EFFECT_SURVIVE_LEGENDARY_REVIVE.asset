@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EFFECT_SURVIVE_LEGENDARY_REVIVE
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: 1238643667, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 62
   codeName: SURVIVE_LEGENDARY_REVIVE
-  displayName: "1\uD68C \uBD80\uD65C"
+  displayName: "\uBD80\uD65C"
   description: "\uC0AC\uB9DD \uC2DC 1\uD68C \uBD80\uD65C (\uCCB4\uB825 100% \uD68C\uBCF5)\r"
   type: 0
   rarity: 2

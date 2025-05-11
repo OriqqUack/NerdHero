@@ -17,7 +17,7 @@ MonoBehaviour:
   itemCode: 2
   itemType: 1
   itemRarity: 1
-  icon: {fileID: 0}
+  icon: {fileID: -295622126, guid: 33216a14766233244893a68ee43938b1, type: 3}
   quantityOrLevel: 1
   statValue: 0.5
   isOld: 0

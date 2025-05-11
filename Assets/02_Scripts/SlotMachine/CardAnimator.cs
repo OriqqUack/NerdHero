@@ -205,14 +205,24 @@ public class CardAnimator : UiWindow
 
             if (i == selectedIndex)
             {
-                // 선택된 카드: 확대 + 강조
-                card.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBack);
+                if (card != null && card.GetComponent<RectTransform>() != null)
+                {
+                    RectTransform rect = card.GetComponent<RectTransform>();
 
-                // 카드가 내려가는 애니메이션
-                Sequence seq = DOTween.Sequence();
-                seq.AppendInterval(0.6f) // 나머지 카드 사라지는 시간 기다림
-                    .Append(card.GetComponent<RectTransform>().DOAnchorPosY(-_canvasHeight, 0.6f)
-                        .SetEase(Ease.InBack)).OnComplete(CloseUI);
+                    Sequence seq = DOTween.Sequence();
+                    seq.AppendInterval(0.6f)
+                        .Append(rect.DOAnchorPosY(-_canvasHeight, 0.6f)
+                            .SetEase(Ease.InBack)
+                            .SetUpdate(true))
+                        .OnComplete(() =>
+                        {
+                            CloseUI();
+                        })
+                        .OnKill(() =>
+                        {
+                            CloseUI();
+                        });
+                }
             }
             else
             {

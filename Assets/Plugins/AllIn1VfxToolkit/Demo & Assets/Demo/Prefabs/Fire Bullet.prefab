@@ -5128,10 +5128,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactPrefab: {fileID: 1835174905073365006, guid: adfd6c86cf180e64aaaa1bece2395926, type: 3}
+  impactSounds: []
+  createSound: {fileID: 8300000, guid: dff8ba1435e1aea48bb434c431706aab, type: 3}
   canPenetrate: 0
   shadow: {fileID: 3978772187253739345}
   lockYAxis: 1
-  lockRotation: 0
   yOffset: 0
 --- !u!1 &7493796544337829417
 GameObject:
@@ -5462,16 +5463,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 7493796544200936267}
     m_Modifications:
     - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17
+      value: -0.161
       objectReference: {fileID: 0}
     - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.23
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5770646249349555949, guid: 092e1573017e3ad49bdcc815244949f6, type: 3}
       propertyPath: m_LocalRotation.w

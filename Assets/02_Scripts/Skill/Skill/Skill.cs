@@ -90,6 +90,7 @@ public class Skill : IdentifiedObject
     public IReadOnlyList<SkillCondition> UseConditions => useConditions;
 
     public List<Effect> Effects { get; set; } = new List<Effect>();
+    public List<Effect> ExtraAddEffects { get; private set; } = new List<Effect>();
 
     public int MaxLevel => maxLevel;
     public int Level
@@ -407,6 +408,16 @@ public class Skill : IdentifiedObject
 
     public void Update() => StateMachine.Update();
 
+    public void AddEffects(List<Effect> effects)
+    {
+        foreach (var e in effects)
+        {
+            if (e == null) continue;
+            Effect copy = e.Clone() as Effect;
+            Effects.Add(copy);
+        }
+    }
+
     private void UpdateCustomActions()
     {
         customActionsByType[SkillCustomActionType.Cast] = currentData.customActionsOnCast;
@@ -681,7 +692,10 @@ public class Skill : IdentifiedObject
         var clone = Instantiate(this);
 
         if (Owner != null)
+        {
             clone.Setup(Owner, level);
+            clone.AddEffects(ExtraAddEffects);
+        }
 
         return clone;
     }

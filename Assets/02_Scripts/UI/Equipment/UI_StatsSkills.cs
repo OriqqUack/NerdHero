@@ -6,7 +6,7 @@ using UnityEngine;
 public class UI_StatsSkills : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI hpStatsText;
-    [SerializeField] private TextMeshProUGUI damageStatsText;
+    [SerializeField] private TextMeshProUGUI criticalStatsText;
 
     private Coroutine _hpCo;
     private Coroutine _damageCo;
@@ -20,7 +20,7 @@ public class UI_StatsSkills : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.GetPlayerHealthStat().onValueChanged += UpdateHp;
-        GameManager.Instance.GetPlayerDamageStat().onValueChanged += UpdateDamage;
+        GameManager.Instance.GetCriticalPerStat().onValueChanged += UpdateCritical;
 
         Init();
     }
@@ -28,7 +28,7 @@ public class UI_StatsSkills : MonoBehaviour
     private void OnEnable()
     {
         hpStatsText.text = _hpCurrentValue.ToString();
-        damageStatsText.text = _damageCurrentValue.ToString();
+        criticalStatsText.text = _damageCurrentValue.ToString();
     }
 
     private void OnDestroy()
@@ -36,14 +36,14 @@ public class UI_StatsSkills : MonoBehaviour
         if(GameManager.Instance != null)
         {
             GameManager.Instance.GetPlayerHealthStat().onValueChanged -= UpdateHp;
-            GameManager.Instance.GetPlayerDamageStat().onValueChanged -= UpdateDamage;
+            GameManager.Instance.GetCriticalPerStat().onValueChanged -= UpdateCritical;
         }
     }
 
     private void Init()
     {
-        UpdateHp(null, GameManager.Instance.GetPlayerHealthStat().Value, 0);
-        UpdateDamage(null, GameManager.Instance.GetPlayerDamageStat().Value, 0);
+        UpdateHp(GameManager.Instance.GetPlayerHealthStat(), GameManager.Instance.GetPlayerHealthStat().Value, 0);
+        UpdateCritical(GameManager.Instance.GetCriticalPerStat(), GameManager.Instance.GetCriticalPerStat().Value, 0);
     }
 
     private void UpdateHp(Stat stat, float currentHp, float prevHp)
@@ -51,32 +51,53 @@ public class UI_StatsSkills : MonoBehaviour
         _hpCurrentValue = currentHp;
         if (_hpCo != null)
             StopCoroutine(_hpCo);  // 기존 코루틴 중지
+        
+        bool isPercent = stat.IsPercentType;
 
-        _hpCo = StartCoroutine(ChangeNumber(hpStatsText, currentHp, prevHp));
+        _hpCo = StartCoroutine(ChangeNumber(hpStatsText, currentHp, prevHp, isPercent));
     }
-    private void UpdateDamage(Stat stat, float currentDamage, float prevDamage)
+    private void UpdateCritical(Stat stat, float currentDamage, float prevDamage)
     {
         _damageCurrentValue = currentDamage;
         if (_damageCo != null)
             StopCoroutine(_damageCo);  // 기존 코루틴 중지
 
-        _damageCo = StartCoroutine(ChangeNumber(damageStatsText, currentDamage, prevDamage));
+        bool isPercent = stat.IsPercentType;
+
+        _damageCo = StartCoroutine(ChangeNumber(criticalStatsText, currentDamage, prevDamage, isPercent));
     }
 
     // 숫자가 점진적으로 변하는 코루틴
-    IEnumerator ChangeNumber(TextMeshProUGUI text, float target, float current)
+    IEnumerator ChangeNumber(TextMeshProUGUI text, float target, float current, bool isPercent)
     {
         float duration = 0.5f; // 카운팅에 걸리는 시간 설정
         float elapsed = 0f;
 
-        while (elapsed < duration)
+        if (isPercent)
         {
-            elapsed += Time.deltaTime;
-            current = Mathf.MoveTowards(current, target, Mathf.Abs(target - current) / duration * Time.deltaTime);
-            text.text = ((int)current).ToString();
-            yield return null;
+            current *= 100f;
+            current = (int)current;
+            target *= 100f;
+            target = (int)target;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                current = Mathf.MoveTowards(current, target, Mathf.Abs(target - current) / duration * Time.deltaTime);
+                text.text = $"{(int)current} %" ;
+                yield return null;
+            }
+            text.text = $"{((int)(target)).ToString()} %" ;
         }
-
-        text.text = ((int)target).ToString();
+        else
+        {
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                current = Mathf.MoveTowards(current, target, Mathf.Abs(target - current) / duration * Time.deltaTime);
+                text.text = ((int)current).ToString() ;
+                yield return null;
+            }
+            text.text = ((int)target).ToString();
+        }
     }
 }

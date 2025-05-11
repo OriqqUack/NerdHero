@@ -18,13 +18,19 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
     private int _currentTarget = 0;
     private float _offsetRotation, _iniY;
     private float _zOffset = 0f;
+    private Vector2 _touchStartPos;
+    private bool _swiped = false;
     
     public int CurrentTargetIndex => _currentTarget;
     public Island CurrentIsland => _islands[_currentTarget];
 
     private void Start()
     {
-        _currentTarget = GameManager.Instance.CurrentIslandIndex;
+        if(GameManager.Instance.CurrentIslandIndex == -1)
+            _currentTarget = 0;
+        else
+            _currentTarget = GameManager.Instance.CurrentIslandIndex;
+        
         _dummyRotation = transform.rotation;
         _iniY = transform.position.y;
         
@@ -38,25 +44,38 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
 
         _zOffset = radius - 40f;
         transform.position = new Vector3(transform.position.x, transform.position.y, _zOffset);
-
+        
         if (GameManager.Instance.IsClear)
         {
             StartCoroutine(ScrollingCoroutine());
+        }
+        else
+        {
+            SetTarget(_currentTarget);
         }
     }
 
     private IEnumerator ScrollingCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        
+
         int index = GameManager.Instance.CurrentIslandIndex + 1;
         _currentTarget = index;
         if (!_islands.IsValidIndex(index)) yield break;
         
         if (_islands[index].IsLocked)
         {
-            ChangeTarget(index);
-            _islands[_currentTarget].LockedEffect.ShakeAndBreak();
+            SetTarget(index);
+            _islands[_currentTarget].LockedEffect.ShakeAndBreak(() =>
+            {
+                GameManager.Instance.IsClear = false;
+                List<bool> clearedMapList = new List<bool>();
+                foreach (var island in _islands)
+                {
+                    clearedMapList.Add(island.IsLocked);
+                }
+                Managers.BackendManager.UpdateField("clearedMap", clearedMapList);
+            });
         }
         
         yield return null;
@@ -65,15 +84,30 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
     private void Update()
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, _dummyRotation, rotateSpeed * Time.deltaTime);
+
+#if UNITY_ANDROID
+        HandleTouchInput();
+#endif
     }
 
     public void ChangeTarget(int offset)
     {
-        if (offset > _items.Length - 1) _currentTarget = 0;
-        else if (offset < 0) _currentTarget = _items.Length - 1;
+        _currentTarget += offset;
+        if (_currentTarget > _items.Length - 1) _currentTarget = 0;
+        else if (_currentTarget < 0) _currentTarget = _items.Length - 1;
         _dummyRotation *= Quaternion.Euler(Vector3.up * (offset * _offsetRotation));
 
-        EnterButtonActive(false);
+        EnterButtonActive(!_islands[_currentTarget].IsLocked);
+    }
+
+    public void SetTarget(int offset)
+    {
+        if (offset > _items.Length - 1) _currentTarget = 0;
+        else if (offset < 0) _currentTarget = _items.Length - 1;
+        _currentTarget = offset;
+        _dummyRotation *= Quaternion.Euler(Vector3.up * (offset * _offsetRotation));
+
+        EnterButtonActive(!_islands[_currentTarget].IsLocked);
     }
 
     public void EnterButtonActive(bool active)
@@ -85,18 +119,18 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
             enterButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
 
-    public void Save(SaveData data)
+    public void Save(GameData data)
     {
-        List<bool> isLocked = new List<bool>();
+        /*List<bool> isLocked = new List<bool>();
         foreach (Island island in _islands)
         {
             isLocked.Add(!island.IsLocked);
         }
 
-        data.Map.clearedMap = new List<bool>(isLocked);
+        data.Map.clearedMap = new List<bool>(isLocked);*/
     }
 
-    public void Load(SaveData data)
+    public void Load(GameData data)
     {
         _items = new Transform[transform.childCount];
 
@@ -107,9 +141,49 @@ public class CircleExpositor : MonoSingleton<CircleExpositor>, ISaveable
             _count++;
         }
 
-        for (int i = 0; i < data.Map.clearedMap.Count; i++)
+        for (int i = 0; i < data.clearedMap.Count; i++)
         {
-            _islands[i].IsLocked = !data.Map.clearedMap[i];
+            _islands[i].IsLocked = data.clearedMap[i];
         }
     }
+    
+    private void HandleTouchInput()
+    {
+        if (Input.touchCount == 0) return;
+
+        Touch touch = Input.GetTouch(0);
+
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                _touchStartPos = touch.position;
+                _swiped = false;
+                break;
+
+            case TouchPhase.Moved:
+                if (_swiped) return; // 한 번만 처리
+
+                float deltaX = touch.position.x - _touchStartPos.x;
+
+                if (Mathf.Abs(deltaX) > 100f) // 스와이프 감지 임계값 (조절 가능)
+                {
+                    if (deltaX > 0)
+                    {
+                        ChangeTarget(-1); // 오른쪽으로 스와이프 → 왼쪽 이동
+                    }
+                    else
+                    {
+                        ChangeTarget(1); // 왼쪽으로 스와이프 → 오른쪽 이동
+                    }
+
+                    _swiped = true; // 중복 감지 방지
+                }
+                break;
+
+            case TouchPhase.Ended:
+                _swiped = false;
+                break;
+        }
+    }
+
 }

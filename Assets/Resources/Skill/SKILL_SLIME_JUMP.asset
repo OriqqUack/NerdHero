@@ -119,3 +119,4 @@ MonoBehaviour:
         angle: 35
         jumpSpeed: 12
         isBackJump: 0
+        jumpSound: {fileID: 8300000, guid: 1390d6a7b968c2a459428538715344a1, type: 3}

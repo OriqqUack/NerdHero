@@ -12,11 +12,11 @@ public class UI_PlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.GetPlayerLevelStat().onValueChanged += UpdateLevel;
-        GameManager.Instance.GetPlayerExpStat().onValueChanged += UpdateExp;
+        GameManager.Instance.OnPlayerLevelChanged += UpdateLevel;
+        GameManager.Instance.OnExpChanged += UpdateExp;
         
-        UpdateLevel(GameManager.Instance.GetPlayerLevelStat(), 0 ,0);
-        UpdateExp(GameManager.Instance.GetPlayerExpStat(), 0, 0);
+        UpdateLevel(GameManager.Instance.PlayerLevelRaw);
+        UpdateExp(GameManager.Instance.CurrentExp);
     }
 
     public void UpdateNickName()
@@ -24,13 +24,13 @@ public class UI_PlayerInfo : MonoBehaviour
         playerNickname.text = string.IsNullOrEmpty(UserInfo.Data.nickName) ? UserInfo.Data.gamerId : UserInfo.Data.nickName;
     }
 
-    private void UpdateLevel(Stat stat, float currentLevel, float prevLevel)
+    private void UpdateLevel(int level)
     {
-        playerLevel.text = currentLevel.ToString();
+        playerLevel.text = level.ToString();
     }
     
-    private void UpdateExp(Stat stat, float currentLevel, float prevLevel)
+    private void UpdateExp(int exp)
     {
-        expSlider.value = currentLevel / stat.MaxValue;
+        expSlider.value = exp / 100f;
     }
 }

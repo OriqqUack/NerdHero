@@ -117,6 +117,7 @@ MonoBehaviour:
       data:
         smallObjectPrefab: {fileID: 8572546601497261180, guid: 536e2a7d2fc2dad4dabb071c92631038, type: 3}
         count: 2
+        soundEffect: {fileID: 8300000, guid: bd34d56886c0b9d46ae0f9a2bdb252ef, type: 3}
         _dropRadius: 1
         _forwardForce: 2
         _upwardForce: 3

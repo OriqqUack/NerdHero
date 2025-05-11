@@ -36,7 +36,6 @@ public class UI_Profile : UiWindow
     [SerializeField] private TextMeshProUGUI expText;
     [SerializeField] private Slider expSlider;
     [SerializeField] private TextMeshProUGUI playerScoreText;
-    [SerializeField] private TextMeshProUGUI artifactsCountText;
     
     [Space(10)] [Header("Profile Bottom")]
     [SerializeField] private TextMeshProUGUI stageClearRecordText;
@@ -111,9 +110,9 @@ public class UI_Profile : UiWindow
         }
         
         frameImage.sprite = 
-            Resources.Load<Sprite>($"Sprites/ProfileFrame/{GameManager.Instance.PlayerProfile.profileFrameName}");
+            Resources.Load<Sprite>($"Sprites/ProfileFrame/{GameManager.Instance.ProfileFrameName}");
         playerIconImage.sprite =
-            Resources.Load<Sprite>($"Sprites/ProfileIcon/{GameManager.Instance.PlayerProfile.profileIconName}");
+            Resources.Load<Sprite>($"Sprites/ProfileIcon/{GameManager.Instance.ProfileIconName}");
         
         UpdateProfile();
         UpdateNickName();
@@ -128,7 +127,7 @@ public class UI_Profile : UiWindow
     {
         selectedFrameImage.sprite = frameData.Sprite;
         frameDescriptionText.text = frameData.Description;
-        GameManager.Instance.PlayerProfile.profileFrameName = frameData.Sprite.name;
+        GameManager.Instance.ProfileFrameName = frameData.Sprite.name;
         frameChooseBtn.onClick.AddListener(() => ChooseFrame());
     }
 
@@ -136,7 +135,7 @@ public class UI_Profile : UiWindow
     {
         selectedIconImage.sprite = sprite.Sprite;
         iconDescriptionText.text = sprite.Description;
-        GameManager.Instance.PlayerProfile.profileIconName = sprite.Sprite.name;
+        GameManager.Instance.ProfileIconName = sprite.Sprite.name;
         iconChooseBtn.onClick.AddListener(() => ChooseIcon());
     }
 
@@ -158,18 +157,17 @@ public class UI_Profile : UiWindow
         CurrentControl(profileMiddle, profileBottom);
         
         
-        playerNameText.text = gm.PlayerProfile.playerName;
-        playerIdText.text = gm.PlayerProfile.playerID;
-        playerLevelText.text = gm.PlayerProfile.playerLevel.ToString();
-        expText.text = $"{gm.PlayerProfile.playerExp} / 100";
-        expSlider.value = gm.PlayerProfile.playerExp / 100f;
-        playerScoreText.text = gm.PlayerProfile.maxScore.ToString();
-        artifactsCountText.text = $"{gm.PlayerProfile.currentArtifact.ToString()} / 64";
+        playerNameText.text = gm.PlayerName;
+        playerIdText.text = gm.PlayerId;
+        playerLevelText.text = gm.PlayerLevelRaw.ToString();
+        expText.text = $"{gm.CurrentExp} / 100";
+        expSlider.value = gm.CurrentExp / 100f;
+        playerScoreText.text = gm.HighScore.ToString();
         
-        stageClearRecordText.text = gm.PlayerProfile.totalStageClears.ToString();
-        rankingRecordText.text = gm.PlayerProfile.ranking.ToString();
-        killMonsterRecordText.text = gm.PlayerProfile.totalKills.ToString();
-        victoriesRecordText.text = gm.PlayerProfile.victories.ToString();
+        stageClearRecordText.text = gm.TotalStageClear.ToString();
+        rankingRecordText.text = gm.Ranking.ToString();
+        killMonsterRecordText.text = gm.TotalKills.ToString();
+        victoriesRecordText.text = gm.Victories.ToString();
     }
 
     private void UpdatePlayerFrame()

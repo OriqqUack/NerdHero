@@ -9,11 +9,11 @@ public class LogoScenario : MonoBehaviour
     {
         SystemSetup();
     }
-
+    
     private void SystemSetup()
     {
         Application.runInBackground = true;
-        
+        Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 }

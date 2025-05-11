@@ -79,7 +79,7 @@ public class LightningDealDamageAction : ElementEffectAction
             if (e == excludeTarget || e == origin || e == null)
                 continue;
 
-            float dist = Vector3.Distance(origin.transform.position, e.transform.position);
+            float dist = Vector3.Distance(excludeTarget.transform.position, e.transform.position);
             if (dist <= range)
                 nearby.Add(e);
         }

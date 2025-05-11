@@ -53,7 +53,6 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
     {
         foreach (Transform child in inventoryPanel) Destroy(child.gameObject);
         List<ItemSO> filteredItems = Managers.InventoryManager.GetItems();
-        List<Skill> filteredSkills = Managers.InventoryManager.GetSkills();
 
         if (isWeaponFilter)
         {
@@ -90,7 +89,7 @@ public class UI_Inventory : MonoSingleton<UI_Inventory>
             slotObj.GetComponent<InventorySkillSlot>().SetItem(skill);
         }*/
 
-        inventoryAmount.text = $"<color=#32bbff>{filteredItems.Count + filteredSkills.Count}</color> / 120";
+        inventoryAmount.text = $"<color=#32bbff>{filteredItems.Count}</color> / 120";
     }
     
     #region ButtonEvent

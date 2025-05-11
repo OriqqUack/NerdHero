@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3993291021560883485}
-  - component: {fileID: 7723586827249521767}
   - component: {fileID: 2392655602022449901}
   - component: {fileID: 5356730476686177277}
   - component: {fileID: 5082822583570350307}
@@ -51,25 +50,6 @@ Transform:
   - {fileID: 673183384259742266}
   m_Father: {fileID: 4393887721309809603}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &7723586827249521767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847966470076697188}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d55a3bd6ac81af44b2f9a4447f2ae72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 7030540705148768200}
-  eventName: Hit
-  audioSource: {fileID: 3020576200313030085}
-  audioClip: {fileID: 8300000, guid: e885484e1bc99fb47a0ac3f6bfa586b1, type: 3}
-  basePitch: 1
-  randomPitchOffset: 0.2
-  logDebugMessage: 0
 --- !u!114 &2392655602022449901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +93,7 @@ MonoBehaviour:
   OnJump:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7723586827249521767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -128,7 +108,7 @@ MonoBehaviour:
   OnLand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7723586827249521767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -193,6 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   categories: []
   controlType: 1
+  damagedSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8217823893de90a49811bd85ca7e5213, type: 3}
   CanTakeDamage: 1
 --- !u!114 &5462693533899820236
 MonoBehaviour:
@@ -413,6 +395,7 @@ MonoBehaviour:
   rigidBody: {fileID: 5474387783976770323}
   isCC: 0
   zAttackOffset: 0
+  stifnessCycle: 3
 --- !u!114 &527226059664411072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +431,8 @@ MonoBehaviour:
   - attack
   nonSkillEventName: []
   runningEffect: {fileID: 0}
+  runningSound: {fileID: 0}
+  randomPitchOffset: 0.1
   onEndName: 
 --- !u!114 &8621681244891324275
 MonoBehaviour:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EFFECT_ICE_LEGENDARY
   m_EditorClassIdentifier: 
   categories: []
-  icon: {fileID: 0}
+  icon: {fileID: 953207840, guid: 33216a14766233244893a68ee43938b1, type: 3}
   id: 26
   codeName: ICE_LEGENDARY
   displayName: "(\uC5BC\uC74C \uC18D\uC131) \uB454\uD654 \uC801 \uACF5\uACA9 \uC2DC
