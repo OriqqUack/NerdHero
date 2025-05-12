@@ -68,7 +68,7 @@ public class WaveManager : MonoSingleton<WaveManager>
     public float CurrentTime { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public Entity PlayerEntity { get; private set; }
-    public int CurrentWave => _currentWaveIndex;
+    public int CurrentWave => _currentWaveIndex + 1;
     public int TotalWaveCount => waveData.Waves.Count;
     public bool IsClear { get; private set; }
 
@@ -130,21 +130,32 @@ public class WaveManager : MonoSingleton<WaveManager>
     {
         while (_currentWaveIndex < waveData.Waves.Count)
         {
-            // 적이 다 죽었고, 이전 SubWave도 끝났으면 다음 웨이브 시작
-            yield return StartCoroutine(StartNewWave());
+            // 1. 웨이브 시작 알림 먼저
+            OnWaveChange?.Invoke(_currentWaveIndex + 1); // UI용으로는 1부터 시작한다고 가정
+
+            // 2. StartNewWave 전에 인덱스 증가
+            yield return StartCoroutine(StartNewWave(_currentWaveIndex));
+
             yield return new WaitUntil(() => ActiveEnemies.Count == 0 && _isSubWaveEnd);
+
+            _currentWaveIndex++; // 루프 마지막에 증가
         }
 
         EndWave();
     }
 
-    private IEnumerator StartNewWave()
+
+    private IEnumerator StartNewWave(int waveIndex)
     {
         _currentEntryIndex = 0;
-        WaveData currentWave = waveData.Waves[_currentWaveIndex];
-        
-        _currentWaveIndex++;
-        OnWaveChange?.Invoke(_currentWaveIndex);
+
+        if (!waveData.Waves.IsValidIndex(waveIndex))
+        {
+            Debug.LogWarning($"Wave index {waveIndex} is invalid.");
+            yield break;
+        }
+
+        WaveData currentWave = waveData.Waves[waveIndex];
 
         while (_currentEntryIndex < currentWave.Enemies.Count)
         {
@@ -153,11 +164,11 @@ public class WaveManager : MonoSingleton<WaveManager>
 
             SpawnEnemies(entry);
 
-            // 이벤트 기반 대기로 변경
             yield return new WaitUntil(() => _isSubWaveEnd);
             _currentEntryIndex++;
         }
     }
+
 
     private void SpawnEnemies(WaveEntry entry)
     {
@@ -214,19 +225,26 @@ public class WaveManager : MonoSingleton<WaveManager>
 
         if (ActiveEnemies.Count == 0 && !_isSpawning)
         {
-            float elapsedTime = 0;
-            bool spawned = false;
-            while (elapsedTime < timeBetweenWaves)
-            {
-                elapsedTime += Time.deltaTime;
-                if (_spawnedInBetweenWave)
-                {
-                    _spawnedInBetweenWave = false;
-                    return;
-                }
-            }
-            _isSubWaveEnd = true;
+            StartCoroutine(HandleSubWaveEnd());
         }
+    }
+    private IEnumerator HandleSubWaveEnd()
+    {
+        float elapsedTime = 0;
+    
+        while (elapsedTime < timeBetweenWaves)
+        {
+            if (_spawnedInBetweenWave)
+            {
+                _spawnedInBetweenWave = false;
+                yield break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        _isSubWaveEnd = true;
     }
 
     private void EndWave()

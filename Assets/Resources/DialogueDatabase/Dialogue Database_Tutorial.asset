@@ -1095,7 +1095,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: SendMessage(SpotlightOffAndTime); Continue()@2
+        value: SendMessage(SpotlightOffAndTime); Continue()@4
         type: 0
         typeString: 
       - title: Response Menu Sequence
@@ -1124,7 +1124,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 158.30537
-        y: 269.9785
+        y: 264.28745
         width: 160
         height: 30
     - id: 4
@@ -1978,7 +1978,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasZoom: 0.7300002
   - id: 9
     fields:
     - title: Title
