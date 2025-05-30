@@ -735,7 +735,31 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CardIcon2_0: 8152215567624374318
+      CardIcon2_1: -824427965900225757
+      CardIcon2_10: 989684044139152798
+      CardIcon2_11: 1134302436429926691
+      CardIcon2_12: 4947940352406377450
+      CardIcon2_13: -2939654321976152474
+      CardIcon2_14: 17912079991180492
+      CardIcon2_15: -5906626585524545064
+      CardIcon2_16: -7208125925769734131
+      CardIcon2_17: 2830173554714862342
+      CardIcon2_18: -6709286113295009867
+      CardIcon2_19: 8512454490415540692
+      CardIcon2_2: -8062125676365990244
+      CardIcon2_20: 6914202254323613690
+      CardIcon2_21: 1289905287727412278
+      CardIcon2_22: -8875704484292409156
+      CardIcon2_23: -4885581976043792931
+      CardIcon2_3: -8330688365550920692
+      CardIcon2_4: -8305269000512169775
+      CardIcon2_5: -6416564737174876455
+      CardIcon2_6: 6632738031971820035
+      CardIcon2_7: 1828563573247760642
+      CardIcon2_8: 6329302031323768645
+      CardIcon2_9: -92019951497068729
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

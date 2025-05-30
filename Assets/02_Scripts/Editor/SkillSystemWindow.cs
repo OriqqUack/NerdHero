@@ -8,61 +8,44 @@ using UnityEditor;
 
 public class SkillSystemWindow : EditorWindow
 {
-    #region 3-2
-    // ÇöÀç º¸°í ÀÖ´Â databaseÀÇ index
     private static int toolbarIndex = 0;
-    // Database ListÀÇ Scroll Position
     private static Dictionary<Type, Vector2> scrollPositionsByType = new();
-    // ÇöÀç º¸¿©ÁÖ°í ÀÖ´Â dataÀÇ Scroll Posiiton
     private static Vector2 drawingEditorScrollPosition;
-    // ÇöÀç ¼±ÅÃÇÑ Data
     private static Dictionary<Type, IdentifiedObject> selectedObjectsByType = new();
 
-    // Typeº° Database(Category, Stat, Skill µîµî...)
     private readonly Dictionary<Type, IODatabase> databasesByType = new();
-    // Database DataµéÀÇ Typeµé
     private Type[] databaseTypes;
-    // À§ TypeµéÀÇ string ÀÌ¸§
     private string[] databaseTypeNames;
 
-    // ÇöÀç º¸¿©ÁÖ°í ÀÖ´Â dataÀÇ Editor class
     private Editor cachedEditor;
 
-    // Database ListÀÇ Selected Background Texture
     private Texture2D selectedBoxTexture;
-    // Database ListÀÇ Selected Style
     private GUIStyle selectedBoxStyle;
-    #endregion
 
-    #region 3-3
-    // Editor Tools ÅÇ¿¡ Skill System Ç×¸ñÀÌ Ãß°¡µÇ°í, Click½Ã Window°¡ ¿­¸²
     [MenuItem("Tools/Skill System")]
     private static void OpenWindow()
     {
-        // Skill SystemÀÌ¶õ ¸íÄªÀ» °¡Áø Window¸¦ »ý¼º
         var window = GetWindow<SkillSystemWindow>("Skill System");
-        // WindowÀÇ ÃÖ¼Ò »çÀÌÁî´Â 800x700
         window.minSize = new Vector2(800, 700);
-        // Window¸¦ º¸¿©ÁÜ
         window.Show();
     }
 
     private void SetupStyle()
     {
-        // 1x1 PixelÀÇ Texture¸¦ ¸¸µë
+        // 1x1 Pixelï¿½ï¿½ Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         selectedBoxTexture = new Texture2D(1, 1);
-        // PixelÀÇ Color(=Ã»»ö)¸¦ ¼³Á¤ÇØÁÜ
+        // Pixelï¿½ï¿½ Color(=Ã»ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         selectedBoxTexture.SetPixel(0, 0, new Color(0.31f, 0.40f, 0.50f));
-        // À§¿¡¼­ ¼³Á¤ÇÑ Color°ªÀ» ½ÇÁ¦·Î Àû¿ëÇÔ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Colorï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         selectedBoxTexture.Apply();
-        // ÀÌ Texture´Â Window¿¡¼­ °ü¸®ÇÒ °ÍÀÌ±â ¶§¹®¿¡ Unity¿¡¼­ ÀÚµ¿ °ü¸®ÇÏÁö¸»¶ó(DontSave) Flag¸¦ ¼³Á¤ÇØÁÜ
-        // ÀÌ flag°¡ ¾ø´Ù¸é Editor¿¡¼­ Play¸¦ ´©¸¥Ã¤·Î SetupStyle ÇÔ¼ö°¡ ½ÇÇàµÇ¸é
-        // texture°¡ Play »óÅÂ¿¡ Á¾¼ÓµÇ¾î Play¸¦ ÁßÁöÇÏ¸é texture°¡ ÀÚµ¿ DestroyµÇ¹ö¸²
+        // ï¿½ï¿½ Textureï¿½ï¿½ Windowï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Unityï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(DontSave) Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ flagï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ Editorï¿½ï¿½ï¿½ï¿½ Playï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¤ï¿½ï¿½ SetupStyle ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½
+        // textureï¿½ï¿½ Play ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ÓµÇ¾ï¿½ Playï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ textureï¿½ï¿½ ï¿½Úµï¿½ Destroyï¿½Ç¹ï¿½ï¿½ï¿½
         selectedBoxTexture.hideFlags = HideFlags.DontSave;
 
         selectedBoxStyle = new GUIStyle();
-        // Normal »óÅÂÀÇ Backgorund Texture¸¦ À§ Texture·Î ¼³Á¤ÇØÁÜÀ¸·Î½á ÀÌ StyleÀ» ¾²´Â GUI´Â Background°¡ Ã»»öÀ¸·Î ³ª¿Ã °ÍÀÓ
-        // Áï, SelectµÈ DataÀÇ Background´Â Ã»»öÀ¸·Î ³ª¿Í¼­ °­Á¶µÊ
+        // Normal ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Backgorund Textureï¿½ï¿½ ï¿½ï¿½ Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½ ï¿½ï¿½ Styleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ GUIï¿½ï¿½ Backgroundï¿½ï¿½ Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½, Selectï¿½ï¿½ Dataï¿½ï¿½ Backgroundï¿½ï¿½ Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         selectedBoxStyle.normal.background = selectedBoxTexture;
     }
 
@@ -70,10 +53,10 @@ public class SkillSystemWindow : EditorWindow
     {
         if (databasesByType.Count == 0)
         {
-            // Resources Folder¿¡ Database Folder°¡ ÀÖ´ÂÁö È®ÀÎ
+            // Resources Folderï¿½ï¿½ Database Folderï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             if (!AssetDatabase.IsValidFolder("Assets/Resources/Database"))
             {
-                // ¾ø´Ù¸é Database Folder¸¦ ¸¸µé¾îÁÜ
+                // ï¿½ï¿½ï¿½Ù¸ï¿½ Database Folderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 AssetDatabase.CreateFolder("Assets/Resources", "Database");
             }
 
@@ -83,17 +66,17 @@ public class SkillSystemWindow : EditorWindow
                 if (database == null)
                 {
                     database = CreateInstance<IODatabase>();
-                    // ÁöÁ¤ÇÑ ÁÖ¼Ò¿¡ IODatabase¸¦ »ý¼º
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¿ï¿½ IODatabaseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     AssetDatabase.CreateAsset(database, $"Assets/Resources/Database/{type.Name}Database.asset");
-                    // ÁöÁ¤ÇÑ ÁÖ¼ÒÀÇ ÇÏÀ§ Folder¸¦ »ý¼º, ÀÌ Folder´Â Window¿¡ ÀÇÇØ »ý¼ºµÈ IdentifiedObject°¡ ÀúÀåµÉ Àå¼ÒÀÓ
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Folderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ Folderï¿½ï¿½ Windowï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IdentifiedObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
                     AssetDatabase.CreateFolder("Assets/Resources", type.Name);
                 }
 
-                // ºÒ·¯¿Â or »ý¼ºµÈ Database¸¦ Dictionary¿¡ º¸°ü
+                // ï¿½Ò·ï¿½ï¿½ï¿½ or ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Databaseï¿½ï¿½ Dictionaryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 databasesByType[type] = database;
-                // ScrollPosition Data »ý¼º
+                // ScrollPosition Data ï¿½ï¿½ï¿½ï¿½
                 scrollPositionsByType[type] = Vector2.zero;
-                // SelectedObject Data »ý¼º
+                // SelectedObject Data ï¿½ï¿½ï¿½ï¿½
                 selectedObjectsByType[type] = null;
             }
 
@@ -101,9 +84,7 @@ public class SkillSystemWindow : EditorWindow
             databaseTypes = dataTypes;
         }
     }
-    #endregion
 
-    #region 3-5
     private void OnEnable()
     {
         SetupStyle();
@@ -118,7 +99,7 @@ public class SkillSystemWindow : EditorWindow
 
     private void OnGUI()
     {
-        // DatabaseµéÀÌ °ü¸® ÁßÀÎ IdentifiedObjectµéÀÇ Type NameÀ¸·Î Toolbar¸¦ ±×·ÁÁÜ
+        // Databaseï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IdentifiedObjectï¿½ï¿½ï¿½ï¿½ Type Nameï¿½ï¿½ï¿½ï¿½ Toolbarï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
         toolbarIndex = GUILayout.Toolbar(toolbarIndex, databaseTypeNames);
         EditorGUILayout.Space(4f);
         CustomEditorUtility.DrawUnderline();
@@ -126,53 +107,51 @@ public class SkillSystemWindow : EditorWindow
 
         DrawDatabase(databaseTypes[toolbarIndex]);
     }
-    #endregion
 
-    #region 3-4
     private void DrawDatabase(Type dataType)
     {
-        // Dictionary¿¡¼­ Type¿¡ ¸Â´Â Database¸¦ Ã£¾Æ¿È
+        // Dictionaryï¿½ï¿½ï¿½ï¿½ Typeï¿½ï¿½ ï¿½Â´ï¿½ Databaseï¿½ï¿½ Ã£ï¿½Æ¿ï¿½
         var database = databasesByType[dataType];
-        // Editor¿¡ CachingµÇ´Â Preview TextureÀÇ ¼ö¸¦ ÃÖ¼Ò 32°³, ÃÖ´ë databaseÀÇ Count±îÁö ´Ã¸²
-        // ÀÌ ÀÛ¾÷À» ¾ÈÇØÁÖ¸é ±×·Á¾ßÇÏ´Â IO °´Ã¼ÀÇ IconµéÀÌ ¸¹À» °æ¿ì Á¦´ë·Î ±×·ÁÁöÁö ¾Ê´Â ¹®Á¦°¡ ¹ß»ýÇÔ
+        // Editorï¿½ï¿½ Cachingï¿½Ç´ï¿½ Preview Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ 32ï¿½ï¿½, ï¿½Ö´ï¿½ databaseï¿½ï¿½ Countï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½
+        // ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ IO ï¿½ï¿½Ã¼ï¿½ï¿½ Iconï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½
         AssetPreview.SetPreviewTextureCacheSize(Mathf.Max(32, 32 + database.Count));
 
-        // DatabaseÀÇ Data ¸ñ·ÏÀ» ±×·ÁÁÖ±â ½ÃÀÛ
-        // (1) °¡·Î Á¤·Ä ½ÃÀÛ
+        // Databaseï¿½ï¿½ Data ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // (1) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         EditorGUILayout.BeginHorizontal();
         {
-            // (2) ¼¼·Î Á¤·Ä ½ÃÀÛ, StyleÀº HelpBox, ³ÐÀÌ´Â 300f
+            // (2) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, Styleï¿½ï¿½ HelpBox, ï¿½ï¿½ï¿½Ì´ï¿½ 300f
             EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Width(300f));
             {
-                // Áö±ÝºÎÅÍ ±×¸± GUI´Â ÃÊ·Ï»ö
+                // ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ ï¿½Ê·Ï»ï¿½
                 GUI.color = Color.green;
-                // »õ·Î¿î Data¸¦ ¸¸µå´Â ButtonÀ» ±×·ÁÁÜ
+                // ï¿½ï¿½ï¿½Î¿ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
                 if (GUILayout.Button($"New {dataType.Name}"))
                 {
-                    // System NamespaceÀÇ Guid ±¸Á¶Ã¼¸¦ ÀÌ¿ëÇØ¼­ °íÀ¯ ½Äº°ÀÚ¸¦ »ý¼º
-                    // °íÀ¯ ½Äº°ÀÚ¶ó´Â°Ç Àý¶§·Î °ãÄ¥ ¼ö ¾ø´Â ¾î¶² °ª
+                    // System Namespaceï¿½ï¿½ Guid ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½Ú¶ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¥ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½ï¿½
                     var guid = Guid.NewGuid();
                     var newData = CreateInstance(dataType) as IdentifiedObject;
-                    // ReflectionÀ» ÀÌ¿ëÇØ codeName Field¸¦ Ã£¾Æ¿Í¼­ newDataÀÇ codeNameÀ» ÀÓ½Ã codeNameÀÎ guid·Î Set
+                    // Reflectionï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ codeName Fieldï¿½ï¿½ Ã£ï¿½Æ¿Í¼ï¿½ newDataï¿½ï¿½ codeNameï¿½ï¿½ ï¿½Ó½ï¿½ codeNameï¿½ï¿½ guidï¿½ï¿½ Set
                     dataType.BaseType.GetField("codeName", BindingFlags.NonPublic | BindingFlags.Instance)
                         .SetValue(newData, guid.ToString());
-                    // newData¸¦ Asset Æú´õ¿¡ ÀúÀåÇÔ (ScriptableObject)
+                    // newDataï¿½ï¿½ Asset ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ScriptableObject)
                     AssetDatabase.CreateAsset(newData, $"Assets/Resources/{dataType.Name}/{dataType.Name.ToUpper()}_{guid}.asset");
 
                     database.Add(newData);
-                    // database¿¡¼­ data¸¦ Ãß°¡ÇßÀ¸´Ï(= Serialize º¯¼öÀÎ datas º¯¼ö¿¡ º¯È­°¡ »ý±è)
-                    // SetDirty¸¦ ¼³Á¤ÇÏ¿© Unity¿¡ databaseÀÇ Serialize º¯¼ö°¡ º¯Çß´Ù°í ¾Ë¸²
+                    // databaseï¿½ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(= Serialize ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ datas ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+                    // SetDirtyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Unityï¿½ï¿½ databaseï¿½ï¿½ Serialize ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß´Ù°ï¿½ ï¿½Ë¸ï¿½
                     EditorUtility.SetDirty(database);
-                    // Dirty flag ´ë»óÀ» ÀúÀåÇÔ
+                    // Dirty flag ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     AssetDatabase.SaveAssets();
 
-                    // ÇöÀç º¸°í ÀÖ´Â IdentifiedObject´Â »õ·Î ¸¸µé¾îÁø IdentifiedObject·Î ¼³Á¤
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ IdentifiedObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ IdentifiedObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     selectedObjectsByType[dataType] = newData;
                 }
 
-                // Áö±ÝºÎÅÍ ±×¸± GUI´Â »¡°£»ö
+                // ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 GUI.color = Color.red;
-                // ¸¶Áö¸· ¼ø¹øÀÇ Data¸¦ »èÁ¦ÇÏ´Â ButtonÀ» ±×·ÁÁÜ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Buttonï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
                 if (GUILayout.Button($"Remove Last {dataType.Name}"))
                 {
                     var lastData = database.Count > 0 ? database.Datas.Last() : null;
@@ -180,143 +159,142 @@ public class SkillSystemWindow : EditorWindow
                     {
                         database.Remove(lastData);
 
-                        // DataÀÇ Asset Æú´õ ³» À§Ä¡¸¦ Ã£¾Æ¿Í¼­ »èÁ¦
+                        // Dataï¿½ï¿½ Asset ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ã£ï¿½Æ¿Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                         AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(lastData));
-                        // database¿¡¼­ data¸¦ Á¦°ÅÇßÀ¸´Ï SetDirty¸¦ ¼³Á¤ÇÏ¿© Unity¿¡ database¿¡ º¯È­°¡ »ý°å´Ù°í ¾Ë¸²
+                        // databaseï¿½ï¿½ï¿½ï¿½ dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SetDirtyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Unityï¿½ï¿½ databaseï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½Ë¸ï¿½
                         EditorUtility.SetDirty(database);
                         AssetDatabase.SaveAssets();
                     }
                 }
 
-                // Áö±ÝºÎÅÍ ±×¸± GUI´Â Cyan
+                // ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ Cyan
                 GUI.color = Color.cyan;
-                // Data¸¦ ÀÌ¸§ ¼øÀ¸·Î Á¤·ÄÇÏ´Â ButtonÀ» ±×¸²
+                // Dataï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ Buttonï¿½ï¿½ ï¿½×¸ï¿½
                 if (GUILayout.Button($"Sort By Name"))
                 {
-                    // Á¤·Ä ½ÇÇà
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     database.SortByCodeName();
-                    // databaseÀÇ dataµéÀÇ ¼ø¼­°¡ ¹Ù²î¾úÀ¸´Ï SetDirty¸¦ ¼³Á¤ÇÏ¿© Unity¿¡ database¿¡ º¯È­°¡ »ý°å´Ù°í ¾Ë¸²
+                    // databaseï¿½ï¿½ dataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SetDirtyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Unityï¿½ï¿½ databaseï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½Ë¸ï¿½
                     EditorUtility.SetDirty(database);
                     AssetDatabase.SaveAssets();
                 }
-                // Áö±ÝºÎÅÍ ±×¸± GUI´Â ÇÏ¾á»ö(=¿ø·¡»ö)
+                // ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ ï¿½Ï¾ï¿½ï¿½(=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
                 GUI.color = Color.white;
 
                 EditorGUILayout.Space(2f);
                 CustomEditorUtility.DrawUnderline();
                 EditorGUILayout.Space(4f);
 
-                // Áö±ÝºÎÅÍ Scroll °¡´ÉÇÑ Box¸¦ ±×¸², UI Áß ScrollView¿Í µ¿ÀÏÇÔ
-                // Ã¹¹øÂ° ÀÎÀÚ´Â ÇöÀç Scroll Posiiton
-                // µÎ¹øÂ° ÀÎÀÚ´Â ¼öÆò Scroll ¸·´ë¸¦ ±×¸± °ÍÀÎ°¡?, ¼¼¹øÂ° ÀÎÀÚ´Â Ç×»ó ¼öÁ÷ Scroll ¸·´ë¸¦ ±×¸± °ÍÀÎ°¡?
-                // ³×¹øÂ° ÀÎÀÚ´Â Ç×»ó ¼öÆò Scroll ¸·´ëÀÇ Style, ´Ù¼¸¹øÂ° ÀÎÀÚ´Â ¼öÁ÷ Scroll ¸·´ëÀÇ Style
-                // noneÀ» ³Ñ°ÜÁÖ°ÔµÇ¸é ÇØ´ç ¸·´ë´Â ¾Æ¿¹ ¾ø¾Ö¹ö¸²
-                // ¿©¼¸¹øÂ° ÀÎÀÚ´Â Background Style
-                // return °ªÀº »ç¿ëÀÚÀÇ Á¶ÀÛ¿¡ ÀÇÇØ ¹Ù²î°ÔµÈ Scroll Posiiton
-                // ScrollViewÀÇ Å©±â´Â À§¿¡¼­ BeginVertical ÇÔ¼ö¿¡ ³ÖÀº ³ÐÀÌ 300°ú µ¿ÀÏÇÔ
-                // BeginScrollView´Â ¿©·¯ OverloadingÀÌ ÀÖ±â ¶§¹®¿¡ ±×³É ÇöÀç Scroll Position¸¸ ³Ö¾îµµ ScrollView°¡ ¸¸µé¾îÁü
-                // ¿©±â¼­´Â ¼öÆò ¸·´ë¸¦ ¾²Áö ¾ÊÀ¸·Á°í ÀÎÀÚ°¡ ¸¹Àº ÇÔ¼ö¸¦ ¾¸
+                // ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ Scroll ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Boxï¿½ï¿½ ï¿½×¸ï¿½, UI ï¿½ï¿½ ScrollViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                // Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll Posiiton
+                // ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll ï¿½ï¿½ï¿½ë¸¦ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?, ï¿½ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll ï¿½ï¿½ï¿½ë¸¦ ï¿½×¸ï¿½ ï¿½ï¿½ï¿½Î°ï¿½?
+                // ï¿½×¹ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½×»ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Style, ï¿½Ù¼ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Style
+                // noneï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ö°ÔµÇ¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ Background Style
+                // return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½Ôµï¿½ Scroll Posiiton
+                // ScrollViewï¿½ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BeginVertical ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 300ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                // BeginScrollViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Overloadingï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ Scroll Positionï¿½ï¿½ ï¿½Ö¾îµµ ScrollViewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                // ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ë¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½
                 scrollPositionsByType[dataType] = EditorGUILayout.BeginScrollView(scrollPositionsByType[dataType], false, true,
                     GUIStyle.none, GUI.skin.verticalScrollbar, GUIStyle.none);
                 {
-                    // DatabaseÀÇ ¸ñ·ÏÀ» ±×¸²
+                    // Databaseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½
                     foreach (var data in database.Datas)
                     {
-                        // CodeNameÀ» ±×·ÁÁÙ ³ÐÀÌÀ» Á¤ÇÔ, ¸¸¾à IconÀÌ Á¸ÀçÇÑ´Ù¸é IconÀÇ Å©±â¸¦ °í·ÁÇÏ¸ç Á¼Àº ³ÐÀÌ¸¦ °¡Áü
+                        // CodeNameï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ Iconï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
                         float labelWidth = data.Icon != null ? 200f : 245f;
 
-                        // ÇöÀç Data°¡ À¯Àú°¡ ¼±ÅÃÇÑ Data¸é selectedBoxStyle(=¹è°æÀÌ Ã»»ö)À» °¡Á®¿È
+                        // ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dataï¿½ï¿½ selectedBoxStyle(=ï¿½ï¿½ï¿½ï¿½ï¿½ Ã»ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         var style = selectedObjectsByType[dataType] == data ? selectedBoxStyle : GUIStyle.none;
-                        // (3) ¼öÆò Á¤·Ä ½ÃÀÛ
+                        // (3) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         EditorGUILayout.BeginHorizontal(style, GUILayout.Height(40f));
                         {
-                            // Data¿¡ IconÀÌ ÀÖ´Ù¸é 40x40 »çÀÌÁî·Î ±×·ÁÁÜ
+                            // Dataï¿½ï¿½ Iconï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ 40x40 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
                             if (data.Icon)
                             {
-                                // IconÀÇ Preview Texture¸¦ °¡Á®¿È.
-                                // ÇÑ¹ø °¡Á®¿Â Texture´Â Unity ³»ºÎ¿¡ CachingµÇ¸ç, 
-                                // CacheµÈ Texture ¼ö°¡ À§¿¡¼­ ¼³Á¤ÇÑ TextureCacheSize¿¡ µµ´ÞÇÏ¸é ¿À·¡µÈ TextureºÎÅÍ Áö¿öÁü
+                                // Iconï¿½ï¿½ Preview Textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+                                // ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Textureï¿½ï¿½ Unity ï¿½ï¿½ï¿½Î¿ï¿½ Cachingï¿½Ç¸ï¿½, 
+                                // Cacheï¿½ï¿½ Texture ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TextureCacheSizeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Textureï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                                 var preview = AssetPreview.GetAssetPreview(data.Icon);
                                 GUILayout.Label(preview, GUILayout.Height(40f), GUILayout.Width(40f));
                             }
 
-                            // DataÀÇ CodeNameÀ» ±×·ÁÁÜ
+                            // Dataï¿½ï¿½ CodeNameï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
                             EditorGUILayout.LabelField(data.CodeName, GUILayout.Width(labelWidth), GUILayout.Height(40f));
 
-                            // (4) ¼öÁ÷ Á¤·Ä ½ÃÀÛ, ÀÌ°Ç ±×·ÁÁÙ LabeÀ» Áß¾Ó Á¤·ÄÀ» ÇÏ±â À§ÇØ¼­ÀÓ
+                            // (4) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ì°ï¿½ ï¿½×·ï¿½ï¿½ï¿½ Labeï¿½ï¿½ ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½
                             EditorGUILayout.BeginVertical();
                             {
-                                // ÇöÀç ¼öÁ÷ Á¤·ÄÀ» ½ÃÀÛÇÑ »óÅÂ±â ¶§¹®¿¡ À§¿¡¼­ 10Ä­À» ¶ç¿ì°ÔµÊ
+                                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½Ôµï¿½
                                 EditorGUILayout.Space(10f);
 
                                 GUI.color = Color.red;
-                                // data¸¦ »èÁ¦ÇÒ ¼ö ÀÖ´Â X ButtonÀ» ±×¸²
+                                // dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ X Buttonï¿½ï¿½ ï¿½×¸ï¿½
                                 if (GUILayout.Button("x", GUILayout.Width(20f)))
                                 {
                                     database.Remove(data);
-                                    // dataÀÇ Asset Æú´õ ³» À§Ä¡¸¦ Ã£¾Æ¿Í¼­ »èÁ¦
+                                    // dataï¿½ï¿½ Asset ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Ã£ï¿½Æ¿Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                                     AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(data));
                                     EditorUtility.SetDirty(database);
                                     AssetDatabase.SaveAssets();
                                 }
                             }
-                            // (4) ¼öÁ÷ Á¤·Ä Á¾·á
+                            // (4) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                             EditorGUILayout.EndVertical();
 
                             GUI.color = Color.white;
                         }
-                        // (3) ¼öÆò Á¤·Ä DÁ¾·á
+                        // (3) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Dï¿½ï¿½ï¿½ï¿½
                         EditorGUILayout.EndHorizontal();
 
-                        // data°¡ »èÁ¦µÇ¾ú´Ù¸é Áï½Ã Database ¸ñ·ÏÀ» ±×¸®´Â°É ¸ØÃß°í ºüÁ®³ª¿È
+                        // dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ Database ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½Â°ï¿½ ï¿½ï¿½ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         if (data == null)
                             break;
 
-                        // ¸¶Áö¸·À¸·Î ±×¸° GUIÀÇ ÁÂÇ¥¿Í Å©±â¸¦ °¡Á®¿È
-                        // ÀÌ °æ¿ì ¹Ù·Î À§¿¡ ±×¸° GUIÀÇ ÁÂÇ¥¿Í »çÀÌÁîÀÓ(=BeginHorizontal)
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                        // ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ GUIï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(=BeginHorizontal)
                         var lastRect = GUILayoutUtility.GetLastRect();
-                        // MosueDown Event°í mosuePositionÀÌ GUI¾È¿¡ ÀÖ´Ù¸é(=Click) Data¸¦ ¼±ÅÃÇÑ °ÍÀ¸·Î Ã³¸®ÇÔ
+                        // MosueDown Eventï¿½ï¿½ mosuePositionï¿½ï¿½ GUIï¿½È¿ï¿½ ï¿½Ö´Ù¸ï¿½(=Click) Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½
                         if (Event.current.type == EventType.MouseDown && lastRect.Contains(Event.current.mousePosition))
                         {
                             selectedObjectsByType[dataType] = data;
                             drawingEditorScrollPosition = Vector2.zero;
-                            // Event¿¡ ´ëÇÑ Ã³¸®¸¦ Çß´Ù°í Unity¿¡ ¾Ë¸²
+                            // Eventï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ß´Ù°ï¿½ Unityï¿½ï¿½ ï¿½Ë¸ï¿½
                             Event.current.Use();
                         }
                     }
                 }
-                // ScrollView Á¾·á
+                // ScrollView ï¿½ï¿½ï¿½ï¿½
                 EditorGUILayout.EndScrollView();
             }
-            // (2) ¼öÁ÷ Á¤·Ä Á¾·á
+            // (2) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             EditorGUILayout.EndVertical();
 
-            // ¼±ÅÃµÈ Data°¡ Á¸ÀçÇÑ´Ù¸é ÇØ´ç DataÀÇ Editor¸¦ ±×·ÁÁÜ
+            // ï¿½ï¿½ï¿½Ãµï¿½ Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ ï¿½Ø´ï¿½ Dataï¿½ï¿½ Editorï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
             if (selectedObjectsByType[dataType])
             {
-                // ScrollView¸¦ ±×¸², ÀÌ¹ø¿¡´Â Scroll Position Á¤º¸¸¸ ³Ñ°ÜÁà¼­ ¼öÁ÷, ¼öÆò ¸·´ë ´Ù ÀÖ´Â ÀÏ¹ÝÀûÀÎ ScrollView¸¦ ±×¸²
-                // ´Ü, always ¿É¼ÇÀÌ ¾øÀ¸¹Ç·Î ¼öÁ÷, ¼öÆò ¸·´ë´Â ScrollÀÌ °¡´ÉÇÑ »óÅÂÀÏ ¶§¸¸ ³ªÅ¸³²
+                // ScrollViewï¿½ï¿½ ï¿½×¸ï¿½, ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ Scroll Position ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½à¼­ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ScrollViewï¿½ï¿½ ï¿½×¸ï¿½
+                // ï¿½ï¿½, always ï¿½É¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Scrollï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
                 drawingEditorScrollPosition = EditorGUILayout.BeginScrollView(drawingEditorScrollPosition);
                 {
                     EditorGUILayout.Space(2f);
-                    // Ã¹¹øÂ° ÀÎÀÚ´Â Editor¸¦ ¸¸µé Target
-                    // µÎ¹øÂ° ÀÎÀÚ´Â TargetÀÇ Type
-                    // µû·Î ³Ö¾îÁÖÁö ¾ÊÀ¸¸é TargetÀÇ ±âº» TypeÀÌ Àû¿ëµÊ
-                    // ¼¼¹øÂ°´Â ³»ºÎ¿¡¼­ ¸¸µé¾îÁø Editor¸¦ ´ãÀ» Editor º¯¼ö
-                    // CreateCachedEditor´Â ³»ºÎ¿¡¼­ ¸¸µé¾î¾ßÇÒ Editor¿Í cachedEditor°¡ °°´Ù¸é
-                    // Editor¸¦ »õ·Î ¸¸µéÁö ¾Ê°í ±×³É cachedEditor¸¦ ±×´ë·Î ¹ÝÈ¯ÇÔ
-                    // ¸¸¾à ³»ºÎ¿¡¼­ ¸¸µé¾î¾ßÇÒ Editor¿Í cachedEditor°¡ ´Ù¸£´Ù¸é
-                    // cachedEditor¸¦ DestroyÇÏ°í »õ·Î ¸¸µç Editor¸¦ ³ÖÀ½
+                    // Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ Editorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Target
+                    // ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½Ú´ï¿½ Targetï¿½ï¿½ Type
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Targetï¿½ï¿½ ï¿½âº» Typeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½Â°ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Editorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Editor ï¿½ï¿½ï¿½ï¿½
+                    // CreateCachedEditorï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Editorï¿½ï¿½ cachedEditorï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+                    // Editorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½×³ï¿½ cachedEditorï¿½ï¿½ ï¿½×´ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Editorï¿½ï¿½ cachedEditorï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½Ù¸ï¿½
+                    // cachedEditorï¿½ï¿½ Destroyï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Editorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     Editor.CreateCachedEditor(selectedObjectsByType[dataType], null, ref cachedEditor);
-                    // Editor¸¦ ±×·ÁÁÜ
+                    // Editorï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½
                     cachedEditor.OnInspectorGUI();
                 }
-                // ScrollView Á¾·á
+                // ScrollView ï¿½ï¿½ï¿½ï¿½
                 EditorGUILayout.EndScrollView();
             }
         }
-        // (1) ¼öÆò Á¤·Ä Á¾·á
+        // (1) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         EditorGUILayout.EndHorizontal();
     }
-    #endregion
 }

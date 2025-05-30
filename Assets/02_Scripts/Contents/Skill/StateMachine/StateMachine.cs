@@ -7,7 +7,6 @@ using UnityEngine;
 // EntityType�� StateMachine�� �����ϴ� Entity�� Type
 public class StateMachine<EntityType>
 {
-    #region 8-1
     #region Event
     // State�� ���̵Ǿ����� �˸��� Event
     public delegate void StateChangedHandler(StateMachine<EntityType> stateMachine,
@@ -47,9 +46,7 @@ public class StateMachine<EntityType>
     public EntityType Owner { get; private set; }
 
     public event StateChangedHandler onStateChanged;
-    #endregion
 
-    #region 8-2
     public void Setup(EntityType owner)
     {
         Debug.Assert(owner != null, $"StateMachine<{typeof(EntityType).Name}>::Setup - owner�� null�� �� �� �����ϴ�.");
@@ -140,9 +137,6 @@ public class StateMachine<EntityType>
             currentStateData.State.Update();
         }
     }
-    #endregion
-
-    #region 8-3
 
     // Generic�� ���� StateMachine�� State�� �߰��ϴ� �Լ�
     // T�� State<EntityType> class�� ��ӹ��� Type�̿�����
@@ -223,9 +217,7 @@ public class StateMachine<EntityType>
         where FromStateType : State<EntityType>
         where ToStateType : State<EntityType>
         => MakeTransition<FromStateType, ToStateType>(transitionCommand, null, layer);
-    #endregion
 
-    #region 8-4
     // AnyTransition�� ����� �Լ�
     // ToStateType�� ������ State�� Type, State<EntityType> class�� ����� Type�̿�����
     public void MakeAnyTransition<ToStateType>(int transitionCommand,
@@ -266,9 +258,7 @@ public class StateMachine<EntityType>
     public void MakeAnyTransition<ToStateType>(Enum transitionCommand, int layer = 0, bool canTransitonToSelf = false)
         where ToStateType : State<EntityType>
         => MakeAnyTransition<ToStateType>(transitionCommand, null, layer, canTransitonToSelf);
-    #endregion
 
-    #region 8-5
     // Command�� �޾Ƽ� Transition�� �����ϴ� �Լ�
     public bool ExecuteCommand(int transitionCommand, int layer)
     {
@@ -337,9 +327,7 @@ public class StateMachine<EntityType>
     // �� SendMessage �Լ��� Enum Message ����
     public bool SendMessage(Enum message, object extraData = null)
         => SendMessage(Convert.ToInt32(message), extraData);
-    #endregion
 
-    #region 8-6
     // ��� Layer�� ���� �������� CurrentState�� Ȯ���Ͽ�, ���� State�� T Type�� State���� Ȯ���ϴ� �Լ�
     // CurrentState�� T Type�ΰ� Ȯ�εǸ� ��� true�� ��ȯ��
     public bool IsInState<T>() where T : State<EntityType>
@@ -368,5 +356,4 @@ public class StateMachine<EntityType>
     // �ڽ� class���� ������ Transition ���� �Լ�
     // �� �Լ����� MakeTransition �Լ��� ����� Transition�� ������ָ� ��
     protected virtual void MakeTransitions() { }
-    #endregion
 }
