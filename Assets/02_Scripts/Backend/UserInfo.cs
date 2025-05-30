@@ -39,20 +39,20 @@ public class UserInfo : MonoSingleton<UserInfo>
                     }
                     else
                     {
-                        Debug.LogError("❌ [UserInfo] 서버 응답에 row가 없습니다");
+                        Debug.LogError("[UserInfo] 서버 응답에 row가 없습니다");
                         data.Reset();
                     }
                 }
                 catch (Exception e)
                 {
                     data.Reset();
-                    Debug.LogError($"❌ [UserInfo] 파싱 에러: {e}");
+                    Debug.LogError($"[UserInfo] 파싱 에러: {e}");
                 }
             }
             else
             {
                 data.Reset();
-                Debug.LogError($"❌ [UserInfo] 실패 응답: {callback.GetMessage()}");
+                Debug.LogError($"[UserInfo] 실패 응답: {callback.GetMessage()}");
             }
 
             OnUserInfoUpdated?.Invoke();

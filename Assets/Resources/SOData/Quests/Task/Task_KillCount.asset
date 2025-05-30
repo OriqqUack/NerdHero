@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56d338d395551548b9317651a18a351, type: 3}
+  m_Name: Task_KillCount
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 0096526d7663b1047a5032781e5aef87, type: 2}
+  codeName: KillMonster
+  description: "\uBAAC\uC2A4\uD130 \uD0AC"
+  action: {fileID: 11400000, guid: 903e0d006a8bf204298255f9af09fec6, type: 2}
+  targets:
+  - {fileID: 11400000, guid: 976cd6102e687444bbbe690a76be70d9, type: 2}
+  initialSuccessValue: {fileID: 0}
+  needSuccessToComplete: 10
+  canReceiveReportsDuringCompletion: 0

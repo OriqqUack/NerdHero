@@ -10,9 +10,15 @@ using System.Threading.Tasks;
 public class UI_Quest : UiWindow
 {
     private static readonly int rewardHour = 10; // 오전 10시 기준
+
+    [Space][UnderlineTitle("Quest Popup")]
     [SerializeField] private List<Button> rewardButtons; // 활성화할 버튼 리스트
     [SerializeField] private List<Button> buttons;
     [SerializeField] private List<GameObject> popups;
+
+    [Space] [UnderlineTitle("Quest List")] 
+    [SerializeField] private Transform questParent;
+    [SerializeField] private QuestList questListPrefab;
     
     private GameObject currentPopup;
     protected override void Start()
@@ -31,7 +37,16 @@ public class UI_Quest : UiWindow
     public override void Initialize(WindowHolder holder, string name = "")
     {
         base.Initialize(holder, name);
-        
+
+        foreach (RectTransform quest in questParent)
+        {
+            Destroy(quest.gameObject);
+        }
+
+        foreach (Quest quest in QuestSystem.Instance.ActiveQuests)
+        {
+            Instantiate(questListPrefab, questParent).Setup(quest);
+        }
     }
 
     private void OpenPopup(int i)

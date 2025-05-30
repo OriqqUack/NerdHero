@@ -55,9 +55,11 @@ public class SceneTransitioner : MonoSingleton<SceneTransitioner>
 
         FadeIn(() =>
         {
+            Time.timeScale = 1;
             // FadeIn이 끝나면 LoadScene
             LoadScene(_nextSceneType);
             // 그리고 SceneLoaded 이벤트 등록
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
         });
     }

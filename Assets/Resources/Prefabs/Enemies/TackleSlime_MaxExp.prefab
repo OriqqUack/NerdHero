@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 4297666898349438918, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
       propertyPath: dropTable
       value: 
-      objectReference: {fileID: 11400000, guid: bb19987c831c4de49bce89e214659bdc, type: 2}
+      objectReference: {fileID: 11400000, guid: 87da9283ef81f2c48a12133cda61b048, type: 2}
     - target: {fileID: 7053841995453985184, guid: 9e965b2c15e2f0941b29fdfa95ecb274, type: 3}
       propertyPath: m_Name
       value: TackleSlime_MaxExp

@@ -16,6 +16,7 @@ public class UI_StartScene : MonoBehaviour
     
     private void Start()
     {
+        panel.interactable = false;
         panel.onClick.AddListener(() => OnClickPanel());
         TextFloating();
     }

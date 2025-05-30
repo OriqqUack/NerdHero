@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Beautify.Universal;
 using Coffee.UIExtensions;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
@@ -8,6 +10,7 @@ using Spine.Unity.Examples;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class DialogueEventReceiver : MonoBehaviour
 {
@@ -39,13 +42,20 @@ public class DialogueEventReceiver : MonoBehaviour
     [SerializeField] private AnimationReferenceAsset scenario8_loop;
     [SerializeField] private AnimationReferenceAsset scenario9;
     [SerializeField] private AnimationReferenceAsset scenario9_loop;
+    
+    
+
 
     private Spine.AnimationState _animationState;
+    private SkeletonGraphic _skeletonGraphic;
 
     private void Start()
     {
-        _animationState = GetComponent<SkeletonGraphic>().AnimationState;
-        _animationState.Event += HandleAnimationStateEventNonSkill;
+        _animationState = GetComponent<SkeletonGraphic>()?.AnimationState;
+        if (_animationState != null)
+            _animationState.Event += HandleAnimationStateEventNonSkill;
+        
+        _skeletonGraphic = actor.GetComponent<SkeletonGraphic>();
     }
 
     public void ZoomInit()
@@ -60,12 +70,12 @@ public class DialogueEventReceiver : MonoBehaviour
 
     public void ActorOut()
     {
-        actor.GetComponent<SkeletonGraphic>().enabled = false;
+        _skeletonGraphic.enabled = false;
     }
 
     public void ActorIn()
     {
-        actor.GetComponent<SkeletonGraphic>().enabled = true;
+        _skeletonGraphic.enabled = true;
     }
     
     public void SpotlightOff()
@@ -75,7 +85,7 @@ public class DialogueEventReceiver : MonoBehaviour
 
     public void SpotlightOffAndTime()
     {
-        SpotlightOff();
+        SpotlightController.Instance.SetTarget(null, null);
         Time.timeScale = 1;
         continueButton2.interactable = false;
         continueButton.interactable = false;
@@ -133,8 +143,11 @@ public class DialogueEventReceiver : MonoBehaviour
 
     public void FourthAction()
     {
-        PlayAnimation(scenario4_1_loop, 0);
-        PlayAnimation(mouse_Nagative, 1);
+        DOVirtual.DelayedCall(0.1f, () =>
+        {
+            PlayAnimation(scenario4_1_loop, 0);
+            PlayAnimation(mouse_Nagative, 1);
+        });
     }
 
     public void FourthAction2()
@@ -226,4 +239,6 @@ public class DialogueEventReceiver : MonoBehaviour
         GameObject effect = Managers.Resource.Instantiate(clapEffect, effectParent);
         Managers.Resource.Destroy(effect, 2.0f);
     }
+    
+    
 }

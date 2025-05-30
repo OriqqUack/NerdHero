@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75749fda78e2e3a40ba0ad31dc0e1880, type: 3}
+  m_Name: Quest_MonsterKill
+  m_EditorClassIdentifier: 
+  category: {fileID: 11400000, guid: 0096526d7663b1047a5032781e5aef87, type: 2}
+  icon: {fileID: 21300000, guid: 1bec0d023d1d34ac588019c1bdfd9e75, type: 3}
+  codeName: MonsterKill
+  displayName: "\uBAAC\uC2A4\uD130 \uD0AC \uC218"
+  description: "\uBAAC\uC2A4\uD130\uB97C 10\uB9C8\uB9AC \uC8FD\uC5EC\uC8FC\uC138\uC694."
+  taskGroups:
+  - tasks:
+    - {fileID: 11400000, guid: 5064505e844fe37448463a327875dbb2, type: 2}
+  rewards:
+  - {fileID: 11400000, guid: 9d86fb4fb51e78748ba4aa289d8b2aac, type: 2}
+  useAutoComplete: 0
+  isCancelable: 0
+  isSavable: 0
+  acceptionConditions: []
+  cancelConditions: []

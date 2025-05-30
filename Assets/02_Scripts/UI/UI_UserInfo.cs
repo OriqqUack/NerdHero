@@ -44,7 +44,7 @@ public class UI_UserInfo : MonoSingleton<UI_UserInfo>
         maxEnergyStat.onValueChanged += UpdateMaxEnergyStat;
         expStat.onValueChanged += ExpChangeEvent;
         levelStat.onValueChanged += LevelChangeEvent;
-        _waveManager.OnWaveChange += WaveChangeEvent;
+        _waveManager.OnWaveStart += WaveChangeEvent;
         
         hpSlider.value = hpStat.Value / hpStat.MaxValue;
         energySlider.value = energyStat.Value / energyStat.MaxValue;

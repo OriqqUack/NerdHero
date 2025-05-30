@@ -4,12 +4,14 @@ using PixelCrushers.DialogueSystem;
 using Spine;
 using Spine.Unity;
 using Spine.Unity.Examples;
+using TMPro;
 using UnityEngine;
 //행동 0, 표정 1, 입모양 2
 public class DialogueStoryEventReceiver : MonoBehaviour
 {
     [SerializeField] private Transform actor;
     [SerializeField] private SkeletonGraphicAnimationHandle skeletonAnimation;
+    [SerializeField] private TextMeshProUGUI textMesh;
 
     [Space]
     [SerializeField] private GameObject[] bgs;
@@ -37,10 +39,18 @@ public class DialogueStoryEventReceiver : MonoBehaviour
     [SerializeField] private AnimationReferenceAsset scenario8_loop;
     [SerializeField] private AnimationReferenceAsset scenario9;
     [SerializeField] private AnimationReferenceAsset scenario9_loop;
+    
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeStrength = 1f;
+    [SerializeField] private int vibrato = 10; // 흔들림 횟수
+    [SerializeField] private float randomness = 90f;
+    [SerializeField] private Transform panelTransform;
 
+    private Tween shakeTween;
     
     private int _currentBg;
     private int _currentCon;
+    
     private void Start()
     {
         DialogueManager.instance.conversationEnded += FadeIn;
@@ -50,6 +60,7 @@ public class DialogueStoryEventReceiver : MonoBehaviour
     public void FadeIn(Transform actor)
     {
         SceneTransitioner.Instance.FadeIn(() => NextConversation());
+        textMesh.text = "";
     }
 
     public void FadeOut(Transform actor)
@@ -122,6 +133,7 @@ public class DialogueStoryEventReceiver : MonoBehaviour
         DialogueManager.instance.conversationEnded -= FadeIn;
         DOVirtual.DelayedCall(0.1f, () =>
         {
+            StartCameraShake();
             skeletonAnimation.skeletonAnimation.AnimationState.SetAnimation(0, scenario3, false);
             DialogueManager.instance.conversationEnded += transform1 =>
             {
@@ -142,4 +154,17 @@ public class DialogueStoryEventReceiver : MonoBehaviour
         PlayAnimation(blank, 1);
     }
 
+    public void StartCameraShake()
+    {
+        if (shakeTween != null && shakeTween.IsActive()) shakeTween.Kill();
+
+        shakeTween = panelTransform.DOShakeRotation(
+            duration: shakeDuration,
+            strength: shakeStrength,
+            vibrato: vibrato,
+            randomness: randomness,
+            fadeOut: true
+        );
+    }
+    
 }

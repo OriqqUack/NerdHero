@@ -1,25 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using BehaviorDesigner.Runtime;
-using DG.Tweening;
-using Pathfinding;
 using UnityEngine;
-using UnityEngine.VFX;
 
-[System.Serializable]
-public class WaveEntry
+public enum WaveState
 {
-    public List<int> EnemyLevel = new List<int>();
-    public List<GameObject> EnemyPrefab = new List<GameObject>();
-    public List<int> EnemyCount = new List<int>();
-}
-
-[System.Serializable]
-public class WaveData
-{
-    public int Wave;
-    public List<WaveEntry> Enemies = new List<WaveEntry>();
+    Idle,
+    Preparing,
+    Spawning,
+    WaitingForClear,
+    Completed
 }
 
 public static class ListExtensions
@@ -32,241 +22,232 @@ public static class ListExtensions
 
 public class WaveManager : MonoSingleton<WaveManager>
 {
+    public delegate void OnWaveStartEvent(int waveIndex);
     public delegate void OnWaveEndEvent();
-    public delegate void OnWaveChangeEvent(int wave);
-    public delegate void OnMonsterSpawnEvent(List<Entity> entities);
+    public delegate void OnEnemySpawnedEvent(List<Entity> entities);
 
-    public OnWaveChangeEvent OnWaveChange;
+    public OnWaveStartEvent OnWaveStart;
     public OnWaveEndEvent OnWaveEnd;
-    public OnMonsterSpawnEvent OnMonsterSpawn;
+    public OnEnemySpawnedEvent OnEnemySpawned;
 
-    [Header("Wave Settings")] [SerializeField]
-    private SOWaveData waveData;
-
-    [SerializeField] private float timeBetweenWaves = 5f;
+    [Header("Wave Settings")]
+    [SerializeField] private SOWaveData waveData;
     [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private float timeBetweenWaves = 3f;
+    [SerializeField] private bool useRandomSpawn = true;
 
-    [Space(10)] [Header("Spawn Settings")] 
-    //[SerializeField] private VisualEffect monsterSpawnVFXPrefab;
-
+    [Header("Player Settings")]
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject confettiSpawnVFXPrefab;
 
-    private bool _isSpawning = false;
-    private bool _isSubWaveEnd = true;
-    private bool _spawnedInBetweenWave;
-    private int _currentWaveIndex = 0;
-    private int _currentEntryIndex = 0;
-    private int _spawningCount = 0;
-    private int _spawnedEnemies = 0;
-    private float _spawnDelay = 2f;
-    private List<Entity> _activeEnemies = new();
-    private List<ItemSO> _gainedItemsList = new();
-
-    public List<Entity> ActiveEnemies => _activeEnemies;
-    public float CurrentTime { get; private set; }
     public Transform PlayerTransform { get; private set; }
     public Entity PlayerEntity { get; private set; }
-    public int CurrentWave => _currentWaveIndex + 1;
-    public int TotalWaveCount => waveData.Waves.Count;
-    public bool IsClear { get; private set; }
+    public float CurrentTime { get; private set; }
 
-    private void Awake()
+    private Queue<SpawnInfo> spawnQueue = new Queue<SpawnInfo>();
+    public List<Entity> ActiveEnemies = new List<Entity>();
+    public List<ItemSO> GainedItems = new List<ItemSO>();
+
+    private int currentWaveIndex = 0;
+    private WaveState currentState = WaveState.Idle;
+    private float stateTimer = 0f;
+    private int sequentialSpawnIndex = 0;
+    private List<int> shuffledSpawnIndices = new List<int>();
+    private int shuffledIndexPointer = 0;
+    private QuestReporter questReporter;
+
+    void Awake()
     {
-        IsClear = false; 
-        
+        currentState = WaveState.Preparing;
+
         if (playerPrefab)
             PlayerSpawn();
         else
             PlayerTransform = GameObject.FindWithTag("Player").transform;
 
         PlayerEntity = PlayerTransform.GetComponent<Entity>();
-        
+
         if(GameManager.Instance.WaveData)
             waveData = GameManager.Instance.WaveData;
+        
+        questReporter = GetComponent<QuestReporter>();
     }
 
-    void Start()
-    {
-        //_spawnDelay = monsterSpawnVFXPrefab.GetFloat("Delay");
-        StartCoroutine(StartWaveRoutine());
-    }
-
-    private void Update()
+    void Update()
     {
         CurrentTime += Time.deltaTime;
-    }
+        
+        Debug.Log(ActiveEnemies.Count + " Enemies Spawned");
 
-    public List<ItemSO> GetGainedItems()
-    {
-        return _gainedItemsList;
-    }
-
-    public void AddGainedItem(ItemSO item)
-    {
-        int index = _gainedItemsList.IndexOf(item);
-        if (index >= 0 && item.itemType == ItemType.Stuff)
+        switch (currentState)
         {
-            _gainedItemsList[index].quantityOrLevel += item.quantityOrLevel;
-        }
-        else
-        {
-            _gainedItemsList.Add(item);
+            case WaveState.Preparing:
+                PrepareWave();
+                break;
+
+            case WaveState.Spawning:
+                if (spawnQueue.Count > 0)
+                {
+                    stateTimer -= Time.deltaTime;
+                    if (stateTimer <= 0f)
+                    {
+                        SpawnNext();
+                        stateTimer = spawnDelay;
+                    }
+                }
+                else if (ActiveEnemies.Count > 0)
+                {
+                    currentState = WaveState.WaitingForClear;
+                }
+                else
+                {
+                    ProceedToNextWave();
+                }
+                break;
+
+            case WaveState.WaitingForClear:
+                if (ActiveEnemies.Count == 0)
+                {
+                    ProceedToNextWave();
+                }
+                break;
         }
     }
 
-    public void AddActiveEnemies(Entity entity)
+    public void AddEnemies(Entity entity)
     {
         ActiveEnemies.Add(entity);
         entity.onDead += RemoveEnemy;
-        
-        if(ActiveEnemies.Count == 0)
-            _spawnedInBetweenWave = true;
     }
 
-
-    private IEnumerator StartWaveRoutine()
+    void PrepareWave()
     {
-        while (_currentWaveIndex < waveData.Waves.Count)
+        if (currentWaveIndex >= waveData.Waves.Count)
         {
-            // 1. 웨이브 시작 알림 먼저
-            OnWaveChange?.Invoke(_currentWaveIndex + 1); // UI용으로는 1부터 시작한다고 가정
-
-            // 2. StartNewWave 전에 인덱스 증가
-            yield return StartCoroutine(StartNewWave(_currentWaveIndex));
-
-            yield return new WaitUntil(() => ActiveEnemies.Count == 0 && _isSubWaveEnd);
-
-            _currentWaveIndex++; // 루프 마지막에 증가
+            currentState = WaveState.Completed;
+            GameManager.instance.IsClear = true;
+            OnWaveEnd?.Invoke();
+            return;
         }
 
-        EndWave();
-    }
+        WaveData wave = waveData.Waves[currentWaveIndex];
+        spawnQueue.Clear();
+        if(useRandomSpawn)
+            sequentialSpawnIndex = 0;
+        InitShuffledSpawnIndices();
 
-
-    private IEnumerator StartNewWave(int waveIndex)
-    {
-        _currentEntryIndex = 0;
-
-        if (!waveData.Waves.IsValidIndex(waveIndex))
+        foreach (var entry in wave.Enemies)
         {
-            Debug.LogWarning($"Wave index {waveIndex} is invalid.");
-            yield break;
-        }
-
-        WaveData currentWave = waveData.Waves[waveIndex];
-
-        while (_currentEntryIndex < currentWave.Enemies.Count)
-        {
-            WaveEntry entry = currentWave.Enemies[_currentEntryIndex];
-            _isSubWaveEnd = false;
-
-            SpawnEnemies(entry);
-
-            yield return new WaitUntil(() => _isSubWaveEnd);
-            _currentEntryIndex++;
-        }
-    }
-
-
-    private void SpawnEnemies(WaveEntry entry)
-    {
-        for (int i = 0; i < entry.EnemyPrefab.Count; i++)
-        {
-            for (int j = 0; j < entry.EnemyCount[i]; j++)
+            for (int i = 0; i < entry.EnemyPrefab.Count; i++)
             {
-                int spawnIndex = _spawnedEnemies % spawnPoints.Length;
-                _spawningCount++;
-                _spawnedEnemies++;
-                StartCoroutine(SpawnDelay(entry.EnemyPrefab[i], entry.EnemyLevel[i],spawnIndex));
+                for (int j = 0; j < entry.EnemyCount[i]; j++)
+                {
+                    spawnQueue.Enqueue(new SpawnInfo(entry.EnemyPrefab[i], entry.EnemyLevel[i]));
+                }
             }
         }
+
+        OnWaveStart?.Invoke(currentWaveIndex + 1);
+        currentState = WaveState.Spawning;
+        stateTimer = spawnDelay;
     }
 
-    private IEnumerator SpawnDelay(GameObject enemyPrefab, int level, int spawnIndex)
+    void InitShuffledSpawnIndices()
     {
-        /*var spawnEffect = Instantiate(monsterSpawnVFXPrefab);
-        spawnEffect.transform.position = spawnPoints[spawnIndex].position;*/
-        yield return new WaitForSeconds(_spawnDelay);
+        shuffledSpawnIndices.Clear();
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            shuffledSpawnIndices.Add(i);
+        }
+        Shuffle(shuffledSpawnIndices);
+        shuffledIndexPointer = 0;
+    }
+
+    void Shuffle(List<int> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            int rnd = Random.Range(i, list.Count);
+            (list[i], list[rnd]) = (list[rnd], list[i]);
+        }
+    }
+
+    void SpawnNext()
+    {
+        if (spawnQueue.Count == 0) return;
+
+        var spawnInfo = spawnQueue.Dequeue();
+        int index;
+
+        if (useRandomSpawn)
+        {
+            if (shuffledIndexPointer >= shuffledSpawnIndices.Count)
+            {
+                InitShuffledSpawnIndices();
+            }
+            index = shuffledSpawnIndices[shuffledIndexPointer];
+            shuffledIndexPointer++;
+        }
+        else
+        {
+            index = sequentialSpawnIndex % spawnPoints.Length;
+            sequentialSpawnIndex++;
+        }
 
         Entity enemyInstance =
-            Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, spawnPoints[spawnIndex].rotation)
+            Instantiate(spawnInfo.prefab, spawnPoints[index].position, spawnPoints[index].rotation)
                 .GetComponentInChildren<Entity>();
-        enemyInstance.Stats.LevelSetup(level);
+        enemyInstance.Stats.LevelSetup(spawnInfo.level);
         enemyInstance.GetComponent<BehaviorTree>().enabled = false;
         enemyInstance.Animator.PlayOneShot("appear", 0, 0,
             () => enemyInstance.GetComponent<BehaviorTree>().enabled = true);
-
-        ActiveEnemies.Add(enemyInstance);
-        OnMonsterSpawn?.Invoke(ActiveEnemies);
         enemyInstance.onDead += RemoveEnemy;
 
-        yield return new WaitForSeconds(1f);
-        //spawnEffect.Stop();
-
-        _spawningCount--;
-        _isSpawning = _spawningCount > 0;
-        
-        /*while (spawnEffect.aliveParticleCount > 0) yield return null;
-        Destroy(spawnEffect.gameObject);*/
-    }
-
-    private void PlayerSpawn()
-    {
-        PlayerTransform = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation).transform;
-        PlayerEntity = PlayerTransform.GetComponent<Entity>();
+        ActiveEnemies.Add(enemyInstance);
+        OnEnemySpawned?.Invoke(ActiveEnemies);
     }
 
     public void RemoveEnemy(Entity entity)
     {
         ActiveEnemies.Remove(entity);
-        Debug.Log($"{entity.name} 제거됨. 남은 적 수: {ActiveEnemies.Count}");
+        questReporter?.Report();
+    }
 
-        if (ActiveEnemies.Count == 0 && !_isSpawning)
+    void ProceedToNextWave()
+    {
+        currentWaveIndex++;
+        StartCoroutine(NextWaveDelay());
+    }
+
+    IEnumerator NextWaveDelay()
+    {
+        currentState = WaveState.Idle;
+        yield return new WaitForSeconds(timeBetweenWaves);
+        currentState = WaveState.Preparing;
+    }
+
+    struct SpawnInfo
+    {
+        public GameObject prefab;
+        public int level;
+
+        public SpawnInfo(GameObject prefab, int level)
         {
-            StartCoroutine(HandleSubWaveEnd());
+            this.prefab = prefab;
+            this.level = level;
         }
     }
-    private IEnumerator HandleSubWaveEnd()
+
+    public List<Entity> GetActiveEnemies() => ActiveEnemies;
+    public int CurrentWave => currentWaveIndex + 1;
+    public int TotalWaveCount => waveData.Waves.Count;
+    public bool IsWaveCompleted => currentState == WaveState.Completed;
+
+    private void PlayerSpawn()
     {
-        float elapsedTime = 0;
-    
-        while (elapsedTime < timeBetweenWaves)
-        {
-            if (_spawnedInBetweenWave)
-            {
-                _spawnedInBetweenWave = false;
-                yield break;
-            }
-
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        _isSubWaveEnd = true;
-    }
-
-    private void EndWave()
-    {
-        StartCoroutine(CountAndEnd());
-    }
-
-    IEnumerator CountAndEnd()
-    {
-        yield return new WaitForSeconds(1f);
-
-        GameManager.Instance.IsClear = true;
-        PlayerEntity.Movement.Stop();
-        PlayerEntity.Animator.PlayAnimationForState("idle", 0);
-        PlayerEntity.Animator.PlayAnimationForState("clear emotion", 2);
-        PlayerEntity.Animator.PlayOneShot("jump", 0);
-        Instantiate(confettiSpawnVFXPrefab, PlayerTransform.position, Quaternion.identity);
-
-        yield return new WaitForSeconds(2f);
-
-        OnWaveEnd?.Invoke();
-        
-        Time.timeScale = 0f;
+        PlayerTransform = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation).transform;
+        PlayerEntity = PlayerTransform.GetComponent<Entity>();
     }
 }

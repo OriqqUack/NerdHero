@@ -44,7 +44,9 @@ public class WindowManager : MonoSingleton<WindowManager>
             float width = newWindow.GetComponent<RectTransform>().sizeDelta.x * 0.5f;
             float screenWidth = newWindow.GetComponentInParent<CanvasScaler>().GetComponent<RectTransform>().sizeDelta.x * 0.5f;
             //윈도우가 왼쪽과 오른쪽 모니터로 넘어가는것을 방지
-            newWindow.transform.localPosition = new Vector3(Mathf.Clamp(-450f + (windowsDic.Count + 1) * 50f, width - screenWidth + 270f, screenWidth - width)
+            newWindow.transform.localPosition = new Vector3(
+                Mathf.Clamp(-450f + (windowsDic.Count + 1) * 50f, width - screenWidth + 270f, screenWidth - width
+                )
             , newWindow.transform.localPosition.y - windowsDic.Count * 50F, 0);
         }
         windowsDic.Add(holder, newWindow.GetComponent<UiWindow>());

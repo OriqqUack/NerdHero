@@ -108,15 +108,15 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.38315445, b: 0.35534585, a: 0}
-      key1: {r: 1, g: 0.043137256, b: 0, a: 1}
-      key2: {r: 0, g: 0.106132984, b: 1, a: 1}
+      key0: {r: 0.5137255, g: 0.054901965, b: 0.07450981, a: 0}
+      key1: {r: 0.34509805, g: 0.019607844, b: 0.078431375, a: 1}
+      key2: {r: 0.34509805, g: 0.019607844, b: 0.078431375, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 8867
+      ctime0: 8738
       ctime1: 28720
       ctime2: 28720
       ctime3: 0
@@ -371,7 +371,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.025123596, a: 1}
+      maxColor: {r: 0.31764707, g: 0.078431375, b: 0.0627451, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5099,7 +5099,7 @@ Transform:
   m_GameObject: {fileID: 7653787099927154482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10150,17 +10150,17 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.99215686, g: 0.5299099, b: 0.3411765, a: 0}
-      key1: {r: 1, g: 0.548836, b: 0.4039216, a: 1}
-      key2: {r: 1, g: 0.04477857, b: 0, a: 1}
+      key0: {r: 0.32156864, g: 0.078431375, b: 0.0627451, a: 0}
+      key1: {r: 0.5882353, g: 0.14117648, b: 0.12941177, a: 1}
+      key2: {r: 0.90196085, g: 0.21960786, b: 0.21176472, a: 1}
       key3: {r: 1, g: 0.04477857, b: 0, a: 0.25777632}
       key4: {r: 0, g: 0, b: 0, a: 0.042119965}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 6554
-      ctime1: 13685
-      ctime2: 23130
+      ctime1: 13364
+      ctime2: 24030
       ctime3: 22488
       ctime4: 0
       ctime5: 0

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UI_MainScene : MonoSingleton<UI_MainScene>
 {
+    [SerializeField] Canvas overlayAllCanvas;
+    
     [SerializeField] private float uiDuration = 0.5f;
     [SerializeField] private Button startGameButton;
     [SerializeField] private AudioClip onClickSound;
@@ -21,7 +23,8 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     [SerializeField] private WindowHolder equipment;
     [SerializeField] private WindowHolder equipmentDetailPopup;
     [SerializeField] private WindowHolder nickNameChanger;
-
+    [SerializeField] private WindowHolder congratulationPopup;
+    
     private UiWindow _currentWindow;
     private WindowHolder _currentHolder;
     
@@ -64,6 +67,12 @@ public class UI_MainScene : MonoSingleton<UI_MainScene>
     }
     
     public void OpenNickNameChanger() => nickNameChanger.OpenWindow();
+    public void OpenCongratulationPopup(Quest quest)
+    { 
+        UI_Congratue window = congratulationPopup.OpenWindow() as UI_Congratue;
+        window.transform.SetParent(overlayAllCanvas.transform);
+        if (window != null) window.Setup(quest);
+    }
 
     public void CloseCurrentWindow()
     {

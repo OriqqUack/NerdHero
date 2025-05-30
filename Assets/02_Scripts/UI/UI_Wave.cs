@@ -14,7 +14,7 @@ public class UI_Wave : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        WaveManager.Instance.OnWaveChange += OpenUI;
+        WaveManager.Instance.OnWaveStart += OpenUI;
     }
 
     private void OpenUI(int waveIndex)
@@ -22,12 +22,5 @@ public class UI_Wave : MonoBehaviour
         text.text = string.Format("WAVE {00}", waveIndex);
         
         animator.SetTrigger("Open");
-        StartCoroutine(OpenUICoroutine());
-    }
-
-    private IEnumerator OpenUICoroutine()
-    {
-        yield return new WaitForSeconds(waitingTime);
-        animator.SetTrigger("Close");
     }
 }

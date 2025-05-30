@@ -219,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5252912474307306903}
   - component: {fileID: 4342924806063255978}
+  - component: {fileID: 5739109666651694994}
   m_Layer: 5
   m_Name: UI_CardSelec
   m_TagString: Untagged
@@ -292,6 +293,18 @@ MonoBehaviour:
     commonRate: 30
     rareRate: 40
     legendaryRate: 30
+--- !u!225 &5739109666651694994
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000243240714990145}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7098562773184372495
 GameObject:
   m_ObjectHideFlags: 0

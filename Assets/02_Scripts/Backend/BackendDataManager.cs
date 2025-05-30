@@ -99,7 +99,7 @@ public class BackendDataManager
         // 배열이 아닌 경우, null 또는 초기화 안된 JsonData 방지
         if (jsonArray == null || !jsonArray.IsArray)
         {
-            Debug.LogWarning("⚠️ JsonData가 배열이 아니거나 초기화되지 않았습니다.");
+            Debug.LogWarning("JsonData가 배열이 아니거나 초기화되지 않았습니다.");
             return list;
         }
 
@@ -119,7 +119,7 @@ public class BackendDataManager
             }
             else
             {
-                Debug.LogError($"❌ ParseJsonList: 타입 {typeof(T)} 지원 안됨");
+                Debug.LogError($"X ParseJsonList: 타입 {typeof(T)} 지원 안됨");
                 break;
             }
         }
@@ -226,9 +226,9 @@ public class BackendDataManager
         var bro = Backend.GameData.Update("UserData", where, param);
 
         if (bro.IsSuccess())
-            Debug.Log($"✅ {fieldName} 리스트 업데이트 성공");
+            Debug.Log($"V {fieldName} 리스트 업데이트 성공");
         else
-            Debug.LogError($"❌ {fieldName} 리스트 업데이트 실패: {bro.GetMessage()}");
+            Debug.LogError($"X {fieldName} 리스트 업데이트 실패: {bro.GetMessage()}");
     }
 
     

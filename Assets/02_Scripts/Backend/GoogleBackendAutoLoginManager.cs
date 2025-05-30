@@ -34,11 +34,11 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
         var bro = Backend.Initialize();
         if (bro.IsSuccess())
         {
-            Debug.Log("✅ 뒤끝 초기화 성공");
+            Debug.Log("뒤끝 초기화 성공");
         }
         else
         {
-            Debug.LogError("❌ 뒤끝 초기화 실패");
+            Debug.LogError("뒤끝 초기화 실패");
         }
 
         loadingPanel.gameObject.SetActive(false);
@@ -53,12 +53,12 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     private void AutoLoginIfPossible()
     {
 #if UNITY_EDITOR
-        // ✅ 1순위: 에디터는 무조건 커스텀 계정
+        // 1순위: 에디터는 무조건 커스텀 계정
         Debug.Log("🖥️ [Editor] 커스텀 계정으로 자동 로그인 시도");
         LoginWithEditorCustomAccount();
 
 #elif UNITY_ANDROID
-    // ✅ 2순위: 안드로이드는 구글 로그인 사용
+    // 2순위: 안드로이드는 구글 로그인 사용
     if (PlayerPrefs.GetInt("GoogleLoginSuccess", 0) == 1 && PlayerPrefs.HasKey("SavedGoogleEmail"))
     {
         Debug.Log("📱 [Android] 저장된 이메일로 자동 로그인 시도");
@@ -73,7 +73,7 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     }
 
 #else
-    // ✅ 3순위: PC, Mac, 기타 플랫폼 → 커스텀 계정 로그인
+    // 3순위: PC, Mac, 기타 플랫폼 → 커스텀 계정 로그인
     Debug.Log("🖥️ [Standalone] 커스텀 계정으로 자동 로그인 시도");
     LoginWithEditorCustomAccount();
 
@@ -86,13 +86,13 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
 
         if (bro.IsSuccess())
         {
-            Debug.Log("✅ 에디터 커스텀 계정 로그인 성공!");
+            Debug.Log("에디터 커스텀 계정 로그인 성공!");
             googleLoginButton.gameObject.SetActive(false);
             LoadingProgress();
         }
         else
         {
-            Debug.LogWarning($"⚠️ 에디터 커스텀 계정 로그인 실패: {bro.GetErrorCode()}, {bro.GetMessage()}");
+            Debug.LogWarning($"에디터 커스텀 계정 로그인 실패: {bro.GetErrorCode()}, {bro.GetMessage()}");
 
             // 실패 코드가 "회원정보 없음"이면 회원가입
             if (int.Parse(bro.GetStatusCode()) == 401 || bro.GetErrorCode() == "BadUnauthorizedException" || bro.GetErrorCode() == "bad customId")
@@ -102,18 +102,18 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
 
                 if (signUpBro.IsSuccess())
                 {
-                    Debug.Log("✅ 에디터 테스트 계정 회원가입 성공!");
+                    Debug.Log("에디터 테스트 계정 회원가입 성공!");
                     // 가입 후 다시 로그인
                     LoginWithEditorCustomAccount();
                 }
                 else
                 {
-                    Debug.LogError($"❌ 에디터 테스트 계정 회원가입 실패: {signUpBro.GetErrorCode()}, {signUpBro.GetMessage()}");
+                    Debug.LogError($"에디터 테스트 계정 회원가입 실패: {signUpBro.GetErrorCode()}, {signUpBro.GetMessage()}");
                 }
             }
             else
             {
-                Debug.LogError($"❌ 에디터 테스트 계정 로그인 실패(알 수 없는 에러): {bro.GetErrorCode()}, {bro.GetMessage()}");
+                Debug.LogError($"에디터 테스트 계정 로그인 실패(알 수 없는 에러): {bro.GetErrorCode()}, {bro.GetMessage()}");
             }
         }
     }
@@ -134,18 +134,18 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
     {
         if (task.IsFaulted)
         {
-            Debug.LogError("❌ 구글 로그인 실패: " + task.Exception);
+            Debug.LogError("구글 로그인 실패: " + task.Exception);
             googleLoginButton.interactable = true;
         }
         else if (task.IsCanceled)
         {
-            Debug.LogWarning("⚠️ 구글 로그인 취소됨");
+            Debug.LogWarning("구글 로그인 취소됨");
             googleLoginButton.interactable = true;
         }
         else
         {
-            Debug.Log("✅ 구글 로그인 성공");
-            InGameLogger.Log("✅ 구글 로그인 성공");
+            Debug.Log("구글 로그인 성공");
+            InGameLogger.Log("구글 로그인 성공");
 
             string idToken = task.Result.IdToken;
             string email = task.Result.Email;
@@ -160,24 +160,24 @@ public class GoogleBackendAutoLoginManager : MonoBehaviour
 
     private void BackendLoginWithIdToken(string idToken, string email)
     {
-        Debug.Log("▶️ 뒤끝에 ID Token 로그인 요청");
+        Debug.Log("뒤끝에 ID Token 로그인 요청");
 
         var bro = Backend.BMember.AuthorizeFederation(idToken, FederationType.Google, email);
 
         if (bro.IsSuccess())
         {
-            Debug.Log("✅ 뒤끝 ID Token 로그인 성공!");
+            Debug.Log("뒤끝 ID Token 로그인 성공!");
 
             googleLoginButton.gameObject.SetActive(false);
             LoadingProgress();
         }
         else
         {
-            Debug.LogError($"❌ 뒤끝 로그인 실패: {bro.GetErrorCode()}, {bro.GetMessage()}");
+            Debug.LogError($"뒤끝 로그인 실패: {bro.GetErrorCode()}, {bro.GetMessage()}");
 
             if (bro.GetErrorCode() == "403")
             {
-                Debug.LogWarning("⚠️ ID Token 만료. 다시 로그인 필요");
+                Debug.LogWarning("ID Token 만료. 다시 로그인 필요");
                 PlayerPrefs.DeleteKey(SavedEmailKey);
             }
 

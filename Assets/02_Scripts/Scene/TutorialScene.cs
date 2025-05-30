@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Beautify.Universal;
 using DG.Tweening;
 using PixelCrushers.DialogueSystem;
 using UnityEngine;
@@ -8,17 +9,22 @@ public class TutorialScene : MonoBehaviour
 {
     [SerializeField] private Transform actor;
     [SerializeField] private AudioClip bgSound;
+    [SerializeField] private Canvas[] canvases;
+    
     private Stats _playerStats;
 
     private void Start()
     {
+        foreach (var canvas in canvases)
+        {
+            canvas.gameObject.SetActive(false);
+        }
         _playerStats = WaveManager.Instance.PlayerEntity.Stats;
         DialogueManager.instance.conversationStarted += OnDialogueStart;
         DialogueManager.instance.conversationEnded += OnDialogueEnd;
         _playerStats.GetStat("LEVEL").onValueChanged += OnLevelChanged;
         _playerStats.GetStat("ENERGY").onValueMax += OnStatMaxChanged;
-        WaveManager.Instance.OnMonsterSpawn += MonsterSpawn;
-        DialogueManager.StartConversation("TutorialStart", actor);
+        WaveManager.Instance.OnEnemySpawned += MonsterSpawn;
         GameManager.Instance.CurrentIslandIndex = -1;
         WaveManager.Instance.OnWaveEnd += () => { DialogueManager.StartConversation("Tutorial_End", actor); };
         WaveManager.Instance.OnWaveEnd += () => { Managers.BackendManager.UpdateField("isClearedTutorial", true); };
@@ -29,6 +35,28 @@ public class TutorialScene : MonoBehaviour
             Managers.SoundManager.Play(bgSound, Sound.Bgm);
         
         _playerStats.Owner.onKill += MonsterKill;
+
+        FourthAction();
+    }
+    
+    public void FourthAction()
+    {
+        Time.timeScale = 0;
+
+        DOVirtual.DelayedCall(0.1f, () =>
+        {
+            BeautifySettings.instance.BlinkDotween(6f, 0);
+            BeautifySettings.instance.BlurFade(6f, 0);
+            DOVirtual.DelayedCall(6f, () =>
+            {
+                foreach (var canvas in canvases)
+                {
+                    canvas.gameObject.SetActive(true);
+                }
+
+                DialogueManager.StartConversation("TutorialStart", actor);
+            });
+        });
     }
 
     private void MonsterKill(Entity entity)
@@ -92,5 +120,11 @@ public class TutorialScene : MonoBehaviour
     private void OnDialogueStart(Transform actor)
     {
         Time.timeScale = 0;
+    }
+
+    private void OnDestroy()
+    {
+        CardAnimator.onCardSpawned -= CardSpawned;
+        CardAnimator.onCardDelete -= CardDestroyed;
     }
 }

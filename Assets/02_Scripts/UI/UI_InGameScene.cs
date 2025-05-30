@@ -21,11 +21,17 @@ public class UI_InGameScene : MonoSingleton<UI_InGameScene>
         DOTween.defaultTimeScaleIndependent = true;
         WaveManager.Instance.OnWaveEnd += OpenGameEnd;
         WaveManager.Instance.PlayerEntity.Stats.GetStat("LEVEL").onValueChanged += OpenCardSelec;
+        WaveManager.Instance.PlayerEntity.Stats.ClearedStats();
+        WaveManager.Instance.OnWaveEnd += Clear;
     }
     
     public UiWindow GetCardSelectUI() => _cardSelectUI;
 
-    public void OpenPause() => pause.OpenWindow();
+    public void OpenPause()
+    {
+        Time.timeScale = 0;
+        pause.OpenWindow();
+    }
     public void OpenExitAlert() => exitAlert.OpenWindow();
     public void OpenRevive()
     {
@@ -72,5 +78,10 @@ public class UI_InGameScene : MonoSingleton<UI_InGameScene>
         }
 
         _waitCoroutine = null;
+    }
+
+    private void Clear()
+    {
+        WaveManager.Instance.PlayerEntity.Stats.GetStat("LEVEL").onValueChanged -= OpenCardSelec;
     }
 }

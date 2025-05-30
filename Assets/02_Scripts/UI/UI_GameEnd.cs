@@ -39,14 +39,9 @@ public class UI_GameEnd : UiWindow
         waveText.text = $"WAVE : {WaveManager.Instance.CurrentWave - 1}";
     }
 
-    private void IDLevelSliderSetting()
-    {
-        
-    }
-
     private void ItemSlotSetting()
     {
-        foreach (var item in WaveManager.Instance.GetGainedItems())
+        foreach (var item in WaveManager.Instance.GainedItems)
         {
             var itemSlot = Instantiate(this.itemSlot, itemSlotParent).GetComponent<ItemSlot>();
             itemSlot.SetItem(item);
@@ -57,11 +52,10 @@ public class UI_GameEnd : UiWindow
     {
         //SoundManager.Instance.Play(clickSound);
         Managers.SoundManager.Clear();
-        foreach (var item in WaveManager.Instance.GetGainedItems())
+        foreach (var item in WaveManager.Instance.GainedItems)
         {
             Managers.InventoryManager.AddItem(item);
         }
-        Time.timeScale = 1;
 
         SceneTransitioner.Instance.StartTransitioning(SceneType.MainScene);
     }

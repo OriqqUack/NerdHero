@@ -20,6 +20,16 @@ namespace PixelCrushers.DialogueSystem.SpineSupport
         public override void ShowSubtitle(Subtitle subtitle)
         {
             base.ShowSubtitle(subtitle);
+            
+            if (subtitle == null || subtitle.speakerInfo.Name == "내레이션" || string.IsNullOrEmpty(subtitle.speakerInfo.Name))
+            {
+                portraitName.gameObject.transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                portraitName.gameObject.transform.parent.gameObject.SetActive(true);
+            }
+            
             ShowSpineDialogueActor(subtitle.speakerInfo.transform);
         }
 

@@ -272,7 +272,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 234.66173
-        y: 164.56335
+        y: 160.60855
         width: 160
         height: 30
     - id: 6
@@ -322,7 +322,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 235.10036
-        y: 251.90915
+        y: 251.34418
         width: 160
         height: 30
     entryGroups: []
@@ -482,7 +482,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 182.33334
-        y: 122.66664
+        y: 109.999985
         width: 160
         height: 30
     - id: 2
@@ -512,7 +512,11 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Sequence
-        value: SendMessage(SeventhAction)
+        value: SendMessage(SeventhAction, 0 , Douri Actor)
+        type: 0
+        typeString: 
+      - title: Response Menu Sequence
+        value: 
         type: 0
         typeString: 
       conversationID: 2
@@ -537,7 +541,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 199.33336
-        y: 196
+        y: 188.66666
         width: 160
         height: 30
     - id: 3
@@ -586,7 +590,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 196.00003
-        y: 267.33337
+        y: 266.00006
         width: 160
         height: 30
     entryGroups: []
@@ -603,7 +607,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Actor
-      value: 3
+      value: 2
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
@@ -649,7 +653,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -745,8 +749,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 160
-        y: 70.15535
+        x: 158.7055
+        y: 63.682877
         width: 160
         height: 30
     - id: 2
@@ -802,7 +806,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 160
-        y: 123.43039
+        y: 119.54689
         width: 160
         height: 30
     - id: 3
@@ -868,7 +872,7 @@ MonoBehaviour:
       type: 0
       typeString: 
     - title: Actor
-      value: 3
+      value: 2
       type: 5
       typeString: CustomFieldType_Actor
     - title: Conversant
@@ -914,7 +918,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Actor
-        value: 3
+        value: 2
         type: 5
         typeString: CustomFieldType_Actor
       - title: Conversant
@@ -1123,8 +1127,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 158.30537
-        y: 264.28745
+        x: 156.67934
+        y: 261.84842
         width: 160
         height: 30
     - id: 4
@@ -1174,7 +1178,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 159.98059
-        y: 326.95105
+        y: 325.32507
         width: 160
         height: 30
     - id: 5
@@ -1285,7 +1289,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 155.46918
-        y: 227.07443
+        y: 224.6354
         width: 160
         height: 30
     entryGroups: []
@@ -1867,8 +1871,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 157.66666
-        y: 154.66667
+        x: 155.84016
+        y: 152.84016
         width: 160
         height: 30
     - id: 2
@@ -1973,7 +1977,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 158
-        y: 97.33331
+        y: 95.50682
         width: 160
         height: 30
     entryGroups: []
@@ -2133,7 +2137,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 163.99997
-        y: 86.000015
+        y: 84.66669
         width: 160
         height: 30
     - id: 2

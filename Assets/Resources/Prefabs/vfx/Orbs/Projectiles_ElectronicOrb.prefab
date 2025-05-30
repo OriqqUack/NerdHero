@@ -109,15 +109,15 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0.96129864, b: 0.495283, a: 0}
-      key1: {r: 0.031372547, g: 0.642937, b: 1, a: 1}
+      key1: {r: 1, g: 0.96129864, b: 0.495283, a: 1}
       key2: {r: 0, g: 0.8551445, b: 1, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 9059
-      ctime1: 28720
+      ctime0: 0
+      ctime1: 65535
       ctime2: 44718
       ctime3: 0
       ctime4: 0
@@ -133,7 +133,7 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 4
     numCornerVertices: 0
@@ -371,7 +371,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.99215686, g: 0.716574, b: 0.22745097, a: 1}
+      maxColor: {r: 0.90196085, g: 0.69803923, b: 0.09411766, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10150,8 +10150,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.99215686, g: 0.77518594, b: 0.3411765, a: 0}
-      key1: {r: 0.3820755, g: 0.9377898, b: 1, a: 1}
+      key0: {r: 1, g: 0.9607844, b: 0.5882353, a: 0}
+      key1: {r: 1, g: 1, b: 0.882353, a: 1}
       key2: {r: 0, g: 0.5639739, b: 1, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0.25777632}
       key4: {r: 0, g: 0, b: 0, a: 0.042119965}
@@ -10159,8 +10159,8 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 6746
-      ctime1: 13685
-      ctime2: 22359
+      ctime1: 13364
+      ctime2: 22231
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -10175,8 +10175,8 @@ TrailRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
-      m_NumColorKeys: 3
+      m_ColorSpace: 0
+      m_NumColorKeys: 2
       m_NumAlphaKeys: 6
     numCornerVertices: 0
     numCapVertices: 0

@@ -28,7 +28,7 @@ public class PoolManager
             GameObject go = Object.Instantiate<GameObject>(Original);
             go.name = Original.name;
             var poolable = go.GetOrAddComponent<Poolable>();
-            poolable.transform.SetParent(Root); // ✅ 추가
+            poolable.transform.SetParent(Root);
             return poolable;
         }
 

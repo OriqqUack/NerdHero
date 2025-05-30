@@ -7,7 +7,6 @@ public class Managers : MonoSingleton<Managers>
 {
     public static bool IsDestroying = false;
     #region Core
-    //InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     EnergyManager _energy = new EnergyManager();
@@ -15,7 +14,6 @@ public class Managers : MonoSingleton<Managers>
     BackendDataManager _backend = new BackendDataManager();
     InventoryManager _inventory = new InventoryManager();
 
-    //public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static EnergyManager EnergyManager { get { return Instance._energy; } }
@@ -93,6 +91,7 @@ public class Managers : MonoSingleton<Managers>
     [ContextMenu("💣 저장 파일 삭제")]
     public void DataDelete()
     {
+        PlayerPrefs.DeleteAll();
         if (ES3.FileExists("SaveFile.es3"))
         {
             ES3.DeleteFile("SaveFile.es3");

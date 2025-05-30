@@ -17,7 +17,7 @@ public class SpawnAreaRandomizer : MonoBehaviour
 
     private void Start()
     {
-        WaveManager.Instance.OnWaveChange += RepositionSpawnPoints;
+        WaveManager.Instance.OnWaveStart += RepositionSpawnPoints;
         RepositionSpawnPoints(0);
     }
 

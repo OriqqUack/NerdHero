@@ -8,10 +8,9 @@ public class DropTable : ScriptableObject
     public class DropEntry
     {
         public GainType gainType; // 스탯 or 아이템 획득 타입 설정
-        public Stat stat;
-        public float statAmount;
+        public Stat[] stat;
+        public float[] statAmount;
         public GameObject lootPrefab;
-        public ItemSO item;
         [Range(0f, 1f)] public float dropChance; // 0.0 ~ 1.0 확률
     }
 

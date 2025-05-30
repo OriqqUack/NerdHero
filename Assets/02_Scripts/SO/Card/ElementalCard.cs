@@ -4,6 +4,7 @@ using UnityEngine;
 public class ElementalCard : CardBase
 {
     [SerializeField] private string elementalName;
+    
     public override void Setup(Entity entity)
     {
         _owner = entity;
